@@ -101,7 +101,8 @@
                     <li><a href="#how-it-works" class="nav__link">Como Funciona</a></li>
                     <li><a href="#features" class="nav__link">Diferenciais</a></li>
                     <li><a href="#coverage" class="nav__link">Área de Cobertura</a></li>
-                    <li><a href="#testimonials" class="nav__link">Avaliações</a></li>
+                    <li><a href="#testimonials" class="nav__link">Casos de Sucesso</a></li>
+                    <li><a href="#" class="nav__link" data-modal="status">Status</a></li>
                     <li><a href="#price-estimator" class="nav__link">Calcular Preço</a></li>
                     <li><a href="tel:+5519993502969" class="nav__link nav__link--cta">
                         <i class="fa-solid fa-phone"></i> Chamar Agora
@@ -136,11 +137,11 @@
 
                 <div class="hero__actions">
                     <a href="tel:+5519993502969" class="btn btn--primary btn--lg btn--pulse btn--full-mobile">
-                        <i class="fa-solid fa-phone"></i> LIGAR AGORA
+                        <i class="fa-solid fa-phone"></i> LIGAR AGORA (Emergência)
                     </a>
-                    <button class="btn btn--emergency btn--lg btn--full-mobile" data-modal="generic" data-title="Emergência - Preciso de Guincho AGORA" data-form-id="form-emergency-panic">
-                        <i class="fa-solid fa-bolt-lightning"></i> PRECISO DE UM GUINCHO AGORA
-                    </button>
+                    <a href="https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20Guincho%20Agora" class="btn btn--secondary btn--lg btn--full-mobile" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> Enviar um SOS no WhatsApp
+                    </a>
                 </div>
 
                 <div class="hero__info">
@@ -622,92 +623,59 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Prova Social Section -->
     <section id="testimonials" class="section">
         <div class="container">
              <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Clientes satisfeitos</span>
-                <h2 class="section__title">O que dizem sobre <span class="section__highlight">nosso serviço</span></h2>
+                <span class="section__pretitle">Confiança e Expertise</span>
+                <h2 class="section__title">Estudos de Caso <span class="section__highlight">Reais</span></h2>
                 <div class="section__divider"></div>
                 <p class="section__subtitle">
-                    Depoimentos reais sobre a qualidade e eficiência do nosso atendimento
+                    Demonstrações da nossa capacidade técnica em diversas situações de reboque.
                 </p>
             </div>
 
             <div class="testimonials">
                 <div class="testimonials__list">
-                    <div class="card card--testimonial animate-on-scroll">
-                        <div class="card__quote">
-                            <i class="fa-solid fa-quote-right"></i>
+                    <!-- Case Study 1: Carro Premium -->
+                    <div class="card card--case-study animate-on-scroll">
+                        <div class="card__image-wrapper">
+                            <img src="https://www.soloauto.com.br/wp-content/uploads/2022/10/servico-de-guincho-carro-de-luxo.jpg" alt="Transporte de carro de luxo" class="card__image">
                         </div>
-                        <p class="card__text">
-                            "Serviço excelente! Meu carro quebrou na rodovia e em 25 minutos o guincho já estava no local. Atendimento profissional e preço justo. Recomendo!"
-                        </p>
-                        <div class="card__author">
-                            <div class="card__avatar">
-                                <img src="https://randomuser.me/api/portraits/women/54.jpg" alt="Foto de Mariana Silva">
-                            </div>
-                            <div class="card__author-info">
-                                <div class="card__author-name">Mariana Silva</div>
-                                <div class="card__author-city">Campinas/SP</div>
-                                <div class="card__stars">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
+                        <div class="card__content">
+                            <h3 class="card__title">Transporte de Carro Premium</h3>
+                            <p class="card__text">
+                                "Cuidado e precisão no transporte de veículos de alto valor. Utilizamos equipamentos especializados para garantir a máxima segurança do seu patrimônio."
+                            </p>
+                            <div class="card__tag">#TransporteComCuidado</div>
                         </div>
                     </div>
 
-                    <div class="card card--testimonial animate-on-scroll">
-                        <div class="card__quote">
-                            <i class="fa-solid fa-quote-right"></i>
+                    <!-- Case Study 2: Resgate Rápido -->
+                    <div class="card card--case-study animate-on-scroll">
+                        <div class="card__image-wrapper">
+                            <img src="https://aaa.scene7.com/is/image/aaaautoclubsouthstage/3-what-to-expect-when-towed-ers33_Hi?ts=1742932925245&dpr=off" alt="Resgate rápido em rodovia" class="card__image">
                         </div>
-                        <p class="card__text">
-                            "Já utilizei o serviço duas vezes e sempre com atendimento rápido e profissional. Processo transparente do início ao fim e sem surpresas no valor. Muito confiável!"
-                        </p>
-                        <div class="card__author">
-                            <div class="card__avatar">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto de Carlos Mendes">
-                            </div>
-                            <div class="card__author-info">
-                                <div class="card__author-name">Carlos Mendes</div>
-                                <div class="card__author-city">Valinhos/SP</div>
-                                <div class="card__stars">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
+                        <div class="card__content">
+                            <h3 class="card__title">Resgate Rápido em Rodovia</h3>
+                            <p class="card__text">
+                                "Pane elétrica na Anhanguera. Chegamos em 20 minutos e resolvemos a situação com agilidade, garantindo a segurança do cliente em um local de risco."
+                            </p>
+                            <div class="card__tag">#AgilidadeNaEmergência</div>
                         </div>
                     </div>
 
-                    <div class="card card--testimonial animate-on-scroll">
-                        <div class="card__quote">
-                            <i class="fa-solid fa-quote-right"></i>
+                    <!-- Case Study 3: Acesso Difícil -->
+                    <div class="card card--case-study animate-on-scroll">
+                        <div class="card__image-wrapper">
+                            <img src="http://www.revecarplus.com.br/images/servicos/9.jpg" alt="Resgate em garagem de subsolo" class="card__image">
                         </div>
-                        <p class="card__text">
-                            "Meu veículo parou em uma sexta à noite e pensei que ficaria sem solução. Contatei a Chama o Guincho e em 40 minutos resolveram meu problema. Recomendo!"
-                        </p>
-                        <div class="card__author">
-                            <div class="card__avatar">
-                                <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Foto de Ana Ferreira">
-                            </div>
-                            <div class="card__author-info">
-                                <div class="card__author-name">Ana Ferreira</div>
-                                <div class="card__author-city">Americana/SP</div>
-                                <div class="card__stars">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
+                        <div class="card__content">
+                            <h3 class="card__title">Resgate em Acesso Difícil</h3>
+                            <p class="card__text">
+                                "Veículo com pane em garagem de subsolo. Nossa equipe utilizou técnicas e equipamentos especiais para remover o carro com segurança, sem danos."
+                            </p>
+                            <div class="card__tag">#EspecialistasEmSubsolo</div>
                         </div>
                     </div>
                 </div>
@@ -830,23 +798,25 @@
                     <div class="form-group">
                         <label class="form-label" for="price-distance">Distância (km)</label>
                         <input type="number" class="form-control" id="price-distance" min="1" max="2000" value="20">
+                        <small class="form-help">
+                            <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Ver distância no Google Maps</a>
+                        </small>
                     </div>
                 </div>
 
                 <div class="price-estimator__result">
                     <div>
                         <span class="price-estimator__label">Valor estimado:</span>
-                        <div class="price-estimator__price">R$ 180,00</div>
+                        <div class="price-estimator__price">R$ 162,00 - R$ 198,00</div>
                     </div>
 
-                    <button class="btn btn--primary" data-modal="generic" data-title="Solicitar Reboque" data-form-id="form-reboque">
-                        Solicitar guincho
+                    <button class="btn btn--primary">
+                        Chamar Guincho Agora
                     </button>
                 </div>
 
                 <p class="price-estimator__note">
-                    <strong>* Este é um valor estimado.</strong> O preço final pode variar conforme avaliação técnica no local e condições específicas do veículo.<br>
-                    <strong>** Para distâncias superiores a 120km, será acrescido 20% do valor total para cobertura do deslocamento de retorno.</strong>
+                    <strong>* Este é um valor estimado.</strong> O valor final pode variar dependendo da dificuldade de embarque (ex: rodas travadas ou subsolo).
                 </p>
             </div>
         </div>
@@ -937,7 +907,7 @@
                             <a href="#coverage" class="footer__nav-link">Área de Cobertura</a>
                         </li>
                         <li class="footer__nav-item">
-                            <a href="#testimonials" class="footer__nav-link">Avaliações</a>
+                            <a href="#testimonials" class="footer__nav-link">Casos de Sucesso</a>
                         </li>
                         <li class="footer__nav-item">
                             <a href="#price-estimator" class="footer__nav-link">Calcular Preço</a>
@@ -1393,6 +1363,12 @@
                 <button class="modal__close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal__body">
+                <div id="status-result-simulated" style="display: none; text-align: center; padding: 2rem;">
+                    <i class="fa-solid fa-hourglass-half" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Solicitação Recebida!</h4>
+                    <p>Estamos localizando um motorista para você. Aguarde nosso contato via WhatsApp em breve.</p>
+                </div>
+
                 <form id="form-consulta-status">
                     <div class="form-group">
                         <label class="form-label form-label--required" for="codigo-atendimento">Código do atendimento</label>

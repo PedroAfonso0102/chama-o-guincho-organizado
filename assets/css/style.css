@@ -15,6 +15,7 @@
     --accent-green: #25d366;
     --accent-green-dark: #1da851;
     --accent-blue: #0d6efd;
+    --accent-blue-dark: #0b5ed7;
     --accent-yellow: #ffc107;
     --accent-yellow-dark: #ffb300;
     --accent-orange: #ff6b35;
@@ -75,8 +76,8 @@
     --space-24: 6rem;    /* 96px */
 
     /* Espaçamentos específicos para componentes */
-    --header-padding: var(--space-9);     /* 1.125rem = 18px convertido */
-    --header-padding-scrolled: 0.625rem;  /* Pode ser convertido depois */
+    --header-padding: 1.125rem;  /* 18px */
+    --header-padding-scrolled: 0.625rem;  /* 10px */
     --header-height: 120px;               /* Altura estimada do header + margem */
 
     /* Sistema de grid */
@@ -367,29 +368,7 @@ textarea {
 .will-change-transform { will-change: transform; }
 .will-change-opacity { will-change: opacity; }
 .will-change-scroll { will-change: scroll-position; }
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.not-sr-only {
-    position: static;
-    width: auto;
-    height: auto;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-}/* =========== COMPONENT: BUTTONS =========== */
+/* =========== COMPONENT: BUTTONS =========== */
 
 .btn {
     display: inline-flex;
@@ -544,7 +523,7 @@ textarea {
 }
 
 .btn--location:hover {
-    background-color: #0b5ed7;
+    background-color: var(--accent-blue-dark);
     transform: translateY(-2px);
 }
 
@@ -555,7 +534,7 @@ textarea {
 .btn--lg {
     padding: var(--space-4) var(--space-8);
     font-size: var(--font-size-lg);
-    border-radius: calc(var(--rounded) * 1.2);
+    border-radius: var(--rounded);
     min-height: 56px;
 }
 
@@ -593,7 +572,7 @@ textarea {
 /* Base card style */
 .card {
     background-color: white;
-    border-radius: 0.75rem;
+    border-radius: var(--rounded-lg);
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: var(--transition);
@@ -973,7 +952,7 @@ textarea {
 }/* =========== COMPONENT: EMERGENCY SECTION =========== */
 
 .emergency-section {
-    padding: clamp(2.5rem, 6vw, 3.5rem) 0;
+    padding: var(--section-spacing) 0;
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(248, 215, 218, 0.2) 0%, rgba(248, 215, 218, 0.4) 100%);
@@ -1175,6 +1154,10 @@ textarea {
 }
 
 @media (max-width: 768px) {
+    .section {
+        padding: var(--section-spacing-mobile) 0;
+    }
+
     .emergency-card__content {
         padding: 2rem;
     }
@@ -1736,7 +1719,7 @@ textarea {
 
 .form-row {
     display: flex;
-    gap: 0.875rem;
+    gap: var(--space-4);
     margin-bottom: 0.75rem;
 }
 
@@ -1961,7 +1944,7 @@ textarea {
     padding: calc(var(--header-height) + var(--space-12)) 0 var(--section-spacing);
     position: relative;
     overflow: hidden;
-    background-color: #ff001e;
+    background-color: var(--primary);
     color: white;
 }
 
@@ -2079,7 +2062,7 @@ textarea {
 
 .hero__title {
     /* Tipografia fluida: mínimo 2rem, ideal 5vw, máximo 4xl */
-    font-size: clamp(3rem, 10vw, var(--font-size-4xl));
+    font-size: clamp(var(--font-size-5xl), 10vw, var(--font-size-4xl));
     font-weight: 800;
     margin-bottom: 0;
     line-height: 1.35;
@@ -2554,7 +2537,7 @@ textarea {
 .modal__close {
     background: none;
     border: none;
-    font-size: 1.25rem;
+    font-size: var(--font-size-xl);
     cursor: pointer;
     color: var(--gray);
     transition: var(--transition-fast);
@@ -3070,4 +3053,82 @@ textarea {
         margin-left: auto;
         margin-right: auto;
     }
+}
+/* Case Study Card styles */
+.card--case-study {
+    background-color: white;
+    border-radius: var(--rounded-lg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card--case-study:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card__image-wrapper {
+    width: 100%;
+    height: 200px; /* Fixed height for all images */
+    overflow: hidden;
+}
+
+.card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This is key for uniform image display */
+    transition: transform 0.4s ease;
+}
+
+.card--case-study:hover .card__image {
+    transform: scale(1.05);
+}
+
+.card__content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows content to fill space */
+}
+
+.card__title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--secondary);
+}
+
+.card__text {
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    color: var(--gray-dark);
+    flex-grow: 1; /* Pushes the tag to the bottom */
+    margin-bottom: 1rem;
+}
+
+.card__tag {
+    align-self: flex-start; /* Aligns tag to the left */
+    background-color: var(--primary-light);
+    color: var(--primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--rounded-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-top: auto; /* Pushes tag to the bottom */
+}
+
+
+.hero .btn--secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.hero .btn--secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    color: white;
 }

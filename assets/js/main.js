@@ -8,15 +8,17 @@
 const CONFIG = {
     WHATSAPP_NUMBER: '5519993502969',
     PRICING: {
-        VEHICLE_PRICING: {
-            'moto': { saida_40km: 160.00, km_adicional: 3.50, hora_parada: 50.00, hora_trabalhada: 60.00 },
-            'car': { saida_40km: 160.00, km_adicional: 3.50, hora_parada: 50.00, hora_trabalhada: 60.00 },
-            'suv': { saida_40km: 240.00, km_adicional: 4.00, hora_parada: 50.00, hora_trabalhada: 60.00 },
-            'van': { saida_40km: 350.00, km_adicional: 4.00, hora_parada: 50.00, hora_trabalhada: 60.00 },
-            'truck': { saida_40km: 350.00, km_adicional: 4.00, hora_parada: 50.00, hora_trabalhada: 60.00 }
-        },
-        KM_INCLUIDO_NA_SAIDA: 40,
-        DISTANCIA_TAXA_RETORNO: 120
+        PRECO_BANDEIRADA: 120.00,
+        PRECO_POR_KM: 4.50,
+        ADICIONAL_NOTURNO: 1.25, // +25%
+        ADICIONAL_FDS: 1.20,     // +20%
+        TIPO_VEICULO: {
+            'moto': 1.0,
+            'car': 1.0,
+            'suv': 1.3,
+            'van': 1.5,
+            'truck': 1.5 // Mapeado como van
+        }
     }
 };
 
@@ -148,6 +150,12 @@ function setupFormSubmission() {
             const title = getFormTitle(form);
             sendWhatsAppMessage(form, title);
             showNotification('Sua solicitação foi enviada! Abrindo o WhatsApp...', 'success');
+
+            const formId = form.id.replace('-clone', '');
+            if (formId === 'form-emergency-panic' || formId === 'emergency-form') {
+                localStorage.setItem('emergencyRequestTime', Date.now().toString());
+            }
+
             setTimeout(() => {
                 form.reset();
                 form.querySelectorAll('.is-valid, .is-invalid').forEach(el => el.classList.remove('is-valid', 'is-invalid'));
@@ -213,27 +221,61 @@ function initInputMasks() {
 }
 function initLocationDetection() {
     document.body.addEventListener('click', e => {
-        const button = e.target.closest('.location-detect, #price-detect-origin, #panic-detect-location');
+        const button = e.target.closest('.location-detect, #price-detect-origin, #panic-detect-location, #reboque-detect-location');
         if (button) {
-            const input = button.closest('form').querySelector('input[id*="location"], input[id*="origin"]');
-            if (input) getCurrentLocation(input);
+            const wrapper = button.closest('.input-location-wrapper, .input-icon-wrapper, .location-group');
+            const input = wrapper ? wrapper.querySelector('input[id*="location"], input[id*="origin"]') : null;
+            if (input) {
+                getCurrentLocation(input);
+            }
         }
     });
 }
+
 function getCurrentLocation(input) {
-    if (!navigator.geolocation) return showNotification('Geolocalização não é suportada.', 'error');
+    if (!navigator.geolocation) {
+        showNotification('Geolocalização não é suportada pelo seu navegador.', 'error');
+        return;
+    }
+
     input.value = "Detectando...";
     input.disabled = true;
+
     navigator.geolocation.getCurrentPosition(
-        pos => {
-            input.value = `Lat: ${pos.coords.latitude.toFixed(5)}, Lon: ${pos.coords.longitude.toFixed(5)}`;
-            input.disabled = false;
-            showNotification('Localização detectada!', 'success');
+        position => {
+            const { latitude, longitude } = position.coords;
+            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.display_name) {
+                        input.value = data.display_name;
+                        showNotification('Localização encontrada!', 'success');
+                    } else {
+                        input.value = `Lat: ${latitude.toFixed(5)}, Lon: ${longitude.toFixed(5)}`;
+                        showNotification('Endereço não encontrado, usando coordenadas.', 'info');
+                    }
+                })
+                .catch(() => {
+                    showNotification('Erro ao buscar o endereço. Verifique sua conexão.', 'error');
+                    input.value = `Lat: ${latitude.toFixed(5)}, Lon: ${longitude.toFixed(5)}`;
+                })
+                .finally(() => {
+                    input.disabled = false;
+                });
         },
-        () => {
+        error => {
             input.value = "";
             input.disabled = false;
-            showNotification('Não foi possível obter sua localização.', 'error');
+            let message = 'Não foi possível obter sua localização.';
+            if (error.code === error.PERMISSION_DENIED) {
+                message = 'Você negou o acesso à localização.';
+            }
+            showNotification(message, 'error');
         }
     );
 }
@@ -294,6 +336,27 @@ function trapTabInModal(e, modal) {
 function openModal(modalId, title, formId) {
     const modal = document.getElementById(`modal-${modalId}`);
     if (!modal) return;
+
+    if (modalId === 'status') {
+        const requestTime = localStorage.getItem('emergencyRequestTime');
+        const form = modal.querySelector('#form-consulta-status');
+        const simulatedResult = modal.querySelector('#status-result-simulated');
+
+        if (requestTime) {
+            const minutesSinceRequest = (Date.now() - parseInt(requestTime)) / 1000 / 60;
+            if (minutesSinceRequest < 30) {
+                if (form) form.style.display = 'none';
+                if (simulatedResult) simulatedResult.style.display = 'block';
+            } else {
+                if (form) form.style.display = 'block';
+                if (simulatedResult) simulatedResult.style.display = 'none';
+            }
+        } else {
+            if (form) form.style.display = 'block';
+            if (simulatedResult) simulatedResult.style.display = 'none';
+        }
+    }
+
     if (title) modal.querySelector('.modal__title').textContent = title;
     if (formId) {
         const formTemplate = document.getElementById(formId);
@@ -367,30 +430,62 @@ function toggleMobileMenu(menu, toggle, force) {
 function initPriceCalculator() {
     const estimator = document.getElementById('price-estimator');
     if (!estimator) return;
+
+    const originInput = document.getElementById('price-origin');
+    const destinationInput = document.getElementById('price-destination');
     const distanceInput = document.getElementById('price-distance');
     const vehicleSelect = document.getElementById('price-vehicle');
     const priceOutput = estimator.querySelector('.price-estimator__price');
+    const requestButton = estimator.querySelector('.price-estimator__result .btn');
+
     const calculate = () => calculatePrice(distanceInput, vehicleSelect, priceOutput);
-    distanceInput.addEventListener('input', calculate);
-    vehicleSelect.addEventListener('change', calculate);
-    estimator.querySelector('.price-estimator__result .btn')?.addEventListener('click', () => {
-        const msg = `Olá, gostaria de um orçamento com base na simulação:\n\n*Origem:* ${document.getElementById('price-origin').value || 'N/A'}\n*Destino:* ${document.getElementById('price-destination').value || 'N/A'}\n*Veículo:* ${vehicleSelect.selectedOptions[0].text}\n*Preço Estimado:* ${priceOutput.textContent}`;
-        window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-    });
+
+    [distanceInput, vehicleSelect].forEach(el => el.addEventListener('input', calculate));
+
+    if (requestButton) {
+        requestButton.addEventListener('click', () => {
+            const vehicleText = vehicleSelect.selectedOptions[0].text;
+            const distance = distanceInput.value;
+            const price = priceOutput.textContent;
+            const origin = originInput.value.trim() || 'N/A';
+            const destination = destinationInput.value.trim() || 'N/A';
+
+            const msg = `Olá, fiz a simulação no site.\n\n*De:* ${origin}\n*Para:* ${destination}\n*Distância est:* ${distance}km\n*Veículo:* ${vehicleText}\n*Valor estimado:* ${price}\n\nPodem confirmar?`;
+
+            window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+    }
+
     calculate();
 }
+
 function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
     let distance = parseInt(distanceInput.value, 10) || 0;
     if (distance < 0) distance = 0;
-    const vehicleConfig = CONFIG.PRICING.VEHICLE_PRICING[vehicleSelect.value];
-    if (!vehicleConfig) return priceOutput.textContent = 'N/A';
-    const { KM_INCLUIDO_NA_SAIDA, DISTANCIA_TAXA_RETORNO } = CONFIG.PRICING;
-    let total = vehicleConfig.saida_40km;
-    if (distance > KM_INCLUIDO_NA_SAIDA) {
-        total += (distance - KM_INCLUIDO_NA_SAIDA) * vehicleConfig.km_adicional;
-    }
-    if (distance > DISTANCIA_TAXA_RETORNO) total *= 1.20;
-    priceOutput.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+    const vehicleType = vehicleSelect.value;
+    const vehicleMultiplier = CONFIG.PRICING.TIPO_VEICULO[vehicleType] || 1.0;
+
+    let total = CONFIG.PRICING.PRECO_BANDEIRADA + (distance * CONFIG.PRICING.PRECO_POR_KM);
+    total *= vehicleMultiplier;
+
+    const now = new Date();
+    const hour = now.getHours();
+    const day = now.getDay(); // 0 = Domingo, 6 = Sábado
+
+    const isNight = hour < 6 || hour >= 20;
+    const isWeekend = day === 0;
+
+    let timeMultiplier = 1.0;
+    if (isNight) timeMultiplier = CONFIG.PRICING.ADICIONAL_NOTURNO;
+    if (isWeekend) timeMultiplier = Math.max(timeMultiplier, CONFIG.PRICING.ADICIONAL_FDS);
+
+    total *= timeMultiplier;
+
+    const minPrice = total * 0.9;
+    const maxPrice = total * 1.1;
+
+    priceOutput.innerHTML = `R$ ${minPrice.toFixed(2).replace('.', ',')} - R$ ${maxPrice.toFixed(2).replace('.', ',')}`;
 }
 
 // === UI EFFECTS ===
