@@ -8,16 +8,14 @@
 const CONFIG = {
     WHATSAPP_NUMBER: '5519993502969',
     PRICING: {
-        PRECO_BANDEIRADA: 120.00,
+        PRECO_BASE: 100.00,
         PRECO_POR_KM: 4.50,
-        ADICIONAL_NOTURNO: 1.25, // +25%
         ADICIONAL_FDS: 1.20,     // +20%
         TIPO_VEICULO: {
             'moto': 1.0,
-            'car': 1.0,
-            'suv': 1.3,
-            'van': 1.5,
-            'truck': 1.5 // Mapeado como van
+            'car': 1.6,
+            'suv': 1.8,
+            'van': 2.0,
         }
     }
 };
@@ -439,6 +437,9 @@ function initPriceCalculator() {
     const requestButton = estimator.querySelector('.price-estimator__result .btn');
 
     const calculate = () => calculatePrice(distanceInput, vehicleSelect, priceOutput);
+    const update = () => updateDistance(originInput, destinationInput, distanceInput, calculate);
+
+    [originInput, destinationInput].forEach(el => el.addEventListener('blur', update));
 
     [distanceInput, vehicleSelect].forEach(el => el.addEventListener('input', calculate));
 
@@ -459,6 +460,61 @@ function initPriceCalculator() {
     calculate();
 }
 
+async function updateDistance(originInput, destinationInput, distanceInput, callback) {
+    const origin = originInput.value.trim();
+    const destination = destinationInput.value.trim();
+
+    if (origin.length < 3 || destination.length < 3) {
+        distanceInput.value = 0;
+        callback();
+        return;
+    }
+
+    try {
+        const [originCoords, destCoords] = await Promise.all([
+            getCoordinates(origin),
+            getCoordinates(destination)
+        ]);
+
+        if (!originCoords || !destCoords) {
+            showNotification('Não foi possível encontrar um ou ambos os endereços.', 'error');
+            return;
+        }
+
+        const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat}?overview=false`;
+        const response = await fetch(osrmUrl);
+        const data = await response.json();
+
+        if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
+            const distanceInKm = (data.routes[0].distance / 1000).toFixed(0);
+            distanceInput.value = distanceInKm;
+            showNotification(`Distância calculada: ${distanceInKm} km`, 'success');
+        } else {
+            showNotification('Não foi possível calcular a rota. Verifique os endereços.', 'error');
+        }
+    } catch (error) {
+        console.error('Erro ao calcular distância:', error);
+        showNotification('Ocorreu um erro ao conectar com o serviço de rotas.', 'error');
+    } finally {
+        if (callback) callback();
+    }
+}
+
+async function getCoordinates(address) {
+    const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&countrycodes=br`;
+    try {
+        const response = await fetch(nominatimUrl);
+        const data = await response.json();
+        if (data && data.length > 0) {
+            return { lat: data[0].lat, lon: data[0].lon };
+        }
+        return null;
+    } catch (error) {
+        console.error('Erro na geocodificação:', error);
+        return null;
+    }
+}
+
 function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
     let distance = parseInt(distanceInput.value, 10) || 0;
     if (distance < 0) distance = 0;
@@ -466,26 +522,18 @@ function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
     const vehicleType = vehicleSelect.value;
     const vehicleMultiplier = CONFIG.PRICING.TIPO_VEICULO[vehicleType] || 1.0;
 
-    let total = CONFIG.PRICING.PRECO_BANDEIRADA + (distance * CONFIG.PRICING.PRECO_POR_KM);
-    total *= vehicleMultiplier;
+    let total = (CONFIG.PRICING.PRECO_BASE * vehicleMultiplier) + (distance * CONFIG.PRICING.PRECO_POR_KM);
 
     const now = new Date();
-    const hour = now.getHours();
-    const day = now.getDay(); // 0 = Domingo, 6 = Sábado
+    const day = now.getDay(); // 0 = Domingo
 
-    const isNight = hour < 6 || hour >= 20;
     const isWeekend = day === 0;
 
-    let timeMultiplier = 1.0;
-    if (isNight) timeMultiplier = CONFIG.PRICING.ADICIONAL_NOTURNO;
-    if (isWeekend) timeMultiplier = Math.max(timeMultiplier, CONFIG.PRICING.ADICIONAL_FDS);
+    if (isWeekend) {
+        total *= CONFIG.PRICING.ADICIONAL_FDS;
+    }
 
-    total *= timeMultiplier;
-
-    const minPrice = total * 0.9;
-    const maxPrice = total * 1.1;
-
-    priceOutput.innerHTML = `R$ ${minPrice.toFixed(2).replace('.', ',')} - R$ ${maxPrice.toFixed(2).replace('.', ',')}`;
+    priceOutput.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
 }
 
 // === UI EFFECTS ===
