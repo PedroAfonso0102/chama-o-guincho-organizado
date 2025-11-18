@@ -434,7 +434,8 @@ function initPriceCalculator() {
     const distanceInput = document.getElementById('price-distance');
     const vehicleSelect = document.getElementById('price-vehicle');
     const priceOutput = estimator.querySelector('.price-estimator__price');
-    const requestButton = estimator.querySelector('.price-estimator__result .btn');
+    const requestButton = estimator.querySelector('.price-estimator__result .btn--primary');
+    const saveQuoteButton = document.getElementById('save-quote-btn');
 
     const calculate = () => calculatePrice(distanceInput, vehicleSelect, priceOutput);
     const update = () => updateDistance(originInput, destinationInput, distanceInput, calculate);
@@ -454,6 +455,33 @@ function initPriceCalculator() {
             const msg = `Olá, fiz a simulação no site.\n\n*De:* ${origin}\n*Para:* ${destination}\n*Distância est:* ${distance}km\n*Veículo:* ${vehicleText}\n*Valor estimado:* ${price}\n\nPodem confirmar?`;
 
             window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+    }
+
+    if (saveQuoteButton) {
+        saveQuoteButton.addEventListener('click', () => {
+            const vehicleText = vehicleSelect.selectedOptions[0].text;
+            const distance = distanceInput.value;
+            const price = priceOutput.textContent;
+            const origin = originInput.value.trim() || 'N/A';
+            const destination = destinationInput.value.trim() || 'N/A';
+
+            const subject = "Orçamento de Guincho - Chama o Guincho";
+            const body = `Olá,\n\nSegue o orçamento do seu serviço de guincho, conforme solicitado em nosso site:\n\n` +
+                         `----------------------------------------\n` +
+                         `  Detalhes do Orçamento\n` +
+                         `----------------------------------------\n` +
+                         `Origem: ${origin}\n` +
+                         `Destino: ${destination}\n` +
+                         `Distância Estimada: ${distance} km\n` +
+                         `Tipo de Veículo: ${vehicleText}\n` +
+                         `Valor Estimado: ${price}\n` +
+                         `----------------------------------------\n\n` +
+                         `Para agendar ou tirar dúvidas, responda a este e-mail ou nos chame no WhatsApp: ${CONFIG.WHATSAPP_NUMBER}\n\n` +
+                         `Atenciosamente,\n` +
+                         `Equipe Chama o Guincho`;
+
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
     }
 
@@ -537,6 +565,33 @@ function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
 }
 
 // === UI EFFECTS ===
+function initFaqAccordion() {
+    const faqContainer = document.querySelector('.faq__container');
+    if (!faqContainer) return;
+
+    faqContainer.addEventListener('click', (e) => {
+        const questionButton = e.target.closest('.faq__question');
+        if (!questionButton) return;
+
+        const faqItem = questionButton.parentElement;
+        const answer = faqItem.querySelector('.faq__answer');
+        const isActive = faqItem.classList.contains('active');
+
+        // Optional: Close other items when one is opened
+        // faqContainer.querySelectorAll('.faq__item').forEach(item => {
+        //     item.classList.remove('active');
+        //     item.querySelector('.faq__answer').style.maxHeight = null;
+        // });
+
+        if (!isActive) {
+            faqItem.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+            faqItem.classList.remove('active');
+            answer.style.maxHeight = null;
+        }
+    });
+}
 let notificationTimeout;
 function initUiEffects() {
     const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
@@ -601,4 +656,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initPriceCalculator();
     initCoverageMap();
     initUiEffects();
+    initFaqAccordion();
 });

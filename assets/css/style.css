@@ -2775,6 +2775,12 @@ textarea {
     color: white;
 }
 
+.price-estimator__actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
 .price-estimator__note {
     font-size: var(--font-size-xs);
     color: var(--gray);
@@ -3131,4 +3137,59 @@ textarea {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: white;
     color: white;
+}
+
+/* =========== COMPONENT: FAQ ACCORDION =========== */
+.faq__container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-top: 1px solid var(--gray-light);
+}
+
+.faq__item {
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.faq__question {
+    width: 100%;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--secondary);
+    text-align: left;
+    transition: var(--transition-fast);
+}
+
+.faq__question:hover {
+    background-color: var(--primary-transparent);
+    color: var(--primary);
+}
+
+.faq__question i {
+    transition: transform 0.3s ease;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.faq__item.active .faq__question i {
+    transform: rotate(180deg);
+}
+
+.faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding: 0 1rem;
+    color: var(--gray-dark);
+    line-height: 1.7;
+}
+
+.faq__answer p {
+    padding-bottom: 1.5rem;
 }
