@@ -8,14 +8,28 @@
 const CONFIG = {
     WHATSAPP_NUMBER: '5519993502969',
     PRICING: {
-        PRECO_BASE: 100.00,
-        PRECO_POR_KM: 4.50,
-        ADICIONAL_FDS: 1.20,     // +20%
+        ADICIONAL_FDS: 1.20, // +20%
         TIPO_VEICULO: {
-            'moto': 1.0,
-            'car': 1.6,
-            'suv': 1.8,
-            'van': 2.0,
+            'leves': {
+                base: 160.00,
+                kmAdicional: 3.50
+            },
+            'utilitario': {
+                base: 240.00,
+                kmAdicional: 4.00
+            },
+            'moto_ate_250': {
+                base: 160.00,
+                kmAdicional: 3.50
+            },
+            'moto_acima_250': {
+                base: 240.00,
+                kmAdicional: 4.00
+            },
+            'bongo_hr_vans': {
+                base: 350.00,
+                kmAdicional: 4.00
+            }
         }
     }
 };
@@ -520,9 +534,18 @@ function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
     if (distance < 0) distance = 0;
 
     const vehicleType = vehicleSelect.value;
-    const vehicleMultiplier = CONFIG.PRICING.TIPO_VEICULO[vehicleType] || 1.0;
+    const vehicleInfo = CONFIG.PRICING.TIPO_VEICULO[vehicleType];
 
-    let total = (CONFIG.PRICING.PRECO_BASE * vehicleMultiplier) + (distance * CONFIG.PRICING.PRECO_POR_KM);
+    if (!vehicleInfo) {
+        priceOutput.textContent = 'R$ 0,00';
+        return;
+    }
+
+    let total = vehicleInfo.base;
+
+    if (distance > 40) {
+        total += (distance - 40) * vehicleInfo.kmAdicional;
+    }
 
     const now = new Date();
     const day = now.getDay(); // 0 = Domingo
