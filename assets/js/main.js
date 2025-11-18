@@ -104,9 +104,22 @@ function initCoverageMap() {
     const mapFrame = document.getElementById('coverage-map');
     const cityButtonsContainer = document.querySelector('.coverage__cities');
     if (!mapFrame || !cityButtonsContainer) return;
+
+    const mapContainer = mapFrame.parentElement;
+    const loadingSpinner = document.createElement('div');
+    loadingSpinner.className = 'loading-spinner';
+    mapContainer.appendChild(loadingSpinner);
+
+    mapFrame.addEventListener('load', () => {
+        loadingSpinner.style.display = 'none';
+    });
+
     cityButtonsContainer.addEventListener('click', function(e) {
         const button = e.target.closest('.coverage__city');
         if (!button) return;
+
+        loadingSpinner.style.display = 'block';
+
         this.querySelectorAll('.coverage__city').forEach(btn => btn.classList.remove('coverage__city--active'));
         button.classList.add('coverage__city--active');
         const cityName = button.querySelector('span').textContent;
@@ -165,7 +178,7 @@ function sendWhatsAppMessage(form, title) {
     new FormData(form).forEach((value, key) => {
         if (value && value.trim()) {
             const fieldName = form.querySelector(`[name="${key}"]`)?.previousElementSibling?.textContent || key;
-            message += `*${fieldName}:* ${value.trim()}\n`;
+            message += `*${fieldName.trim()}:*\n${value.trim()}\n\n`;
         }
     });
     window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
@@ -186,9 +199,14 @@ function validateForm(form) {
 function initInputMasks() {
     document.body.addEventListener('input', e => {
         if (e.target.matches('input[type="tel"]')) {
-            let v = e.target.value.replace(/\D/g, '').substring(0, 11);
-            v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
-            v = v.replace(/(\d)(\d{4})$/, '$1-$2');
+            let v = e.target.value.replace(/\D/g, '');
+            v = v.substring(0, 11);
+            if (v.length > 2) {
+                v = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+            }
+            if (v.length > 9) {
+                v = `${v.substring(0, 9)}-${v.substring(9)}`;
+            }
             e.target.value = v;
         }
     });
@@ -362,7 +380,8 @@ function initPriceCalculator() {
     calculate();
 }
 function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
-    const distance = parseInt(distanceInput.value, 10) || 0;
+    let distance = parseInt(distanceInput.value, 10) || 0;
+    if (distance < 0) distance = 0;
     const vehicleConfig = CONFIG.PRICING.VEHICLE_PRICING[vehicleSelect.value];
     if (!vehicleConfig) return priceOutput.textContent = 'N/A';
     const { KM_INCLUIDO_NA_SAIDA, DISTANCIA_TAXA_RETORNO } = CONFIG.PRICING;
@@ -393,6 +412,24 @@ function initUiEffects() {
         clearTimeout(notificationTimeout);
         hideNotification();
     });
+
+    // Sticky bar logic
+    const stickyBar = document.getElementById('emergency-sticky');
+    const closeButton = document.getElementById('emergency-sticky-close');
+
+    if (stickyBar && closeButton) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                stickyBar.classList.add('show');
+            } else {
+                stickyBar.classList.remove('show');
+            }
+        });
+
+        closeButton.addEventListener('click', () => {
+            stickyBar.classList.remove('show');
+        });
+    }
 }
 function showNotification(message, type = 'info', duration = 5000) {
     const notification = document.getElementById('notification');
