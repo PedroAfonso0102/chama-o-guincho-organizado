@@ -97,7 +97,7 @@
     <header class="header" id="header">
         <div class="container header__container">
             <a href="#" class="logo">
-                <div class="logo__icon" style="display: flex; align-items: center;">
+                <div class="logo__icon logo__icon--flex">
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24"
                         viewBox="0 0 24 24" width="24">
                         <g>
@@ -217,7 +217,7 @@
                         plataforma para transporte seguro e eficiente.
                     </p>
                     <a href="https://wa.me/5519993502969?text=Olá!%20Preciso%20de%20um%20guincho%20de%20emergência."
-                        class="btn btn--whatsapp btn--full-mobile" style="margin-top: auto; width: 100%;">
+                        class="btn btn--whatsapp btn--full-mobile">
                         <i class="fa-brands fa-whatsapp"></i> CHAMAR NO WHATSAPP
                     </a>
                 </div>
@@ -510,11 +510,11 @@
     <section id="features" class="section features">
         <div class="container features__container">
             <div class="section__header animate-on-scroll">
-                <span class="section__pretitle" style="color: rgba(255, 255, 255, 0.9);">Nossos diferenciais</span>
+                <span class="section__pretitle section__pretitle--light">Nossos diferenciais</span>
                 <h2 class="section__title features__title">Por que escolher a <span class="features__highlight">Chama o
                         Guincho</span>?</h2>
                 <div class="section__divider"></div>
-                <p class="section__subtitle" style="color: rgba(255, 255, 255, 0.9);">
+                <p class="section__subtitle section__subtitle--light">
                     Qualidade profissional e atendimento diferenciado em toda a região
                 </p>
             </div>
@@ -1013,7 +1013,7 @@
             <div class="footer__grid">
                 <div>
                     <div class="footer__logo">
-                        <div class="logo__icon" style="display: flex; align-items: center;">
+                        <div class="logo__icon logo__icon--flex">
                             <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24"
                                 viewBox="0 0 24 24" width="24">
                                 <g>
@@ -1025,7 +1025,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <div class="logo__text" style="color: white;">Chama o <span
+                        <div class="logo__text logo__text--white">Chama o <span
                                 class="logo__highlight">Guincho</span></div>
                     </div>
                     <p>
@@ -1177,10 +1177,9 @@
                 </div>
 
                 <div class="step-content" id="tab-ligar">
-                    <div style="text-align: center; padding: 2rem 0;">
-                        <i class="fa-solid fa-phone"
-                            style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Contato Telefônico</h3>
+                    <div class="contact-section--center">
+                        <i class="fa-solid fa-phone icon--lg" style="color: var(--primary);"></i>
+                        <h3 class="scheduling-section__title">Contato Telefônico</h3>
                         <p style="margin-bottom: 1.5rem;">Fale diretamente com nossa equipe para orçamento imediato</p>
                         <a href="tel:+5519993502969" class="btn btn--primary btn--lg">
                             <i class="fa-solid fa-phone"></i> (19) 99350-2969
@@ -1213,7 +1212,7 @@
     </div>
 
     <!-- Hidden Forms -->
-    <div style="display: none;">
+    <div class="form-group--hidden">
         <form id="form-transporte-cidades">
             <div class="form-group">
                 <label class="form-label form-label--required" for="transporte-cidades-nome">Nome</label>
@@ -1261,7 +1260,7 @@
             </div>
 
             <div class="scheduling-section">
-                <h4 style="margin-bottom: 1rem; color: var(--primary);">📅 Quando você precisa?</h4>
+                <h4 class="scheduling-section__title">📅 Quando você precisa?</h4>
 
                 <div class="form-row">
                     <div class="form-group">
@@ -1283,7 +1282,7 @@
                     </div>
                 </div>
 
-                <div class="form-group" id="horario-especifico" style="display: none;">
+                <div class="form-group form-group--hidden" id="horario-especifico">
                     <label class="form-label" for="agendamento-hora">Horário Específico</label>
                     <input type="time" name="Horário Específico" class="form-control" id="agendamento-hora">
                     <small class="form-help">Buscaremos atender no horário solicitado</small>
@@ -1578,14 +1577,13 @@
     <!-- Modal de Status de Atendimento -->
     <div class="modal" id="modal-status">
         <div class="modal__content">
-            <div class="modal__header" style="background-color: var(--secondary);">
+            <div class="modal__header modal__header--secondary">
                 <h3 class="modal__title">Status do Atendimento</h3>
                 <button class="modal__close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal__body">
-                <div id="status-result-simulated" style="text-align: center; padding: 2rem;">
-                    <i class="fa-solid fa-circle-check"
-                        style="font-size: 3rem; color: var(--success); margin-bottom: 1rem;"></i>
+                <div id="status-result-simulated" class="status-result">
+                    <i class="fa-solid fa-circle-check icon--lg" style="color: var(--success);"></i>
                     <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Sua solicitação foi recebida!</h4>
                     <p>Aguarde nosso contato via WhatsApp para confirmação do motorista.</p>
                 </div>
@@ -1596,17 +1594,16 @@
     <!-- Modal de Sucesso de Envio -->
     <div class="modal" id="modal-success">
         <div class="modal__content">
-            <div class="modal__header" style="background-color: var(--success);">
+            <div class="modal__header modal__header--success">
                 <h3 class="modal__title">Solicitação Enviada!</h3>
                 <button class="modal__close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="modal__body" style="text-align: center;">
-                <i class="fa-solid fa-circle-check"
-                    style="font-size: 3rem; color: var(--success); margin-bottom: 1rem;"></i>
+            <div class="modal__body modal__body--center">
+                <i class="fa-solid fa-circle-check icon--lg" style="color: var(--success);"></i>
                 <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Sua solicitação foi processada.</h4>
                 <p>Clique no botão abaixo para confirmar seu pedido e falar com um de nossos atendentes no WhatsApp.</p>
             </div>
-            <div class="modal__footer" style="justify-content: center;">
+            <div class="modal__footer modal__footer--center">
                 <a href="#" id="success-modal-whatsapp-btn" class="btn btn--whatsapp btn--lg" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i> Ir para o WhatsApp agora
                 </a>

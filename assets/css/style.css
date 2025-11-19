@@ -3197,3 +3197,65 @@ textarea {
 .faq__answer p {
     padding-bottom: 1.5rem;
 }
+
+.logo__icon--flex {
+    display: flex;
+    align-items: center;
+}
+
+.section__pretitle--light {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.section__subtitle--light {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.logo__text--white {
+    color: white;
+}
+
+.modal__header--success {
+    background-color: var(--success);
+}
+
+.modal__header--secondary {
+    background-color: var(--secondary);
+}
+
+.modal__body--center {
+    text-align: center;
+}
+
+.modal__footer--center {
+    justify-content: center;
+}
+
+.contact-section--center {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.scheduling-section__title {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.form-group--hidden {
+    display: none;
+}
+
+.status-result {
+    text-align: center;
+    padding: 2rem;
+}
+
+.icon--lg {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.icon--xl {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
