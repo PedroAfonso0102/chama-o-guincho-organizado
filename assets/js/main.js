@@ -146,18 +146,31 @@ function setupFormSubmission() {
         e.preventDefault();
         if (validateForm(form)) {
             const title = getFormTitle(form);
-            sendWhatsAppMessage(form, title);
-            showNotification('Sua solicitação foi enviada! Abrindo o WhatsApp...', 'success');
+            const whatsappUrl = generateWhatsAppUrl(form, title);
+
+            // Open the success modal
+            const successModal = document.getElementById('modal-success');
+            const whatsappBtn = document.getElementById('success-modal-whatsapp-btn');
+            if (successModal && whatsappBtn) {
+                whatsappBtn.href = whatsappUrl;
+                openModal('success');
+            }
+
+            // Try to open WhatsApp automatically after a short delay
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 500);
+
 
             const formId = form.id.replace('-clone', '');
             if (formId === 'form-emergency-panic' || formId === 'emergency-form') {
                 localStorage.setItem('emergencyRequestTime', Date.now().toString());
             }
 
+            // Reset form after a delay
             setTimeout(() => {
                 form.reset();
                 form.querySelectorAll('.is-valid, .is-invalid').forEach(el => el.classList.remove('is-valid', 'is-invalid'));
-                if (form.closest('.modal')) closeAllModals();
             }, 1500);
         } else {
             showNotification('Por favor, preencha todos os campos obrigatórios.', 'error');
@@ -166,28 +179,47 @@ function setupFormSubmission() {
         }
     });
 }
+
 function getFormTitle(form) {
     const modal = form.closest('.modal--visible');
     if (modal && modal.querySelector('.modal__title')) {
         return modal.querySelector('.modal__title').textContent;
     }
     const titles = {
-        'emergency-form': 'Pedido de Emergência Urgente', 'form-reboque': 'Solicitação de Reboque',
-        'form-agendamento': 'Agendamento de Transporte', 'form-transporte-cidades': 'Orçamento: Transporte para Outras Cidades',
-        'form-oficinas': 'Orçamento: Leva e Traz para Oficinas', 'form-maquinas': 'Orçamento: Transporte de Pequenas Máquinas',
-        'form-empresas': 'Contato: Soluções para Empresas', 'form-emergency-panic': 'Emergência - Preciso de Guincho AGORA'
+        'emergency-form': 'Pedido de Emergência Urgente',
+        'form-reboque': 'Solicitação de Reboque',
+        'form-agendamento': 'Agendamento de Transporte',
+        'form-transporte-cidades': 'Orçamento: Transporte para Outras Cidades',
+        'form-oficinas': 'Orçamento: Leva e Traz para Oficinas',
+        'form-maquinas': 'Orçamento: Transporte de Pequenas Máquinas',
+        'form-empresas': 'Contato: Soluções para Empresas',
+        'form-emergency-panic': 'Emergência - Preciso de Guincho AGORA'
     };
     return titles[form.id.replace('-clone', '')] || 'Solicitação de Serviço';
 }
-function sendWhatsAppMessage(form, title) {
+
+function generateWhatsAppUrl(form, title) {
     let message = `*${title.toUpperCase()}*\n\n`;
     new FormData(form).forEach((value, key) => {
         if (value && value.trim()) {
-            const fieldName = form.querySelector(`[name="${key}"]`)?.previousElementSibling?.textContent || key;
-            message += `*${fieldName.trim()}:*\n${value.trim()}\n\n`;
+            // Attempt to find the label associated with the input
+            const input = form.querySelector(`[name="${key}"]`);
+            let fieldName = key;
+            if (input) {
+                const label = input.closest('.form-group')?.querySelector('.form-label');
+                if (label) {
+                    fieldName = label.textContent.replace('*', '').trim();
+                }
+            }
+            message += `*${fieldName}:*\n${value.trim()}\n\n`;
         }
     });
-    window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+    return `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+function sendWhatsAppMessage(form, title) {
+    const url = generateWhatsAppUrl(form, title);
+    window.open(url, '_blank');
 }
 function validateForm(form) {
     let isValid = true;
@@ -336,23 +368,14 @@ function openModal(modalId, title, formId) {
     if (!modal) return;
 
     if (modalId === 'status') {
-        const requestTime = localStorage.getItem('emergencyRequestTime');
+        dataLayer.push({ event: 'check_status' });
         const form = modal.querySelector('#form-consulta-status');
         const simulatedResult = modal.querySelector('#status-result-simulated');
+        const realResult = modal.querySelector('#status-result');
 
-        if (requestTime) {
-            const minutesSinceRequest = (Date.now() - parseInt(requestTime)) / 1000 / 60;
-            if (minutesSinceRequest < 30) {
-                if (form) form.style.display = 'none';
-                if (simulatedResult) simulatedResult.style.display = 'block';
-            } else {
-                if (form) form.style.display = 'block';
-                if (simulatedResult) simulatedResult.style.display = 'none';
-            }
-        } else {
-            if (form) form.style.display = 'block';
-            if (simulatedResult) simulatedResult.style.display = 'none';
-        }
+        if (form) form.style.display = 'none';
+        if (realResult) realResult.style.display = 'none';
+        if (simulatedResult) simulatedResult.style.display = 'block';
     }
 
     if (title) modal.querySelector('.modal__title').textContent = title;
@@ -425,6 +448,17 @@ function toggleMobileMenu(menu, toggle, force) {
 }
 
 // === PRICE CALCULATOR ===
+function fetchWithTimeout(resource, options = {}, timeout = 5000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    const response = fetch(resource, {
+        ...options,
+        signal: controller.signal
+    });
+    response.finally(() => clearTimeout(id));
+    return response;
+}
+
 function initPriceCalculator() {
     const estimator = document.getElementById('price-estimator');
     if (!estimator) return;
@@ -441,7 +475,6 @@ function initPriceCalculator() {
     const update = () => updateDistance(originInput, destinationInput, distanceInput, calculate);
 
     [originInput, destinationInput].forEach(el => el.addEventListener('blur', update));
-
     [distanceInput, vehicleSelect].forEach(el => el.addEventListener('input', calculate));
 
     if (requestButton) {
@@ -451,9 +484,7 @@ function initPriceCalculator() {
             const price = priceOutput.textContent;
             const origin = originInput.value.trim() || 'N/A';
             const destination = destinationInput.value.trim() || 'N/A';
-
             const msg = `Olá, fiz a simulação no site.\n\n*De:* ${origin}\n*Para:* ${destination}\n*Distância est:* ${distance}km\n*Veículo:* ${vehicleText}\n*Valor estimado:* ${price}\n\nPodem confirmar?`;
-
             window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
         });
     }
@@ -465,7 +496,6 @@ function initPriceCalculator() {
             const price = priceOutput.textContent;
             const origin = originInput.value.trim() || 'N/A';
             const destination = destinationInput.value.trim() || 'N/A';
-
             const subject = "Orçamento de Guincho - Chama o Guincho";
             const body = `Olá,\n\nSegue o orçamento do seu serviço de guincho, conforme solicitado em nosso site:\n\n` +
                          `----------------------------------------\n` +
@@ -480,7 +510,6 @@ function initPriceCalculator() {
                          `Para agendar ou tirar dúvidas, responda a este e-mail ou nos chame no WhatsApp: ${CONFIG.WHATSAPP_NUMBER}\n\n` +
                          `Atenciosamente,\n` +
                          `Equipe Chama o Guincho`;
-
             window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
     }
@@ -494,7 +523,7 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
 
     if (origin.length < 3 || destination.length < 3) {
         distanceInput.value = 0;
-        callback();
+        if (callback) callback();
         return;
     }
 
@@ -505,24 +534,32 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
         ]);
 
         if (!originCoords || !destCoords) {
-            showNotification('Não foi possível encontrar um ou ambos os endereços.', 'error');
-            return;
+            return; // Errors are handled in getCoordinates
         }
 
         const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat}?overview=false`;
-        const response = await fetch(osrmUrl);
+        const response = await fetchWithTimeout(osrmUrl, {}, 5000);
+
+        if (!response.ok) {
+            throw new Error(`OSRM API error: ${response.statusText}`);
+        }
+
         const data = await response.json();
 
         if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
-            const distanceInKm = (data.routes[0].distance / 1000).toFixed(0);
-            distanceInput.value = distanceInKm;
+            const distanceInKm = Math.round(data.routes[0].distance / 1000);
+            distanceInput.value = distanceInKm > 0 ? distanceInKm : 1;
             showNotification(`Distância calculada: ${distanceInKm} km`, 'success');
         } else {
-            showNotification('Não foi possível calcular a rota. Verifique os endereços.', 'error');
+            throw new Error('OSRM API returned no routes');
         }
     } catch (error) {
         console.error('Erro ao calcular distância:', error);
-        showNotification('Ocorreu um erro ao conectar com o serviço de rotas.', 'error');
+        if (error.name === 'AbortError') {
+            showNotification("Não foi possível calcular a distância automaticamente. Por favor, clique em 'Chamar no WhatsApp' para um orçamento exato.", 'error', 8000);
+        } else {
+            showNotification('Não foi possível calcular a rota. Verifique os endereços e tente novamente.', 'error');
+        }
     } finally {
         if (callback) callback();
     }
@@ -531,15 +568,21 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
 async function getCoordinates(address) {
     const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&countrycodes=br`;
     try {
-        const response = await fetch(nominatimUrl);
+        const response = await fetchWithTimeout(nominatimUrl, {}, 5000);
+        if (!response.ok) {
+            throw new Error(`Nominatim API error: ${response.statusText}`);
+        }
         const data = await response.json();
         if (data && data.length > 0) {
             return { lat: data[0].lat, lon: data[0].lon };
         }
-        return null;
+        showNotification(`Endereço não encontrado: ${address}`, 'error');
+        // Throw an error to be caught by the calling function
+        throw new Error(`Address not found: ${address}`);
     } catch (error) {
         console.error('Erro na geocodificação:', error);
-        return null;
+        // Re-throw the error to be handled by the calling function (updateDistance)
+        throw error;
     }
 }
 
@@ -562,6 +605,14 @@ function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
     }
 
     priceOutput.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+    // GTM event for price calculation
+    dataLayer.push({
+        event: 'price_calculation',
+        distance: distance,
+        vehicle_type: vehicleType,
+        estimated_price: total
+    });
 }
 
 // === UI EFFECTS ===
@@ -647,6 +698,25 @@ function hideNotification() {
 }
 
 
+function setupWhatsAppClickTracking() {
+    document.body.addEventListener('click', function(e) {
+        const whatsappLink = e.target.closest('a[href*="wa.me"]');
+        if (whatsappLink) {
+            let location = 'unknown';
+            if (whatsappLink.closest('.hero')) location = 'hero_section';
+            else if (whatsappLink.closest('.services__grid')) location = 'services_section';
+            else if (whatsappLink.closest('.cta')) location = 'cta_section';
+            else if (whatsappLink.closest('.footer')) location = 'footer';
+            else if (whatsappLink.closest('.float-buttons')) location = 'float_button';
+
+            dataLayer.push({
+                event: 'whatsapp_click',
+                click_location: location
+            });
+        }
+    });
+}
+
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
@@ -657,4 +727,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCoverageMap();
     initUiEffects();
     initFaqAccordion();
+    setupWhatsAppClickTracking();
 });

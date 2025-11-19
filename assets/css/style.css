@@ -1,5 +1,6 @@
 /* =========== VARIÁVEIS CSS GLOBAIS =========== */
 :root {
+    --emergency-bar-height: 80px; /* Altura da barra de emergência */
     /* Cores primárias otimizadas para conversão */
     --primary: #e63946;
     --primary-dark: #c52836;
@@ -1503,8 +1504,11 @@ textarea {
 }
 
 @media (max-width: 768px) {
+    body {
+        padding-bottom: var(--emergency-bar-height);
+    }
     .float-buttons {
-        bottom: 1rem;
+        bottom: calc(var(--emergency-bar-height) + 1rem);
         right: 1rem;
     }
 
