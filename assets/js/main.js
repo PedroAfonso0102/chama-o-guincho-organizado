@@ -186,14 +186,14 @@ function getFormTitle(form) {
         return modal.querySelector('.modal__title').textContent;
     }
     const titles = {
-        'emergency-form': 'Pedido de Emergência Urgente',
-        'form-reboque': 'Solicitação de Reboque',
+        'emergency-form': 'Pedido de Emergência',
+        'form-reboque': 'Pedido de Reboque',
         'form-agendamento': 'Agendamento de Transporte',
-        'form-transporte-cidades': 'Orçamento: Transporte para Outras Cidades',
-        'form-oficinas': 'Orçamento: Leva e Traz para Oficinas',
-        'form-maquinas': 'Orçamento: Transporte de Pequenas Máquinas',
-        'form-empresas': 'Contato: Soluções para Empresas',
-        'form-emergency-panic': 'Emergência - Preciso de Guincho AGORA'
+        'form-transporte-cidades': 'Orçamento de Transporte para Outras Cidades',
+        'form-oficinas': 'Orçamento de Leva e Traz para Oficinas',
+        'form-maquinas': 'Orçamento de Transporte de Pequenas Máquinas',
+        'form-empresas': 'Contato para Empresas',
+        'form-emergency-panic': 'Pedido de Guincho Urgente'
     };
     return titles[form.id.replace('-clone', '')] || 'Solicitação de Serviço';
 }
@@ -264,7 +264,7 @@ function initLocationDetection() {
 
 function getCurrentLocation(input) {
     if (!navigator.geolocation) {
-        showNotification('Geolocalização não é suportada pelo seu navegador.', 'error');
+        showNotification('A geolocalização não é suportada pelo seu navegador.', 'error');
         return;
     }
 
@@ -287,11 +287,11 @@ function getCurrentLocation(input) {
                         showNotification('Localização encontrada!', 'success');
                     } else {
                         input.value = `Lat: ${latitude.toFixed(5)}, Lon: ${longitude.toFixed(5)}`;
-                        showNotification('Endereço não encontrado, usando coordenadas.', 'info');
+                        showNotification('Não encontramos o endereço. Usaremos as coordenadas.', 'info');
                     }
                 })
                 .catch(() => {
-                    showNotification('Erro ao buscar o endereço. Verifique sua conexão.', 'error');
+                    showNotification('Não foi possível buscar o endereço. Verifique sua conexão.', 'error');
                     input.value = `Lat: ${latitude.toFixed(5)}, Lon: ${longitude.toFixed(5)}`;
                 })
                 .finally(() => {
@@ -301,9 +301,9 @@ function getCurrentLocation(input) {
         error => {
             input.value = "";
             input.disabled = false;
-            let message = 'Não foi possível obter sua localização.';
+            let message = 'Não conseguimos obter sua localização.';
             if (error.code === error.PERMISSION_DENIED) {
-                message = 'Você negou o acesso à localização.';
+                message = 'Você não permitiu o acesso à localização.';
             }
             showNotification(message, 'error');
         }
@@ -484,7 +484,7 @@ function initPriceCalculator() {
             const price = priceOutput.textContent;
             const origin = originInput.value.trim() || 'N/A';
             const destination = destinationInput.value.trim() || 'N/A';
-            const msg = `Olá, fiz a simulação no site.\n\n*De:* ${origin}\n*Para:* ${destination}\n*Distância est:* ${distance}km\n*Veículo:* ${vehicleText}\n*Valor estimado:* ${price}\n\nPodem confirmar?`;
+            const msg = `Olá, fiz uma simulação de preço no site e gostaria de confirmar o valor.\n\n*Origem:* ${origin}\n*Destino:* ${destination}\n*Distância:* ${distance} km\n*Veículo:* ${vehicleText}\n*Valor Estimado:* ${price}\n\nAguardo a confirmação.`;
             window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
         });
     }
@@ -497,17 +497,16 @@ function initPriceCalculator() {
             const origin = originInput.value.trim() || 'N/A';
             const destination = destinationInput.value.trim() || 'N/A';
             const subject = "Orçamento de Guincho - Chama o Guincho";
-            const body = `Olá,\n\nSegue o orçamento do seu serviço de guincho, conforme solicitado em nosso site:\n\n` +
-                         `----------------------------------------\n` +
-                         `  Detalhes do Orçamento\n` +
+            const body = `Olá,\n\nEste é o orçamento do seu serviço de guincho, solicitado em nosso site:\n\n` +
+                         `Detalhes do Orçamento:\n` +
                          `----------------------------------------\n` +
                          `Origem: ${origin}\n` +
                          `Destino: ${destination}\n` +
-                         `Distância Estimada: ${distance} km\n` +
-                         `Tipo de Veículo: ${vehicleText}\n` +
+                         `Distância: ${distance} km\n` +
+                         `Veículo: ${vehicleText}\n` +
                          `Valor Estimado: ${price}\n` +
                          `----------------------------------------\n\n` +
-                         `Para agendar ou tirar dúvidas, responda a este e-mail ou nos chame no WhatsApp: ${CONFIG.WHATSAPP_NUMBER}\n\n` +
+                         `Para agendar ou tirar dúvidas, responda a este e-mail ou fale conosco no WhatsApp: ${CONFIG.WHATSAPP_NUMBER}\n\n` +
                          `Atenciosamente,\n` +
                          `Equipe Chama o Guincho`;
             window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -549,16 +548,16 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
         if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
             const distanceInKm = Math.round(data.routes[0].distance / 1000);
             distanceInput.value = distanceInKm > 0 ? distanceInKm : 1;
-            showNotification(`Distância calculada: ${distanceInKm} km`, 'success');
+            showNotification(`Distância calculada: ${distanceInKm} km.`, 'success');
         } else {
             throw new Error('OSRM API returned no routes');
         }
     } catch (error) {
         console.error('Erro ao calcular distância:', error);
         if (error.name === 'AbortError') {
-            showNotification("Não foi possível calcular a distância automaticamente. Por favor, clique em 'Chamar no WhatsApp' para um orçamento exato.", 'error', 8000);
+            showNotification("Não conseguimos calcular a distância. Fale conosco no WhatsApp para um orçamento.", 'error', 8000);
         } else {
-            showNotification('Não foi possível calcular a rota. Verifique os endereços e tente novamente.', 'error');
+            showNotification('Não foi possível calcular a rota. Verifique os endereços.', 'error');
         }
     } finally {
         if (callback) callback();
@@ -576,7 +575,7 @@ async function getCoordinates(address) {
         if (data && data.length > 0) {
             return { lat: data[0].lat, lon: data[0].lon };
         }
-        showNotification(`Endereço não encontrado: ${address}`, 'error');
+        showNotification(`Não encontramos o endereço: ${address}`, 'error');
         // Throw an error to be caught by the calling function
         throw new Error(`Address not found: ${address}`);
     } catch (error) {
