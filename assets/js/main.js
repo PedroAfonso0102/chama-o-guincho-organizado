@@ -239,11 +239,14 @@ function initInputMasks() {
         if (e.target.matches('input[type="tel"]')) {
             let v = e.target.value.replace(/\D/g, '');
             v = v.substring(0, 11);
-            if (v.length > 2) {
-                v = `(${v.substring(0, 2)}) ${v.substring(2)}`;
-            }
-            if (v.length > 9) {
-                v = `${v.substring(0, 9)}-${v.substring(9)}`;
+            if (v.length > 10) { // 11 digits
+                v = v.replace(/^(\d\d)(\d{5})(\d{4}).*/, '($1) $2-$3');
+            } else if (v.length > 5) { // 6-10 digits
+                v = v.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+            } else if (v.length > 2) { // 3-5 digits
+                v = v.replace(/^(\d\d)(\d{0,5}).*/, '($1) $2');
+            } else { // 0-2 digits
+                v = v.replace(/^(\d*)/, '($1');
             }
             e.target.value = v;
         }
