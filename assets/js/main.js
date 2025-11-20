@@ -17,6 +17,15 @@ const CONFIG = {
             'suv': 1.8,
             'van': 2.0,
         }
+    },
+    CITY_COORDS: {
+        'campinas': { lat: -22.9099, lon: -47.0626 },
+        'valinhos': { lat: -22.9697, lon: -46.9958 },
+        'vinhedo': { lat: -23.0302, lon: -46.9736 },
+        'sumaré': { lat: -22.8203, lon: -47.2666 },
+        'hortolândia': { lat: -22.8612, lon: -47.2197 },
+        'paulínia': { lat: -22.7635, lon: -47.1533 },
+        'indaiatuba': { lat: -23.0903, lon: -47.2180 }
     }
 };
 
@@ -520,6 +529,17 @@ function initPriceCalculator() {
     calculate();
 }
 
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Raio da terra em km
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+}
+
 async function updateDistance(originInput, destinationInput, distanceInput, callback) {
     const origin = originInput.value.trim();
     const destination = destinationInput.value.trim();
@@ -530,8 +550,10 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
         return;
     }
 
+    let originCoords, destCoords;
+
     try {
-        const [originCoords, destCoords] = await Promise.all([
+        [originCoords, destCoords] = await Promise.all([
             getCoordinates(origin),
             getCoordinates(destination)
         ]);
@@ -541,7 +563,7 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
         }
 
         const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat}?overview=false`;
-        const response = await fetchWithTimeout(osrmUrl, {}, 5000);
+        const response = await fetchWithTimeout(osrmUrl, {}, 3000);
 
         if (!response.ok) {
             throw new Error(`OSRM API error: ${response.statusText}`);
@@ -557,11 +579,26 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
             throw new Error('OSRM API returned no routes');
         }
     } catch (error) {
-        console.error('Erro ao calcular distância:', error);
-        if (error.name === 'AbortError') {
-            showNotification("Não foi possível calcular a distância automaticamente. Por favor, clique em 'Chamar no WhatsApp' para um orçamento exato.", 'error', 8000);
+        console.warn('Falha na rota OSRM, usando Fallback Linear:', error);
+
+        // CÁLCULO DE FALLBACK
+        if (originCoords && destCoords) {
+            const linearDist = getDistanceFromLatLonInKm(
+                originCoords.lat, originCoords.lon,
+                destCoords.lat, destCoords.lon
+            );
+            // Fator de correção 1.4 (estradas nunca são retas)
+            const estimatedDist = Math.round(linearDist * 1.4);
+
+            distanceInput.value = estimatedDist > 0 ? estimatedDist : 1;
+            showNotification(`Estimativa de rota (modo offline): ${estimatedDist} km`, 'warning');
         } else {
-            showNotification('Não foi possível calcular a rota. Verifique os endereços e tente novamente.', 'error');
+            // Se nem as coordenadas temos, aí sim falha total
+             if (error.name === 'AbortError') {
+                showNotification("Não foi possível calcular a distância automaticamente. Por favor, clique em 'Chamar no WhatsApp' para um orçamento exato.", 'error', 8000);
+            } else {
+                showNotification('Não foi possível calcular a rota. Verifique os endereços e tente novamente.', 'error');
+            }
         }
     } finally {
         if (callback) callback();
@@ -569,6 +606,17 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
 }
 
 async function getCoordinates(address) {
+    // Normaliza para busca no cache (remove acentos, lowercase)
+    const cleanAddr = address.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+
+    // Verifica se o input é apenas o nome de uma cidade conhecida
+    for (const [city, coords] of Object.entries(CONFIG.CITY_COORDS)) {
+        if (cleanAddr.includes(city) && cleanAddr.length < city.length + 5) { // Lógica simples para "só a cidade"
+            console.log(`Usando cache para: ${city}`);
+            return coords;
+        }
+    }
+
     const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&countrycodes=br`;
     try {
         const response = await fetchWithTimeout(nominatimUrl, {}, 5000);
@@ -577,7 +625,7 @@ async function getCoordinates(address) {
         }
         const data = await response.json();
         if (data && data.length > 0) {
-            return { lat: data[0].lat, lon: data[0].lon };
+            return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
         }
         showNotification(`Endereço não encontrado: ${address}`, 'error');
         // Throw an error to be caught by the calling function
@@ -720,6 +768,51 @@ function setupWhatsAppClickTracking() {
     });
 }
 
+function initPanicFlow() {
+    const showFormBtn = document.getElementById('btn-show-form');
+    const emergencyForm = document.getElementById('emergency-form');
+    const panicLocBtn = document.getElementById('btn-panic-location');
+
+    if (showFormBtn && emergencyForm) {
+        showFormBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            emergencyForm.classList.add('show-form');
+            const parentP = showFormBtn.closest('p');
+            if(parentP) parentP.style.display = 'none'; // Esconde o link "ou preencher..."
+        });
+    }
+
+    if (panicLocBtn) {
+        panicLocBtn.addEventListener('click', () => {
+            panicLocBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Detectando...';
+
+            if (!navigator.geolocation) {
+                alert('Geolocalização não suportada. Por favor, ligue para nós.');
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const long = position.coords.longitude;
+                    const mapLink = `https://www.google.com/maps?q=${lat},${long}`;
+                    const text = `SOS! Preciso de guincho urgente.\nMinha localização: ${mapLink}`;
+                    const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
+                    window.open(url, '_blank');
+                    panicLocBtn.innerHTML = '<i class="fa-solid fa-check"></i> Enviado!';
+                },
+                (error) => {
+                    alert('Não foi possível obter localização. Por favor, ligue ou preencha o formulário.');
+                    panicLocBtn.innerHTML = '<i class="fa-solid fa-location-dot"></i> Tentar Novamente';
+                    if(emergencyForm) emergencyForm.classList.add('show-form'); // Fallback: abre o form
+                },
+                { timeout: 10000, enableHighAccuracy: true }
+            );
+        });
+    }
+}
+
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
@@ -731,4 +824,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initUiEffects();
     initFaqAccordion();
     setupWhatsAppClickTracking();
+    initPanicFlow();
 });

@@ -54,25 +54,32 @@
         { "@type": "City", "name": "Valinhos" },
         { "@type": "City", "name": "Vinhedo" },
         { "@type": "City", "name": "Sumaré" },
-        { "@type": "City", "name": "Paulínia" },
         { "@type": "City", "name": "Hortolândia" },
-        { "@type": "City", "name": "Indaiatuba" },
-        { "@type": "City", "name": "Americana" }
-      ],
-       "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "00:00",
-        "closes": "23:59"
-      }
+        { "@type": "City", "name": "Paulínia" }
+    ],
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Campinas",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+    },
+    "description": "Serviço de guincho e reboque 24 horas em Campinas e região. Atendimento rápido para carros, motos e utilitários.",
+       "openingHoursSpecification": [
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+        }
+      ]
     }
     </script>
 
@@ -345,6 +352,16 @@
                         Nossa equipe está preparada para atender sua emergência. Preencha o formulário e enviaremos um
                         guincho rapidamente.
                     </p>
+
+                    <div class="mobile-panic-actions">
+                        <button type="button" id="btn-panic-location" class="btn btn--whatsapp btn--lg w-100 btn--pulse mb-3">
+                            <i class="fa-solid fa-location-dot"></i> COMPARTILHAR LOCALIZAÇÃO
+                        </button>
+                        <a href="tel:+5519993502969" class="btn btn--emergency btn--lg w-100 mb-3">
+                            <i class="fa-solid fa-phone"></i> LIGAR AGORA
+                        </a>
+                        <p class="text-center text-muted text-sm">ou <a href="#" id="btn-show-form" style="text-decoration: underline;">preencher formulário manualmente</a></p>
+                    </div>
 
                     <form id="emergency-form" class="emergency-form">
                         <div class="form-row">
@@ -1062,6 +1079,18 @@
                             <i class="fa-solid fa-envelope footer__contact-icon"></i>
                             <a href="mailto:afonsoguinchocampinas@gmail.com">afonsoguinchocampinas@gmail.com</a>
                         </li>
+                        <li class="footer__contact-item">
+                            <i class="fa-solid fa-map-marker-alt footer__contact-icon"></i>
+                            <span>Base Operacional: Campinas e RMC (Atendimento Móvel)</span>
+                        </li>
+                        <li class="footer__contact-item mt-2">
+                            <small style="color: rgba(255,255,255,0.6);">Aceitamos: Cartão de Crédito, Débito e Pix</small>
+                            <div class="payment-icons mt-1">
+                                <i class="fa-brands fa-cc-visa fa-lg me-2"></i>
+                                <i class="fa-brands fa-cc-mastercard fa-lg me-2"></i>
+                                <i class="fa-brands fa-pix fa-lg"></i>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
@@ -1082,10 +1111,6 @@
                         <li class="footer__contact-item">
                             <i class="fa-solid fa-id-card footer__contact-icon"></i>
                             <span>CNPJ: 12.345.678/0001-90</span>
-                        </li>
-                        <li class="footer__contact-item">
-                            <i class="fa-solid fa-map-marker-alt footer__contact-icon"></i>
-                            <span>Rua Exemplo, 123, Campinas/SP</span>
                         </li>
                     </ul>
                 </div>

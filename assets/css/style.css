@@ -3173,3 +3173,26 @@ textarea {
     margin-bottom: 1rem;
     color: var(--primary);
 }
+
+/* Mobile Panic Logic */
+.mobile-panic-actions {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-panic-actions {
+        display: block;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Oculta o formulário inicialmente no mobile */
+    #emergency-form {
+        display: none;
+    }
+
+    /* Classe utilitária para exibir o form via JS */
+    #emergency-form.show-form {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+}
