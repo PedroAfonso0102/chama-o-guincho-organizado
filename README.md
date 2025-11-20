@@ -1,6 +1,6 @@
 # Chama o Guincho
 
-Este é um projeto de site para um serviço de guincho 24 horas. O site foi desenvolvido com foco em performance, usabilidade e qualidade de código.
+Este é um projeto de site para um serviço de guincho 24 horas. O site foi desenvolvido com foco em performance, usabilidade e SEO Local.
 
 ## Tecnologias Utilizadas
 
@@ -8,16 +8,43 @@ Este é um projeto de site para um serviço de guincho 24 horas. O site foi dese
 *   CSS3
 *   JavaScript (ES6+)
 
+## Estrutura do Projeto e Arquitetura (Diretrizes)
+
+Este projeto adota uma arquitetura de **Site Estático** para garantir máxima performance e facilidade de hospedagem. Embora não utilizemos um framework como React ou Next.js, nem bundlers como Webpack, seguimos uma organização lógica para manter o código sustentável.
+
+### Organização de Pastas (Lógica)
+
+*   **Raiz (`/`)**: Contém a `index.html` (Home - Foco em Campinas) e arquivos de configuração global.
+*   **Páginas de Cidades (`/guincho-{cidade}/`)**: Cada cidade atendida possui um diretório próprio com um arquivo `index.html`.
+    *   *Exemplo:* `/guincho-valinhos/index.html`, `/guincho-vinhedo/index.html`.
+    *   Isso garante URLs limpas e amigáveis para SEO (ex: `chamaoguincho.com.br/guincho-valinhos/`).
+*   **Assets (`/assets/`)**:
+    *   `/css`: Estilos globais.
+    *   `/js`: Lógica de interação (formulários, modais, cálculo de preço).
+    *   `/images`: Imagens otimizadas (WebP).
+
+### Componentes Reutilizáveis
+
+Como não há um processo de build, "componentes" como **Header** e **Footer** são replicados em cada arquivo HTML.
+
+*   **Diretriz de Manutenção:** Ao alterar o Header ou Footer na Home, a alteração deve ser replicada manualmente para todas as páginas de cidade (`guincho-*/index.html`).
+*   **Futuro:** Em caso de migração para um Gerador de Site Estático (SSG), esses blocos de código devem ser extraídos para uma pasta `/components` (ex: `Header.js`, `Footer.js`).
+
+### Padrões de Nomeação
+
+*   **Arquivos e Pastas:** Sempre utilizar `kebab-case` (ex: `guincho-valinhos`, `style.css`).
+*   **IDs e Classes CSS:** Utilizar `kebab-case` (ex: `emergency-form`, `btn-primary`).
+
 ## Otimizações Implementadas
 
+*   **SEO Local:**
+    *   Páginas dedicadas para cidades satélites com conteúdo customizado (Title, Meta Description, H1).
+    *   Tags `Canonical` para evitar punição por conteúdo duplicado.
+    *   Schema.org (`AutoTowingService`) com `areaServed` detalhada.
 *   **Performance:**
-    *   As imagens foram otimizadas para reduzir o tempo de carregamento da página.
-    *   Os arquivos CSS e JavaScript foram consolidados para reduzir o número de requisições HTTP.
-    *   O código JavaScript foi otimizado para remover funcionalidades redundantes e ineficientes.
-*   **Qualidade de Código:**
-    *   O código CSS foi refatorado para remover redundâncias e inconsistências.
-    *   O código HTML foi reestruturado para melhorar a semântica e a legibilidade.
-    *   O código JavaScript foi refatorado para melhorar a clareza e a manutenibilidade.
+    *   Imagens em formato WebP.
+    *   Scripts deferidos (`defer`).
+    *   CSS crítico otimizado para Mobile First.
 
 ## Relatório de Mudanças (Últimos 5 Dias)
 
