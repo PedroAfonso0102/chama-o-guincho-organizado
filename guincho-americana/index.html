@@ -95,6 +95,16 @@
 
     <!-- CSS Styles -->
     <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- UI Components -->
+    <script src="../assets/js/components/ui-components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof UI !== 'undefined') {
+                UI.init({ basePath: '../' });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -185,7 +195,7 @@
                         <i class="fa-solid fa-phone"></i> LIGAR AGORA (Emergência)
                     </a>
                     <a href="https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20Guincho%20Agora"
-                        class="btn btn--secondary btn--lg btn--full-mobile" target="_blank" rel="noopener noreferrer">
+                        class="btn btn--whatsapp btn--lg btn--full-mobile" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-whatsapp"></i> Enviar um SOS no WhatsApp
                     </a>
                 </div>
@@ -227,102 +237,8 @@
                     Oferecemos atendimento especializado para todas as suas necessidades de transporte de veículos em Campinas e região.
                 </p>
             </div>
-            <div class="services__grid">
-                <!-- Card 1: Emergência (Prioridade 1) -->
-                <div class="card card--service card--highlight animate-on-scroll">
-                    <div class="card__icon">
-                        <i class="fa-solid fa-car-burst"></i>
-                    </div>
-                    <h3 class="card__title">Reboque de Emergência 24h</h3>
-                    <p class="card__text">
-                        Veículo quebrou ou sofreu colisão? Atendemos em até 30 minutos em Campinas e região. Guincho
-                        plataforma para transporte seguro e eficiente.
-                    </p>
-                    <a href="https://wa.me/5519993502969?text=Olá!%20Preciso%20de%20um%20guincho%20de%20emergência."
-                        class="btn btn--whatsapp btn--full-mobile mt-auto w-100">
-                        <i class="fa-brands fa-whatsapp"></i> CHAMAR NO WHATSAPP
-                    </a>
-                </div>
-
-                <!-- Card 2: Transporte Intermunicipal (Prioridade 2) -->
-                <div class="card card--service animate-on-scroll">
-                    <div class="card__icon">
-                        <i class="fa-solid fa-route"></i>
-                    </div>
-                    <h3 class="card__title">Transporte Intermunicipal</h3>
-                    <p class="card__text">
-                        Transporte de veículos para qualquer cidade da região com total segurança e preço transparente.
-                        Orçamento rápido e sem custos ocultos.
-                    </p>
-                    <a href="#" class="card__action" data-modal="generic"
-                        data-title="Orçamento: Transporte para Outras Cidades" data-form-id="form-transporte-cidades">
-                        Solicitar Orçamento <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                </div>
-
-                <!-- Card 3: Agendamento (Prioridade 3) -->
-                <div class="card card--service animate-on-scroll">
-                    <div class="card__icon">
-                        <i class="fa-solid fa-calendar-days"></i>
-                    </div>
-                    <h3 class="card__title">Agendamento de Transporte</h3>
-                    <p class="card__text">
-                        Planeje o transporte do seu veículo para revisão, eventos ou outras necessidades. Agende com
-                        antecedência e garanta o melhor horário.
-                    </p>
-                    <a href="#" class="card__action" data-modal="generic" data-title="Agendar Transporte"
-                        data-form-id="form-agendamento">
-                        Solicitar Orçamento <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                </div>
-
-                <!-- Card 4: Transporte para Oficinas (Prioridade 4) -->
-                <div class="card card--service animate-on-scroll">
-                    <div class="card__icon">
-                        <i class="fa-solid fa-screwdriver-wrench"></i>
-                    </div>
-                    <h3 class="card__title">Transporte para Oficinas</h3>
-                    <p class="card__text">
-                        Serviço de coleta e entrega do seu veículo na oficina de sua confiança. Condições especiais para
-                        oficinas parceiras.
-                    </p>
-                    <a href="#" class="card__action" data-modal="generic"
-                        data-title="Orçamento: Leva e Traz para Oficinas" data-form-id="form-oficinas">
-                        Solicitar Orçamento <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                </div>
-
-                <!-- Card 5: Transporte de Maquinários (Prioridade 5) -->
-                <div class="card card--service animate-on-scroll">
-                    <div class="card__icon">
-                        <i class="fa-solid fa-boxes-packing"></i>
-                    </div>
-                    <h3 class="card__title">Transporte de Pequenas Máquinas</h3>
-                    <p class="card__text">
-                        Transporte especializado de empilhadeiras, equipamentos e maquinários leves com equipamentos
-                        adequados para cargas delicadas e especiais.
-                    </p>
-                    <a href="#" class="card__action" data-modal="generic"
-                        data-title="Orçamento: Transporte de Pequenas Máquinas" data-form-id="form-maquinas">
-                        Solicitar Orçamento <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                </div>
-
-                <!-- Card 6: Parcerias Comerciais (Prioridade 6) -->
-                <div class="card card--service animate-on-scroll">
-                    <div class="card__icon">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
-                    <h3 class="card__title">Soluções Corporativas</h3>
-                    <p class="card__text">
-                        Parcerias estratégicas para empresas que necessitam de serviços de reboque confiáveis. Contratos
-                        personalizados para oficinas, concessionárias e frotistas.
-                    </p>
-                    <a href="#" class="card__action" data-modal="generic" data-title="Contato: Soluções para Empresas"
-                        data-form-id="form-empresas">
-                        Solicitar Orçamento <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                </div>
+            <div class="services__grid" style="min-height: 600px">
+                <!-- Services will be loaded via JS -->
             </div>
 
         </div>
@@ -540,67 +456,8 @@
                     Oferecemos o melhor serviço de guincho da região.
                 </p>
             </div>
-            <div class="features__list">
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-item__icon">
-                        <i class="fa-solid fa-user-tie"></i>
-                    </div>
-                    <div class="feature-item__content">
-                        <h3 class="feature-item__title">Fale com o dono</h3>
-                        <p class="feature-item__text">Você fala direto com o proprietário, sem intermediários.</p>
-                    </div>
-                </div>
-
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-item__icon">
-                        <i class="fa-solid fa-tag"></i>
-                    </div>
-                    <div class="feature-item__content">
-                        <h3 class="feature-item__title">Preço justo</h3>
-                        <p class="feature-item__text">Saiba o valor do serviço antes da contratação.</p>
-                    </div>
-                </div>
-
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-item__icon">
-                        <i class="fa-solid fa-truck"></i>
-                    </div>
-                    <div class="feature-item__content">
-                        <h3 class="feature-item__title">Frota moderna</h3>
-                        <p class="feature-item__text">Transportamos seu veículo com guinchos novos e seguros.</p>
-                    </div>
-                </div>
-
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-item__icon">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </div>
-                    <div class="feature-item__content">
-                        <h3 class="feature-item__title">Conhecemos a região</h3>
-                        <p class="feature-item__text">Usamos as melhores rotas para chegar rápido.</p>
-                    </div>
-                </div>
-
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-item__icon">
-                        <i class="fa-solid fa-car"></i>
-                    </div>
-                    <div class="feature-item__content">
-                        <h3 class="feature-item__title">Todo tipo de veículo</h3>
-                        <p class="feature-item__text">Atendemos carros, motos, vans e até máquinas.</p>
-                    </div>
-                </div>
-
-                <div class="feature-item animate-on-scroll">
-                    <div class="feature-item__icon">
-                        <i class="fa-solid fa-clock"></i>
-                    </div>
-                    <div class="feature-item__content">
-                        <h3 class="feature-item__title">Sempre disponível</h3>
-                        <p class="feature-item__text">Estamos disponíveis 24 horas, todos os dias.
-                        </p>
-                    </div>
-                </div>
+            <div class="features__list" style="min-height: 300px">
+                <!-- Features will be loaded via JS -->
             </div>
 
         </div>
@@ -625,67 +482,8 @@
                 </iframe>
             </div>
 
-            <div class="coverage__cities">
-                <div class="coverage__city animate-on-scroll" id="city-campinas">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Campinas</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-indaiatuba">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Indaiatuba</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-hortolandia">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Hortolândia</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-sumare">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Sumaré</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-americana">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Americana</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-paulinia">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Paulínia</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-valinhos">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Valinhos</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-vinhedo">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Vinhedo</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-jaguariuna">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Jaguariúna</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-monte-mor">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Monte Mor</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-nova-odessa">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Nova Odessa</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-limeira">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Limeira</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-sao-paulo">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>São Paulo</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-mogi-mirim">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Mogi Mirim</span>
-                </div>
-                <div class="coverage__city animate-on-scroll" id="city-piracicaba">
-                    <i class="fa-solid fa-location-dot coverage__icon"></i>
-                    <span>Piracicaba</span>
-                </div>
+            <div class="coverage__cities" style="min-height: 100px">
+                <!-- Cities will be loaded via JS -->
             </div>
         </div>
     </section>
@@ -703,51 +501,8 @@
             </div>
 
             <div class="testimonials">
-                <div class="testimonials__list">
-                    <!-- Case Study 1: Carro Premium -->
-                    <div class="card card--case-study animate-on-scroll">
-                        <div class="card__image-wrapper">
-                            <img src="assets/images/resgate-bmw-campinas.webp"
-                                alt="Caminhão da Chama o Guincho transportando uma BMW branca em Campinas" class="card__image" loading="lazy">
-                        </div>
-                        <div class="card__content">
-                            <h3 class="card__title">Atendimento carro de luxo</h3>
-                            <p class="card__text">
-                                Transporte de BMW X6 com o máximo cuidado.
-                            </p>
-                            <div class="card__tag">Serviço Especializado</div>
-                        </div>
-                    </div>
-
-                    <!-- Case Study 2: Resgate Rápido -->
-                    <div class="card card--case-study animate-on-scroll">
-                        <div class="card__image-wrapper">
-                            <img src="assets/images/resgate-noturno-rodovia.webp"
-                                alt="Caminhão guincho com luzes de alerta ligadas resgatando carro à noite na rodovia" class="card__image" loading="lazy">
-                        </div>
-                        <div class="card__content">
-                            <h3 class="card__title">Socorro rápido na madrugada</h3>
-                            <p class="card__text">
-                                Atendimento na Rodovia Anhanguera às 2h.
-                            </p>
-                            <div class="card__tag">Emergência 24h</div>
-                        </div>
-                    </div>
-
-                    <!-- Case Study 3: Acesso Difícil -->
-                    <div class="card card--case-study animate-on-scroll">
-                        <div class="card__image-wrapper">
-                            <img src="assets/images/resgate-garagem-subsolo.webp"
-                                alt="Guincho da Chama o Guincho manobrando em garagem de prédio para resgatar veículo" class="card__image" loading="lazy">
-                        </div>
-                        <div class="card__content">
-                            <h3 class="card__title">Carro da garagem subterrânea</h3>
-                            <p class="card__text">
-                                Tiraram meu carro da garagem do prédio.
-                            </p>
-                            <div class="card__tag">Acesso Difícil</div>
-                        </div>
-                    </div>
+                <div class="testimonials__list" style="min-height: 400px">
+                    <!-- Testimonials will be loaded via JS -->
                 </div>
             </div>
         </div>

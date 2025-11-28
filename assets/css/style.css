@@ -395,6 +395,7 @@ button, input, select, textarea {
 .btn--primary:active {
     transform: scale(var(--scale-active));
     box-shadow: var(--shadow-primary);
+    transition: var(--transition-interaction);
 }
 
 .btn--secondary {
@@ -412,6 +413,7 @@ button, input, select, textarea {
 
 .btn--secondary:active {
     transform: scale(var(--scale-active));
+    transition: var(--transition-interaction);
 }
 
 .btn--whatsapp {
@@ -427,6 +429,7 @@ button, input, select, textarea {
 
 .btn--whatsapp:active {
     transform: scale(var(--scale-active));
+    transition: var(--transition-interaction);
 }
 
 .btn--emergency {
@@ -465,6 +468,7 @@ button, input, select, textarea {
 
 .btn--emergency:active {
     transform: scale(var(--scale-active));
+    transition: var(--transition-interaction);
 }
 
 @keyframes emergencyPulse {
@@ -597,7 +601,7 @@ button, input, select, textarea {
 }
 
 .card__title {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     margin-bottom: 0.75rem;
     font-weight: var(--font-weight-bold);
     color: var(--dark);
@@ -608,7 +612,7 @@ button, input, select, textarea {
     margin-bottom: 1.75rem;
     flex-grow: 1;
     line-height: 1.6;
-    font-size: 1.1rem;
+    font-size: var(--font-size-md);
 }
 
 .card__action {
@@ -808,6 +812,7 @@ button, input, select, textarea {
 
 .coverage__city:active {
     transform: scale(var(--scale-active));
+    transition: var(--transition-interaction);
 }
 
 .coverage__city--active .coverage__icon {
@@ -1224,6 +1229,7 @@ button, input, select, textarea {
 
 .float-button:active {
     transform: scale(var(--scale-active));
+    transition: var(--transition-interaction);
 }
 
 .float-button--whatsapp { background-color: var(--accent-green); }
@@ -1646,6 +1652,7 @@ button, input, select, textarea {
 
 .nav__link--cta:active {
     transform: scale(var(--scale-active));
+    transition: var(--transition-interaction);
 }
 
 .nav__toggle {
