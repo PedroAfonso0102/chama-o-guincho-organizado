@@ -174,7 +174,7 @@ const UI = (function() {
             return `
                 <div class="card card--service ${highlightClass} animate-on-scroll">
                     <div class="card__icon">
-                        <i class="${service.icon}"></i>
+                        <i class="${service.icon}" aria-hidden="true"></i>
                     </div>
                     <h3 class="card__title">${service.title}</h3>
                     <p class="card__text">${service.text}</p>
@@ -191,7 +191,7 @@ const UI = (function() {
         container.innerHTML = featuresData.map(feature => `
             <div class="feature-item animate-on-scroll">
                 <div class="feature-item__icon">
-                    <i class="${feature.icon}"></i>
+                    <i class="${feature.icon}" aria-hidden="true"></i>
                 </div>
                 <div class="feature-item__content">
                     <h3 class="feature-item__title">${feature.title}</h3>
@@ -207,7 +207,7 @@ const UI = (function() {
 
         container.innerHTML = coverageCitiesData.map(city => `
             <div class="coverage__city animate-on-scroll" id="${city.id}">
-                <i class="fa-solid fa-location-dot coverage__icon"></i>
+                <i class="fa-solid fa-location-dot coverage__icon" aria-hidden="true"></i>
                 <span>${city.name}</span>
             </div>
         `).join('');

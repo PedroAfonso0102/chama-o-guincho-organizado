@@ -89,6 +89,9 @@
     /* Sistema de grid */
     --grid-gap: var(--space-8);
     --container-max-width: 1200px;
+    --container-md: 960px;
+    --container-sm: 800px;
+    --container-xs: 700px;
     --container-padding: var(--space-6);
     --container-padding-mobile: var(--space-4);
     --section-spacing: var(--space-20);
@@ -194,7 +197,7 @@ button, input, select, textarea {
 
 .section__header {
     margin-bottom: var(--space-10);
-    max-width: 700px;
+    max-width: var(--container-xs);
     margin-inline: auto;
     display: flex;
     flex-direction: column;
@@ -215,7 +218,7 @@ button, input, select, textarea {
 }
 
 .section__title {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-3xl));
     font-weight: var(--font-weight-black);
     margin-bottom: var(--space-5);
     position: relative;
@@ -228,7 +231,7 @@ button, input, select, textarea {
 
 .section__subtitle {
     color: rgba(33, 37, 41, 0.8);
-    max-width: 700px;
+    max-width: var(--container-xs);
     font-size: var(--font-size-md);
     line-height: var(--line-height-base);
     text-align: center;
@@ -242,7 +245,7 @@ button, input, select, textarea {
 .section__highlight::after {
     content: '';
     position: absolute;
-    bottom: 3px;
+    bottom: var(--space-1);
     left: 0;
     width: 100%;
     height: 6px;
@@ -332,12 +335,18 @@ button, input, select, textarea {
     border: 0;
 }
 
+/* Utilitários de ícones */
+.icon-sm { font-size: var(--font-size-sm); }
+.icon-md { font-size: var(--font-size-lg); }
+.icon-lg { font-size: var(--font-size-2xl); }
+.icon-xl { font-size: var(--font-size-4xl); }
+
 /* Utilitários de texto */
 .text-center { text-align: center; }
 .d-none { display: none; }
 .w-100 { width: 100%; }
 .mt-auto { margin-top: auto; }
-.p-y-8 { padding: 2rem 0; }
+.p-y-8 { padding: var(--space-8) 0; }
 
 /* =========== COMPONENT: BUTTONS =========== */
 
@@ -352,7 +361,7 @@ button, input, select, textarea {
     cursor: pointer;
     border: none;
     text-align: center;
-    line-height: 1;
+    line-height: var(--line-height-tight);
     position: relative;
     overflow: hidden;
     font-size: var(--font-size-base);
@@ -595,23 +604,23 @@ button, input, select, textarea {
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    font-size: 1.75rem;
-    margin-bottom: 1.25rem;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-5);
     transition: var(--transition);
 }
 
 .card__title {
-    font-size: 1.35rem;
-    margin-bottom: 0.75rem;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-3);
     font-weight: var(--font-weight-bold);
     color: var(--dark);
 }
 
 .card__text {
     color: rgba(33, 37, 41, 0.8);
-    margin-bottom: 1.75rem;
+    margin-bottom: var(--space-7);
     flex-grow: 1;
-    line-height: 1.6;
+    line-height: var(--line-height-relaxed);
     font-size: var(--font-size-md);
 }
 
@@ -620,10 +629,10 @@ button, input, select, textarea {
     font-weight: var(--font-weight-bold);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-2);
     margin-top: auto;
     transition: var(--transition);
-    padding: 0.5rem 0;
+    padding: var(--space-2) 0;
     position: relative;
 }
 
@@ -692,7 +701,7 @@ button, input, select, textarea {
     align-self: flex-start;
     background-color: var(--primary-light);
     color: var(--primary);
-    padding: 0.3rem 0.8rem;
+    padding: var(--space-1) var(--space-2);
     border-radius: var(--rounded-full);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-bold);
@@ -776,19 +785,19 @@ button, input, select, textarea {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.25rem;
+    gap: var(--space-5);
     max-width: 95%;
     margin: 0 auto;
-    padding: 0.5rem;
+    padding: var(--space-2);
 }
 
 .coverage__city {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: var(--space-2);
     background-color: var(--white);
-    padding: 0.75rem 1.25rem;
+    padding: var(--space-3) var(--space-5);
     border-radius: var(--rounded-full);
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
@@ -849,19 +858,19 @@ button, input, select, textarea {
 }
 
 .cta__container {
-    max-width: 800px;
+    max-width: var(--container-sm);
     margin: 0 auto;
 }
 
 .cta__title {
     font-size: clamp(1.5rem, 4vw, var(--font-size-3xl));
     font-weight: var(--font-weight-black);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-4);
 }
 
 .cta__text {
     font-size: var(--font-size-lg);
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-8);
     opacity: 0.9;
 }
 
@@ -869,7 +878,7 @@ button, input, select, textarea {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: var(--space-4);
 }
 
 /* =========== COMPONENT: EMERGENCY SECTION =========== */
@@ -901,7 +910,7 @@ button, input, select, textarea {
     align-items: stretch;
     overflow: hidden;
     position: relative;
-    max-width: 940px;
+    max-width: var(--container-md);
     margin: 0 auto;
 }
 
@@ -919,22 +928,22 @@ button, input, select, textarea {
     color: var(--white);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
-    padding: 0.5rem 1rem;
+    padding: var(--space-2) var(--space-4);
     border-radius: var(--rounded-full);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-6);
     letter-spacing: 0.5px;
     box-shadow: 0 5px 15px rgba(230, 57, 70, 0.25);
     animation: pulse 2s infinite;
 }
 
 .emergency-badge i {
-    margin-inline-end: 0.5rem;
+    margin-inline-end: var(--space-2);
 }
 
 .emergency-title {
     font-size: clamp(1.5rem, 4.5vw, var(--font-size-3xl));
     font-weight: var(--font-weight-black);
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--space-5);
     color: var(--dark);
 }
 
@@ -946,7 +955,7 @@ button, input, select, textarea {
 .emergency-highlight::after {
     content: '';
     position: absolute;
-    bottom: 2px;
+    bottom: var(--space-1);
     left: 0;
     width: 100%;
     height: 8px;
@@ -958,29 +967,29 @@ button, input, select, textarea {
 .emergency-description {
     color: var(--gray);
     font-size: var(--font-size-md);
-    margin-bottom: 1.75rem;
-    max-width: 42rem;
+    margin-bottom: var(--space-7);
+    max-width: var(--container-xs);
 }
 
 .emergency-form {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-6);
 }
 
 .emergency-actions {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-4);
 }
 
 .emergency-divider {
     position: relative;
     text-align: center;
-    margin: 1rem 0;
+    margin: var(--space-4) 0;
 }
 
 .emergency-divider span {
     display: inline-block;
-    padding: 0 1rem;
+    padding: 0 var(--space-4);
     background-color: var(--white);
     position: relative;
     z-index: 1;
@@ -1002,14 +1011,14 @@ button, input, select, textarea {
 .emergency-notice {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-4);
     background-color: var(--gray-light);
     border-radius: var(--rounded);
-    padding: 0.85rem 1.25rem;
+    padding: var(--space-3) var(--space-5);
 }
 
 .emergency-notice i {
-    font-size: 1.25rem;
+    font-size: var(--font-size-lg);
     color: var(--primary);
 }
 
@@ -1048,7 +1057,7 @@ button, input, select, textarea {
 .tow-truck-icon {
     position: relative;
     z-index: 2;
-    font-size: clamp(3.75rem, 5vw, 4.5rem);
+    font-size: clamp(var(--font-size-5xl), 5vw, 4.5rem);
     color: var(--white);
     animation: float 6s infinite ease-in-out;
 }
@@ -1103,7 +1112,7 @@ button, input, select, textarea {
 }
 
 .features__container {
-    max-width: 900px;
+    max-width: var(--container-md);
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -1126,15 +1135,15 @@ button, input, select, textarea {
 .features__list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
 }
 
 .feature-item {
     display: flex;
     align-items: flex-start;
-    gap: 1.25rem;
-    padding: 1.5rem;
+    gap: var(--space-5);
+    padding: var(--space-6);
     background-color: rgba(255, 255, 255, 0.08);
     border-radius: var(--rounded);
     transition: var(--transition);
@@ -1160,7 +1169,7 @@ button, input, select, textarea {
     justify-content: center;
     flex-shrink: 0;
     transition: var(--transition);
-    font-size: 1.25rem;
+    font-size: var(--font-size-lg);
 }
 
 .feature-item:hover .feature-item__icon {
@@ -1175,7 +1184,7 @@ button, input, select, textarea {
 .feature-item__title {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--space-1);
     color: var(--white);
 }
 
@@ -1183,7 +1192,7 @@ button, input, select, textarea {
     margin: 0;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-normal);
-    line-height: 1.5;
+    line-height: var(--line-height-base);
     opacity: 0.8;
 }
 
@@ -1198,13 +1207,13 @@ button, input, select, textarea {
 /* =========== COMPONENT: FLOATING ELEMENTS =========== */
 .float-buttons {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: var(--space-8);
+    right: var(--space-8);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-4);
     z-index: var(--z-float);
-    padding-bottom: 1rem;
+    padding-bottom: var(--space-4);
     transition: bottom 0.3s ease-in-out;
 }
 
@@ -1215,7 +1224,7 @@ button, input, select, textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     color: var(--white);
     box-shadow: var(--shadow-lg);
     cursor: pointer;
@@ -1237,8 +1246,8 @@ button, input, select, textarea {
 
 .scroll-top {
     position: fixed;
-    bottom: 2rem;
-    left: 2rem;
+    bottom: var(--space-8);
+    left: var(--space-8);
     width: 48px;
     height: 48px;
     background-color: var(--secondary);
@@ -1247,7 +1256,7 @@ button, input, select, textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-size: var(--font-size-lg);
     box-shadow: var(--shadow);
     cursor: pointer;
     z-index: var(--z-float);
@@ -1273,7 +1282,7 @@ button, input, select, textarea {
 .footer {
     background-color: var(--secondary);
     color: var(--white);
-    padding: 4rem 0 2rem;
+    padding: var(--space-16) 0 var(--space-8);
 }
 
 .footer__grid {
@@ -1301,19 +1310,19 @@ button, input, select, textarea {
 .footer__logo {
     display: flex;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-6);
 }
 
 .footer p {
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-6);
     font-size: var(--font-size-sm);
     line-height: 1.6;
 }
 
 .footer__social {
     display: flex;
-    gap: 1rem;
+    gap: var(--space-4);
 }
 
 .footer__social-link {
@@ -1335,7 +1344,7 @@ button, input, select, textarea {
 
 .footer__heading {
     font-size: var(--font-size-lg);
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--space-5);
     position: relative;
     display: inline-block;
 }
@@ -1353,13 +1362,13 @@ button, input, select, textarea {
 .footer__contact, .footer__nav {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--space-3);
 }
 
 .footer__contact-item, .footer__nav-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-3);
 }
 
 .footer__contact-icon {
@@ -1373,7 +1382,7 @@ button, input, select, textarea {
 
 .footer__copy {
     text-align: center;
-    padding-top: 2rem;
+    padding-top: var(--space-8);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: var(--font-size-sm);
     color: rgba(255, 255, 255, 0.6);
@@ -1396,13 +1405,13 @@ button, input, select, textarea {
 .form-label--required::after {
     content: '*';
     color: var(--primary);
-    margin-inline-start: 0.25rem;
+    margin-inline-start: var(--space-1);
 }
 
 .form-control {
     display: block;
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: var(--space-3) var(--space-4);
     font-size: var(--font-size-base);
     border: 1px solid var(--gray-light);
     border-radius: var(--rounded);
@@ -1425,7 +1434,7 @@ button, input, select, textarea {
 .form-feedback {
     display: none;
     font-size: var(--font-size-xs);
-    margin-top: 0.25rem;
+    margin-top: var(--space-1);
 }
 
 .form-feedback--invalid {
@@ -1439,7 +1448,7 @@ button, input, select, textarea {
 .form-select {
     display: block;
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: var(--space-3) var(--space-4);
     font-size: var(--font-size-base);
     border: 1px solid var(--gray-light);
     border-radius: var(--rounded);
@@ -1447,8 +1456,8 @@ button, input, select, textarea {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1rem;
+    background-position: right var(--space-4) center;
+    background-size: var(--space-4);
 }
 
 .form-select:focus {
@@ -1464,7 +1473,7 @@ button, input, select, textarea {
 
 .input-icon-wrapper .form-control,
 .input-icon-wrapper .form-select {
-    padding-left: 3rem;
+    padding-left: var(--space-12);
 }
 
 .input-icon {
@@ -1473,14 +1482,14 @@ button, input, select, textarea {
     top: 50%;
     transform: translateY(-50%);
     color: var(--primary);
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     pointer-events: none;
 }
 
 .form-row {
     display: flex;
     gap: var(--space-4);
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--space-3);
 }
 
 .location-group {
@@ -1488,12 +1497,12 @@ button, input, select, textarea {
 }
 
 .input-location-wrapper .form-control {
-    padding-right: 3rem;
+    padding-right: var(--space-12);
 }
 
 .location-detect {
     position: absolute;
-    right: 0.75rem;
+    right: var(--space-3);
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -1554,7 +1563,7 @@ button, input, select, textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-inline-end: 0.625rem;
+    margin-inline-end: var(--space-2);
     color: var(--white);
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
@@ -1596,14 +1605,14 @@ button, input, select, textarea {
 .nav__menu {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: var(--space-6);
 }
 
 .nav__link {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     position: relative;
-    padding: 0.5rem 0;
+    padding: var(--space-2) 0;
     color: var(--gray-dark);
 }
 
@@ -1630,11 +1639,11 @@ button, input, select, textarea {
 .nav__link--cta {
     background-color: var(--primary);
     color: var(--white);
-    padding: 0.625rem 1.25rem;
+    padding: var(--space-2) var(--space-5);
     border-radius: var(--rounded-full);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-2);
     box-shadow: var(--shadow-primary);
     font-weight: var(--font-weight-bold);
 }
@@ -1663,7 +1672,7 @@ button, input, select, textarea {
     width: 40px;
     height: 40px;
     color: var(--dark);
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     transition: var(--transition);
     position: relative;
     z-index: calc(var(--z-header) + 1);
@@ -1689,7 +1698,7 @@ button, input, select, textarea {
         background-color: var(--white);
         flex-direction: column;
         justify-content: center;
-        padding: 2rem;
+        padding: var(--space-8);
         transform: translateX(-100%);
         transition: var(--transition);
         z-index: var(--z-header);
@@ -1760,8 +1769,8 @@ button, input, select, textarea {
 .disponivel, .tempo-espera {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
     border-radius: var(--rounded-full);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
@@ -1819,7 +1828,7 @@ button, input, select, textarea {
 .hero__highlight::after {
     content: '';
     position: absolute;
-    bottom: 4px;
+    bottom: var(--space-1);
     left: 0;
     width: 100%;
     height: 10px;
@@ -1845,14 +1854,14 @@ button, input, select, textarea {
 .hero__info {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: var(--space-3);
     color: rgba(255, 255, 255, 0.82);
     font-size: var(--font-size-sm);
 }
 
 .hero__stats-wrapper {
     width: 100%;
-    max-width: 960px;
+    max-width: var(--container-md);
     margin: var(--space-8) auto 0;
 }
 
@@ -1885,7 +1894,7 @@ button, input, select, textarea {
 }
 
 .stat__value {
-    font-size: 2.75rem;
+    font-size: var(--font-size-4xl);
     font-weight: var(--font-weight-black);
     color: var(--primary);
     margin-bottom: 0.5rem;
@@ -1940,12 +1949,12 @@ button, input, select, textarea {
 
 .slideshow__dots {
     position: absolute;
-    top: 16px;
+    top: var(--space-4);
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 0.625rem;
-    padding: 8px 12px;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
     background: rgba(255, 255, 255, 0.25);
     border-radius: 999px;
     backdrop-filter: blur(12px);
@@ -1992,8 +2001,8 @@ button, input, select, textarea {
     opacity: 1;
 }
 
-.slideshow__arrow--prev { left: 18px; }
-.slideshow__arrow--next { right: 18px; }
+.slideshow__arrow--prev { left: var(--space-5); }
+.slideshow__arrow--next { right: var(--space-5); }
 
 @media (max-width: 992px) {
     .hero__container {
@@ -2035,7 +2044,7 @@ button, input, select, textarea {
     border-radius: var(--rounded-lg);
     max-width: 550px;
     width: 100%;
-    margin: 2rem;
+    margin: var(--space-8);
     transition: var(--transition);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     transform: scale(0.95);
@@ -2051,7 +2060,7 @@ button, input, select, textarea {
     background-color: var(--secondary);
     color: var(--white);
     border-bottom: 1px solid var(--gray-light);
-    padding: 1.5rem;
+    padding: var(--space-6);
     border-radius: var(--rounded-lg) var(--rounded-lg) 0 0;
     display: flex;
     justify-content: space-between;
@@ -2084,36 +2093,36 @@ button, input, select, textarea {
 }
 
 .modal__body {
-    padding: 1.5rem;
+    padding: var(--space-6);
     overflow-y: auto;
     max-height: 60vh;
 }
 
 .modal__footer {
-    padding: 1.5rem;
+    padding: var(--space-6);
     border-top: 1px solid var(--gray-light);
     display: flex;
     justify-content: flex-end;
-    gap: 1rem;
+    gap: var(--space-4);
 }
 
 /* Modal specific states */
 .modal__header--status { background-color: var(--secondary); }
 .modal__header--success { background-color: var(--success); }
-.modal__body--centered { text-align: center; padding: 2rem; }
+.modal__body--centered { text-align: center; padding: var(--space-8); }
 .modal__footer--centered { justify-content: center; }
 
 /* Tabs inside modal */
 .option-tabs {
     display: flex;
     border-bottom: 1px solid var(--gray-light);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-6);
 }
 
 .option-tab {
     flex: 1;
     text-align: center;
-    padding: 1rem;
+    padding: var(--space-4);
     background: none;
     border: none;
     cursor: pointer;
@@ -2142,12 +2151,12 @@ button, input, select, textarea {
 .form-success {
     background-color: rgba(25, 135, 84, 0.1);
     color: var(--success);
-    padding: 1rem;
+    padding: var(--space-4);
     border-radius: var(--rounded);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-6);
     display: none;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-3);
     font-weight: var(--font-weight-medium);
 }
 
@@ -2156,22 +2165,22 @@ button, input, select, textarea {
 /* =========== COMPONENT: NOTIFICATION =========== */
 .notification {
     position: fixed;
-    top: 2rem;
+    top: var(--space-8);
     right: -100%;
     background-color: var(--white);
     border-radius: var(--rounded);
     box-shadow: var(--shadow-lg);
-    padding: 1rem 1.5rem;
+    padding: var(--space-4) var(--space-6);
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-3);
     z-index: var(--z-float);
     transition: var(--transition);
     max-width: 400px;
     border-left: 4px solid var(--primary);
 }
 
-.notification--visible { right: 2rem; }
+.notification--visible { right: var(--space-8); }
 
 .notification--success {
     border-left-color: var(--success);
@@ -2184,7 +2193,7 @@ button, input, select, textarea {
 .notification--error .notification__icon { color: var(--error); }
 
 .notification__icon {
-    font-size: 1.25rem;
+    font-size: var(--font-size-lg);
     color: var(--primary);
 }
 
@@ -2196,7 +2205,7 @@ button, input, select, textarea {
 .notification__close {
     background: none;
     border: none;
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     cursor: pointer;
     color: var(--gray);
 }
@@ -2213,9 +2222,9 @@ button, input, select, textarea {
 .price-estimator {
     background: linear-gradient(135deg, var(--white) 0%, rgba(255, 193, 7, 0.02) 100%);
     border-radius: var(--rounded-lg);
-    padding: 2rem;
-    max-width: 900px;
-    margin: 3rem auto;
+    padding: var(--space-8);
+    max-width: var(--container-md);
+    margin: var(--space-12) auto;
     box-shadow: var(--shadow-lg);
     position: relative;
     border-top: 4px solid var(--accent-orange);
@@ -2223,22 +2232,22 @@ button, input, select, textarea {
 
 .price-estimator__title {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-6);
     font-size: var(--font-size-xl);
 }
 
 .price-estimator__form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
 }
 
 .price-estimator__result {
     background: var(--gradient-emergency);
     color: var(--white);
     border-radius: var(--rounded);
-    padding: 1.5rem;
+    padding: var(--space-6);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2253,14 +2262,14 @@ button, input, select, textarea {
 
 .price-estimator__actions {
     display: flex;
-    gap: 1rem;
+    gap: var(--space-4);
     align-items: center;
 }
 
 .price-estimator__note {
     font-size: var(--font-size-xs);
     color: var(--gray);
-    margin-top: 0.5rem;
+    margin-top: var(--space-2);
     text-align: center;
 }
 
@@ -2268,7 +2277,7 @@ button, input, select, textarea {
     .price-estimator__form { grid-template-columns: 1fr; }
     .price-estimator__result {
         flex-direction: column;
-        gap: 1rem;
+        gap: var(--space-4);
         text-align: center;
     }
 }
@@ -2276,13 +2285,13 @@ button, input, select, textarea {
 /* =========== COMPONENT: TIMELINE =========== */
 .timeline {
     position: relative;
-    max-width: 900px;
+    max-width: var(--container-md);
     margin-inline: auto;
 }
 
 .timeline__line {
     position: absolute;
-    top: 60px;
+    top: 3.75rem;
     left: 0;
     right: 0;
     height: 3px;
@@ -2297,12 +2306,12 @@ button, input, select, textarea {
     position: relative;
     z-index: 2;
     align-items: flex-start;
-    gap: 1rem;
+    gap: var(--space-4);
 }
 
 .timeline__item {
     text-align: center;
-    padding: 1.5rem;
+    padding: var(--space-6);
     transition: var(--transition);
     flex: 1;
 }
@@ -2310,7 +2319,7 @@ button, input, select, textarea {
 .timeline__step {
     width: 90px;
     height: 90px;
-    margin: 0 auto 1.25rem;
+    margin: 0 auto var(--space-5);
     position: relative;
 }
 
@@ -2322,9 +2331,9 @@ button, input, select, textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 15px auto;
+    margin: var(--space-4) auto;
     color: var(--white);
-    font-size: 1.75rem;
+    font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
     position: relative;
     z-index: 2;
@@ -2334,7 +2343,7 @@ button, input, select, textarea {
 .timeline__title {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-2);
     color: var(--secondary);
 }
 
@@ -2343,7 +2352,7 @@ button, input, select, textarea {
     font-size: var(--font-size-sm);
     max-width: 180px;
     margin: 0 auto;
-    line-height: 1.5;
+    line-height: var(--line-height-base);
 }
 
 @media (max-width: 768px) {
@@ -2357,7 +2366,7 @@ button, input, select, textarea {
 
 /* =========== COMPONENT: FAQ ACCORDION =========== */
 .faq__container {
-    max-width: 800px;
+    max-width: var(--container-sm);
     margin: 0 auto;
     border-top: 1px solid var(--gray-light);
 }
@@ -2373,7 +2382,7 @@ button, input, select, textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 1rem;
+    padding: var(--space-6) var(--space-4);
     cursor: pointer;
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
@@ -2391,14 +2400,14 @@ button, input, select, textarea {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-    padding: 0 1rem;
+    padding: 0 var(--space-4);
     color: var(--gray-dark);
-    line-height: 1.7;
+    line-height: var(--line-height-relaxed);
 }
 
 .faq__item.active .faq__answer {
     max-height: 500px;
-    padding-bottom: 1.5rem;
+    padding-bottom: var(--space-6);
 }
 
 .faq__item.active .faq__question i {
@@ -2409,19 +2418,19 @@ button, input, select, textarea {
 .section__pretitle--light { color: rgba(255, 255, 255, 0.9); }
 .section__subtitle--light { color: rgba(255, 255, 255, 0.9); }
 .logo__text--light { color: var(--white); }
-.modal-icon { font-size: 3rem; margin-bottom: 1rem; }
+.modal-icon { font-size: var(--font-size-4xl); margin-bottom: var(--space-4); }
 .modal-icon--success { color: var(--success); }
 .modal-icon--primary { color: var(--primary); }
-.modal-title-lg { font-size: 1.5rem; margin-bottom: 1rem; }
-.modal-text { margin-bottom: 1.5rem; }
-.scheduling-title { margin-bottom: 1rem; color: var(--primary); }
+.modal-title-lg { font-size: var(--font-size-xl); margin-bottom: var(--space-4); }
+.modal-text { margin-bottom: var(--space-6); }
+.scheduling-title { margin-bottom: var(--space-4); color: var(--primary); }
 
 .mobile-panic-actions { display: none; }
 
 @media (max-width: 768px) {
     .mobile-panic-actions {
         display: block;
-        margin-bottom: 1.5rem;
+        margin-bottom: var(--space-6);
     }
     #emergency-form { display: none; }
     #emergency-form.show-form {

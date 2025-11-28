@@ -115,15 +115,15 @@
 
     <!-- Botão de Voltar ao Topo -->
     <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">
-        <i class="fa-solid fa-arrow-up"></i>
+        <i aria-hidden="true" class="fa-solid fa-arrow-up"></i>
     </button>
 
     <!-- Notificação -->
     <div class="notification" id="notification">
-        <i class="notification__icon fa-solid fa-circle-info"></i>
+        <i aria-hidden="true" class="notification__icon fa-solid fa-circle-info"></i>
         <span class="notification__message">Mensagem de notificação</span>
         <button class="notification__close" aria-label="Fechar notificação">
-            <i class="fa-solid fa-xmark"></i>
+            <i aria-hidden="true" class="fa-solid fa-xmark"></i>
         </button>
     </div>
 
@@ -133,7 +133,7 @@
             <a href="#" class="logo">
                 <div class="logo__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24"
-                        viewBox="0 0 24 24" width="24">
+                        viewBox="0 0 24 24" width="24" aria-hidden="true">
                         <g>
                             <rect fill="none" height="24" width="24" y="0" />
                         </g>
@@ -148,7 +148,7 @@
 
             <nav class="nav">
                 <button class="nav__toggle" id="nav-toggle" aria-label="Menu de navegação" aria-expanded="false">
-                    <i class="fa-solid fa-bars"></i>
+                    <i aria-hidden="true" class="fa-solid fa-bars"></i>
                 </button>
 
                 <ul class="nav__menu" id="nav-menu">
@@ -160,7 +160,7 @@
                     <li><a href="#" class="nav__link" data-modal="status">Status</a></li>
                     <li><a href="#price-estimator" class="nav__link">Preço</a></li>
                     <li><a href="tel:+5519993502969" class="nav__link nav__link--cta">
-                            <i class="fa-solid fa-phone"></i> Chamar Agora
+                            <i aria-hidden="true" class="fa-solid fa-phone"></i> Chamar Agora
                         </a></li>
                 </ul>
             </nav>
@@ -192,16 +192,16 @@
 
                 <div class="hero__actions">
                     <a href="tel:+5519993502969" class="btn btn--primary btn--lg btn--pulse btn--full-mobile">
-                        <i class="fa-solid fa-phone"></i> LIGAR AGORA (Emergência)
+                        <i aria-hidden="true" class="fa-solid fa-phone"></i> LIGAR AGORA (Emergência)
                     </a>
                     <a href="https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20Guincho%20Agora"
                         class="btn btn--whatsapp btn--lg btn--full-mobile" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-whatsapp"></i> Enviar um SOS no WhatsApp
+                        <i aria-hidden="true" class="fa-brands fa-whatsapp"></i> Enviar um SOS no WhatsApp
                     </a>
                 </div>
 
                 <div class="hero__info">
-                    <i class="fa-solid fa-location-dot"></i>
+                    <i aria-hidden="true" class="fa-solid fa-location-dot"></i>
                     Campinas e toda Região Metropolitana
                 </div>
 
@@ -250,7 +250,7 @@
             <div class="emergency-card animate-on-scroll">
                 <div class="emergency-card__content">
                     <div class="emergency-badge">
-                        <i class="fa-solid fa-bolt-lightning"></i>
+                        <i aria-hidden="true" class="fa-solid fa-bolt-lightning"></i>
                         <span>EMERGÊNCIA 24H</span>
                     </div>
 
@@ -267,7 +267,7 @@
                             <div class="form-group">
                                 <label for="emergency-name" class="form-label">Nome completo</label>
                                 <div class="input-icon-wrapper">
-                                    <i class="fa-solid fa-user input-icon"></i>
+                                    <i aria-hidden="true" class="fa-solid fa-user input-icon"></i>
                                     <input type="text" id="emergency-name" class="form-control"
                                         placeholder="Seu nome completo" required autocomplete="name">
                                 </div>
@@ -276,7 +276,7 @@
                             <div class="form-group">
                                 <label for="emergency-phone" class="form-label">Telefone</label>
                                 <div class="input-icon-wrapper">
-                                    <i class="fa-solid fa-phone input-icon"></i>
+                                    <i aria-hidden="true" class="fa-solid fa-phone input-icon"></i>
                                     <input type="tel" id="emergency-phone" class="form-control"
                                         placeholder="(19) 99999-9999" required autocomplete="tel">
                                 </div>
@@ -286,11 +286,11 @@
                         <div class="form-group location-group">
                             <label for="emergency-location" class="form-label">Localização atual</label>
                             <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-location-dot input-icon"></i>
+                                <i aria-hidden="true" class="fa-solid fa-location-dot input-icon"></i>
                                 <input type="text" id="emergency-location" class="form-control"
                                     placeholder="Onde você está? (Endereço/Referência)" required>
                                 <button type="button" class="location-detect" id="emergency-detect-location">
-                                    <i class="fa-solid fa-crosshairs"></i>
+                                    <i aria-hidden="true" class="fa-solid fa-crosshairs"></i>
                                 </button>
                             </div>
                         </div>
@@ -298,7 +298,7 @@
                         <div class="form-group">
                             <label for="emergency-problem" class="form-label">Tipo de emergência</label>
                             <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-car-burst input-icon"></i>
+                                <i aria-hidden="true" class="fa-solid fa-car-burst input-icon"></i>
                                 <select id="emergency-problem" class="form-control" required>
                                     <option value="" disabled selected>Qual a emergência?</option>
                                     <option value="Pane Mecânica / Elétrica">Pane Mecânica / Elétrica</option>
@@ -315,7 +315,7 @@
                         <div class="form-group">
                             <label for="emergency-destination" class="form-label">Endereço de destino</label>
                             <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-map-pin input-icon"></i>
+                                <i aria-hidden="true" class="fa-solid fa-map-pin input-icon"></i>
                                 <input type="text" id="emergency-destination" class="form-control"
                                     placeholder="Endereço de destino do veículo" required>
                             </div>
@@ -324,7 +324,7 @@
                         <div class="form-group vehicle-group">
                             <label for="emergency-vehicle" class="form-label">Tipo de veículo</label>
                             <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-car input-icon"></i>
+                                <i aria-hidden="true" class="fa-solid fa-car input-icon"></i>
                                 <select id="emergency-vehicle" class="form-control" required>
                                     <option value="" disabled selected>Tipo de veículo</option>
                                     <option value="Moto">Moto</option>
@@ -340,7 +340,7 @@
                         <div class="form-group">
                             <label for="emergency-details" class="form-label">Informações adicionais (opcional)</label>
                             <div class="input-icon-wrapper">
-                                <i class="fa-solid fa-circle-info input-icon"></i>
+                                <i aria-hidden="true" class="fa-solid fa-circle-info input-icon"></i>
                                 <textarea id="emergency-details" class="form-control"
                                     placeholder="Algo mais que precisamos saber? (Opcional) Ex: O carro está em garagem subterrânea? As rodas estão travadas?"
                                     rows="3"></textarea>
@@ -349,7 +349,7 @@
 
                         <div class="emergency-actions">
                             <button type="submit" class="btn btn--primary emergency-submit">
-                                <i class="fa-solid fa-truck-fast"></i> Solicitar Orçamento e Guincho
+                                <i aria-hidden="true" class="fa-solid fa-truck-fast"></i> Solicitar Orçamento e Guincho
                             </button>
 
                             <div class="emergency-divider">
@@ -357,13 +357,13 @@
                             </div>
 
                             <a href="tel:+5519993502969" class="btn btn--secondary emergency-call">
-                                <i class="fa-solid fa-phone"></i> Ligar Agora: (19) 99350-2969
+                                <i aria-hidden="true" class="fa-solid fa-phone"></i> Ligar Agora: (19) 99350-2969
                             </a>
                         </div>
                     </form>
 
                     <div class="emergency-notice">
-                        <i class="fa-solid fa-clock"></i>
+                        <i aria-hidden="true" class="fa-solid fa-clock"></i>
                         <p>Atendimento em até <strong>30 minutos</strong> em Campinas e região</p>
                     </div>
                 </div>
@@ -371,7 +371,7 @@
                 <div class="emergency-card__decoration">
                     <div class="pulse-circle"></div>
                     <div class="tow-truck-icon">
-                        <i class="fa-solid fa-truck-pickup"></i>
+                        <i aria-hidden="true" class="fa-solid fa-truck-pickup"></i>
                     </div>
                 </div>
             </div>
@@ -585,10 +585,10 @@
                         </div>
 
                         <button class="slideshow__arrow slideshow__arrow--prev" aria-label="Slide anterior">
-                            <i class="fa-solid fa-chevron-left"></i>
+                            <i aria-hidden="true" class="fa-solid fa-chevron-left"></i>
                         </button>
                         <button class="slideshow__arrow slideshow__arrow--next" aria-label="Próximo slide">
-                            <i class="fa-solid fa-chevron-right"></i>
+                            <i aria-hidden="true" class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
                 </div>
@@ -617,7 +617,7 @@
                         <div class="input-location-wrapper">
                             <input type="text" class="form-control" id="price-origin" placeholder="Local de partida">
                             <button type="button" class="btn btn--location" id="price-detect-origin">
-                                <i class="fa-solid fa-location-crosshairs"></i>
+                                <i aria-hidden="true" class="fa-solid fa-location-crosshairs"></i>
                                 <span>Usar localização</span>
                             </button>
                         </div>
@@ -656,7 +656,7 @@
                     </div>
                     <div class="price-estimator__actions">
                         <button class="btn btn--secondary" id="save-quote-btn">
-                            <i class="fa-solid fa-envelope"></i> Salvar Orçamento
+                            <i aria-hidden="true" class="fa-solid fa-envelope"></i> Salvar Orçamento
                         </button>
                         <button class="btn btn--primary">
                             Chamar Guincho Agora
@@ -688,7 +688,7 @@
                 <div class="faq__item">
                     <button class="faq__question">
                         <span>O que devo fazer enquanto espero o guincho chegar?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <i aria-hidden="true" class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq__answer">
                         <p>Primeiro, ligue o pisca-alerta. Depois, posicione o triângulo a 30 metros do carro. Por fim,
@@ -699,7 +699,7 @@
                 <div class="faq__item">
                     <button class="faq__question">
                         <span>Quais informações preciso fornecer ao solicitar o serviço?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <i aria-hidden="true" class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq__answer">
                         <p>Informe sua localização, o tipo de veículo, o problema e o endereço de destino.</p>
@@ -709,7 +709,7 @@
                 <div class="faq__item">
                     <button class="faq__question">
                         <span>Vocês transportam veículos especiais, como carros de luxo ou elétricos?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <i aria-hidden="true" class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq__answer">
                         <p>Sim. Transportamos carros de luxo, esportivos e elétricos com segurança.</p>
@@ -719,7 +719,7 @@
                 <div class="faq__item">
                     <button class="faq__question">
                         <span>Qual a diferença entre o valor estimado no site e o valor final?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <i aria-hidden="true" class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq__answer">
                         <p>O valor final pode mudar em situações especiais. Por exemplo, resgates em subsolos ou com
@@ -730,7 +730,7 @@
                 <div class="faq__item">
                     <button class="faq__question">
                         <span>Vocês oferecem serviços adicionais, como troca de pneu ou recarga de bateria?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <i aria-hidden="true" class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq__answer">
                         <p>Nosso foco é o transporte de veículos. Para outros problemas, consulte a disponibilidade ao
@@ -752,12 +752,12 @@
 
             <div class="cta__buttons">
                 <a href="tel:+5519993502969" class="btn btn--light btn--lg animate-on-scroll btn--full-mobile">
-                    <i class="fa-solid fa-phone"></i> (19) 99350-2969
+                    <i aria-hidden="true" class="fa-solid fa-phone"></i> (19) 99350-2969
                 </a>
                 <a href="https://wa.me/5519993502969"
                     class="btn btn--whatsapp btn--lg animate-on-scroll btn--full-mobile" target="_blank"
                     rel="noopener noreferrer">
-                    <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+                    <i aria-hidden="true" class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
                 </a>
             </div>
         </div>
@@ -771,7 +771,7 @@
                     <div class="footer__logo">
                         <div class="logo__icon">
                             <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24"
-                                viewBox="0 0 24 24" width="24">
+                                viewBox="0 0 24 24" width="24" aria-hidden="true">
                                 <g>
                                     <rect fill="none" height="24" width="24" y="0" />
                                 </g>
@@ -790,13 +790,13 @@
                     </p>
                     <div class="footer__social">
                         <a href="#" class="footer__social-link" aria-label="Visite nosso Facebook">
-                            <i class="fa-brands fa-facebook-f"></i>
+                            <i aria-hidden="true" class="fa-brands fa-facebook-f"></i>
                         </a>
                         <a href="#" class="footer__social-link" aria-label="Visite nosso Instagram">
-                            <i class="fa-brands fa-instagram"></i>
+                            <i aria-hidden="true" class="fa-brands fa-instagram"></i>
                         </a>
                         <a href="#" class="footer__social-link" aria-label="Visite nosso canal no YouTube">
-                            <i class="fa-brands fa-youtube"></i>
+                            <i aria-hidden="true" class="fa-brands fa-youtube"></i>
                         </a>
                     </div>
                 </div>
@@ -805,29 +805,29 @@
                     <h3 class="footer__heading">Contato</h3>
                     <ul class="footer__contact">
                         <li class="footer__contact-item">
-                            <i class="fa-solid fa-phone footer__contact-icon"></i>
+                            <i aria-hidden="true" class="fa-solid fa-phone footer__contact-icon"></i>
                             <a href="tel:+5519993502969">(19) 99350-2969</a>
                         </li>
                         <li class="footer__contact-item">
-                            <i class="fa-brands fa-whatsapp footer__contact-icon"></i>
+                            <i aria-hidden="true" class="fa-brands fa-whatsapp footer__contact-icon"></i>
                             <a href="https://wa.me/5519993502969?text=Olá!%20Encontrei%20o%20site%20Chama%20o%20Guincho%20e%20gostaria%20de%20solicitar%20um%20serviço/orçamento.%20Poderia%20me%20ajudar,%20por%20favor?"
                                 target="_blank" rel="noopener noreferrer">WhatsApp</a>
                         </li>
                         <li class="footer__contact-item">
-                            <i class="fa-solid fa-envelope footer__contact-icon"></i>
+                            <i aria-hidden="true" class="fa-solid fa-envelope footer__contact-icon"></i>
                             <a href="mailto:afonsoguinchocampinas@gmail.com">afonsoguinchocampinas@gmail.com</a>
                         </li>
                         </li>
                         <li class="footer__contact-item">
-                            <i class="fa-solid fa-map-marker-alt footer__contact-icon"></i>
+                            <i aria-hidden="true" class="fa-solid fa-map-marker-alt footer__contact-icon"></i>
                             <span>Base Operacional: Campinas e RMC (Atendimento Móvel)</span>
                         </li>
                         <li class="footer__contact-item mt-2">
                             <small style="color: rgba(255,255,255,0.6);">Aceitamos: Cartão de Crédito, Débito e Pix</small>
                             <div class="payment-icons mt-1">
-                                <i class="fa-brands fa-cc-visa fa-lg me-2"></i>
-                                <i class="fa-brands fa-cc-mastercard fa-lg me-2"></i>
-                                <i class="fa-brands fa-pix fa-lg"></i>
+                                <i aria-hidden="true" class="fa-brands fa-cc-visa fa-lg me-2"></i>
+                                <i aria-hidden="true" class="fa-brands fa-cc-mastercard fa-lg me-2"></i>
+                                <i aria-hidden="true" class="fa-brands fa-pix fa-lg"></i>
                             </div>
                     </ul>
                 </div>
@@ -847,11 +847,11 @@
                     <h3 class="footer__heading">Informações</h3>
                     <ul class="footer__contact">
                         <li class="footer__contact-item">
-                            <i class="fa-solid fa-id-card footer__contact-icon"></i>
+                            <i aria-hidden="true" class="fa-solid fa-id-card footer__contact-icon"></i>
                             <span>CNPJ: 12.345.678/0001-90</span>
                         </li>
                         <li class="footer__contact-item">
-                            <i class="fa-solid fa-map-marker-alt footer__contact-icon"></i>
+                            <i aria-hidden="true" class="fa-solid fa-map-marker-alt footer__contact-icon"></i>
                         </li>
                     </ul>
                 </div>
@@ -868,10 +868,10 @@
         <a href="https://wa.me/5519993502969?text=Olá!%20Encontrei%20o%20site%20Chama%20o%20Guincho%20e%20gostaria%20de%20solicitar%20um%20serviço/orçamento.%20Poderia%20me%20ajudar,%20por%20favor?"
             target="_blank" rel="noopener noreferrer" class="float-button float-button--whatsapp"
             aria-label="Falar pelo WhatsApp">
-            <i class="fa-brands fa-whatsapp"></i>
+            <i aria-hidden="true" class="fa-brands fa-whatsapp"></i>
         </a>
         <a href="tel:+5519993502969" class="float-button float-button--phone" aria-label="Ligar agora">
-            <i class="fa-solid fa-phone"></i>
+            <i aria-hidden="true" class="fa-solid fa-phone"></i>
         </a>
     </div>
 
@@ -882,11 +882,11 @@
         <div class="modal__content">
             <div class="modal__header">
                 <h3 class="modal__title">Solicitar Orçamento</h3>
-                <button class="modal__close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                <button class="modal__close" aria-label="Fechar"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal__body">
                 <div class="form-success" id="orcamento-success">
-                    <i class="fa-solid fa-circle-check"></i> Solicitação enviada com sucesso! Retornaremos o contato em
+                    <i aria-hidden="true" class="fa-solid fa-circle-check"></i> Solicitação enviada com sucesso! Retornaremos o contato em
                     breve.
                 </div>
 
@@ -948,11 +948,11 @@
 
                 <div class="step-content" id="tab-ligar">
                     <div class="text-center p-y-8">
-                        <i class="fa-solid fa-phone modal-icon modal-icon--primary"></i>
+                        <i aria-hidden="true" class="fa-solid fa-phone modal-icon modal-icon--primary"></i>
                         <h3 class="modal-title-lg">Contato Telefônico</h3>
                         <p class="modal-text">Fale diretamente com nossa equipe para orçamento imediato</p>
                         <a href="tel:+5519993502969" class="btn btn--primary btn--lg">
-                            <i class="fa-solid fa-phone"></i> (19) 99350-2969
+                            <i aria-hidden="true" class="fa-solid fa-phone"></i> (19) 99350-2969
                         </a>
                     </div>
                 </div>
@@ -969,7 +969,7 @@
         <div class="modal__content">
             <div class="modal__header">
                 <h3 class="modal__title" id="generic-modal-title"></h3>
-                <button class="modal__close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                <button class="modal__close" aria-label="Fechar"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal__body" id="generic-modal-body">
                 <!-- Form content will be injected here -->
@@ -1195,7 +1195,7 @@
 
         <form id="form-emergency-panic">
             <div class="emergency-notice-banner">
-                <i class="fa-solid fa-triangle-exclamation"></i>
+                <i aria-hidden="true" class="fa-solid fa-triangle-exclamation"></i>
                 <span><strong>EMERGÊNCIA:</strong> Atendimento prioritário em até 30 minutos na região</span>
             </div>
 
@@ -1218,12 +1218,12 @@
                     <input type="text" name="Localização Atual" class="form-control" id="panic-location"
                         placeholder="Endereço, rua ou ponto de referência" required>
                     <button type="button" class="btn btn--location" id="panic-detect-location">
-                        <i class="fa-solid fa-location-crosshairs"></i>
+                        <i aria-hidden="true" class="fa-solid fa-location-crosshairs"></i>
                         <span>Usar minha localização</span>
                     </button>
                 </div>
                 <div class="location-help">
-                    <small><i class="fa-solid fa-info-circle"></i> Informações precisas garantem atendimento mais
+                    <small><i aria-hidden="true" class="fa-solid fa-info-circle"></i> Informações precisas garantem atendimento mais
                         rápido</small>
                 </div>
             </div>
@@ -1269,7 +1269,7 @@
 
             <div class="emergency-actions-banner">
                 <div class="emergency-guarantee">
-                    <i class="fa-solid fa-clock"></i>
+                    <i aria-hidden="true" class="fa-solid fa-clock"></i>
                     <span>Chegada em até <strong>30 minutos</strong> na região de Campinas</span>
                 </div>
             </div>
@@ -1296,7 +1296,7 @@
                         <input type="text" name="Localização Atual" class="form-control" id="reboque-localizacao"
                             placeholder="Rua, número, bairro, cidade ou ponto de referência" required>
                         <button type="button" class="btn btn--location" id="reboque-detect-location">
-                            <i class="fa-solid fa-location-crosshairs"></i>
+                            <i aria-hidden="true" class="fa-solid fa-location-crosshairs"></i>
                             <span>Usar localização</span>
                         </button>
                     </div>
@@ -1349,11 +1349,11 @@
         <div class="modal__content">
             <div class="modal__header modal__header--status">
                 <h3 class="modal__title">Status do Atendimento</h3>
-                <button class="modal__close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                <button class="modal__close" aria-label="Fechar"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal__body modal__body--centered">
                 <div id="status-result-simulated">
-                    <i class="fa-solid fa-circle-check modal-icon modal-icon--success"></i>
+                    <i aria-hidden="true" class="fa-solid fa-circle-check modal-icon modal-icon--success"></i>
                     <h4 class="modal-title-lg">Sua solicitação foi recebida!</h4>
                     <p>Aguarde nosso contato via WhatsApp para confirmação do motorista.</p>
                 </div>
@@ -1366,16 +1366,16 @@
         <div class="modal__content">
             <div class="modal__header modal__header--success">
                 <h3 class="modal__title">Solicitação Enviada!</h3>
-                <button class="modal__close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                <button class="modal__close" aria-label="Fechar"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal__body modal__body--centered">
-                <i class="fa-solid fa-circle-check modal-icon modal-icon--success"></i>
+                <i aria-hidden="true" class="fa-solid fa-circle-check modal-icon modal-icon--success"></i>
                 <h4 class="modal-title-lg">Quase lá!</h4>
                 <p class="modal-text">Clique no botão abaixo para enviar seu pedido no WhatsApp. O atendimento só começa após esse envio.</p>
             </div>
             <div class="modal__footer modal__footer--centered">
                 <a href="#" id="success-modal-whatsapp-btn" class="btn btn--whatsapp btn--lg" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i> Ir para o WhatsApp agora
+                    <i aria-hidden="true" class="fa-brands fa-whatsapp"></i> Ir para o WhatsApp agora
                 </a>
             </div>
         </div>
