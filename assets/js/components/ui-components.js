@@ -167,9 +167,10 @@ const UI = (function() {
 
         container.innerHTML = servicesData.map(service => {
             const highlightClass = service.isHighlight ? 'card--highlight' : '';
+            // Using button classes for actions
             const actionBtn = service.action.type === 'whatsapp'
-                ? `<a href="${service.action.link}" class="btn btn--whatsapp btn--full-mobile mt-auto w-100"><i class="fa-brands fa-whatsapp"></i> ${service.action.text}</a>`
-                : `<a href="#" class="card__action" data-modal="${service.action.modalId}" data-title="${service.action.modalTitle}" data-form-id="${service.action.formId}">${service.action.text} <i class="fa-solid fa-chevron-right"></i></a>`;
+                ? `<a href="${service.action.link}" class="btn btn--whatsapp btn--full-mobile mt-auto w-full"><i class="fa-brands fa-whatsapp"></i> ${service.action.text}</a>`
+                : `<button class="btn btn--outline w-full mt-auto" data-modal="${service.action.modalId}" data-title="${service.action.modalTitle}" data-form-id="${service.action.formId}">${service.action.text} <i class="fa-solid fa-chevron-right" style="margin-left: 0.5rem"></i></button>`;
 
             return `
                 <div class="card card--service ${highlightClass} animate-on-scroll">
@@ -207,7 +208,7 @@ const UI = (function() {
 
         container.innerHTML = coverageCitiesData.map(city => `
             <div class="coverage__city animate-on-scroll" id="${city.id}">
-                <i class="fa-solid fa-location-dot coverage__icon" aria-hidden="true"></i>
+                <i class="fa-solid fa-location-dot" style="margin-right: 0.5rem" aria-hidden="true"></i>
                 <span>${city.name}</span>
             </div>
         `).join('');
@@ -223,9 +224,9 @@ const UI = (function() {
                     <img src="${config.basePath}${item.image}" alt="${item.alt}" class="card__image" loading="lazy">
                 </div>
                 <div class="card__content">
-                    <h3 class="card__title">${item.title}</h3>
+                    <h3 class="card__title h4">${item.title}</h3>
                     <p class="card__text">${item.text}</p>
-                    <div class="card__tag">${item.tag}</div>
+                    <div class="card__tag" style="background: hsl(var(--secondary)); padding: 0.25rem 0.5rem; border-radius: var(--radius); font-size: 0.75rem; display: inline-block;">${item.tag}</div>
                 </div>
             </div>
         `).join('');
