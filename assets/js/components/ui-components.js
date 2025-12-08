@@ -140,21 +140,21 @@ const UI = (function() {
             title: 'Atendimento carro de luxo',
             text: 'Transporte de BMW X6 com o máximo cuidado.',
             tag: 'Serviço Especializado',
-            image: 'assets/images/resgate-bmw-campinas.webp',
+            image: 'assets/images/img-17.jpg',
             alt: 'Caminhão da Chama o Guincho transportando uma BMW branca em Campinas'
         },
         {
             title: 'Socorro rápido na madrugada',
             text: 'Atendimento na Rodovia Anhanguera às 2h.',
             tag: 'Emergência 24h',
-            image: 'assets/images/resgate-noturno-rodovia.webp',
+            image: 'assets/images/img-18.jpg',
             alt: 'Caminhão guincho com luzes de alerta ligadas resgatando carro à noite na rodovia'
         },
         {
             title: 'Carro da garagem subterrânea',
             text: 'Tiraram meu carro da garagem do prédio.',
             tag: 'Acesso Difícil',
-            image: 'assets/images/resgate-garagem-subsolo.webp',
+            image: 'assets/images/img-19.jpg',
             alt: 'Guincho da Chama o Guincho manobrando em garagem de prédio para resgatar veículo'
         }
     ];

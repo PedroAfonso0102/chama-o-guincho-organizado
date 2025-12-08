@@ -24,7 +24,7 @@
     <meta property="og:description"
         content="Serviço profissional de Guincho e Reboque 24h em Campinas e região. Atendimento especializado, preços transparentes e chegada em até 30 minutos.">
     <meta property="og:image"
-        content="assets/images/resgate-bmw-campinas.webp">
+        content="assets/images/base-2.JPG">
     <meta property="og:url" content="https://www.chamaoguincho.com.br/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#e63946">
@@ -38,7 +38,7 @@
       "@context": "https://schema.org",
       "@type": "AutoTowingService",
       "name": "Chama o Guincho",
-      "image": "https://www.chamaoguincho.com.br/assets/images/resgate-bmw-campinas.webp",
+    "image": "https://www.chamaoguincho.com.br/assets/images/base-2.JPG",
       "description": "Serviço profissional de Guincho e Reboque 24h em Campinas e região. Atendimento especializado, preços transparentes e chegada em até 30 minutos.",
       "url": "https://www.chamaoguincho.com.br/",
       "telephone": "+5519993502969",
@@ -155,7 +155,7 @@
                 </button>
 
                 <ul class="nav__menu" id="nav-menu">
-                    <li><a href="#services" class="nav__link">Serviços</a></li>
+                    <li><a href="servicos.html" class="nav__link">Serviços</a></li>
                     <li><a href="#features" class="nav__link">Diferenciais</a></li>
                     <li><a href="#coverage" class="nav__link">Cobertura</a></li>
                     <li><a href="#testimonials" class="nav__link">Atendimentos</a></li>
@@ -169,7 +169,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero hero--with-bg">
         <div class="container hero__container">
             <div class="hero__content">
                 <div class="d-flex items-center gap-4 mb-4">
@@ -206,10 +206,10 @@
                  <div class="hero__img-wrapper">
                     <div class="slideshow">
                         <div class="slideshow__track">
-                            <div class="slideshow__slide"><img src="assets/images/base-2.webp" alt="Caminhão guincho da Chama o Guincho em Campinas" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/base-3.webp" alt="Frota de caminhões da Chama o Guincho" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/img-1.webp" alt="Resgate de veículo em rodovia de Campinas" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/img-2.webp" alt="Transporte de carro de luxo com segurança" loading="lazy"></div>
+                            <div class="slideshow__slide"><img src="assets/images/base-2.JPG" alt="Caminhão guincho da Chama o Guincho em Campinas" loading="lazy"></div>
+                            <div class="slideshow__slide"><img src="assets/images/base-3.JPG" alt="Frota de caminhões da Chama o Guincho" loading="lazy"></div>
+                            <div class="slideshow__slide"><img src="assets/images/img-1.JPG" alt="Resgate de veículo em rodovia de Campinas" loading="lazy"></div>
+                            <div class="slideshow__slide"><img src="assets/images/img-2.JPG" alt="Transporte de carro de luxo com segurança" loading="lazy"></div>
                         </div>
                     </div>
                  </div>
@@ -237,19 +237,50 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section section--gray">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Nossos Serviços</span>
-                <h2 class="section__title">Soluções de Transporte</h2>
-                <div class="section__divider"></div>
-                <p class="section__subtitle">
-                    Oferecemos atendimento especializado para todas as suas necessidades de transporte de veículos.
+    <!-- Services CTA Section -->
+    <section id="services" class="section section--gray services-cta">
+        <div class="container services-cta__layout">
+            <div class="services-cta__content animate-on-scroll">
+                <span class="section__pretitle">Serviços 24/7</span>
+                <h2 class="section__title">Precisa de reboque agora?</h2>
+                <p class="section__subtitle services-cta__subtitle">
+                    Direcionamos quem precisa de atendimento imediato para uma página dedicada, com todos os serviços detalhados e opções rápidas de contato.
                 </p>
+
+                <div class="services-cta__actions">
+                    <a href="servicos.html" class="btn btn--primary btn--lg">
+                        <i class="fa-solid fa-list" aria-hidden="true"></i> Ver serviços completos
+                    </a>
+                    <a href="tel:+5519993502969" class="btn btn--outline btn--lg">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Falar com o guincho
+                    </a>
+                </div>
+
+                <div class="services-cta__badges">
+                    <span class="services-cta__badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Chegada média ~30min</span>
+                    <span class="services-cta__badge"><i class="fa-solid fa-route" aria-hidden="true"></i> Cobertura RM Campinas</span>
+                    <span class="services-cta__badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Atendimento 24h</span>
+                </div>
             </div>
-            <div class="services__grid">
-                <!-- Services will be loaded via JS -->
+
+            <div class="services-cta__card animate-on-scroll">
+                <div class="services-cta__card-header">
+                    <div class="services-cta__pill">Casos mais chamados</div>
+                    <h3>Resolvemos sem enrolação</h3>
+                    <p>Pane, colisão, pneu furado ou transporte programado. Chame e seguimos direto para o local.</p>
+                </div>
+                <ul class="services-cta__list">
+                    <li><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Guincho plataforma seguro</li>
+                    <li><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Agendamentos rápidos</li>
+                    <li><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Reboque para oficinas</li>
+                    <li><i class="fa-solid fa-truck-ramp-box" aria-hidden="true"></i> Transporte intermunicipal</li>
+                </ul>
+                <div class="services-cta__card-actions">
+                    <a href="https://wa.me/5519993502969?text=Preciso%20de%20guincho%20agora" class="btn btn--whatsapp btn--lg w-full" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
+                    </a>
+                    <a href="servicos.html" class="btn btn--secondary w-full">Ver detalhes dos serviços</a>
+                </div>
             </div>
         </div>
     </section>
