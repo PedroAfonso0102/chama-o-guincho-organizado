@@ -1,5 +1,6 @@
 /**
  * @fileoverview Reusable UI Components data and renderer
+ * Updated for Sophisticated Standard Design System (Shadcn/MagicUI Style)
  */
 
 const UI = (function() {
@@ -13,34 +14,34 @@ const UI = (function() {
     const servicesData = [
         {
             icon: 'fa-solid fa-car-burst',
-            title: 'Reboque de Emergência 24h',
-            text: 'Veículo quebrou ou sofreu colisão? Atendemos em até 30 minutos em Campinas e região. Guincho plataforma para transporte seguro e eficiente.',
+            title: 'Reboque de Emergência',
+            text: 'Pane ou colisão? Chegamos rápido com guincho plataforma para transporte seguro.',
             isHighlight: true,
             action: {
                 type: 'whatsapp',
-                text: 'CHAMAR NO WHATSAPP',
+                text: 'Chamar Agora',
                 link: 'https://wa.me/5519993502969?text=Olá!%20Preciso%20de%20um%20guincho%20de%20emergência.'
             }
         },
         {
             icon: 'fa-solid fa-route',
             title: 'Transporte Intermunicipal',
-            text: 'Transporte de veículos para qualquer cidade da região com total segurança e preço transparente. Orçamento rápido e sem custos ocultos.',
+            text: 'Levamos seu veículo para qualquer cidade com segurança e preço transparente.',
             action: {
                 type: 'modal',
-                text: 'Solicitar Orçamento',
+                text: 'Orçamento',
                 modalId: 'generic',
-                modalTitle: 'Orçamento: Transporte para Outras Cidades',
+                modalTitle: 'Orçamento: Viagem',
                 formId: 'form-transporte-cidades'
             }
         },
         {
             icon: 'fa-solid fa-calendar-days',
-            title: 'Agendamento de Transporte',
-            text: 'Planeje o transporte do seu veículo para revisão, eventos ou outras necessidades. Agende com antecedência e garanta o melhor horário.',
+            title: 'Agendamento',
+            text: 'Planeje o transporte do seu veículo para revisões ou eventos com antecedência.',
             action: {
                 type: 'modal',
-                text: 'Solicitar Orçamento',
+                text: 'Agendar',
                 modalId: 'generic',
                 modalTitle: 'Agendar Transporte',
                 formId: 'form-agendamento'
@@ -48,37 +49,37 @@ const UI = (function() {
         },
         {
             icon: 'fa-solid fa-screwdriver-wrench',
-            title: 'Transporte para Oficinas',
-            text: 'Serviço de coleta e entrega do seu veículo na oficina de sua confiança. Condições especiais para oficinas parceiras.',
+            title: 'Leva e Traz Oficina',
+            text: 'Coletamos e entregamos seu veículo na oficina de sua confiança.',
             action: {
                 type: 'modal',
-                text: 'Solicitar Orçamento',
+                text: 'Solicitar',
                 modalId: 'generic',
-                modalTitle: 'Orçamento: Leva e Traz para Oficinas',
+                modalTitle: 'Orçamento: Oficina',
                 formId: 'form-oficinas'
             }
         },
         {
             icon: 'fa-solid fa-boxes-packing',
-            title: 'Transporte de Pequenas Máquinas',
-            text: 'Transporte especializado de empilhadeiras, equipamentos e maquinários leves com equipamentos adequados para cargas delicadas e especiais.',
+            title: 'Máquinas Leves',
+            text: 'Transporte especializado de empilhadeiras e equipamentos até 3 ton.',
             action: {
                 type: 'modal',
-                text: 'Solicitar Orçamento',
+                text: 'Orçamento',
                 modalId: 'generic',
-                modalTitle: 'Orçamento: Transporte de Pequenas Máquinas',
+                modalTitle: 'Orçamento: Máquinas',
                 formId: 'form-maquinas'
             }
         },
         {
             icon: 'fa-solid fa-handshake',
-            title: 'Soluções Corporativas',
-            text: 'Parcerias estratégicas para empresas que necessitam de serviços de reboque confiáveis. Contratos personalizados para oficinas, concessionárias e frotistas.',
+            title: 'Para Empresas',
+            text: 'Parcerias para frotas, seguradoras e oficinas com condições especiais.',
             action: {
                 type: 'modal',
-                text: 'Solicitar Orçamento',
+                text: 'Fale Conosco',
                 modalId: 'generic',
-                modalTitle: 'Contato: Soluções para Empresas',
+                modalTitle: 'Contato Corporativo',
                 formId: 'form-empresas'
             }
         }
@@ -86,34 +87,34 @@ const UI = (function() {
 
     const featuresData = [
         {
-            icon: 'fa-solid fa-user-tie',
-            title: 'Fale com o dono',
-            text: 'Você fala direto com o proprietário, sem intermediários.'
+            icon: 'fa-solid fa-user-shield',
+            title: 'Segurança Total',
+            text: 'Motoristas verificados e seguro de carga incluso em todos os transportes.'
         },
         {
-            icon: 'fa-solid fa-tag',
-            title: 'Preço justo',
-            text: 'Saiba o valor do serviço antes da contratação.'
+            icon: 'fa-solid fa-stopwatch',
+            title: 'Chegada Rápida',
+            text: 'Bases estratégicas em Campinas para atendimento em até 30 minutos.'
         },
         {
-            icon: 'fa-solid fa-truck',
-            title: 'Frota moderna',
-            text: 'Transportamos seu veículo com guinchos novos e seguros.'
+            icon: 'fa-solid fa-wallet',
+            title: 'Preço Justo',
+            text: 'Valor combinado antecipadamente. Sem surpresas na hora de pagar.'
+        },
+        {
+            icon: 'fa-solid fa-truck-fast',
+            title: 'Frota Moderna',
+            text: 'Caminhões plataforma revisados para garantir a integridade do seu bem.'
         },
         {
             icon: 'fa-solid fa-map-location-dot',
-            title: 'Conhecemos a região',
-            text: 'Usamos as melhores rotas para chegar rápido.'
+            title: 'Conhecimento Local',
+            text: 'Rotas otimizadas para fugir do trânsito e chegar mais rápido até você.'
         },
         {
-            icon: 'fa-solid fa-car',
-            title: 'Todo tipo de veículo',
-            text: 'Atendemos carros, motos, vans e até máquinas.'
-        },
-        {
-            icon: 'fa-solid fa-clock',
-            title: 'Sempre disponível',
-            text: 'Estamos disponíveis 24 horas, todos os dias.'
+            icon: 'fa-solid fa-star',
+            title: 'Excelência',
+            text: 'Centenas de avaliações 5 estrelas. Foco total na satisfação do cliente.'
         }
     ];
 
@@ -126,39 +127,33 @@ const UI = (function() {
         { id: 'city-paulinia', name: 'Paulínia' },
         { id: 'city-valinhos', name: 'Valinhos' },
         { id: 'city-vinhedo', name: 'Vinhedo' },
-        { id: 'city-jaguariuna', name: 'Jaguariúna' },
-        { id: 'city-monte-mor', name: 'Monte Mor' },
-        { id: 'city-nova-odessa', name: 'Nova Odessa' },
-        { id: 'city-limeira', name: 'Limeira' },
-        { id: 'city-sao-paulo', name: 'São Paulo' },
-        { id: 'city-mogi-mirim', name: 'Mogi Mirim' },
-        { id: 'city-piracicaba', name: 'Piracicaba' }
+        { id: 'city-jaguariuna', name: 'Jaguariúna' }
     ];
 
     const testimonialsData = [
         {
-            title: 'Atendimento carro de luxo',
-            text: 'Transporte de BMW X6 com o máximo cuidado.',
-            tag: 'Serviço Especializado',
+            title: 'Impecável',
+            text: 'Transporte de carro de coleção. Cuidado extremo do motorista. Recomendo!',
+            tag: 'Luxo',
             stars: 5,
             image: 'assets/images/img-17.jpg',
-            alt: 'Caminhão da Chama o Guincho transportando uma BMW branca em Campinas'
+            alt: 'BMW sendo transportada'
         },
         {
-            title: 'Socorro rápido na madrugada',
-            text: 'Atendimento na Rodovia Anhanguera às 2h.',
-            tag: 'Emergência 24h',
+            title: 'Salvação na madrugada',
+            text: 'O único que atendeu às 3 da manhã na Anhanguera. Chegou super rápido.',
+            tag: 'Emergência',
             stars: 5,
             image: 'assets/images/img-18.jpg',
-            alt: 'Caminhão guincho com luzes de alerta ligadas resgatando carro à noite na rodovia'
+            alt: 'Resgate noturno'
         },
         {
-            title: 'Carro da garagem subterrânea',
-            text: 'Tiraram meu carro da garagem do prédio.',
-            tag: 'Acesso Difícil',
+            title: 'Garagem difícil',
+            text: 'Tirou meu carro travado no subsolo do prédio com muita perícia.',
+            tag: 'Difícil Acesso',
             stars: 5,
             image: 'assets/images/img-19.jpg',
-            alt: 'Guincho da Chama o Guincho manobrando em garagem de prédio para resgatar veículo'
+            alt: 'Resgate em subsolo'
         }
     ];
 
@@ -168,25 +163,26 @@ const UI = (function() {
         const container = document.querySelector(containerId);
         if (!container) return;
 
+        container.className = 'd-grid gap-6'; // Ensure grid layout
+        container.style.gridTemplateColumns = 'repeat(auto-fit, minmax(280px, 1fr))';
+
         container.innerHTML = servicesData.map(service => {
             const highlightClass = service.isHighlight ? 'card--highlight' : '';
-            // Using button classes for actions
+
             const actionBtn = service.action.type === 'whatsapp'
-                ? `<a href="${service.action.link}" class="btn btn--whatsapp btn--full-mobile mt-auto w-full"><i class="fa-brands fa-whatsapp"></i> ${service.action.text}</a>`
-                : `<button class="btn btn--outline w-full mt-auto" data-modal="${service.action.modalId}" data-title="${service.action.modalTitle}" data-form-id="${service.action.formId}">${service.action.text} <i class="fa-solid fa-chevron-right" style="margin-left: 0.5rem"></i></button>`;
+                ? `<a href="${service.action.link}" class="btn btn--whatsapp w-full"><i class="fa-brands fa-whatsapp"></i> ${service.action.text}</a>`
+                : `<button class="btn btn--outline w-full" data-modal="${service.action.modalId}" data-title="${service.action.modalTitle}" data-form-id="${service.action.formId}">${service.action.text}</button>`;
 
             return `
                 <div class="card card--service ${highlightClass} animate-on-scroll">
-                    <div class="card__header p-0 mb-4">
+                    <div class="card__header">
                         <div class="card__icon">
                             <i class="${service.icon}" aria-hidden="true"></i>
                         </div>
+                        <h3 class="h4 mb-2">${service.title}</h3>
+                        <p class="text-sm text-muted">${service.text}</p>
                     </div>
-                    <div class="card__content p-0 d-flex flex-col flex-grow">
-                        <h3 class="card__title h4 mb-2">${service.title}</h3>
-                        <p class="card__text mb-4 text-muted">${service.text}</p>
-                    </div>
-                    <div class="card__footer p-0 mt-auto pt-4">
+                    <div class="card__footer">
                         ${actionBtn}
                     </div>
                 </div>
@@ -197,6 +193,9 @@ const UI = (function() {
     function renderFeatures(containerId) {
         const container = document.querySelector(containerId);
         if (!container) return;
+
+        container.className = 'd-grid gap-6';
+        container.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
 
         container.innerHTML = featuresData.map(feature => `
             <div class="feature-item animate-on-scroll">
@@ -227,20 +226,23 @@ const UI = (function() {
         const container = document.querySelector(containerId);
         if (!container) return;
 
+        container.className = 'd-grid gap-6';
+        container.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+
         container.innerHTML = testimonialsData.map(item => {
             const stars = Array(item.stars).fill('<i class="fa-solid fa-star text-warning"></i>').join('');
             return `
             <div class="card card--case-study animate-on-scroll">
                 <div class="card__image-wrapper">
-                    <img src="${config.basePath}${item.image}" alt="${item.alt}" class="card__image" loading="lazy">
-                    <div class="card__overlay">
+                    <img src="${config.basePath}${item.image}" alt="${item.alt}" loading="lazy">
+                    <div class="card__overlay" style="position: absolute; bottom: 10px; left: 10px;">
                         <span class="badge badge--light">${item.tag}</span>
                     </div>
                 </div>
                 <div class="card__content">
-                    <div class="card__rating mb-2" style="color: #fbbf24; font-size: 0.8rem;">${stars}</div>
-                    <h3 class="card__title h5 mb-2">${item.title}</h3>
-                    <p class="card__text text-muted text-sm">${item.text}</p>
+                    <div class="d-flex gap-1 mb-2" style="color: #fbbf24; font-size: 0.8rem;">${stars}</div>
+                    <h3 class="h5 mb-2">${item.title}</h3>
+                    <p class="text-sm text-muted">${item.text}</p>
                 </div>
             </div>
         `}).join('');
