@@ -129,32 +129,46 @@
     <section class="hero hero--with-bg">
         <div class="container hero__container">
             <div class="hero__content">
-                <div class="d-flex items-center gap-4 mb-4">
-                    <span style="background: rgba(16, 185, 129, 0.2); color: #047857; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600;">Guincho disponível</span>
-                    <span style="background: rgba(59, 130, 246, 0.2); color: #1d4ed8; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600;">~30 min espera</span>
+                <div class="d-flex flex-wrap items-center gap-2 mb-6">
+                    <span class="badge badge--success">
+                        <i class="fa-solid fa-circle-check"></i> Guincho disponível
+                    </span>
+                    <span class="badge badge--info">
+                        <i class="fa-solid fa-stopwatch"></i> Chegada em ~30 min
+                    </span>
                 </div>
 
                 <h1 class="hero__title">
-                    Guincho e Reboque em <span class="hero__highlight">Campinas</span> e Região
+                    Guincho Rápido em <span class="hero__highlight">Campinas</span> e Região 24h
                 </h1>
 
-                <p class="hero__subtitle" style="font-size: 1.25rem; color: #4b5563; margin-top: 1rem; margin-bottom: 2rem;">
-                    Atendimento 24h com preços transparentes. Transportamos seu veículo com profissionais qualificados e total segurança.
+                <p class="hero__subtitle">
+                    Ficou na mão? Chegamos rápido para te ajudar. Preço justo, motoristas profissionais e segurança total para seu veículo.
                 </p>
 
                 <div class="hero__actions">
-                    <a href="tel:+5519993502969" class="btn btn--primary btn--lg btn--full-mobile">
-                        <i class="fa-solid fa-phone" aria-hidden="true"></i> LIGAR AGORA
-                    </a>
                     <a href="https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20Guincho%20Agora"
-                        class="btn btn--whatsapp btn--lg btn--full-mobile" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp SOS
+                        class="btn btn--whatsapp btn--lg btn--full-mobile btn--pulse" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CHAMA NO ZAP (RÁPIDO)
+                    </a>
+                    <a href="tel:+5519993502969" class="btn btn--outline btn--lg btn--full-mobile bg-white/80 backdrop-blur">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Ligar Agora (19) 99935-0296
                     </a>
                 </div>
 
-                <div class="hero__info mt-4" style="color: #6b7280; font-size: 0.875rem;">
-                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                    Campinas e toda Região Metropolitana
+                <div class="hero__trust-bar mt-8">
+                    <div class="trust-item">
+                        <i class="fa-regular fa-credit-card"></i>
+                        <span>Aceitamos Cartão & Pix</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Seguro de Carga</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-receipt"></i>
+                        <span>Emitimos Nota Fiscal</span>
+                    </div>
                 </div>
             </div>
 
@@ -178,16 +192,16 @@
             <div class="hero__stats-wrapper">
                 <div class="stats__container animate-on-scroll">
                     <div class="stat text-center">
-                        <div class="stat__value">100+</div>
-                        <div class="stat__label">Atendimentos/mês</div>
+                        <div class="stat__value">500+</div>
+                        <div class="stat__label">Atendimentos Realizados</div>
                     </div>
                     <div class="stat text-center">
-                        <div class="stat__value">4.9</div>
-                        <div class="stat__label">Avaliação Google</div>
+                        <div class="stat__value">4.9/5</div>
+                        <div class="stat__label">Avaliação dos Clientes</div>
                     </div>
                     <div class="stat text-center">
-                        <div class="stat__value">30min</div>
-                        <div class="stat__label">Tempo médio</div>
+                        <div class="stat__value">24h</div>
+                        <div class="stat__label">Disponibilidade Total</div>
                     </div>
                 </div>
             </div>
@@ -248,15 +262,15 @@
             <div class="emergency-card animate-on-scroll">
                 <div class="emergency-card__content">
                     <div class="d-flex items-center gap-2 mb-4">
-                        <span style="background: hsl(var(--destructive)); color: white; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span class="badge badge--success">
                             <i class="fa-solid fa-bolt-lightning"></i> EMERGÊNCIA 24H
                         </span>
                     </div>
 
-                    <h2 class="section__title" style="text-align: left; margin-top: 0;">Precisa de Guincho Urgente?</h2>
+                    <h2 class="section__title" style="text-align: left; margin-top: 0;">Pedido Rápido</h2>
 
                     <p style="color: hsl(var(--muted-foreground)); font-size: 1.125rem; margin-bottom: 2rem;">
-                        Nossa equipe está preparada para atender sua emergência. Preencha o formulário e enviaremos um guincho rapidamente.
+                        Preencha para um atendimento prioritário.
                     </p>
 
                     <div class="d-flex flex-col gap-4 mb-4 d-md-none">
@@ -270,48 +284,51 @@
                     </div>
 
                     <form id="emergency-form" class="emergency-form d-none d-md-block">
-                        <div class="d-flex gap-4 mb-4 flex-col md:flex-row">
-                            <div class="form-group w-full">
-                                <label for="emergency-name" class="form-label">Nome completo</label>
-                                <input type="text" id="emergency-name" class="form-control" placeholder="Seu nome completo" required>
-                            </div>
-
-                            <div class="form-group w-full">
-                                <label for="emergency-phone" class="form-label">Telefone</label>
-                                <input type="tel" id="emergency-phone" class="form-control" placeholder="(19) 99999-9999" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group location-group">
-                            <label for="emergency-location" class="form-label">Localização atual</label>
+                        <div class="form-group location-group mb-4">
+                             <label for="emergency-location" class="form-label">Onde você está?</label>
                             <div class="input-location-wrapper">
-                                <input type="text" id="emergency-location" class="form-control" placeholder="Onde você está?" required>
+                                <input type="text" id="emergency-location" class="form-control form-control--lg" placeholder="Digite ou detecte..." required>
                                 <button type="button" class="location-detect" id="emergency-detect-location">
-                                    <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
                                 </button>
                             </div>
                         </div>
 
                         <div class="d-flex gap-4 mb-4 flex-col md:flex-row">
                              <div class="form-group w-full">
-                                <label for="emergency-destination" class="form-label">Destino</label>
-                                <input type="text" id="emergency-destination" class="form-control" placeholder="Para onde vai?" required>
+                                <label for="emergency-destination" class="form-label">Para onde vai?</label>
+                                <div class="input-icon-wrapper">
+                                    <i class="fa-solid fa-location-dot input-icon"></i>
+                                    <input type="text" id="emergency-destination" class="form-control" placeholder="Destino (Opcional)">
+                                </div>
                             </div>
                             <div class="form-group w-full">
-                                <label for="emergency-vehicle" class="form-label">Veículo</label>
+                                <label for="emergency-vehicle" class="form-label">Seu Veículo</label>
                                 <select id="emergency-vehicle" class="form-select" required>
-                                    <option value="" disabled selected>Tipo</option>
-                                    <option value="Carro de Passeio">Carro</option>
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="Carro de Passeio">Carro de Passeio</option>
                                     <option value="Moto">Moto</option>
-                                    <option value="SUV / Caminhonete">SUV/Pickup</option>
-                                    <option value="Van / Utilitário">Van</option>
+                                    <option value="SUV / Caminhonete">SUV / Pickup</option>
+                                    <option value="Van / Utilitário">Van / Utilitário</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="d-flex gap-4 mt-4">
+                        <div class="d-flex gap-4 mb-4 flex-col md:flex-row">
+                            <div class="form-group w-full">
+                                <label for="emergency-name" class="form-label">Seu Nome</label>
+                                <input type="text" id="emergency-name" class="form-control" placeholder="Nome" required>
+                            </div>
+
+                            <div class="form-group w-full">
+                                <label for="emergency-phone" class="form-label">Seu WhatsApp</label>
+                                <input type="tel" id="emergency-phone" class="form-control" placeholder="(DDD) 99999-9999" required>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-4 mt-6">
                             <button type="submit" class="btn btn--primary btn--lg w-full">
-                                <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Solicitar Agora
+                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Solicitar Guincho Agora
                             </button>
                         </div>
                     </form>
@@ -409,11 +426,15 @@
                         </div>
 
                         <div class="price-estimator__result w-full mt-auto">
-                            <div class="text-sm mb-2" style="color: hsl(var(--secondary-foreground));">Valor estimado</div>
+                            <div class="text-sm mb-2 font-bold uppercase tracking-wide opacity-70">Orçamento Estimado</div>
                             <div class="price-estimator__price">R$ 162,00</div>
                             <div class="d-flex gap-2 justify-center mt-4">
-                                <button class="btn btn--primary btn--sm">Chamar Agora</button>
-                                <button class="btn btn--outline btn--sm" id="save-quote-btn">Salvar</button>
+                                <button class="btn btn--primary btn--sm w-full">
+                                    <i class="fa-brands fa-whatsapp"></i> Agendar
+                                </button>
+                                <button class="btn btn--outline btn--sm" id="save-quote-btn" title="Receber por email">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
