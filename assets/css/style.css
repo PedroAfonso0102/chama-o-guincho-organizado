@@ -86,17 +86,29 @@ button {
 /* =========== UTILITIES =========== */
 .container {
     width: 100%;
-    max-width: 80rem; /* 1280px */
+    max-width: var(--container-max); /* 1200px - Padrão Figma */
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: var(--header-padding); /* 32px */
+    padding-right: var(--header-padding); /* 32px */
+}
+
+/* Container narrow para conteúdo focado */
+.container--narrow {
+    max-width: var(--container-narrow); /* 800px */
+}
+
+/* Container full para hero sections */
+.container--full {
+    max-width: none;
+    padding-left: var(--section-padding-x);
+    padding-right: var(--section-padding-x);
 }
 
 /* Breakpoint: Desktop Extra Large (--breakpoint-2xl: 1400px) */
 @media (min-width: 1400px) {
     .container {
-        max-width: 87.5rem; /* 1400px */
+        max-width: var(--container-xl); /* 1400px */
     }
 }
 
@@ -257,6 +269,7 @@ p { margin-bottom: 1rem; color: hsl(var(--muted-foreground)); }
     transition: var(--transition-transform), var(--transition-shadow);
     overflow: hidden;
     position: relative;
+    min-width: var(--card-min-width); /* 240px - Padrão Figma */
 }
 
 .card::before {
@@ -280,16 +293,16 @@ p { margin-bottom: 1rem; color: hsl(var(--muted-foreground)); }
 }
 
 .card__header {
-    padding: 1.5rem;
+    padding: var(--card-padding); /* 24px */
 }
 
 .card__content {
-    padding: 1.5rem;
+    padding: var(--card-padding); /* 24px */
     padding-top: 0;
 }
 
 .card__footer {
-    padding: 1.5rem;
+    padding: var(--card-padding); /* 24px */
     padding-top: 0;
     display: flex;
     align-items: center;
@@ -300,8 +313,9 @@ p { margin-bottom: 1rem; color: hsl(var(--muted-foreground)); }
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 1.5rem;
+    padding: var(--card-padding); /* 24px */
     background: hsl(var(--card));
+    gap: var(--gap-sm); /* 16px */
 }
 .card--service .card__icon {
     width: 3rem;  /* 48px */
@@ -483,6 +497,7 @@ textarea.form-control {
     display: flex;
     align-items: center;
     transition: var(--transition-all);
+    padding: 0 var(--header-padding); /* 32px - Padrão Figma */
 }
 
 /* Header scrolled state */
@@ -496,6 +511,7 @@ textarea.form-control {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: var(--header-gap); /* 24px */
 }
 
 .logo {
@@ -513,43 +529,64 @@ textarea.form-control {
 
 .nav__menu {
     display: flex;
-    gap: 2rem;
+    gap: var(--gap-xs); /* 8px - Padrão Figma para pills */
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .nav__link {
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 1rem; /* 16px - Padrão Figma */
+    font-weight: 400;
     color: hsl(var(--foreground));
     position: relative;
-    padding: 0.5rem 0;
+    padding: var(--nav-pill-padding); /* 8px */
     transition: var(--transition-colors);
+    border-radius: var(--nav-pill-radius); /* 8px */
+    line-height: 100%;
+    display: flex;
+    align-items: center;
 }
+
+/* Pill background on hover */
+.nav__link:hover {
+    background: hsl(var(--muted));
+    color: hsl(var(--foreground));
+}
+
+/* Active pill */
+.nav__link--active {
+    background: hsl(var(--muted));
+}
+
 .nav__link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-primary);
-    border-radius: 1px;
-    transition: width var(--transition-normal) var(--ease-out);
+    display: none; /* Remove underline - usando pill style */
 }
-.nav__link:hover { color: hsl(var(--primary)); }
-.nav__link:hover::after { width: 100%; }
 .nav__link--cta {
-    background: var(--gradient-primary);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-primary-sm);
+    background: hsl(var(--foreground)); /* #2C2C2C escuro - Padrão Figma */
+    color: hsl(var(--background));
+    padding: var(--nav-pill-padding) var(--nav-pill-padding);
+    border-radius: var(--nav-pill-radius);
+    border: 1px solid hsl(var(--foreground));
+    font-weight: 400;
 }
 .nav__link--cta::after { display: none; }
 .nav__link--cta:hover {
-    color: white;
-    box-shadow: var(--shadow-primary-md);
+    color: hsl(var(--background));
+    background: hsl(var(--foreground) / 0.9);
     transform: translateY(-1px);
+}
+
+/* Botão secundário na nav */
+.nav__link--secondary {
+    background: hsl(var(--secondary)); /* #E3E3E3 - Padrão Figma */
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--nav-pill-radius);
+    padding: var(--nav-pill-padding);
+}
+.nav__link--secondary:hover {
+    background: hsl(var(--muted));
 }
 
 .nav__toggle { display: none; background: none; border: none; font-size: 1.5rem; }
@@ -575,8 +612,8 @@ textarea.form-control {
 
 /* =========== HERO SECTION =========== */
 .hero {
-    padding-top: calc(var(--header-height) + 4rem);
-    padding-bottom: 4rem;
+    padding-top: calc(var(--header-height) + var(--section-padding-y)); /* 80px + 64px */
+    padding-bottom: var(--section-padding-y); /* 64px */
     background: var(--gradient-hero), var(--gradient-mesh);
     position: relative;
     overflow: hidden;
@@ -642,7 +679,7 @@ textarea.form-control {
 .hero__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: var(--gap-lg); /* 48px */
     align-items: center;
 }
 
@@ -654,11 +691,11 @@ textarea.form-control {
 }
 
 .hero__highlight { color: hsl(var(--primary)); }
-.hero__actions { display: flex; gap: 1rem; margin-top: 2rem; }
+.hero__actions { display: flex; gap: var(--gap-sm); margin-top: var(--gap-lg); } /* 16px gap, 48px margin */
 
 .hero__stats-wrapper {
-    margin-top: 3rem;
-    padding: 1.75rem 2rem;
+    margin-top: var(--section-gap); /* 48px */
+    padding: 1.75rem var(--gap-lg); /* 28px 48px */
     border-radius: var(--radius-xl);
     border: 1px solid hsl(var(--border) / 0.5);
     background: var(--glass-bg);
@@ -669,7 +706,7 @@ textarea.form-control {
 .stats__container {
     display: flex;
     justify-content: space-around;
-    gap: 2rem;
+    gap: var(--gap-lg); /* 48px */
     flex-wrap: wrap;
 }
 .stat {
@@ -730,16 +767,28 @@ textarea.form-control {
 
 /* =========== SECTIONS =========== */
 .section {
-    padding: 5rem 0;
+    padding: var(--section-padding-y) 0; /* 64px vertical */
     position: relative;
 }
+
+/* Seção com padding reduzido */
+.section--compact {
+    padding: calc(var(--section-padding-y) / 2) 0; /* 32px */
+}
+
+/* Seção com padding expandido */
+.section--expanded {
+    padding: calc(var(--section-padding-y) * 1.5) 0; /* 96px */
+}
+
 .section--gray {
     background: var(--gradient-surface);
 }
+
 .section__header {
     text-align: center;
-    max-width: 40rem;
-    margin: 0 auto 3.5rem;
+    max-width: var(--container-narrow); /* 800px */
+    margin: 0 auto var(--section-gap); /* 48px margin-bottom */
 }
 .section__pretitle {
     color: hsl(var(--primary));
@@ -777,18 +826,23 @@ textarea.form-control {
     border-radius: var(--radius-full);
 }
 
-/* Grids */
+/* Grids - Sistema Profissional Figma */
 .services__grid, .testimonials__list, .features__list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr)); /* 240px min */
+    gap: var(--gap-md); /* 24px */
 }
 
-/* Services CTA */
+/* Grid com gap maior para cards de destaque */
+.grid--lg-gap {
+    gap: var(--gap-xl); /* 64px */
+}
+
+/* Services CTA - Layout Profissional */
 .services-cta__layout {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    gap: 2rem;
+    gap: var(--gap-lg); /* 48px */
     align-items: stretch;
 }
 /* Breakpoint: Mobile + Tablet (< --breakpoint-lg: 1024px) */
@@ -799,10 +853,15 @@ textarea.form-control {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius-xl);
-    padding: 2.5rem;
+    padding: var(--section-padding-x); /* 64px */
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
+}
+@media (max-width: 1023px) {
+    .services-cta__content {
+        padding: var(--gap-md); /* 24px em mobile */
+    }
 }
 .services-cta__content::before {
     content: '';
@@ -851,13 +910,18 @@ textarea.form-control {
     background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--primary) / 0.06) 100%);
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius-xl);
-    padding: 2rem;
+    padding: var(--gap-lg); /* 48px */
     box-shadow: var(--shadow-xl);
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: var(--gap-md); /* 24px */
     position: relative;
     overflow: hidden;
+}
+@media (max-width: 1023px) {
+    .services-cta__card {
+        padding: var(--gap-md); /* 24px em mobile */
+    }
 }
 .services-cta__card::before {
     content: '';
@@ -907,15 +971,20 @@ textarea.form-control {
 }
 
 /* =========== SPECIFIC COMPONENTS =========== */
-/* Price Estimator */
+/* Price Estimator - Layout Profissional */
 .price-estimator {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius-xl);
-    padding: 2.5rem;
+    padding: var(--section-padding-x); /* 64px */
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
+}
+@media (max-width: 1023px) {
+    .price-estimator {
+        padding: var(--gap-md); /* 24px em mobile */
+    }
 }
 .price-estimator::before {
     content: '';
@@ -1157,12 +1226,12 @@ textarea.form-control {
     background: linear-gradient(90deg, hsl(var(--destructive) / 0.08) 0%, hsl(var(--background)) 30%);
 }
 
-/* Footer */
+/* Footer - Padrão Figma */
 .footer {
     background: linear-gradient(180deg, hsl(var(--muted)) 0%, hsl(var(--secondary)) 100%);
     color: hsl(var(--secondary-foreground));
-    padding: 5rem 0 2rem;
-    margin-top: 4rem;
+    padding: var(--section-padding-y) var(--footer-padding-top) var(--footer-padding-bottom); /* 64px 32px 160px */
+    margin-top: var(--section-padding-y); /* 64px */
     position: relative;
 }
 .footer::before {
@@ -1176,8 +1245,8 @@ textarea.form-control {
 }
 .footer__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(var(--footer-column-min), 1fr)); /* 240px min */
+    gap: var(--gap-lg); /* 48px */
 }
 .footer__logo {
     margin-bottom: 1.25rem;
@@ -1314,7 +1383,7 @@ textarea.form-control {
     animation: pulse 2s var(--ease-in-out) infinite;
 }
 
-/* Emergency Card Specifics */
+/* Emergency Card Specifics - Layout Profissional */
 .emergency-card {
     background: hsl(var(--card));
     border-radius: var(--radius-xl);
@@ -1325,8 +1394,13 @@ textarea.form-control {
     box-shadow: var(--shadow-xl);
 }
 .emergency-card__content {
-    padding: 3rem;
+    padding: var(--section-padding-x); /* 64px */
     position: relative;
+}
+@media (max-width: 1023px) {
+    .emergency-card__content {
+        padding: var(--gap-lg); /* 48px em tablet */
+    }
 }
 .emergency-card__content::before {
     content: '';
