@@ -140,6 +140,7 @@ const UI = (function() {
             title: 'Atendimento carro de luxo',
             text: 'Transporte de BMW X6 com o máximo cuidado.',
             tag: 'Serviço Especializado',
+            stars: 5,
             image: 'assets/images/img-17.jpg',
             alt: 'Caminhão da Chama o Guincho transportando uma BMW branca em Campinas'
         },
@@ -147,6 +148,7 @@ const UI = (function() {
             title: 'Socorro rápido na madrugada',
             text: 'Atendimento na Rodovia Anhanguera às 2h.',
             tag: 'Emergência 24h',
+            stars: 5,
             image: 'assets/images/img-18.jpg',
             alt: 'Caminhão guincho com luzes de alerta ligadas resgatando carro à noite na rodovia'
         },
@@ -154,6 +156,7 @@ const UI = (function() {
             title: 'Carro da garagem subterrânea',
             text: 'Tiraram meu carro da garagem do prédio.',
             tag: 'Acesso Difícil',
+            stars: 5,
             image: 'assets/images/img-19.jpg',
             alt: 'Guincho da Chama o Guincho manobrando em garagem de prédio para resgatar veículo'
         }
@@ -174,12 +177,18 @@ const UI = (function() {
 
             return `
                 <div class="card card--service ${highlightClass} animate-on-scroll">
-                    <div class="card__icon">
-                        <i class="${service.icon}" aria-hidden="true"></i>
+                    <div class="card__header p-0 mb-4">
+                        <div class="card__icon">
+                            <i class="${service.icon}" aria-hidden="true"></i>
+                        </div>
                     </div>
-                    <h3 class="card__title">${service.title}</h3>
-                    <p class="card__text">${service.text}</p>
-                    ${actionBtn}
+                    <div class="card__content p-0 d-flex flex-col flex-grow">
+                        <h3 class="card__title h4 mb-2">${service.title}</h3>
+                        <p class="card__text mb-4 text-muted">${service.text}</p>
+                    </div>
+                    <div class="card__footer p-0 mt-auto pt-4">
+                        ${actionBtn}
+                    </div>
                 </div>
             `;
         }).join('');
@@ -218,18 +227,23 @@ const UI = (function() {
         const container = document.querySelector(containerId);
         if (!container) return;
 
-        container.innerHTML = testimonialsData.map(item => `
+        container.innerHTML = testimonialsData.map(item => {
+            const stars = Array(item.stars).fill('<i class="fa-solid fa-star text-warning"></i>').join('');
+            return `
             <div class="card card--case-study animate-on-scroll">
                 <div class="card__image-wrapper">
                     <img src="${config.basePath}${item.image}" alt="${item.alt}" class="card__image" loading="lazy">
+                    <div class="card__overlay">
+                        <span class="badge badge--light">${item.tag}</span>
+                    </div>
                 </div>
                 <div class="card__content">
-                    <h3 class="card__title h4">${item.title}</h3>
-                    <p class="card__text">${item.text}</p>
-                    <div class="card__tag" style="background: hsl(var(--secondary)); padding: 0.25rem 0.5rem; border-radius: var(--radius); font-size: 0.75rem; display: inline-block;">${item.tag}</div>
+                    <div class="card__rating mb-2" style="color: #fbbf24; font-size: 0.8rem;">${stars}</div>
+                    <h3 class="card__title h5 mb-2">${item.title}</h3>
+                    <p class="card__text text-muted text-sm">${item.text}</p>
                 </div>
             </div>
-        `).join('');
+        `}).join('');
     }
 
     function init(options = {}) {

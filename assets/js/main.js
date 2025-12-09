@@ -483,7 +483,32 @@ function initPriceCalculator() {
     const requestButton = estimator.querySelector('.price-estimator__result .btn--primary');
     const saveQuoteButton = document.getElementById('save-quote-btn');
 
-    const calculate = () => calculatePrice(distanceInput, vehicleSelect, priceOutput);
+    // Create loading element if it doesn't exist
+    let loadingEl = estimator.querySelector('.price-loading');
+    if (!loadingEl) {
+        loadingEl = document.createElement('div');
+        loadingEl.className = 'price-loading';
+        loadingEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Calculando...';
+        loadingEl.style.display = 'none';
+        loadingEl.style.color = 'hsl(var(--muted-foreground))';
+        loadingEl.style.fontSize = '0.9rem';
+        loadingEl.style.marginTop = '0.5rem';
+        priceOutput.parentNode.insertBefore(loadingEl, priceOutput.nextSibling);
+    }
+
+    const calculate = () => {
+        // Simulate calculation delay for psychology effect
+        priceOutput.style.opacity = '0.5';
+        loadingEl.style.display = 'block';
+
+        clearTimeout(window.calcTimeout);
+        window.calcTimeout = setTimeout(() => {
+            calculatePrice(distanceInput, vehicleSelect, priceOutput);
+            priceOutput.style.opacity = '1';
+            loadingEl.style.display = 'none';
+        }, 600);
+    };
+
     const update = () => updateDistance(originInput, destinationInput, distanceInput, calculate);
 
     [originInput, destinationInput].forEach(el => el.addEventListener('blur', update));
