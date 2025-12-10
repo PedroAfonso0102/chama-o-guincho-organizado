@@ -14,7 +14,7 @@ const UI = (function() {
         {
             icon: 'fa-solid fa-car-burst',
             title: 'Reboque de Emergência 24h',
-            text: 'Veículo quebrou ou sofreu colisão? Atendemos em até 30 minutos em Campinas e região. Guincho plataforma para transporte seguro e eficiente.',
+            text: 'Veículo quebrou ou sofreu colisão? Atendemos em até 30 minutos em Campinas e região. Guincho plataforma para transporte seguro.',
             isHighlight: true,
             action: {
                 type: 'whatsapp',
@@ -25,7 +25,7 @@ const UI = (function() {
         {
             icon: 'fa-solid fa-route',
             title: 'Transporte Intermunicipal',
-            text: 'Transporte de veículos para qualquer cidade da região com total segurança e preço transparente. Orçamento rápido e sem custos ocultos.',
+            text: 'Transporte de veículos para qualquer cidade da região com total segurança e preço transparente.',
             action: {
                 type: 'modal',
                 text: 'Solicitar Orçamento',
@@ -37,10 +37,10 @@ const UI = (function() {
         {
             icon: 'fa-solid fa-calendar-days',
             title: 'Agendamento de Transporte',
-            text: 'Planeje o transporte do seu veículo para revisão, eventos ou outras necessidades. Agende com antecedência e garanta o melhor horário.',
+            text: 'Planeje o transporte do seu veículo para revisão, eventos ou outras necessidades. Agende com antecedência.',
             action: {
                 type: 'modal',
-                text: 'Solicitar Orçamento',
+                text: 'Agendar',
                 modalId: 'generic',
                 modalTitle: 'Agendar Transporte',
                 formId: 'form-agendamento'
@@ -49,7 +49,7 @@ const UI = (function() {
         {
             icon: 'fa-solid fa-screwdriver-wrench',
             title: 'Transporte para Oficinas',
-            text: 'Serviço de coleta e entrega do seu veículo na oficina de sua confiança. Condições especiais para oficinas parceiras.',
+            text: 'Serviço de coleta e entrega do seu veículo na oficina de sua confiança. Condições especiais para oficinas.',
             action: {
                 type: 'modal',
                 text: 'Solicitar Orçamento',
@@ -60,8 +60,8 @@ const UI = (function() {
         },
         {
             icon: 'fa-solid fa-boxes-packing',
-            title: 'Transporte de Pequenas Máquinas',
-            text: 'Transporte especializado de empilhadeiras, equipamentos e maquinários leves com equipamentos adequados para cargas delicadas e especiais.',
+            title: 'Pequenas Máquinas',
+            text: 'Transporte especializado de empilhadeiras, equipamentos e maquinários leves com equipamentos adequados.',
             action: {
                 type: 'modal',
                 text: 'Solicitar Orçamento',
@@ -73,10 +73,10 @@ const UI = (function() {
         {
             icon: 'fa-solid fa-handshake',
             title: 'Soluções Corporativas',
-            text: 'Parcerias estratégicas para empresas que necessitam de serviços de reboque confiáveis. Contratos personalizados para oficinas, concessionárias e frotistas.',
+            text: 'Parcerias estratégicas para empresas que necessitam de serviços de reboque confiáveis.',
             action: {
                 type: 'modal',
-                text: 'Solicitar Orçamento',
+                text: 'Falar com Consultor',
                 modalId: 'generic',
                 modalTitle: 'Contato: Soluções para Empresas',
                 formId: 'form-empresas'
@@ -170,23 +170,22 @@ const UI = (function() {
 
         container.innerHTML = servicesData.map(service => {
             const highlightClass = service.isHighlight ? 'card--highlight' : '';
-            // Using button classes for actions
             const actionBtn = service.action.type === 'whatsapp'
-                ? `<a href="${service.action.link}" class="btn btn--whatsapp btn--full-mobile mt-auto w-full"><i class="fa-brands fa-whatsapp"></i> ${service.action.text}</a>`
-                : `<button class="btn btn--outline w-full mt-auto" data-modal="${service.action.modalId}" data-title="${service.action.modalTitle}" data-form-id="${service.action.formId}">${service.action.text} <i class="fa-solid fa-chevron-right" style="margin-left: 0.5rem"></i></button>`;
+                ? `<a href="${service.action.link}" class="btn btn--whatsapp btn--full-mobile w-full mt-4"><i class="fa-brands fa-whatsapp"></i> ${service.action.text}</a>`
+                : `<button class="btn btn--outline w-full mt-4" data-modal="${service.action.modalId}" data-title="${service.action.modalTitle}" data-form-id="${service.action.formId}">${service.action.text}</button>`;
 
             return `
                 <div class="card card--service ${highlightClass} animate-on-scroll">
-                    <div class="card__header p-0 mb-4">
+                    <div class="card__header">
                         <div class="card__icon">
                             <i class="${service.icon}" aria-hidden="true"></i>
                         </div>
+                        <h3 class="h4 m-0">${service.title}</h3>
                     </div>
-                    <div class="card__content p-0 d-flex flex-col flex-grow">
-                        <h3 class="card__title h4 mb-2">${service.title}</h3>
-                        <p class="card__text mb-4 text-muted">${service.text}</p>
+                    <div class="card__content pt-0 flex-grow">
+                        <p class="text-muted m-0">${service.text}</p>
                     </div>
-                    <div class="card__footer p-0 mt-auto pt-4">
+                    <div class="card__footer">
                         ${actionBtn}
                     </div>
                 </div>
@@ -205,7 +204,7 @@ const UI = (function() {
                 </div>
                 <div class="feature-item__content">
                     <h3 class="feature-item__title">${feature.title}</h3>
-                    <p class="feature-item__text">${feature.text}</p>
+                    <p class="text-muted text-sm m-0">${feature.text}</p>
                 </div>
             </div>
         `).join('');
@@ -238,9 +237,9 @@ const UI = (function() {
                     </div>
                 </div>
                 <div class="card__content">
-                    <div class="card__rating mb-2" style="color: #fbbf24; font-size: 0.8rem;">${stars}</div>
-                    <h3 class="card__title h5 mb-2">${item.title}</h3>
-                    <p class="card__text text-muted text-sm">${item.text}</p>
+                    <div class="card__rating mb-2" style="color: hsl(var(--warning)); font-size: 0.8rem;">${stars}</div>
+                    <h3 class="h5 mb-2">${item.title}</h3>
+                    <p class="text-muted text-sm m-0">${item.text}</p>
                 </div>
             </div>
         `}).join('');
