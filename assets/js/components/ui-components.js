@@ -137,28 +137,28 @@ const UI = (function() {
 
     const testimonialsData = [
         {
-            title: 'Atendimento carro de luxo',
-            text: 'Transporte de BMW X6 com o máximo cuidado.',
+            title: 'Transporte Técnico de Alto Valor',
+            text: 'Protocolo zero‑dano para veículos premium; cintas de roda e plataforma ajustada.',
             tag: 'Serviço Especializado',
             stars: 5,
-            image: 'assets/images/img-17.jpg',
-            alt: 'Caminhão da Chama o Guincho transportando uma BMW branca em Campinas'
+            image: 'assets/images/p01.jpg',
+            alt: 'Guincho carregando BMW X6 com cintas de roda, amarração técnica sem contato com a lataria.'
         },
         {
-            title: 'Socorro rápido na madrugada',
-            text: 'Atendimento na Rodovia Anhanguera às 2h.',
+            title: 'Prontidão Operacional 24h',
+            text: 'Capacidade para SUVs e blindados; resposta rápida em rodovias e perímetros urbanos.',
             tag: 'Emergência 24h',
             stars: 5,
-            image: 'assets/images/img-18.jpg',
-            alt: 'Caminhão guincho com luzes de alerta ligadas resgatando carro à noite na rodovia'
+            image: 'assets/images/p02.jpg',
+            alt: 'Guincho transportando viatura policial SUV, demonstrando capacidade de carga e amarração segura.'
         },
         {
-            title: 'Carro da garagem subterrânea',
-            text: 'Tiraram meu carro da garagem do prédio.',
+            title: 'Resgate em Acesso Restrito',
+            text: 'Extração segura em subsolos e garagens com equipamento compacto e operadores treinados.',
             tag: 'Acesso Difícil',
             stars: 5,
-            image: 'assets/images/img-19.jpg',
-            alt: 'Guincho da Chama o Guincho manobrando em garagem de prédio para resgatar veículo'
+            image: 'assets/images/p03.jpg',
+            alt: 'Guincho realizando manobra próxima a condomínio, mostrando extração em acesso restrito.'
         }
     ];
 
@@ -247,6 +247,8 @@ const UI = (function() {
 
     function init(options = {}) {
         config = { ...config, ...options };
+        
+        // Render content directly (skeletons can be added via CSS :empty pseudo-class if needed)
         renderServices('.services__grid');
         renderFeatures('.features__list');
         renderCoverageCities('.coverage__cities');
@@ -254,7 +256,12 @@ const UI = (function() {
     }
 
     return {
-        init
+        init,
+        // Export render functions for manual use
+        renderServices,
+        renderFeatures,
+        renderCoverageCities,
+        renderTestimonials
     };
 
 })();
