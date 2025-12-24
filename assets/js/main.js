@@ -29,6 +29,165 @@ const CONFIG = {
     }
 };
 
+// === UX FEEDBACK UTILITIES ===
+/**
+ * @fileoverview Utilitários para feedback visual de UX
+ * Skeleton screens, button loading, input loading, empty states
+ */
+const UXFeedback = {
+    /**
+     * Set button loading state with spinner
+     * @param {HTMLButtonElement} btn - Button element
+     * @param {boolean} loading - Loading state
+     * @param {string} [loadingText] - Optional text to show while loading
+     */
+    setButtonLoading(btn, loading, loadingText) {
+        if (!btn) return;
+        
+        if (loading) {
+            btn._originalText = btn.innerHTML;
+            btn._originalDisabled = btn.disabled;
+            btn.classList.add('btn--loading');
+            btn.disabled = true;
+            if (loadingText) {
+                btn.setAttribute('data-loading-text', loadingText);
+            }
+        } else {
+            btn.classList.remove('btn--loading');
+            btn.disabled = btn._originalDisabled || false;
+            if (btn._originalText) {
+                btn.innerHTML = btn._originalText;
+            }
+        }
+    },
+
+    /**
+     * Set input loading state with spinner
+     * @param {HTMLInputElement} input - Input element
+     * @param {boolean} loading - Loading state
+     */
+    setInputLoading(input, loading) {
+        if (!input) return;
+        
+        if (loading) {
+            input.classList.add('input--loading');
+            input.readOnly = true;
+        } else {
+            input.classList.remove('input--loading');
+            input.readOnly = false;
+        }
+    },
+
+    /**
+     * Render skeleton placeholders
+     * @param {HTMLElement} container - Container element
+     * @param {number} count - Number of skeletons
+     * @param {string} type - 'card' | 'text' | 'feature'
+     */
+    renderSkeletons(container, count = 3, type = 'card') {
+        if (!container) return;
+        
+        const skeletons = {
+            card: `
+                <div class="skeleton-card">
+                    <div class="skeleton-card__header">
+                        <div class="skeleton skeleton-icon"></div>
+                        <div class="skeleton skeleton-text" style="width: 60%"></div>
+                    </div>
+                    <div class="skeleton-card__body">
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text--sm"></div>
+                    </div>
+                    <div class="skeleton skeleton-button"></div>
+                </div>
+            `,
+            feature: `
+                <div class="feature-item" style="opacity: 0.7">
+                    <div class="skeleton skeleton-icon"></div>
+                    <div style="flex: 1">
+                        <div class="skeleton skeleton-text--lg" style="margin-bottom: 0.5rem"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text--sm"></div>
+                    </div>
+                </div>
+            `,
+            testimonial: `
+                <div class="card" style="opacity: 0.7">
+                    <div class="skeleton" style="height: 150px; border-radius: var(--radius-lg) var(--radius-lg) 0 0"></div>
+                    <div style="padding: var(--space-4)">
+                        <div class="skeleton skeleton-text--lg"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                </div>
+            `,
+            city: `
+                <div class="skeleton" style="height: 2.5rem; width: 100px; border-radius: var(--radius-full)"></div>
+            `
+        };
+
+        const skeletonHtml = skeletons[type] || skeletons.card;
+        container.innerHTML = Array(count).fill(skeletonHtml).join('');
+    },
+
+    /**
+     * Render empty state
+     * @param {HTMLElement} container - Container element
+     * @param {Object} config - Configuration object
+     */
+    renderEmptyState(container, config = {}) {
+        if (!container) return;
+        
+        const {
+            icon = 'fa-solid fa-inbox',
+            title = 'Nenhum item encontrado',
+            text = 'Não há dados para exibir no momento.',
+            actionText = '',
+            actionHref = '',
+            variant = '' // 'error' | 'success' | ''
+        } = config;
+
+        const variantClass = variant ? `empty-state--${variant}` : '';
+        const actionHtml = actionText ? `
+            <a href="${actionHref}" class="btn btn--primary btn--sm empty-state__action">
+                ${actionText}
+            </a>
+        ` : '';
+
+        container.innerHTML = `
+            <div class="empty-state ${variantClass}">
+                <div class="empty-state__icon">
+                    <i class="${icon}" aria-hidden="true"></i>
+                </div>
+                <h3 class="empty-state__title">${title}</h3>
+                <p class="empty-state__text">${text}</p>
+                ${actionHtml}
+            </div>
+        `;
+    },
+
+    /**
+     * Show loading overlay on container
+     * @param {HTMLElement} container - Container element
+     * @param {boolean} show - Show or hide
+     */
+    showLoadingOverlay(container, show) {
+        if (!container) return;
+        
+        let overlay = container.querySelector('.loading-overlay');
+        
+        if (show) {
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'loading-overlay';
+                container.style.position = 'relative';
+                container.appendChild(overlay);
+            }
+        } else if (overlay) {
+            overlay.remove();
+        }
+    }
+};
+
 // === CAROUSEL ===
 /**
  * @fileoverview Módulo de carrossel simples, modular e reutilizável.
@@ -153,34 +312,45 @@ function setupFormSubmission() {
         const form = e.target.closest('form');
         if (!form) return;
         e.preventDefault();
+        
+        const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]') || 
+                          document.querySelector(`button[form="${form.id}"]`);
+        
         if (validateForm(form)) {
+            // Show loading state on button
+            UXFeedback.setButtonLoading(submitBtn, true);
+            
             const title = getFormTitle(form);
             const whatsappUrl = generateWhatsAppUrl(form, title);
 
-            // Open the success modal
-            const successModal = document.getElementById('modal-success');
-            const whatsappBtn = document.getElementById('success-modal-whatsapp-btn');
-            if (successModal && whatsappBtn) {
-                whatsappBtn.href = whatsappUrl;
-                openModal('success');
-            }
-
-            // Try to open WhatsApp automatically after a short delay
+            // Simulate processing delay for better UX
             setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-            }, 500);
+                UXFeedback.setButtonLoading(submitBtn, false);
+                
+                // Open the success modal
+                const successModal = document.getElementById('modal-success');
+                const whatsappBtn = document.getElementById('success-modal-whatsapp-btn');
+                if (successModal && whatsappBtn) {
+                    whatsappBtn.href = whatsappUrl;
+                    openModal('success');
+                }
 
+                // Try to open WhatsApp automatically after a short delay
+                setTimeout(() => {
+                    window.open(whatsappUrl, '_blank');
+                }, 500);
 
-            const formId = form.id.replace('-clone', '');
-            if (formId === 'form-emergency-panic' || formId === 'emergency-form') {
-                localStorage.setItem('emergencyRequestTime', Date.now().toString());
-            }
+                const formId = form.id.replace('-clone', '');
+                if (formId === 'form-emergency-panic' || formId === 'emergency-form') {
+                    localStorage.setItem('emergencyRequestTime', Date.now().toString());
+                }
 
-            // Reset form after a delay
-            setTimeout(() => {
-                form.reset();
-                form.querySelectorAll('.is-valid, .is-invalid').forEach(el => el.classList.remove('is-valid', 'is-invalid'));
-            }, 1500);
+                // Reset form after a delay
+                setTimeout(() => {
+                    form.reset();
+                    form.querySelectorAll('.is-valid, .is-invalid').forEach(el => el.classList.remove('is-valid', 'is-invalid'));
+                }, 1500);
+            }, 800); // Processing delay
         } else {
             showNotification('Por favor, preencha todos os campos obrigatórios.', 'error');
             const firstInvalid = form.querySelector('.is-invalid');
@@ -280,8 +450,10 @@ function getCurrentLocation(input) {
         return;
     }
 
-    input.value = "Detectando...";
-    input.disabled = true;
+    // Show loading state with spinner
+    input.value = "";
+    input.placeholder = "Detectando localização...";
+    UXFeedback.setInputLoading(input, true);
 
     navigator.geolocation.getCurrentPosition(
         position => {
@@ -307,17 +479,23 @@ function getCurrentLocation(input) {
                     input.value = `Lat: ${latitude.toFixed(5)}, Lon: ${longitude.toFixed(5)}`;
                 })
                 .finally(() => {
-                    input.disabled = false;
+                    UXFeedback.setInputLoading(input, false);
+                    input.placeholder = "";
                 });
         },
         error => {
             input.value = "";
-            input.disabled = false;
+            UXFeedback.setInputLoading(input, false);
+            input.placeholder = "";
+            
             let message = 'Não foi possível obter sua localização.';
+            let suggestion = ' Tente digitar o endereço manualmente.';
             if (error.code === error.PERMISSION_DENIED) {
-                message = 'Você negou o acesso à localização.';
+                message = 'Acesso à localização negado.';
+            } else if (error.code === error.TIMEOUT) {
+                message = 'Tempo esgotado ao buscar localização.';
             }
-            showNotification(message, 'error');
+            showNotification(message + suggestion, 'error');
         }
     );
 }

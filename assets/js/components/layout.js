@@ -10,9 +10,6 @@ const Layout = (function() {
     };
 
     function getLink(target) {
-        // If we are on home, internal links are just #id
-        // If we are elsewhere, they are basePath + index.html#id
-
         if (target.startsWith('#')) {
             if (config.activePage === 'home') {
                 return target;
@@ -20,20 +17,11 @@ const Layout = (function() {
                 return `${config.basePath}index.html${target}`;
             }
         }
-
-        // Handle specific page links
-        if (target === 'index.html') {
-             return `${config.basePath}index.html`;
-        }
-        if (target === 'servicos.html') {
-             return `${config.basePath}servicos.html`;
-        }
-
-        // External or other links, prepend basePath if not absolute
+        if (target === 'index.html') return `${config.basePath}index.html`;
+        if (target === 'servicos.html') return `${config.basePath}servicos.html`;
         if (!target.startsWith('http') && !target.startsWith('tel:') && !target.startsWith('mailto:')) {
              return `${config.basePath}${target}`;
         }
-
         return target;
     }
 
@@ -47,9 +35,7 @@ const Layout = (function() {
         header.innerHTML = `
             <div class="container header__container">
                 <a href="${logoHref}" class="logo">
-                    <div class="logo__icon">
-                        <img src="${config.basePath}assets/images/logo.svg" alt="Chama o Guincho" class="logo__svg" />
-                    </div>
+                    <img src="${config.basePath}assets/images/logo.svg" alt="Chama o Guincho" class="logo__svg" />
                     <div class="logo__text">Chama o <span class="logo__highlight">Guincho</span></div>
                 </a>
 
@@ -65,10 +51,16 @@ const Layout = (function() {
                         <li><a href="${getLink('#coverage')}" class="nav__link">Cobertura</a></li>
                         <li><a href="${getLink('#testimonials')}" class="nav__link">Atendimentos</a></li>
                         <li><a href="${getLink('#price-estimator')}" class="nav__link">Preço</a></li>
-                        <li><a href="tel:+5519993502969" class="nav__link nav__link--cta btn btn--primary">
+                        <li>
+                            <a href="tel:+5519993502969" class="btn btn--primary btn--sm d-md-none">
                                 <i class="fa-solid fa-phone" aria-hidden="true"></i> Chamar Agora
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
+
+                    <a href="tel:+5519993502969" class="btn btn--primary d-none d-md-inline-flex ml-4">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Chamar Agora
+                    </a>
                 </nav>
             </div>
         `;
@@ -77,7 +69,6 @@ const Layout = (function() {
         if (placeholder) {
             placeholder.replaceWith(header);
         } else {
-            // Fallback
             document.body.prepend(header);
         }
     }
@@ -93,10 +84,10 @@ const Layout = (function() {
             <div class="container">
                 <div class="footer__grid">
                     <div>
-                        <div class="footer__logo">
-                            <div class="logo__text text-white">Chama o Guincho</div>
+                        <div class="footer__logo mb-4">
+                            <div class="logo__text" style="color: white; font-weight: bold; font-size: 1.25rem;">Chama o Guincho</div>
                         </div>
-                        <p style="font-size: 0.875rem;">
+                        <p class="text-sm" style="color: rgba(255,255,255,0.7);">
                             Guincho e reboque 24h em Campinas e região. Segurança e preço justo.
                         </p>
                         <div class="footer__social">
@@ -107,16 +98,16 @@ const Layout = (function() {
 
                     <div>
                         <h3 class="h5 mb-4 text-white">Contato</h3>
-                        <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem;">
-                            <li><i class="fa-solid fa-phone" style="margin-right: 0.5rem"></i> (19) 99350-2969</li>
-                            <li><i class="fa-brands fa-whatsapp" style="margin-right: 0.5rem"></i> (19) 99350-2969</li>
-                            <li><i class="fa-solid fa-envelope" style="margin-right: 0.5rem"></i> contato@chamaoguincho.com.br</li>
+                        <ul class="d-flex flex-col gap-2 text-sm" style="color: rgba(255,255,255,0.7);">
+                            <li class="d-flex items-center gap-2"><i class="fa-solid fa-phone"></i> (19) 99350-2969</li>
+                            <li class="d-flex items-center gap-2"><i class="fa-brands fa-whatsapp"></i> (19) 99350-2969</li>
+                            <li class="d-flex items-center gap-2"><i class="fa-solid fa-envelope"></i> contato@chamaoguincho.com.br</li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 class="h5 mb-4 text-white">Cidades</h3>
-                        <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem;">
+                        <ul class="d-flex flex-col gap-2 text-sm" style="color: rgba(255,255,255,0.7);">
                             <li><a href="${config.basePath}guincho-sumare/">Sumaré</a></li>
                             <li><a href="${config.basePath}guincho-hortolandia/">Hortolândia</a></li>
                             <li><a href="${config.basePath}guincho-indaiatuba/">Indaiatuba</a></li>
@@ -152,7 +143,6 @@ const Layout = (function() {
         `;
         document.body.appendChild(div);
 
-        // Also add Scroll Top button
         const scrollBtn = document.createElement('button');
         scrollBtn.className = 'scroll-top';
         scrollBtn.id = 'scrollTop';
@@ -160,16 +150,12 @@ const Layout = (function() {
         scrollBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
         document.body.appendChild(scrollBtn);
 
-        // Notification container
         const notif = document.createElement('div');
         notif.className = 'notification';
         notif.id = 'notification';
         notif.innerHTML = `
             <i class="notification__icon fa-solid fa-circle-info" aria-hidden="true"></i>
-            <span class="notification__message">Mensagem de notificação</span>
-            <button class="notification__close" aria-label="Fechar notificação">
-                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            </button>
+            <span class="notification__message text-sm font-medium">Mensagem de notificação</span>
         `;
         document.body.appendChild(notif);
     }
@@ -182,8 +168,8 @@ const Layout = (function() {
             <div class="modal" id="modal-generic">
                 <div class="modal__content">
                     <div class="modal__header">
-                        <h3 class="modal__title" id="generic-modal-title">Título</h3>
-                        <button class="modal__close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                        <h3 class="modal__title h5 m-0" id="generic-modal-title">Título</h3>
+                        <button class="modal__close btn btn--ghost p-2" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal__body" id="generic-modal-body">
                         <!-- Form content injected here -->
@@ -198,15 +184,15 @@ const Layout = (function() {
             <!-- Success Modal -->
             <div class="modal" id="modal-success">
                 <div class="modal__content">
-                    <div class="modal__header" style="background-color: #10b981; color: white;">
-                        <h3 class="modal__title">Sucesso!</h3>
-                        <button class="modal__close" style="color: white;"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="modal__header" style="background-color: hsl(var(--success)); color: white;">
+                        <h3 class="modal__title h5 m-0 text-white">Sucesso!</h3>
+                        <button class="modal__close btn btn--ghost p-2 text-white" style="color: white"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="modal__body text-center">
-                        <div style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;"><i class="fa-solid fa-circle-check"></i></div>
-                        <h4 class="h5">Solicitação Recebida</h4>
-                        <p>Clique abaixo para finalizar no WhatsApp.</p>
-                        <a href="#" id="success-modal-whatsapp-btn" class="btn btn--whatsapp btn--lg w-full mt-4">
+                    <div class="modal__body text-center py-8">
+                        <div style="font-size: 4rem; color: hsl(var(--success)); margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-check"></i></div>
+                        <h4 class="h5 mb-2">Solicitação Recebida</h4>
+                        <p class="mb-6">Clique abaixo para finalizar no WhatsApp.</p>
+                        <a href="#" id="success-modal-whatsapp-btn" class="btn btn--whatsapp btn--lg w-full">
                             <i class="fa-brands fa-whatsapp"></i> Abrir WhatsApp
                         </a>
                     </div>
@@ -290,7 +276,7 @@ const Layout = (function() {
                     </div>
                     <div class="form-group">
                         <label class="form-label">Mensagem</label>
-                        <textarea name="Mensagem" class="form-control" required></textarea>
+                        <textarea name="Mensagem" class="form-control" rows="4" required></textarea>
                     </div>
                 </form>
             </div>
