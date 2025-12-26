@@ -98,215 +98,234 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- CSS Styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Components -->
-    <script src="assets/js/components/layout.js"></script>
-    <script src="assets/js/components/ui-components.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof Layout !== 'undefined') {
-                Layout.init({
-                    basePath: './',
-                    activePage: 'home'
-                });
-            }
-            if (typeof UI !== 'undefined') {
-                UI.init();
-            }
-        });
-    </script>
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
 </head>
 
-<body>
+<body class="bg-background text-foreground font-sans antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5PRZFB9" height="0" width="0"
-            class="d-none"></iframe></noscript>
+            class="hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div id="header-placeholder"></div>
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-transparent transition-all duration-300">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 font-bold text-xl">
+                <i class="fa-solid fa-truck-tow text-primary text-2xl"></i>
+                <span>Chama o <span class="text-primary">Guincho</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <ul class="flex gap-2">
+                    <li><a href="#urgent-request" class="btn btn-ghost btn-sm">Emergência</a></li>
+                    <li><a href="#services" class="btn btn-ghost btn-sm">Serviços</a></li>
+                    <li><a href="#price-estimator" class="btn btn-ghost btn-sm">Calcular Preço</a></li>
+                    <li><a href="#contact" class="btn btn-ghost btn-sm">Contato</a></li>
+                </ul>
+                <a href="https://wa.me/5519993502969" class="btn btn-primary btn-sm gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> Chamar Agora
+                </a>
+            </nav>
+
+            <!-- Mobile Toggle -->
+            <button id="nav-toggle" class="lg:hidden text-2xl text-foreground p-2">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="nav-menu" class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40">
+            <a href="#urgent-request" class="btn btn-ghost w-full justify-start text-lg">Emergência</a>
+            <a href="#services" class="btn btn-ghost w-full justify-start text-lg">Serviços</a>
+            <a href="#price-estimator" class="btn btn-ghost w-full justify-start text-lg">Calcular Preço</a>
+            <a href="#contact" class="btn btn-ghost w-full justify-start text-lg">Contato</a>
+            <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4">
+                <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+            </a>
+        </div>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero__container">
-            <div class="hero__content text-center lg:text-left">
-                <div class="d-flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
-                    <span class="badge badge--success">
+    <section class="relative pt-28 pb-20 overflow-hidden bg-[radial-gradient(circle_at_top_center,hsl(var(--primary)/0.05)_0%,transparent_70%)]">
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left">
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
+                    <span class="badge badge-success gap-2">
                         <i class="fa-solid fa-circle-check"></i> Disponível Agora
                     </span>
-                    <span class="badge badge--info">
+                    <span class="badge badge-info gap-2">
                         <i class="fa-solid fa-stopwatch"></i> Chegada em ~30 min
                     </span>
                 </div>
 
-                <h1 class="hero__title">
-                    Guincho Rápido em <span class="hero__highlight">Campinas</span> e Região 24h
+                <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-6">
+                    Guincho Rápido em <span class="text-primary relative whitespace-nowrap">Campinas</span> e Região 24h
                 </h1>
 
-                <p class="hero__subtitle">
+                <p class="text-xl text-muted-foreground mb-8">
                     Ficou na mão? Chegamos rápido para te ajudar. Preço justo, motoristas profissionais e segurança total para seu veículo.
                 </p>
 
-                <div class="hero__actions">
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4">
                     <a href="https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20Guincho%20Agora"
-                        class="btn btn--primary btn--lg btn--full-mobile" target="_blank" rel="noopener noreferrer">
+                        class="btn btn-primary btn-lg w-full lg:w-auto" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CHAMA NO ZAP (RÁPIDO)
                     </a>
-                    <a href="tel:+5519993502969" class="btn btn--outline btn--lg btn--full-mobile bg-white/80 backdrop-blur">
+                    <a href="tel:+5519993502969" class="btn btn-outline btn-lg w-full lg:w-auto bg-white/80 backdrop-blur">
                         <i class="fa-solid fa-phone" aria-hidden="true"></i> Ligar (19) 99935-0296
                     </a>
                 </div>
 
-                <div class="hero__trust-bar">
-                    <div class="trust-item">
-                        <i class="fa-regular fa-credit-card"></i>
+                <div class="mt-8 pt-6 border-t border-border flex flex-wrap justify-center lg:justify-start gap-6">
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                        <i class="fa-regular fa-credit-card text-primary"></i>
                         <span>Cartão & Pix</span>
                     </div>
-                    <div class="trust-item">
-                        <i class="fa-solid fa-shield-halved"></i>
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                        <i class="fa-solid fa-shield-halved text-primary"></i>
                         <span>Seguro de Carga</span>
                     </div>
-                    <div class="trust-item">
-                        <i class="fa-solid fa-receipt"></i>
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                        <i class="fa-solid fa-receipt text-primary"></i>
                         <span>Nota Fiscal</span>
                     </div>
                 </div>
             </div>
 
             <!-- Slideshow Column -->
-            <div class="d-none d-flex-lg">
-                 <div class="hero__img-wrapper">
-                    <div class="slideshow">
-                        <div class="slideshow__track">
-                            <div class="slideshow__slide"><img src="assets/images/base-2.JPG" alt="Caminhão guincho da Chama o Guincho em Campinas" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/base-3.JPG" alt="Frota de caminhões da Chama o Guincho" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/img-1.JPG" alt="Resgate de veículo em rodovia de Campinas" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/img-2.JPG" alt="Transporte de carro de luxo com segurança" loading="lazy"></div>
+            <div class="hidden lg:block">
+                 <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-border bg-white h-[400px]">
+                    <div class="slideshow h-full w-full">
+                        <div class="slideshow__track h-full flex transition-transform duration-500">
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/base-2.JPG" class="w-full h-full object-cover" alt="Caminhão guincho da Chama o Guincho em Campinas" loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/base-3.JPG" class="w-full h-full object-cover" alt="Frota de caminhões da Chama o Guincho" loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/img-1.JPG" class="w-full h-full object-cover" alt="Resgate de veículo em rodovia de Campinas" loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/img-2.JPG" class="w-full h-full object-cover" alt="Transporte de carro de luxo com segurança" loading="lazy"></div>
                         </div>
                     </div>
                  </div>
             </div>
-
         </div>
 
-        <div class="container">
-            <div class="hero__stats-wrapper">
-                <div class="stats__container animate-on-scroll">
-                    <div class="stat text-center">
-                        <div class="stat__value">500+</div>
-                        <div class="stat__label">Atendimentos</div>
-                    </div>
-                    <div class="stat text-center">
-                        <div class="stat__value">4.9/5</div>
-                        <div class="stat__label">Avaliação</div>
-                    </div>
-                    <div class="stat text-center">
-                        <div class="stat__value">24h</div>
-                        <div class="stat__label">Disponibilidade</div>
-                    </div>
+        <div class="container mx-auto px-4 mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white border border-border rounded-lg p-8 shadow-md animate-on-scroll">
+                <div class="text-center">
+                    <div class="text-4xl font-extrabold text-foreground mb-1">500+</div>
+                    <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Atendimentos</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-extrabold text-foreground mb-1">4.9/5</div>
+                    <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Avaliação</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-extrabold text-foreground mb-1">24h</div>
+                    <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Disponibilidade</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services CTA Section -->
-    <section id="services" class="section section--gray">
-        <div class="container services-cta__layout">
-            <div class="services-cta__content animate-on-scroll">
-                <span class="section__pretitle">Serviços 24/7</span>
-                <h2 class="section__title">Precisa de reboque agora?</h2>
-                <p class="section__subtitle mb-6">
+    <section id="services" class="py-16 lg:py-24 bg-muted/30">
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="animate-on-scroll">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Serviços 24/7</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Precisa de reboque agora?</h2>
+                <p class="text-xl text-muted-foreground mb-8">
                     Direcionamos quem precisa de atendimento imediato para uma página dedicada, com todos os serviços detalhados e opções rápidas de contato.
                 </p>
 
-                <div class="d-flex flex-wrap gap-4 mb-6">
-                    <a href="servicos.html" class="btn btn--primary btn--lg">
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <a href="servicos.html" class="btn btn-primary btn-lg">
                         <i class="fa-solid fa-list" aria-hidden="true"></i> Ver serviços completos
                     </a>
-                    <a href="tel:+5519993502969" class="btn btn--outline btn--lg">
+                    <a href="tel:+5519993502969" class="btn btn-outline btn-lg">
                         <i class="fa-solid fa-phone" aria-hidden="true"></i> Falar com o guincho
                     </a>
                 </div>
 
-                <div class="services-cta__badges">
-                    <span class="services-cta__badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Chegada média ~30min</span>
-                    <span class="services-cta__badge"><i class="fa-solid fa-route" aria-hidden="true"></i> Cobertura RM Campinas</span>
-                    <span class="services-cta__badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Atendimento 24h</span>
+                <div class="flex flex-wrap gap-3">
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i class="fa-solid fa-bolt text-primary" aria-hidden="true"></i> Chegada média ~30min</span>
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i class="fa-solid fa-route text-primary" aria-hidden="true"></i> Cobertura RM Campinas</span>
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i class="fa-solid fa-clock text-primary" aria-hidden="true"></i> Atendimento 24h</span>
                 </div>
             </div>
 
-            <div class="services-cta__card animate-on-scroll">
-                <div class="mb-4">
-                    <div class="services-cta__pill">Casos mais chamados</div>
-                    <h3>Resolvemos sem enrolação</h3>
-                    <p class="text-muted">Pane, colisão, pneu furado ou transporte programado. Chame e seguimos direto para o local.</p>
-                </div>
-                <ul class="services-cta__list">
-                    <li><i class="fa-solid fa-check-circle" aria-hidden="true"></i> Guincho plataforma seguro</li>
-                    <li><i class="fa-solid fa-check-circle" aria-hidden="true"></i> Agendamentos rápidos</li>
-                    <li><i class="fa-solid fa-check-circle" aria-hidden="true"></i> Reboque para oficinas</li>
-                    <li><i class="fa-solid fa-check-circle" aria-hidden="true"></i> Transporte intermunicipal</li>
-                </ul>
-                <div class="d-grid gap-4 mt-auto">
-                    <a href="https://wa.me/5519993502969?text=Preciso%20de%20guincho%20agora" class="btn btn--whatsapp btn--lg w-full" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
-                    </a>
-                    <a href="servicos.html" class="btn btn--ghost w-full">Ver detalhes dos serviços</a>
+            <div class="card bg-card border border-border shadow-xl animate-on-scroll">
+                <div class="card-body p-8">
+                    <div class="mb-6">
+                        <span class="badge badge-primary font-bold uppercase mb-4">Casos mais chamados</span>
+                        <h3 class="text-2xl font-bold mb-2">Resolvemos sem enrolação</h3>
+                        <p class="text-muted-foreground">Pane, colisão, pneu furado ou transporte programado. Chame e seguimos direto para o local.</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success" aria-hidden="true"></i> Guincho plataforma seguro</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success" aria-hidden="true"></i> Agendamentos rápidos</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success" aria-hidden="true"></i> Reboque para oficinas</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success" aria-hidden="true"></i> Transporte intermunicipal</li>
+                    </ul>
+                    <div class="grid gap-4 mt-auto">
+                        <a href="https://wa.me/5519993502969?text=Preciso%20de%20guincho%20agora" class="btn btn-whatsapp w-full" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
+                        </a>
+                        <a href="servicos.html" class="btn btn-ghost w-full">Ver detalhes dos serviços</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Emergency Section -->
-    <section id="urgent-request" class="section">
-        <div class="container">
-            <div class="emergency-card animate-on-scroll">
-                <div class="emergency-card__content">
-                    <div class="d-flex items-center gap-2 mb-4">
-                        <span class="badge badge--success">
+    <section id="urgent-request" class="py-16 lg:py-24">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] bg-card border border-border rounded-2xl shadow-xl overflow-hidden animate-on-scroll">
+                <div class="p-8 lg:p-12">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="badge badge-success gap-2 py-3 px-4 h-auto font-bold uppercase tracking-wide">
                             <i class="fa-solid fa-bolt-lightning"></i> EMERGÊNCIA 24H
                         </span>
                     </div>
 
-                    <h2 class="h3 mb-2">Pedido Rápido</h2>
+                    <h2 class="text-2xl font-bold mb-2">Pedido Rápido</h2>
 
-                    <p class="text-muted text-lg mb-8">
+                    <p class="text-lg text-muted-foreground mb-8">
                         Preencha para um atendimento prioritário.
                     </p>
 
                     <!-- Mobile Quick Actions -->
-                    <div class="d-flex flex-col gap-4 mb-4 d-md-none">
-                         <a href="tel:+5519993502969" class="btn btn--primary btn--lg w-full">
+                    <div class="flex flex-col gap-4 mb-8 md:hidden">
+                         <a href="tel:+5519993502969" class="btn btn-primary btn-lg w-full">
                             <i class="fa-solid fa-phone" aria-hidden="true"></i> LIGAR AGORA
                         </a>
-                        <button type="button" id="btn-panic-location" class="btn btn--whatsapp btn--lg w-full">
+                        <button type="button" id="btn-panic-location" class="btn btn-whatsapp btn-lg w-full">
                             <i class="fa-solid fa-location-dot" aria-hidden="true"></i> ENVIAR LOCALIZAÇÃO
                         </button>
-                         <p class="text-center text-sm mt-2"><a href="#" id="btn-show-form" style="text-decoration: underline;">ou preencher formulário</a></p>
+                         <p class="text-center text-sm mt-2"><a href="#" id="btn-show-form" class="underline text-muted-foreground hover:text-primary">ou preencher formulário</a></p>
                     </div>
 
-                    <form id="emergency-form" class="emergency-form d-none d-md-block">
-                        <div class="form-group location-group">
-                             <label for="emergency-location" class="form-label">Onde você está?</label>
-                            <div class="input-location-wrapper">
-                                <input type="text" id="emergency-location" class="form-control" placeholder="Digite ou detecte..." required>
-                                <button type="button" class="location-detect" id="emergency-detect-location">
+                    <form id="emergency-form" class="hidden md:block space-y-4">
+                        <div class="form-control">
+                             <label for="emergency-location" class="label label-text font-medium">Onde você está?</label>
+                            <div class="relative">
+                                <input type="text" id="emergency-location" class="input input-bordered w-full pr-24" placeholder="Digite ou detecte..." required>
+                                <button type="button" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect" id="emergency-detect-location">
                                     <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
                                 </button>
                             </div>
                         </div>
 
-                        <div class="d-flex gap-4 mb-4 flex-col md:flex-row">
-                             <div class="form-group w-full">
-                                <label for="emergency-destination" class="form-label">Para onde vai?</label>
-                                <div class="input-icon-wrapper">
-                                    <i class="fa-solid fa-location-dot input-icon"></i>
-                                    <input type="text" id="emergency-destination" class="form-control" placeholder="Destino (Opcional)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                             <div class="form-control w-full">
+                                <label for="emergency-destination" class="label label-text font-medium">Para onde vai?</label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-location-dot absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"></i>
+                                    <input type="text" id="emergency-destination" class="input input-bordered w-full pl-10" placeholder="Destino (Opcional)">
                                 </div>
                             </div>
-                            <div class="form-group w-full">
-                                <label for="emergency-vehicle" class="form-label">Seu Veículo</label>
-                                <select id="emergency-vehicle" class="form-select" required>
+                            <div class="form-control w-full">
+                                <label for="emergency-vehicle" class="label label-text font-medium">Seu Veículo</label>
+                                <select id="emergency-vehicle" class="select select-bordered w-full" required>
                                     <option value="" disabled selected>Selecione...</option>
                                     <option value="Carro de Passeio">Carro de Passeio</option>
                                     <option value="Moto">Moto</option>
@@ -316,108 +335,142 @@
                             </div>
                         </div>
 
-                        <div class="d-flex gap-4 mb-6 flex-col md:flex-row">
-                            <div class="form-group w-full">
-                                <label for="emergency-name" class="form-label">Seu Nome</label>
-                                <input type="text" id="emergency-name" class="form-control" placeholder="Nome" required>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-control w-full">
+                                <label for="emergency-name" class="label label-text font-medium">Seu Nome</label>
+                                <input type="text" id="emergency-name" class="input input-bordered w-full" placeholder="Nome" required>
                             </div>
 
-                            <div class="form-group w-full">
-                                <label for="emergency-phone" class="form-label">Seu WhatsApp</label>
-                                <input type="tel" id="emergency-phone" class="form-control" placeholder="(DDD) 99999-9999" required>
+                            <div class="form-control w-full">
+                                <label for="emergency-phone" class="label label-text font-medium">Seu WhatsApp</label>
+                                <input type="tel" id="emergency-phone" class="input input-bordered w-full" placeholder="(DDD) 99999-9999" required>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn--primary btn--lg w-full">
+                        <button type="submit" class="btn btn-primary btn-lg w-full mt-4">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Solicitar Guincho Agora
                         </button>
                     </form>
                 </div>
 
-                <div class="emergency-card__decoration">
-                    <i class="fa-solid fa-truck-pickup" aria-hidden="true"></i>
+                <div class="hidden md:flex bg-primary text-primary-foreground items-center justify-center text-8xl relative overflow-hidden">
+                    <i class="fa-solid fa-truck-pickup z-10" aria-hidden="true"></i>
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="section section--gray">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Diferenciais</span>
-                <h2 class="section__title">Por que chamar a gente?</h2>
-                <div class="section__divider"></div>
+    <section id="features" class="py-16 lg:py-24 bg-muted/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Diferenciais</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Por que chamar a gente?</h2>
+                <div class="h-1 w-16 bg-primary mx-auto rounded-full"></div>
             </div>
-            <div class="features__list">
-                <!-- Features will be loaded via JS -->
+            <div class="features__list grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Features will be loaded via JS, but we can structure the skeleton/container here -->
+                <div class="flex gap-4 items-start p-6 rounded-lg hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-border">
+                   <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl">
+                       <i class="fa-solid fa-clock"></i>
+                   </div>
+                   <div>
+                       <h3 class="font-bold text-lg mb-2">Rapidez Total</h3>
+                       <p class="text-muted-foreground">Chegamos em média em 30 minutos na região de Campinas.</p>
+                   </div>
+                </div>
+                 <div class="flex gap-4 items-start p-6 rounded-lg hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-border">
+                   <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl">
+                       <i class="fa-solid fa-dollar-sign"></i>
+                   </div>
+                   <div>
+                       <h3 class="font-bold text-lg mb-2">Preço Justo</h3>
+                       <p class="text-muted-foreground">Valores transparentes e combinados antes. Sem surpresas.</p>
+                   </div>
+                </div>
+                 <div class="flex gap-4 items-start p-6 rounded-lg hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-border">
+                   <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl">
+                       <i class="fa-solid fa-star"></i>
+                   </div>
+                   <div>
+                       <h3 class="font-bold text-lg mb-2">Profissionalismo</h3>
+                       <p class="text-muted-foreground">Equipe treinada e caminhões novos para sua segurança.</p>
+                   </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Coverage Area Section -->
-    <section id="coverage" class="section">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Cobertura</span>
-                <h2 class="section__title">Onde atendemos</h2>
-                <div class="section__divider"></div>
-                <p class="section__subtitle">
+    <section id="coverage" class="py-16 lg:py-24">
+        <div class="container mx-auto px-4">
+             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Cobertura</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Onde atendemos</h2>
+                <div class="h-1 w-16 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-muted-foreground">
                     Atendemos em Campinas e em um raio de até 100km.
                 </p>
             </div>
 
-            <div class="coverage__map animate-on-scroll">
+            <div class="coverage__map rounded-2xl overflow-hidden border border-border shadow-md h-[400px] mb-8 animate-on-scroll">
                 <iframe id="coverage-map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14638.123456789!2d-47.060833!3d-22.905833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8cf4f12345678%3A0x123456789abcdef!2sCampinas%2C%20SP!5e0!3m2!1sen!2sbr!4v1617886322168!5m2!1sen!2sbr"
                     width="100%" height="100%" allowfullscreen="" loading="lazy" style="border:0; display: block;">
                 </iframe>
             </div>
 
-            <div class="coverage__cities">
-                <!-- Cities will be loaded via JS -->
+            <div class="coverage__cities flex flex-wrap gap-2 justify-center">
+                <button class="btn btn-outline btn-sm rounded-full">Campinas</button>
+                <button class="btn btn-outline btn-sm rounded-full">Valinhos</button>
+                <button class="btn btn-outline btn-sm rounded-full">Vinhedo</button>
+                <button class="btn btn-outline btn-sm rounded-full">Sumaré</button>
+                <button class="btn btn-outline btn-sm rounded-full">Hortolândia</button>
+                <button class="btn btn-outline btn-sm rounded-full">Paulínia</button>
+                <button class="btn btn-outline btn-sm rounded-full">Indaiatuba</button>
             </div>
         </div>
     </section>
 
     <!-- Price Estimator Section -->
-    <section id="price-estimator" class="section section--gray">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Transparência</span>
-                <h2 class="section__title">Calcule o Valor</h2>
-                <div class="section__divider"></div>
-                <p class="section__subtitle">
+    <section id="price-estimator" class="py-16 lg:py-24 bg-muted/30">
+        <div class="container mx-auto px-4">
+             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Transparência</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Calcule o Valor</h2>
+                <div class="h-1 w-16 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-muted-foreground">
                     Simulador de preço baseado na distância e tipo de veículo.
                 </p>
             </div>
 
-            <div class="price-estimator animate-on-scroll">
-                <div class="d-flex flex-col md:flex-row gap-6">
-                    <div class="w-full">
-                        <div class="form-group">
-                            <label class="form-label" for="price-origin">Origem</label>
-                            <div class="input-location-wrapper">
-                                <input type="text" class="form-control" id="price-origin" placeholder="Local de partida">
-                                <button type="button" class="location-detect" id="price-detect-origin">
+            <div class="max-w-4xl mx-auto bg-card border border-border rounded-2xl p-8 shadow-xl animate-on-scroll">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="form-control">
+                            <label class="label label-text font-medium" for="price-origin">Origem</label>
+                            <div class="relative">
+                                <input type="text" class="input input-bordered w-full pr-12" id="price-origin" placeholder="Local de partida">
+                                <button type="button" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect" id="price-detect-origin">
                                     <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label" for="price-destination">Destino</label>
-                            <input type="text" class="form-control" id="price-destination" placeholder="Local de destino">
+                        <div class="form-control">
+                            <label class="label label-text font-medium" for="price-destination">Destino</label>
+                            <input type="text" class="input input-bordered w-full" id="price-destination" placeholder="Local de destino">
                         </div>
-                         <div class="form-group">
-                            <label class="form-label" for="price-distance">Distância (km)</label>
-                            <input type="number" class="form-control" id="price-distance" min="1" max="2000" value="20">
+                         <div class="form-control">
+                            <label class="label label-text font-medium" for="price-distance">Distância (km)</label>
+                            <input type="number" class="input input-bordered w-full" id="price-distance" min="1" max="2000" value="20">
                         </div>
                     </div>
 
-                    <div class="w-full d-flex flex-col">
-                        <div class="form-group">
-                            <label class="form-label" for="price-vehicle">Veículo</label>
-                            <select class="form-select" id="price-vehicle">
+                    <div class="flex flex-col space-y-4">
+                        <div class="form-control">
+                            <label class="label label-text font-medium" for="price-vehicle">Veículo</label>
+                            <select class="select select-bordered w-full" id="price-vehicle">
                                 <option value="moto">Moto</option>
                                 <option value="car" selected>Carro de passeio</option>
                                 <option value="suv">SUV / Caminhonete</option>
@@ -425,75 +478,59 @@
                             </select>
                         </div>
 
-                        <div class="price-estimator__result w-full mt-auto">
-                            <div class="text-sm mb-2 font-bold uppercase tracking-wide opacity-70">Orçamento Estimado</div>
-                            <div class="price-estimator__price">R$ 162,00</div>
-                            <div class="d-grid gap-2 mt-4" style="grid-template-columns: 1fr auto;">
-                                <button class="btn btn--primary btn--full-mobile">
+                        <div class="bg-muted/50 border border-border rounded-lg p-6 text-center mt-auto">
+                            <div class="text-xs font-bold uppercase tracking-wider opacity-70 mb-2">Orçamento Estimado</div>
+                            <div class="price-estimator__price text-4xl font-extrabold text-primary mb-6">R$ 162,00</div>
+                            <div class="grid grid-cols-[1fr_auto] gap-2">
+                                <button class="btn btn-primary">
                                     <i class="fa-brands fa-whatsapp"></i> Agendar
                                 </button>
-                                <button class="btn btn--outline" id="save-quote-btn" title="Receber por email">
+                                <button class="btn btn-outline" id="save-quote-btn" title="Receber por email">
                                     <i class="fa-regular fa-envelope"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                 <p class="text-center text-xs mt-4 text-muted">
+                 <p class="text-center text-xs mt-6 text-muted-foreground">
                     * Valor estimado. Pode variar conforme condições reais (ex: rodas travadas).
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-     <section id="testimonials" class="section">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Depoimentos</span>
-                <h2 class="section__title">Clientes Satisfeitos</h2>
-                <div class="section__divider"></div>
-            </div>
-
-            <div class="testimonials__list">
-                <!-- Testimonials will be loaded via JS -->
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ Section -->
-    <section id="faq" class="section section--gray">
-        <div class="container" style="max-width: 800px;">
-            <div class="section__header animate-on-scroll">
-                <h2 class="section__title">Perguntas Frequentes</h2>
+    <section id="faq" class="py-16 lg:py-24">
+        <div class="container mx-auto px-4 max-w-3xl">
+             <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Perguntas Frequentes</h2>
             </div>
 
-            <div class="faq__container animate-on-scroll">
-                <div class="faq__item">
-                    <button class="faq__question">
-                        <span>O que devo fazer enquanto espero?</span>
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                    <div class="faq__answer">
+            <div class="faq__container space-y-4 animate-on-scroll">
+                <div class="collapse collapse-arrow bg-base-200 border border-base-300 rounded-box">
+                    <input type="radio" name="my-accordion-2" checked="checked" />
+                    <div class="collapse-title text-xl font-medium">
+                        O que devo fazer enquanto espero?
+                    </div>
+                    <div class="collapse-content">
                         <p>Ligue o pisca-alerta, posicione o triângulo a 30m e aguarde em local seguro fora do veículo.</p>
                     </div>
                 </div>
-
-                <div class="faq__item">
-                    <button class="faq__question">
-                        <span>Aceitam cartão?</span>
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                    <div class="faq__answer">
+                <div class="collapse collapse-arrow bg-base-200 border border-base-300 rounded-box">
+                    <input type="radio" name="my-accordion-2" />
+                    <div class="collapse-title text-xl font-medium">
+                        Aceitam cartão?
+                    </div>
+                    <div class="collapse-content">
                         <p>Sim, aceitamos cartões de crédito, débito e Pix.</p>
                     </div>
                 </div>
-                 <div class="faq__item">
-                    <button class="faq__question">
-                        <span>Atendem fora de Campinas?</span>
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                    <div class="faq__answer">
+                <div class="collapse collapse-arrow bg-base-200 border border-base-300 rounded-box">
+                    <input type="radio" name="my-accordion-2" />
+                    <div class="collapse-title text-xl font-medium">
+                        Atendem fora de Campinas?
+                    </div>
+                    <div class="collapse-content">
                         <p>Sim, atendemos toda a região metropolitana e viagens intermunicipais.</p>
                     </div>
                 </div>
@@ -501,10 +538,55 @@
         </div>
     </section>
 
-    <div id="footer-placeholder"></div>
+    <!-- Footer -->
+    <footer id="contact" class="bg-secondary text-secondary-foreground py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <div class="flex items-center gap-2 font-bold text-xl mb-4">
+                        <i class="fa-solid fa-truck-tow text-primary"></i>
+                        <span>Chama o <span class="text-primary">Guincho</span></span>
+                    </div>
+                    <p class="text-secondary-foreground/70 mb-6">
+                        Soluções em guincho e reboque com agilidade e segurança em Campinas e região.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="btn btn-circle btn-ghost bg-white/10 hover:bg-primary hover:text-white border-none"><i class="fa-brands fa-instagram text-xl"></i></a>
+                        <a href="#" class="btn btn-circle btn-ghost bg-white/10 hover:bg-primary hover:text-white border-none"><i class="fa-brands fa-facebook text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-white">Contato</h3>
+                    <ul class="space-y-3 text-secondary-foreground/70">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-primary"></i> (19) 99935-0296
+                        </li>
+                         <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-primary"></i> contato@chamaoguincho.com.br
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-location-dot text-primary"></i> Campinas - SP
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                     <h3 class="font-bold text-lg mb-4 text-white">Serviços</h3>
+                     <ul class="space-y-2 text-secondary-foreground/70">
+                         <li><a href="#" class="hover:text-primary transition-colors">Guincho Leve</a></li>
+                         <li><a href="#" class="hover:text-primary transition-colors">Guincho Pesado</a></li>
+                         <li><a href="#" class="hover:text-primary transition-colors">Transporte de Máquinas</a></li>
+                         <li><a href="#" class="hover:text-primary transition-colors">Recarga de Bateria</a></li>
+                     </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-secondary-foreground/50 text-sm">
+                &copy; 2024 Chama o Guincho. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
 
     <!-- JavaScript -->
-    <script src="assets/js/main.js" defer></script>
+    <script type="module" src="assets/js/app.js"></script>
 </body>
 
 </html>
