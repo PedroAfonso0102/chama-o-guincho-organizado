@@ -1,5 +1,5 @@
 import '../css/input.css';
-import { initNavigation, Carousel, UI } from './modules/ui.js';
+import { initNavigation, initScrollAnimation, Carousel, UI } from './modules/ui.js';
 import { initForms } from './modules/forms.js';
 import { initPriceCalculator } from './modules/calculator.js';
 import { initCoverageMap } from './modules/map.js';
@@ -8,6 +8,7 @@ import autoAnimate from '@formkit/auto-animate';
 document.addEventListener('DOMContentLoaded', () => {
     // Init Core UI
     initNavigation();
+    initScrollAnimation();
 
     // Init Components
     document.querySelectorAll('.slideshow').forEach(el => new Carousel(el));
