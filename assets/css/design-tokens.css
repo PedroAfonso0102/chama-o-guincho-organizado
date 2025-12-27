@@ -54,10 +54,10 @@
      * ========================================================================= */
 
     /* Muted - Para fundos sutis e textos secundários */
-    --muted: 240 4.8% 95.9%;
-    /* #F4F4F5 - Zinc 100 */
-    --muted-foreground: 240 3.8% 46.1%;
-    /* #71717A - Zinc 500 */
+    --muted: 240 5% 96%;
+    /* #F8F8F9 - Mais nítido */
+    --muted-foreground: 240 5% 35%;
+    /* #52525B - Melhor contraste para legibilidade */
 
     /* Accent - Para hovers e destaques sutis */
     --accent: 240 4.8% 95.9%;
@@ -123,7 +123,8 @@
     --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
     /* Brand Shadows */
-    --shadow-primary: 0 4px 14px 0 rgba(255, 122, 26, 0.39);
+    --shadow-primary: 0 10px 30px -5px rgba(255, 122, 26, 0.25);
+    /* Mais suave e difuso */
 
     /* Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.8);
@@ -211,6 +212,12 @@
     --ease-human: cubic-bezier(0.4, 0, 0.2, 1);
     --duration-normal: 0.3s;
     --duration-human: 0.5s;
+
+    /* Animation Delays (Stagger) */
+    --stagger-1: 100ms;
+    --stagger-2: 200ms;
+    --stagger-3: 300ms;
+    --stagger-4: 400ms;
 }
 
 /* =============================================================================

@@ -64,8 +64,8 @@ h5,
 h6 {
     font-weight: var(--font-bold);
     color: hsl(var(--foreground));
-    line-height: 1.2;
-    letter-spacing: -0.025em;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
 }
 
 h1 {
@@ -452,9 +452,10 @@ p {
 }
 
 .header--scrolled {
-    background-color: hsl(var(--background) / 0.95);
-    border-bottom-color: hsl(var(--border));
-    box-shadow: var(--shadow-sm);
+    background-color: hsl(var(--background) / 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid hsl(var(--border) / 0.4);
+    box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.05);
 }
 
 .header__container {
@@ -602,7 +603,8 @@ p {
     padding-bottom: var(--space-20);
     position: relative;
     overflow: hidden;
-    background: radial-gradient(circle at top center, hsl(var(--primary) / 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at 20% 10%, hsl(var(--primary) / 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 90%, hsl(var(--primary) / 0.05) 0%, transparent 50%);
     z-index: 1;
 }
 
