@@ -3,6 +3,7 @@ import { initNavigation, initScrollAnimation, Carousel, UI } from './modules/ui.
 import { initForms } from './modules/forms.js';
 import { initPriceCalculator } from './modules/calculator.js';
 import { initCoverageMap } from './modules/map.js';
+import { initModals } from './modules/modals.js';
 import autoAnimate from '@formkit/auto-animate';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initForms();
     initPriceCalculator();
     initCoverageMap();
+    initModals();
 
     // Init Effects
     const faqContainer = document.querySelector('.faq__container');

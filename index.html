@@ -1,3 +1,4 @@
+n
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,8 +24,7 @@
     <meta property="og:title" content="Guincho em Campinas 24h - Chegamos em 30 Minutos | Chama o Guincho">
     <meta property="og:description"
         content="Serviço profissional de Guincho e Reboque 24h em Campinas e região. Atendimento especializado, preços transparentes e chegada em até 30 minutos.">
-    <meta property="og:image"
-        content="assets/images/base-2.JPG">
+    <meta property="og:image" content="assets/images/base-2.JPG">
     <meta property="og:url" content="https://www.chamaoguincho.com.br/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#FF7A1A">
@@ -95,10 +95,11 @@
 
     <!-- Fonts and Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- CSS Styles -->
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="bg-background text-foreground font-sans antialiased">
@@ -108,7 +109,8 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Header -->
-    <header id="header" class="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-transparent transition-all duration-300">
+    <header id="header"
+        class="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-transparent transition-all duration-300">
         <div class="container mx-auto px-4 h-full flex items-center justify-between">
             <a href="#" class="flex items-center gap-2 font-bold text-xl">
                 <i class="fa-solid fa-truck-tow text-primary text-2xl"></i>
@@ -123,9 +125,11 @@
                     <li><a href="#price-estimator" class="btn btn-ghost btn-sm">Calcular Preço</a></li>
                     <li><a href="#contact" class="btn btn-ghost btn-sm">Contato</a></li>
                 </ul>
-                <a href="https://wa.me/5519993502969" class="btn btn-primary btn-sm gap-2">
-                    <i class="fa-brands fa-whatsapp"></i> Chamar Agora
                 </a>
+                <button data-toggle="modal" data-target="tmpl-contact-options" data-title="Fale Conosco"
+                    class="btn btn-primary btn-sm gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95">
+                    <i class="fa-brands fa-whatsapp"></i> Chamar Agora
+                </button>
             </nav>
 
             <!-- Mobile Toggle -->
@@ -135,7 +139,8 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="nav-menu" class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40">
+        <div id="nav-menu"
+            class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40">
             <a href="#urgent-request" class="btn btn-ghost w-full justify-start text-lg">Emergência</a>
             <a href="#services" class="btn btn-ghost w-full justify-start text-lg">Serviços</a>
             <a href="#price-estimator" class="btn btn-ghost w-full justify-start text-lg">Calcular Preço</a>
@@ -147,7 +152,8 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative pt-28 pb-20 overflow-hidden bg-[radial-gradient(circle_at_top_center,hsl(var(--primary)/0.05)_0%,transparent_70%)]">
+    <section
+        class="relative pt-28 pb-20 overflow-hidden bg-[radial-gradient(circle_at_top_center,hsl(var(--primary)/0.05)_0%,transparent_70%)]">
         <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="text-center lg:text-left">
                 <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
@@ -159,20 +165,23 @@
                     </span>
                 </div>
 
-                <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-6">
+                <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
                     Guincho Rápido em <span class="text-primary relative whitespace-nowrap">Campinas</span> e Região 24h
                 </h1>
 
                 <p class="text-xl text-muted-foreground mb-8">
-                    Ficou na mão? Chegamos rápido para te ajudar. Preço justo, motoristas profissionais e segurança total para seu veículo.
+                    Ficou na mão? Chegamos rápido para te ajudar. Preço justo, motoristas profissionais e segurança
+                    total para seu veículo.
                 </p>
 
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4">
                     <a href="https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20Guincho%20Agora"
-                        class="btn btn-primary btn-lg w-full lg:w-auto" target="_blank" rel="noopener noreferrer">
+                        class="btn btn-primary btn-lg w-full lg:w-auto shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-500 ease-in-out"
+                        target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CHAMA NO ZAP (RÁPIDO)
                     </a>
-                    <a href="tel:+5519993502969" class="btn btn-outline btn-lg w-full lg:w-auto bg-white/80 backdrop-blur">
+                    <a href="tel:+5519993502969"
+                        class="btn btn-outline btn-lg w-full lg:w-auto bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 hover:-translate-y-1 transition-all duration-500 ease-in-out">
                         <i class="fa-solid fa-phone" aria-hidden="true"></i> Ligar (19) 99935-0296
                     </a>
                 </div>
@@ -195,21 +204,30 @@
 
             <!-- Slideshow Column -->
             <div class="hidden lg:block">
-                 <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-border bg-white h-[400px]">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-border bg-white h-[400px]">
                     <div class="slideshow h-full w-full">
                         <div class="slideshow__track h-full flex transition-transform duration-500">
-                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/base-2.JPG" class="w-full h-full object-cover" alt="Caminhão guincho da Chama o Guincho em Campinas" loading="lazy"></div>
-                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/base-3.JPG" class="w-full h-full object-cover" alt="Frota de caminhões da Chama o Guincho" loading="lazy"></div>
-                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/img-1.JPG" class="w-full h-full object-cover" alt="Resgate de veículo em rodovia de Campinas" loading="lazy"></div>
-                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/img-2.JPG" class="w-full h-full object-cover" alt="Transporte de carro de luxo com segurança" loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/base-2.JPG"
+                                    class="w-full h-full object-cover"
+                                    alt="Caminhão guincho da Chama o Guincho em Campinas" loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/base-3.JPG"
+                                    class="w-full h-full object-cover" alt="Frota de caminhões da Chama o Guincho"
+                                    loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/img-1.JPG"
+                                    class="w-full h-full object-cover" alt="Resgate de veículo em rodovia de Campinas"
+                                    loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/img-2.JPG"
+                                    class="w-full h-full object-cover" alt="Transporte de carro de luxo com segurança"
+                                    loading="lazy"></div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
 
         <div class="container mx-auto px-4 mt-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white border border-border rounded-lg p-8 shadow-md animate-on-scroll">
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white border border-border rounded-lg p-8 shadow-md animate-on-scroll">
                 <div class="text-center">
                     <div class="text-4xl font-extrabold text-foreground mb-1">500+</div>
                     <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Atendimentos</div>
@@ -220,7 +238,8 @@
                 </div>
                 <div class="text-center">
                     <div class="text-4xl font-extrabold text-foreground mb-1">24h</div>
-                    <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Disponibilidade</div>
+                    <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Disponibilidade
+                    </div>
                 </div>
             </div>
         </div>
@@ -230,10 +249,12 @@
     <section id="services" class="py-16 lg:py-24 bg-muted/30">
         <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="animate-on-scroll">
-                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Serviços 24/7</span>
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Serviços
+                    24/7</span>
                 <h2 class="text-3xl lg:text-4xl font-bold mb-4">Precisa de reboque agora?</h2>
                 <p class="text-xl text-muted-foreground mb-8">
-                    Direcionamos quem precisa de atendimento imediato para uma página dedicada, com todos os serviços detalhados e opções rápidas de contato.
+                    Direcionamos quem precisa de atendimento imediato para uma página dedicada, com todos os serviços
+                    detalhados e opções rápidas de contato.
                 </p>
 
                 <div class="flex flex-wrap gap-4 mb-8">
@@ -246,9 +267,12 @@
                 </div>
 
                 <div class="flex flex-wrap gap-3">
-                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i class="fa-solid fa-bolt text-primary" aria-hidden="true"></i> Chegada média ~30min</span>
-                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i class="fa-solid fa-route text-primary" aria-hidden="true"></i> Cobertura RM Campinas</span>
-                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i class="fa-solid fa-clock text-primary" aria-hidden="true"></i> Atendimento 24h</span>
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i
+                            class="fa-solid fa-bolt text-primary" aria-hidden="true"></i> Chegada média ~30min</span>
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i
+                            class="fa-solid fa-route text-primary" aria-hidden="true"></i> Cobertura RM Campinas</span>
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i
+                            class="fa-solid fa-clock text-primary" aria-hidden="true"></i> Atendimento 24h</span>
                 </div>
             </div>
 
@@ -257,16 +281,22 @@
                     <div class="mb-6">
                         <span class="badge badge-primary font-bold uppercase mb-4">Casos mais chamados</span>
                         <h3 class="text-2xl font-bold mb-2">Resolvemos sem enrolação</h3>
-                        <p class="text-muted-foreground">Pane, colisão, pneu furado ou transporte programado. Chame e seguimos direto para o local.</p>
+                        <p class="text-muted-foreground">Pane, colisão, pneu furado ou transporte programado. Chame e
+                            seguimos direto para o local.</p>
                     </div>
                     <ul class="space-y-3 mb-8">
-                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success" aria-hidden="true"></i> Guincho plataforma seguro</li>
-                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success" aria-hidden="true"></i> Agendamentos rápidos</li>
-                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success" aria-hidden="true"></i> Reboque para oficinas</li>
-                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success" aria-hidden="true"></i> Transporte intermunicipal</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success"
+                                aria-hidden="true"></i> Guincho plataforma seguro</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success"
+                                aria-hidden="true"></i> Agendamentos rápidos</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success"
+                                aria-hidden="true"></i> Reboque para oficinas</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success"
+                                aria-hidden="true"></i> Transporte intermunicipal</li>
                     </ul>
                     <div class="grid gap-4 mt-auto">
-                        <a href="https://wa.me/5519993502969?text=Preciso%20de%20guincho%20agora" class="btn btn-whatsapp w-full" target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/5519993502969?text=Preciso%20de%20guincho%20agora"
+                            class="btn btn-whatsapp w-full" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
                         </a>
                         <a href="servicos.html" class="btn btn-ghost w-full">Ver detalhes dos serviços</a>
@@ -279,7 +309,8 @@
     <!-- Emergency Section -->
     <section id="urgent-request" class="py-16 lg:py-24">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] bg-card border border-border rounded-2xl shadow-xl overflow-hidden animate-on-scroll">
+            <div
+                class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] bg-card border border-primary/20 rounded-3xl shadow-2xl shadow-primary/5 overflow-hidden animate-on-scroll ring-4 ring-primary/5">
                 <div class="p-8 lg:p-12">
                     <div class="flex items-center gap-2 mb-6">
                         <span class="badge badge-success gap-2 py-3 px-4 h-auto font-bold uppercase tracking-wide">
@@ -295,32 +326,40 @@
 
                     <!-- Mobile Quick Actions -->
                     <div class="flex flex-col gap-4 mb-8 md:hidden">
-                         <a href="tel:+5519993502969" class="btn btn-primary btn-lg w-full">
+                        <a href="tel:+5519993502969" class="btn btn-primary btn-lg w-full">
                             <i class="fa-solid fa-phone" aria-hidden="true"></i> LIGAR AGORA
                         </a>
                         <button type="button" id="btn-panic-location" class="btn btn-whatsapp btn-lg w-full">
                             <i class="fa-solid fa-location-dot" aria-hidden="true"></i> ENVIAR LOCALIZAÇÃO
                         </button>
-                         <p class="text-center text-sm mt-2"><a href="#" id="btn-show-form" class="underline text-muted-foreground hover:text-primary">ou preencher formulário</a></p>
+                        <p class="text-center text-sm mt-2"><a href="#" id="btn-show-form"
+                                class="underline text-muted-foreground hover:text-primary">ou preencher formulário</a>
+                        </p>
                     </div>
 
                     <form id="emergency-form" class="hidden md:block space-y-4">
                         <div class="form-control">
-                             <label for="emergency-location" class="label label-text font-medium">Onde você está?</label>
+                            <label for="emergency-location" class="label label-text font-medium">Onde você está?</label>
                             <div class="relative">
-                                <input type="text" id="emergency-location" class="input input-bordered w-full pr-24" placeholder="Digite ou detecte..." required>
-                                <button type="button" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect" id="emergency-detect-location">
+                                <input type="text" id="emergency-location" class="input input-bordered w-full pr-24"
+                                    placeholder="Digite ou detecte..." required>
+                                <button type="button"
+                                    class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
+                                    id="emergency-detect-location">
                                     <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
                                 </button>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                             <div class="form-control w-full">
-                                <label for="emergency-destination" class="label label-text font-medium">Para onde vai?</label>
+                            <div class="form-control w-full">
+                                <label for="emergency-destination" class="label label-text font-medium">Para onde
+                                    vai?</label>
                                 <div class="relative">
-                                    <i class="fa-solid fa-location-dot absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"></i>
-                                    <input type="text" id="emergency-destination" class="input input-bordered w-full pl-10" placeholder="Destino (Opcional)">
+                                    <i
+                                        class="fa-solid fa-location-dot absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"></i>
+                                    <input type="text" id="emergency-destination"
+                                        class="input input-bordered w-full pl-10" placeholder="Destino (Opcional)">
                                 </div>
                             </div>
                             <div class="form-control w-full">
@@ -338,12 +377,14 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="form-control w-full">
                                 <label for="emergency-name" class="label label-text font-medium">Seu Nome</label>
-                                <input type="text" id="emergency-name" class="input input-bordered w-full" placeholder="Nome" required>
+                                <input type="text" id="emergency-name" class="input input-bordered w-full"
+                                    placeholder="Nome" required>
                             </div>
 
                             <div class="form-control w-full">
                                 <label for="emergency-phone" class="label label-text font-medium">Seu WhatsApp</label>
-                                <input type="tel" id="emergency-phone" class="input input-bordered w-full" placeholder="(DDD) 99999-9999" required>
+                                <input type="tel" id="emergency-phone" class="input input-bordered w-full"
+                                    placeholder="(DDD) 99999-9999" required>
                             </div>
                         </div>
 
@@ -353,7 +394,8 @@
                     </form>
                 </div>
 
-                <div class="hidden md:flex bg-primary text-primary-foreground items-center justify-center text-8xl relative overflow-hidden">
+                <div
+                    class="hidden md:flex bg-primary text-primary-foreground items-center justify-center text-8xl relative overflow-hidden">
                     <i class="fa-solid fa-truck-pickup z-10" aria-hidden="true"></i>
                     <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
                 </div>
@@ -365,38 +407,82 @@
     <section id="features" class="py-16 lg:py-24 bg-muted/30">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Diferenciais</span>
+                <span
+                    class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Diferenciais</span>
                 <h2 class="text-3xl lg:text-4xl font-bold mb-6">Por que chamar a gente?</h2>
                 <div class="h-1 w-16 bg-primary mx-auto rounded-full"></div>
             </div>
             <div class="features__list grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Features will be loaded via JS, but we can structure the skeleton/container here -->
-                <div class="flex gap-4 items-start p-6 rounded-lg hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-border">
-                   <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl">
-                       <i class="fa-solid fa-clock"></i>
-                   </div>
-                   <div>
-                       <h3 class="font-bold text-lg mb-2">Rapidez Total</h3>
-                       <p class="text-muted-foreground">Chegamos em média em 30 minutos na região de Campinas.</p>
-                   </div>
+                <div
+                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group">
+                    <div
+                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Rapidez Total</h3>
+                        <p class="text-muted-foreground">Chegamos em média em 30 minutos na região de Campinas.</p>
+                    </div>
                 </div>
-                 <div class="flex gap-4 items-start p-6 rounded-lg hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-border">
-                   <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl">
-                       <i class="fa-solid fa-dollar-sign"></i>
-                   </div>
-                   <div>
-                       <h3 class="font-bold text-lg mb-2">Preço Justo</h3>
-                       <p class="text-muted-foreground">Valores transparentes e combinados antes. Sem surpresas.</p>
-                   </div>
+                <div
+                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group">
+                    <div
+                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Preço Justo</h3>
+                        <p class="text-muted-foreground">Valores transparentes e combinados antes. Sem surpresas.</p>
+                    </div>
                 </div>
-                 <div class="flex gap-4 items-start p-6 rounded-lg hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-border">
-                   <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl">
-                       <i class="fa-solid fa-star"></i>
-                   </div>
-                   <div>
-                       <h3 class="font-bold text-lg mb-2">Profissionalismo</h3>
-                       <p class="text-muted-foreground">Equipe treinada e caminhões novos para sua segurança.</p>
-                   </div>
+                <div
+                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group">
+                    <div
+                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Profissionalismo</h3>
+                        <p class="text-muted-foreground">Equipe treinada e caminhões novos para sua segurança.</p>
+                    </div>
+                </div>
+                <!-- Missing Features Restored -->
+                <div
+                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group">
+                    <div
+                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Segurança Total</h3>
+                        <p class="text-muted-foreground">Veículos monitorados e seguro total para sua carga durante o
+                            transporte.</p>
+                    </div>
+                </div>
+                <div
+                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group">
+                    <div
+                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Atendimento 24h</h3>
+                        <p class="text-muted-foreground">Estamos prontos para te atender a qualquer hora do dia ou da
+                            noite.</p>
+                    </div>
+                </div>
+                <div
+                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group">
+                    <div
+                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Cobertura Ampla</h3>
+                        <p class="text-muted-foreground">Atendemos Campinas e toda região metropolitana num raio de
+                            100km.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -405,7 +491,7 @@
     <!-- Coverage Area Section -->
     <section id="coverage" class="py-16 lg:py-24">
         <div class="container mx-auto px-4">
-             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
                 <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Cobertura</span>
                 <h2 class="text-3xl lg:text-4xl font-bold mb-6">Onde atendemos</h2>
                 <div class="h-1 w-16 bg-primary mx-auto rounded-full mb-6"></div>
@@ -414,7 +500,8 @@
                 </p>
             </div>
 
-            <div class="coverage__map rounded-2xl overflow-hidden border border-border shadow-md h-[400px] mb-8 animate-on-scroll">
+            <div
+                class="coverage__map rounded-2xl overflow-hidden border border-border shadow-md h-[400px] mb-8 animate-on-scroll">
                 <iframe id="coverage-map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14638.123456789!2d-47.060833!3d-22.905833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8cf4f12345678%3A0x123456789abcdef!2sCampinas%2C%20SP!5e0!3m2!1sen!2sbr!4v1617886322168!5m2!1sen!2sbr"
                     width="100%" height="100%" allowfullscreen="" loading="lazy" style="border:0; display: block;">
@@ -436,8 +523,9 @@
     <!-- Price Estimator Section -->
     <section id="price-estimator" class="py-16 lg:py-24 bg-muted/30">
         <div class="container mx-auto px-4">
-             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Transparência</span>
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <span
+                    class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Transparência</span>
                 <h2 class="text-3xl lg:text-4xl font-bold mb-6">Calcule o Valor</h2>
                 <div class="h-1 w-16 bg-primary mx-auto rounded-full mb-6"></div>
                 <p class="text-xl text-muted-foreground">
@@ -451,19 +539,24 @@
                         <div class="form-control">
                             <label class="label label-text font-medium" for="price-origin">Origem</label>
                             <div class="relative">
-                                <input type="text" class="input input-bordered w-full pr-12" id="price-origin" placeholder="Local de partida">
-                                <button type="button" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect" id="price-detect-origin">
+                                <input type="text" class="input input-bordered w-full pr-12" id="price-origin"
+                                    placeholder="Local de partida">
+                                <button type="button"
+                                    class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
+                                    id="price-detect-origin">
                                     <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="form-control">
                             <label class="label label-text font-medium" for="price-destination">Destino</label>
-                            <input type="text" class="input input-bordered w-full" id="price-destination" placeholder="Local de destino">
+                            <input type="text" class="input input-bordered w-full" id="price-destination"
+                                placeholder="Local de destino">
                         </div>
-                         <div class="form-control">
+                        <div class="form-control">
                             <label class="label label-text font-medium" for="price-distance">Distância (km)</label>
-                            <input type="number" class="input input-bordered w-full" id="price-distance" min="1" max="2000" value="20">
+                            <input type="number" class="input input-bordered w-full" id="price-distance" min="1"
+                                max="2000" value="20">
                         </div>
                     </div>
 
@@ -479,8 +572,10 @@
                         </div>
 
                         <div class="bg-muted/50 border border-border rounded-lg p-6 text-center mt-auto">
-                            <div class="text-xs font-bold uppercase tracking-wider opacity-70 mb-2">Orçamento Estimado</div>
-                            <div class="price-estimator__price text-4xl font-extrabold text-primary mb-6">R$ 162,00</div>
+                            <div class="text-xs font-bold uppercase tracking-wider opacity-70 mb-2">Orçamento Estimado
+                            </div>
+                            <div class="price-estimator__price text-4xl font-extrabold text-primary mb-6">R$ 162,00
+                            </div>
                             <div class="grid grid-cols-[1fr_auto] gap-2">
                                 <button class="btn btn-primary">
                                     <i class="fa-brands fa-whatsapp"></i> Agendar
@@ -492,9 +587,119 @@
                         </div>
                     </div>
                 </div>
-                 <p class="text-center text-xs mt-6 text-muted-foreground">
+                <p class="text-center text-xs mt-6 text-muted-foreground">
                     * Valor estimado. Pode variar conforme condições reais (ex: rodas travadas).
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 lg:py-24 bg-muted/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Depoimentos</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Clientes Satisfeitos</h2>
+                <div class="h-1 w-16 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 testimonials__list">
+                <!-- Testimonial 1 -->
+                <div
+                    class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group">
+                    <div class="card__image-wrapper">
+                        <div class="absolute inset-0">
+                            <img src="assets/images/img-17.jpg"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                alt="Transporte de veículo blindado em guincho plataforma" loading="lazy" width="400"
+                                height="250">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="card-body p-6 relative">
+                        <div class="flex gap-1 text-warning text-sm mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">Transporte
+                            Blindado</h3>
+                        <p class="text-muted-foreground text-sm">"Excelente atendimento! Precisava levar meu carro
+                            blindado para São Paulo e o cuidado foi total."</p>
+                        <div class="mt-4 pt-4 border-t border-border flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs group-hover:bg-primary group-hover:text-white transition-all">
+                                RJ</div>
+                            <span class="text-sm font-medium">Ricardo J.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                    class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-150 group">
+                    <div class="card__image-wrapper">
+                        <div class="absolute inset-0">
+                            <img src="assets/images/img-19.jpg"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                alt="Resgate noturno de veículo na rodovia" loading="lazy" width="400" height="250">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="card-body p-6 relative">
+                        <div class="flex gap-1 text-warning text-sm mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">Resgate na Rodovia
+                        </h3>
+                        <p class="text-muted-foreground text-sm">"Fiquei na mão na Anhanguera às 2 da manhã. O guincho
+                            chegou em 25 minutos. Recomendo demais!"</p>
+                        <div class="mt-4 pt-4 border-t border-border flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs group-hover:bg-primary group-hover:text-white transition-all">
+                                MA</div>
+                            <span class="text-sm font-medium">Marcos A.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div
+                    class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-150 group">
+                    <div class="card__image-wrapper">
+                        <div class="absolute inset-0">
+                            <img src="assets/images/img-18.jpg"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                alt="Transporte de carro de coleção antigo" loading="lazy" width="400" height="250">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="card-body p-6 relative">
+                        <div class="flex gap-1 text-warning text-sm mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">Carro de Coleção
+                        </h3>
+                        <p class="text-muted-foreground text-sm">"Transportaram meu Mustang antigo com plataforma
+                            hidráulica. Profissionais que entendem do assunto."</p>
+                        <div class="mt-4 pt-4 border-t border-border flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs group-hover:bg-primary group-hover:text-white transition-all">
+                                FS</div>
+                            <span class="text-sm font-medium">Felipe S.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -502,7 +707,7 @@
     <!-- FAQ Section -->
     <section id="faq" class="py-16 lg:py-24">
         <div class="container mx-auto px-4 max-w-3xl">
-             <div class="text-center mb-16 animate-on-scroll">
+            <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl lg:text-4xl font-bold mb-6">Perguntas Frequentes</h2>
             </div>
 
@@ -513,7 +718,8 @@
                         O que devo fazer enquanto espero?
                     </div>
                     <div class="collapse-content">
-                        <p>Ligue o pisca-alerta, posicione o triângulo a 30m e aguarde em local seguro fora do veículo.</p>
+                        <p>Ligue o pisca-alerta, posicione o triângulo a 30m e aguarde em local seguro fora do veículo.
+                        </p>
                     </div>
                 </div>
                 <div class="collapse collapse-arrow bg-base-200 border border-base-300 rounded-box">
@@ -551,8 +757,12 @@
                         Soluções em guincho e reboque com agilidade e segurança em Campinas e região.
                     </p>
                     <div class="flex gap-4">
-                        <a href="#" class="btn btn-circle btn-ghost bg-white/10 hover:bg-primary hover:text-white border-none"><i class="fa-brands fa-instagram text-xl"></i></a>
-                        <a href="#" class="btn btn-circle btn-ghost bg-white/10 hover:bg-primary hover:text-white border-none"><i class="fa-brands fa-facebook text-xl"></i></a>
+                        <a href="#"
+                            class="btn btn-circle btn-ghost bg-white/10 hover:bg-primary hover:text-white border-none"><i
+                                class="fa-brands fa-instagram text-xl"></i></a>
+                        <a href="#"
+                            class="btn btn-circle btn-ghost bg-white/10 hover:bg-primary hover:text-white border-none"><i
+                                class="fa-brands fa-facebook text-xl"></i></a>
                     </div>
                 </div>
                 <div>
@@ -561,7 +771,7 @@
                         <li class="flex items-center gap-3">
                             <i class="fa-brands fa-whatsapp text-primary"></i> (19) 99935-0296
                         </li>
-                         <li class="flex items-center gap-3">
+                        <li class="flex items-center gap-3">
                             <i class="fa-solid fa-envelope text-primary"></i> contato@chamaoguincho.com.br
                         </li>
                         <li class="flex items-center gap-3">
@@ -570,13 +780,13 @@
                     </ul>
                 </div>
                 <div>
-                     <h3 class="font-bold text-lg mb-4 text-white">Serviços</h3>
-                     <ul class="space-y-2 text-secondary-foreground/70">
-                         <li><a href="#" class="hover:text-primary transition-colors">Guincho Leve</a></li>
-                         <li><a href="#" class="hover:text-primary transition-colors">Guincho Pesado</a></li>
-                         <li><a href="#" class="hover:text-primary transition-colors">Transporte de Máquinas</a></li>
-                         <li><a href="#" class="hover:text-primary transition-colors">Recarga de Bateria</a></li>
-                     </ul>
+                    <h3 class="font-bold text-lg mb-4 text-white">Serviços</h3>
+                    <ul class="space-y-2 text-secondary-foreground/70">
+                        <li><a href="#" class="hover:text-primary transition-colors">Guincho Leve</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Guincho Pesado</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Transporte de Máquinas</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Recarga de Bateria</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="border-t border-white/10 mt-12 pt-8 text-center text-secondary-foreground/50 text-sm">
@@ -584,6 +794,55 @@
             </div>
         </div>
     </footer>
+
+    <!-- Generic Modal Structure -->
+    <div id="generic-modal" class="modal">
+        <div
+            class="modal-box relative bg-white dark:bg-slate-900 border border-white/10 shadow-2xl rounded-2xl p-0 overflow-hidden max-w-lg w-full transform transition-all">
+            <!-- Header -->
+            <div class="bg-primary/5 p-4 border-b border-border flex justify-between items-center">
+                <h3 class="font-bold text-lg modal-title text-foreground">Atenção</h3>
+                <button class="btn btn-sm btn-circle btn-ghost modal-close text-muted-foreground hover:text-foreground">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Content -->
+            <div class="content-area p-6">
+                <!-- Dynamic Content Here -->
+            </div>
+        </div>
+        <div class="modal-backdrop bg-black/50 backdrop-blur-sm transition-opacity"></div>
+    </div>
+
+    <!-- Hidden Templates -->
+    <template id="tmpl-contact-options">
+        <div class="space-y-4">
+            <p class="text-muted-foreground text-center mb-6">Escolha como prefere falar com a gente:</p>
+
+            <a href="https://wa.me/5519993502969?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20preciso%20de%20ajuda."
+                target="_blank"
+                class="btn btn-whatsapp w-full btn-lg gap-3 shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                <div class="flex flex-col items-start leading-tight">
+                    <span class="text-xs font-normal opacity-90">Resposta Imediata</span>
+                    <span class="font-bold">Chamar no WhatsApp</span>
+                </div>
+            </a>
+
+            <a href="tel:+5519993502969" class="btn btn-outline w-full btn-lg gap-3 hover:bg-muted transition-all">
+                <i class="fa-solid fa-phone text-xl"></i>
+                <div class="flex flex-col items-start leading-tight">
+                    <span class="text-xs font-normal opacity-70">Ligação Convencional</span>
+                    <span class="font-bold">(19) 99935-0296</span>
+                </div>
+            </a>
+
+            <div class="text-center text-xs text-muted-foreground mt-4">
+                <p>Atendimento 24 horas • 7 dias por semana</p>
+            </div>
+        </div>
+    </template>
 
     <!-- JavaScript -->
     <script type="module" src="assets/js/app.js"></script>

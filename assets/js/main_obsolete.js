@@ -1,4 +1,18 @@
+/* 
+  DEPRECATED - SCHEDULED FOR DELETION
+  This file is obsolete and has been replaced by the modular system in assets/js/modules/.
+  The entry point is now assets/js/app.js.
+  
+  TODO: Delete this file after final verification of all features.
+*/
+
+/*
+// Original code kept for reference until deletion:
+
 // Main JavaScript file for Chama o Guincho
+... (truncated) ...
+*/
+
 
 // === CONFIG ===
 /**
@@ -43,7 +57,7 @@ const UXFeedback = {
      */
     setButtonLoading(btn, loading, loadingText) {
         if (!btn) return;
-        
+
         if (loading) {
             btn._originalText = btn.innerHTML;
             btn._originalDisabled = btn.disabled;
@@ -68,7 +82,7 @@ const UXFeedback = {
      */
     setInputLoading(input, loading) {
         if (!input) return;
-        
+
         if (loading) {
             input.classList.add('input--loading');
             input.readOnly = true;
@@ -86,7 +100,7 @@ const UXFeedback = {
      */
     renderSkeletons(container, count = 3, type = 'card') {
         if (!container) return;
-        
+
         const skeletons = {
             card: `
                 <div class="skeleton-card">
@@ -136,7 +150,7 @@ const UXFeedback = {
      */
     renderEmptyState(container, config = {}) {
         if (!container) return;
-        
+
         const {
             icon = 'fa-solid fa-inbox',
             title = 'Nenhum item encontrado',
@@ -172,9 +186,9 @@ const UXFeedback = {
      */
     showLoadingOverlay(container, show) {
         if (!container) return;
-        
+
         let overlay = container.querySelector('.loading-overlay');
-        
+
         if (show) {
             if (!overlay) {
                 overlay = document.createElement('div');
@@ -282,7 +296,7 @@ function initCoverageMap() {
         loadingSpinner.style.display = 'none';
     });
 
-    cityButtonsContainer.addEventListener('click', function(e) {
+    cityButtonsContainer.addEventListener('click', function (e) {
         const button = e.target.closest('.coverage__city');
         if (!button) return;
 
@@ -308,25 +322,25 @@ function initForms() {
     setupFormTabNavigation();
 }
 function setupFormSubmission() {
-    document.body.addEventListener('submit', function(e) {
+    document.body.addEventListener('submit', function (e) {
         const form = e.target.closest('form');
         if (!form) return;
         e.preventDefault();
-        
-        const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]') || 
-                          document.querySelector(`button[form="${form.id}"]`);
-        
+
+        const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]') ||
+            document.querySelector(`button[form="${form.id}"]`);
+
         if (validateForm(form)) {
             // Show loading state on button
             UXFeedback.setButtonLoading(submitBtn, true);
-            
+
             const title = getFormTitle(form);
             const whatsappUrl = generateWhatsAppUrl(form, title);
 
             // Simulate processing delay for better UX
             setTimeout(() => {
                 UXFeedback.setButtonLoading(submitBtn, false);
-                
+
                 // Open the success modal
                 const successModal = document.getElementById('modal-success');
                 const whatsappBtn = document.getElementById('success-modal-whatsapp-btn');
@@ -487,7 +501,7 @@ function getCurrentLocation(input) {
             input.value = "";
             UXFeedback.setInputLoading(input, false);
             input.placeholder = "";
-            
+
             let message = 'Não foi possível obter sua localização.';
             let suggestion = ' Tente digitar o endereço manualmente.';
             if (error.code === error.PERMISSION_DENIED) {
@@ -524,7 +538,7 @@ function setupFormTabNavigation() {
             contentContainer.querySelectorAll('.step-content').forEach(c => c.classList.remove('step-content--active'));
             contentContainer.querySelector(`#${targetId}`).classList.add('step-content--active');
             const footer = tab.closest('.modal__content').querySelector('.modal__footer');
-            if(footer) footer.style.display = targetId === 'tab-ligar' ? 'none' : 'flex';
+            if (footer) footer.style.display = targetId === 'tab-ligar' ? 'none' : 'flex';
         }
     });
 }
@@ -615,11 +629,11 @@ function initNavigation() {
         const header = document.getElementById('header');
         const scrollTopBtn = document.getElementById('scrollTop');
         const scrolled = window.scrollY > 50;
-        if(header) header.classList.toggle('header--scrolled', scrolled);
-        if(scrollTopBtn) scrollTopBtn.classList.toggle('scroll-top--visible', window.scrollY > 300);
+        if (header) header.classList.toggle('header--scrolled', scrolled);
+        if (scrollTopBtn) scrollTopBtn.classList.toggle('scroll-top--visible', window.scrollY > 300);
     }, { passive: true });
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             if (this.hash !== '' && !this.dataset.modal) {
                 e.preventDefault();
                 document.querySelector(this.hash)?.scrollIntoView({ behavior: 'smooth' });
@@ -713,18 +727,18 @@ function initPriceCalculator() {
             const destination = destinationInput.value.trim() || 'N/A';
             const subject = "Orçamento de Guincho - Chama o Guincho";
             const body = `Olá,\n\nSegue o orçamento do seu serviço de guincho, conforme solicitado em nosso site:\n\n` +
-                         `----------------------------------------\n` +
-                         `  Detalhes do Orçamento\n` +
-                         `----------------------------------------\n` +
-                         `Origem: ${origin}\n` +
-                         `Destino: ${destination}\n` +
-                         `Distância Estimada: ${distance} km\n` +
-                         `Tipo de Veículo: ${vehicleText}\n` +
-                         `Valor Estimado: ${price}\n` +
-                         `----------------------------------------\n\n` +
-                         `Para agendar ou tirar dúvidas, responda a este e-mail ou nos chame no WhatsApp: ${CONFIG.WHATSAPP_NUMBER}\n\n` +
-                         `Atenciosamente,\n` +
-                         `Equipe Chama o Guincho`;
+                `----------------------------------------\n` +
+                `  Detalhes do Orçamento\n` +
+                `----------------------------------------\n` +
+                `Origem: ${origin}\n` +
+                `Destino: ${destination}\n` +
+                `Distância Estimada: ${distance} km\n` +
+                `Tipo de Veículo: ${vehicleText}\n` +
+                `Valor Estimado: ${price}\n` +
+                `----------------------------------------\n\n` +
+                `Para agendar ou tirar dúvidas, responda a este e-mail ou nos chame no WhatsApp: ${CONFIG.WHATSAPP_NUMBER}\n\n` +
+                `Atenciosamente,\n` +
+                `Equipe Chama o Guincho`;
             window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
     }
@@ -737,8 +751,8 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
-              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
 }
@@ -797,7 +811,7 @@ async function updateDistance(originInput, destinationInput, distanceInput, call
             showNotification(`Estimativa de rota (modo offline): ${estimatedDist} km`, 'warning');
         } else {
             // Se nem as coordenadas temos, aí sim falha total
-             if (error.name === 'AbortError') {
+            if (error.name === 'AbortError') {
                 showNotification("Não foi possível calcular a distância automaticamente. Por favor, clique em 'Chamar no WhatsApp' para um orçamento exato.", 'error', 8000);
             } else {
                 showNotification('Não foi possível calcular a rota. Verifique os endereços e tente novamente.', 'error');
@@ -953,7 +967,7 @@ function hideNotification() {
 
 
 function setupWhatsAppClickTracking() {
-    document.body.addEventListener('click', function(e) {
+    document.body.addEventListener('click', function (e) {
         const whatsappLink = e.target.closest('a[href*="wa.me"]');
         if (whatsappLink) {
             let location = 'unknown';
@@ -981,7 +995,7 @@ function initPanicFlow() {
             e.preventDefault();
             emergencyForm.classList.add('show-form');
             const parentP = showFormBtn.closest('p');
-            if(parentP) parentP.style.display = 'none'; // Esconde o link "ou preencher..."
+            if (parentP) parentP.style.display = 'none'; // Esconde o link "ou preencher..."
         });
     }
 
@@ -1008,7 +1022,7 @@ function initPanicFlow() {
                 (error) => {
                     alert('Não foi possível obter localização. Por favor, ligue ou preencha o formulário.');
                     panicLocBtn.innerHTML = '<i class="fa-solid fa-location-dot"></i> Tentar Novamente';
-                    if(emergencyForm) emergencyForm.classList.add('show-form'); // Fallback: abre o form
+                    if (emergencyForm) emergencyForm.classList.add('show-form'); // Fallback: abre o form
                 },
                 { timeout: 10000, enableHighAccuracy: true }
             );
