@@ -91,30 +91,83 @@ export class Carousel {
         this.track = this.element.querySelector('.slideshow__track');
         this.slides = this.track ? Array.from(this.track.children) : [];
         if (!this.track || this.slides.length === 0) return;
+
         this.currentIndex = 0;
         this.totalSlides = this.slides.length;
         this.autoplayInterval = null;
+        this.isAnimating = false;
+
         this.setup();
     }
 
     setup() {
         this.goTo(0);
         this.startAutoplay();
-        // Add events if needed (touch, click)
-        // Since we are refactoring, we might use a library or keep this simple logic.
-        // Keeping simple logic for now but adapting to potentially new class names if structure changes.
+
+        // Control buttons
+        const prevBtn = this.element.parentElement.querySelector('.carousel-arrow--prev');
+        const nextBtn = this.element.parentElement.querySelector('.carousel-arrow--next');
+        const dots = this.element.parentElement.querySelectorAll('.carousel-dot');
+
+        if (prevBtn) prevBtn.addEventListener('click', () => {
+            this.stopAutoplay();
+            this.prev();
+            this.startAutoplay();
+        });
+
+        if (nextBtn) nextBtn.addEventListener('click', () => {
+            this.stopAutoplay();
+            this.next();
+            this.startAutoplay();
+        });
+
+        if (dots.length > 0) {
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    this.stopAutoplay();
+                    this.goTo(i);
+                    this.startAutoplay();
+                });
+            });
+        }
     }
 
     goTo(index) {
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
         this.currentIndex = (index < 0) ? this.totalSlides - 1 : (index >= this.totalSlides) ? 0 : index;
         this.track.style.transform = `translateX(${-this.currentIndex * 100}%)`;
+
+        // Update dots
+        const dots = this.element.parentElement.querySelectorAll('.carousel-dot');
+        if (dots.length > 0) {
+            dots.forEach((dot, i) => {
+                if (i === this.currentIndex) {
+                    dot.classList.add('carousel-dot--active', 'w-8');
+                    dot.classList.remove('w-2', 'bg-border');
+                    dot.classList.add('bg-primary');
+                } else {
+                    dot.classList.remove('carousel-dot--active', 'w-8');
+                    dot.classList.add('w-2', 'bg-border');
+                    dot.classList.remove('bg-primary');
+                }
+            });
+        }
+
+        setTimeout(() => {
+            this.isAnimating = false;
+        }, 700); // Matches transition duration
     }
 
     next() { this.goTo(this.currentIndex + 1); }
+    prev() { this.goTo(this.currentIndex - 1); }
 
     startAutoplay() {
         this.stopAutoplay();
-        this.autoplayInterval = setInterval(() => this.next(), 4000);
+        // Only autoplay if it's the hero slideshow (no controls found in parent usually)
+        if (this.element.classList.contains('slideshow--cases')) return;
+        this.autoplayInterval = setInterval(() => this.next(), 5000);
     }
 
     stopAutoplay() { clearInterval(this.autoplayInterval); }
