@@ -1,4 +1,4 @@
-import"./app-DcV55y-y.js";const b=(function(){let e={basePath:"./",activePage:"home"};function o(a){return a.startsWith("#")?e.activePage==="home"?a:`${e.basePath}index.html${a}`:a==="index.html"?`${e.basePath}index.html`:a==="servicos.html"?`${e.basePath}servicos.html`:!a.startsWith("http")&&!a.startsWith("tel:")&&!a.startsWith("mailto:")?`${e.basePath}${a}`:a}function t(){const a=document.createElement("header");a.id="header",a.className="header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300";const r=e.activePage==="home"?"#":`${e.basePath}index.html`;a.innerHTML=`
+import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"home"};function o(a){return a.startsWith("#")?e.activePage==="home"?a:`${e.basePath}index.html${a}`:a==="index.html"?`${e.basePath}index.html`:a==="servicos.html"?`${e.basePath}servicos.html`:!a.startsWith("http")&&!a.startsWith("tel:")&&!a.startsWith("mailto:")?`${e.basePath}${a}`:a}function t(){const a=document.createElement("header");a.id="header",a.className="header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300";const r=e.activePage==="home"?"#":`${e.basePath}index.html`;a.innerHTML=`
             <div class="container mx-auto px-4 h-full flex items-center justify-between">
                 <a href="${r}" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500">
                     <img src="${e.basePath}assets/images/logos/logo.svg" alt="Chama o Guincho Logo" class="h-10 w-auto">
@@ -63,7 +63,7 @@ import"./app-DcV55y-y.js";const b=(function(){let e={basePath:"./",activePage:"h
                     </div>
 
                     <div class="md:col-span-4 lg:col-span-2">
-                        <h6 class="text-primary font-bold uppercase tracking-wider text-sm mb-6">Navegação</h6>
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Navegação</h6>
                         <ul class="space-y-4 text-white/60">
                             <li><a href="${o("#features")}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Diferenciais</a></li>
                             <li><a href="${o("#coverage")}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Cobertura</a></li>
@@ -73,7 +73,7 @@ import"./app-DcV55y-y.js";const b=(function(){let e={basePath:"./",activePage:"h
                     </div>
 
                     <div class="md:col-span-4 lg:col-span-2">
-                        <h6 class="text-primary font-bold uppercase tracking-wider text-sm mb-6">Cidades</h6>
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Cidades</h6>
                         <ul class="space-y-4 text-white/60">
                             <li><a href="${e.basePath}guincho-sumare/" class="hover:text-white transition-colors">Sumaré</a></li>
                             <li><a href="${e.basePath}guincho-hortolandia/" class="hover:text-white transition-colors">Hortolândia</a></li>
@@ -83,7 +83,7 @@ import"./app-DcV55y-y.js";const b=(function(){let e={basePath:"./",activePage:"h
                     </div>
 
                     <div class="md:col-span-4 lg:col-span-3">
-                        <h6 class="text-primary font-bold uppercase tracking-wider text-sm mb-6">Central 24h</h6>
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Central 24h</h6>
                         <div class="space-y-6">
                             <a href="tel:+5519993502969" class="block p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group">
                                 <span class="text-xs text-white/40 block mb-1">Emergência</span>

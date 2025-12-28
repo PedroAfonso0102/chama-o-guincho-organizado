@@ -123,7 +123,7 @@ export const Layout = (function () {
                     </div>
 
                     <div class="md:col-span-4 lg:col-span-2">
-                        <h6 class="text-primary font-bold uppercase tracking-wider text-sm mb-6">Navegação</h6>
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Navegação</h6>
                         <ul class="space-y-4 text-white/60">
                             <li><a href="${getLink('#features')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Diferenciais</a></li>
                             <li><a href="${getLink('#coverage')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Cobertura</a></li>
@@ -133,7 +133,7 @@ export const Layout = (function () {
                     </div>
 
                     <div class="md:col-span-4 lg:col-span-2">
-                        <h6 class="text-primary font-bold uppercase tracking-wider text-sm mb-6">Cidades</h6>
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Cidades</h6>
                         <ul class="space-y-4 text-white/60">
                             <li><a href="${config.basePath}guincho-sumare/" class="hover:text-white transition-colors">Sumaré</a></li>
                             <li><a href="${config.basePath}guincho-hortolandia/" class="hover:text-white transition-colors">Hortolândia</a></li>
@@ -143,7 +143,7 @@ export const Layout = (function () {
                     </div>
 
                     <div class="md:col-span-4 lg:col-span-3">
-                        <h6 class="text-primary font-bold uppercase tracking-wider text-sm mb-6">Central 24h</h6>
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Central 24h</h6>
                         <div class="space-y-6">
                             <a href="tel:+5519993502969" class="block p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group">
                                 <span class="text-xs text-white/40 block mb-1">Emergência</span>

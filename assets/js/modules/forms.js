@@ -22,6 +22,14 @@ function initLocationDetection() {
     document.body.addEventListener('click', e => {
         const button = e.target.closest('.location-detect');
         if (button) {
+            // Trigger animation
+            button.classList.remove('animating');
+            void button.offsetWidth; // force reflow
+            button.classList.add('animating');
+            button.addEventListener('animationend', () => {
+                button.classList.remove('animating');
+            }, { once: true });
+
             const wrapper = button.parentElement;
             const input = wrapper.querySelector('input');
             if (input) {
@@ -72,7 +80,7 @@ function getCurrentLocation(input) {
 }
 
 function setupFormSubmission() {
-    document.body.addEventListener('submit', function(e) {
+    document.body.addEventListener('submit', function (e) {
         const form = e.target.closest('form');
         if (!form) return;
         e.preventDefault();
