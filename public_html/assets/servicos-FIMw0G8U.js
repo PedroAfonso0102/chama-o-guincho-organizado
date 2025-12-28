@@ -1,11 +1,7 @@
-import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"home"};function o(a){return a.startsWith("#")?e.activePage==="home"?a:`${e.basePath}index.html${a}`:a==="index.html"?`${e.basePath}index.html`:a==="servicos.html"?`${e.basePath}servicos.html`:!a.startsWith("http")&&!a.startsWith("tel:")&&!a.startsWith("mailto:")?`${e.basePath}${a}`:a}function t(){const a=document.createElement("header");a.id="header",a.className="header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300";const r=e.activePage==="home"?"#":`${e.basePath}index.html`;a.innerHTML=`
+import"./app-CJesRXL4.js";const g=(function(){let e={basePath:"./",activePage:"home"};function o(a){return a.startsWith("#")?e.activePage==="home"?a:`${e.basePath}index.html${a}`:a==="index.html"?`${e.basePath}index.html`:a==="servicos.html"?`${e.basePath}servicos.html`:!a.startsWith("http")&&!a.startsWith("tel:")&&!a.startsWith("mailto:")?`${e.basePath}${a}`:a}function t(){const a=document.createElement("header");a.id="header",a.className="header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300";const s=e.activePage==="home"?"#":`${e.basePath}index.html`;a.innerHTML=`
             <div class="container mx-auto px-4 h-full flex items-center justify-between">
-                <a href="${r}" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500">
-                    <img src="${e.basePath}assets/images/logos/logo.svg" alt="Chama o Guincho Logo" class="h-10 w-auto">
-                    <span class="flex flex-col leading-none">
-                        <span class="text-lg font-black tracking-tighter uppercase">Chama o</span>
-                        <span class="text-sm font-bold text-primary tracking-widest uppercase -mt-0.5">Guincho</span>
-                    </span>
+                <a href="${s}" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500">
+                    <img src="${e.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" class="h-8 w-auto">
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-8">
@@ -35,16 +31,12 @@ import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"h
                     <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
                 </a>
             </div>
-        `;const s=document.getElementById("header-placeholder");s?s.replaceWith(a):document.body.prepend(a);const d=a.querySelector("#nav-toggle"),m=a.querySelector("#nav-menu");d&&m&&d.addEventListener("click",()=>{m.classList.toggle("hidden")})}function i(){const a=document.createElement("footer");a.id="contact",a.className="bg-[#0A0A0B] text-white pt-24 pb-12 border-t border-white/5";const r=new Date().getFullYear();a.innerHTML=`
+        `;const r=document.getElementById("header-placeholder");r?r.replaceWith(a):document.body.prepend(a);const d=a.querySelector("#nav-toggle"),m=a.querySelector("#nav-menu");d&&m&&d.addEventListener("click",()=>{m.classList.toggle("hidden")})}function i(){const a=document.createElement("footer");a.id="contact",a.className="bg-[#0A0A0B] text-white pt-24 pb-12 border-t border-white/5";const s=new Date().getFullYear();a.innerHTML=`
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-20">
                     <div class="md:col-span-12 lg:col-span-5">
                         <div class="flex items-center gap-3 mb-8">
-                            <img src="${e.basePath}assets/images/logos/logo.svg" alt="Chama o Guincho Logo" class="h-12 w-auto brightness-0 invert">
-                            <span class="flex flex-col leading-none">
-                                <span class="text-2xl font-black tracking-tighter uppercase">Chama o Guincho</span>
-                                <span class="text-xs font-bold text-primary tracking-[0.3em] uppercase">Reboque Automotivo</span>
-                            </span>
+                            <img src="${e.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" class="h-12 w-auto brightness-0 invert">
                         </div>
                         <p class="text-white/50 text-lg mb-8 max-w-md leading-relaxed">
                             Referência em assistência automotiva e transporte especializado. Tecnologia e agilidade para garantir sua tranquilidade em qualquer rodovia ou cidade.
@@ -95,7 +87,7 @@ import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"h
 
                 <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p class="text-white/30 text-xs text-center md:text-left">
-                        &copy; ${r} Chama o Guincho. Todos os direitos reservados. <br class="md:hidden">
+                        &copy; ${s} Chama o Guincho. Todos os direitos reservados. <br class="md:hidden">
                         CNPJ: 54.676.258/0001-31
                     </p>
                     <div class="flex items-center gap-8 opacity-20 hover:opacity-100 transition-opacity">
@@ -106,17 +98,17 @@ import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"h
                     </div>
                 </div>
             </div>
-        `;const s=document.getElementById("footer-placeholder");s?s.replaceWith(a):document.body.appendChild(a)}function n(){const a=document.createElement("div");a.className="float-buttons",a.innerHTML=`
+        `;const r=document.getElementById("footer-placeholder");r?r.replaceWith(a):document.body.appendChild(a)}function l(){const a=document.createElement("div");a.className="float-buttons",a.innerHTML=`
             <a href="https://wa.me/5519993502969" target="_blank" rel="noopener noreferrer" class="float-button float-button--whatsapp" aria-label="WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
             <a href="tel:+5519993502969" class="float-button float-button--phone" aria-label="Ligar">
                 <i class="fa-solid fa-phone"></i>
             </a>
-        `,document.body.appendChild(a);const r=document.createElement("button");r.className="scroll-top",r.id="scrollTop",r.setAttribute("aria-label","Voltar ao topo"),r.innerHTML='<i class="fa-solid fa-arrow-up"></i>',document.body.appendChild(r);const s=document.createElement("div");s.className="notification",s.id="notification",s.innerHTML=`
+        `,document.body.appendChild(a);const s=document.createElement("button");s.className="scroll-top",s.id="scrollTop",s.setAttribute("aria-label","Voltar ao topo"),s.innerHTML='<i class="fa-solid fa-arrow-up"></i>',document.body.appendChild(s);const r=document.createElement("div");r.className="notification",r.id="notification",r.innerHTML=`
             <i class="notification__icon fa-solid fa-circle-info" aria-hidden="true"></i>
             <span class="notification__message text-sm font-medium">Mensagem de notificação</span>
-        `,document.body.appendChild(s)}function l(){const a=document.createElement("div");a.innerHTML=`
+        `,document.body.appendChild(r)}function n(){const a=document.createElement("div");a.innerHTML=`
             <!-- Modals (Generic Container) -->
             <div class="modal" id="modal-generic">
                 <div class="modal__content">
@@ -233,7 +225,7 @@ import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"h
                     </div>
                 </form>
             </div>
-        `,document.body.appendChild(a)}function g(a={}){e={...e,...a},t(),i(),n(),l()}return{init:g}})(),v=[{icon:"fa-solid fa-car-burst",title:"Reboque de Emergência 24h",text:"Veículo quebrou ou sofreu colisão? Atendemos em até 30 minutos em Campinas e região. Guincho plataforma para transporte seguro.",isHighlight:!0,action:{type:"whatsapp",text:"CHAMAR NO WHATSAPP",link:"https://wa.me/5519993502969?text=Olá!%20Preciso%20de%20um%20guincho%20de%20emergência."}},{icon:"fa-solid fa-route",title:"Transporte Intermunicipal",text:"Transporte de veículos para qualquer cidade da região com total segurança e preço transparente.",action:{type:"modal",text:"Solicitar Orçamento",modalId:"generic",modalTitle:"Orçamento: Transporte para Outras Cidades",formId:"form-transporte-cidades"}},{icon:"fa-solid fa-calendar-days",title:"Agendamento de Transporte",text:"Planeje o transporte do seu veículo para revisão, eventos ou outras necessidades. Agende com antecedência.",action:{type:"modal",text:"Agendar",modalId:"generic",modalTitle:"Agendar Transporte",formId:"form-agendamento"}},{icon:"fa-solid fa-screwdriver-wrench",title:"Transporte para Oficinas",text:"Serviço de coleta e entrega do seu veículo na oficina de sua confiança. Condições especiais para oficinas.",action:{type:"modal",text:"Solicitar Orçamento",modalId:"generic",modalTitle:"Orçamento: Leva e Traz para Oficinas",formId:"form-oficinas"}},{icon:"fa-solid fa-boxes-packing",title:"Pequenas Máquinas",text:"Transporte especializado de empilhadeiras, equipamentos e maquinários leves com equipamentos adequados.",action:{type:"modal",text:"Solicitar Orçamento",modalId:"generic",modalTitle:"Orçamento: Transporte de Pequenas Máquinas",formId:"form-maquinas"}},{icon:"fa-solid fa-handshake",title:"Soluções Corporativas",text:"Parcerias estratégicas para empresas que necessitam de serviços de reboque confiáveis.",action:{type:"modal",text:"Falar com Consultor",modalId:"generic",modalTitle:"Contato: Soluções para Empresas",formId:"form-empresas"}}],x=[{icon:"fa-solid fa-user-tie",title:"Fale com o dono",text:"Você fala direto com o proprietário, sem intermediários."},{icon:"fa-solid fa-tag",title:"Preço justo",text:"Saiba o valor do serviço antes da contratação."},{icon:"fa-solid fa-truck",title:"Frota moderna",text:"Transportamos seu veículo com guinchos novos e seguros."},{icon:"fa-solid fa-map-location-dot",title:"Conhecemos a região",text:"Usamos as melhores rotas para chegar rápido."},{icon:"fa-solid fa-car",title:"Todo tipo de veículo",text:"Atendemos carros, motos, vans e até máquinas."},{icon:"fa-solid fa-clock",title:"Sempre disponível",text:"Estamos disponíveis 24 horas, todos os dias."}],y=[{id:"city-campinas",name:"Campinas"},{id:"city-indaiatuba",name:"Indaiatuba"},{id:"city-hortolandia",name:"Hortolândia"},{id:"city-sumare",name:"Sumaré"},{id:"city-americana",name:"Americana"},{id:"city-paulinia",name:"Paulínia"},{id:"city-valinhos",name:"Valinhos"},{id:"city-vinhedo",name:"Vinhedo"},{id:"city-jaguariuna",name:"Jaguariúna"},{id:"city-monte-mor",name:"Monte Mor"},{id:"city-nova-odessa",name:"Nova Odessa"},{id:"city-limeira",name:"Limeira"},{id:"city-sao-paulo",name:"São Paulo"},{id:"city-mogi-mirim",name:"Mogi Mirim"},{id:"city-piracicaba",name:"Piracicaba"}],w=[{title:"Transporte Técnico de Alto Valor",text:"Protocolo zero‑dano para veículos premium; cintas de roda e plataforma ajustada.",tag:"Serviço Especializado",stars:5,image:"assets/images/p01.jpg",alt:"Guincho carregando BMW X6 com cintas de roda, amarração técnica sem contato com a lataria."},{title:"Prontidão Operacional 24h",text:"Capacidade para SUVs e blindados; resposta rápida em rodovias e perímetros urbanos.",tag:"Emergência 24h",stars:5,image:"assets/images/p02.jpg",alt:"Guincho transportando viatura policial SUV, demonstrando capacidade de carga e amarração segura."},{title:"Resgate em Acesso Restrito",text:"Extração segura em subsolos e garagens com equipamento compacto e operadores treinados.",tag:"Acesso Difícil",stars:5,image:"assets/images/p03.jpg",alt:"Guincho realizando manobra próxima a condomínio, mostrando extração em acesso restrito."}];let c={basePath:""};function p(e){const o=document.querySelector(e);if(!o){console.warn(`UI Component: Container ${e} not found.`);return}o.innerHTML=v.map((t,i)=>{const n=t.isHighlight,l=t.action.type==="whatsapp"?`<a href="${t.action.link}" class="btn ${n?"btn-primary shadow-lg shadow-primary/20":"btn-outline"} btn-sm w-full gap-2 mt-auto hover:-translate-y-0.5 transition-all">
+        `,document.body.appendChild(a)}function b(a={}){e={...e,...a},t(),i(),l(),n()}return{init:b}})(),v=[{icon:"fa-solid fa-car-burst",title:"Reboque de Emergência 24h",text:"Veículo quebrou ou sofreu colisão? Atendemos em até 30 minutos em Campinas e região. Guincho plataforma para transporte seguro.",isHighlight:!0,action:{type:"whatsapp",text:"CHAMAR NO WHATSAPP",link:"https://wa.me/5519993502969?text=Olá!%20Preciso%20de%20um%20guincho%20de%20emergência."}},{icon:"fa-solid fa-route",title:"Transporte Intermunicipal",text:"Transporte de veículos para qualquer cidade da região com total segurança e preço transparente.",action:{type:"modal",text:"Solicitar Orçamento",modalId:"generic",modalTitle:"Orçamento: Transporte para Outras Cidades",formId:"form-transporte-cidades"}},{icon:"fa-solid fa-calendar-days",title:"Agendamento de Transporte",text:"Planeje o transporte do seu veículo para revisão, eventos ou outras necessidades. Agende com antecedência.",action:{type:"modal",text:"Agendar",modalId:"generic",modalTitle:"Agendar Transporte",formId:"form-agendamento"}},{icon:"fa-solid fa-screwdriver-wrench",title:"Transporte para Oficinas",text:"Serviço de coleta e entrega do seu veículo na oficina de sua confiança. Condições especiais para oficinas.",action:{type:"modal",text:"Solicitar Orçamento",modalId:"generic",modalTitle:"Orçamento: Leva e Traz para Oficinas",formId:"form-oficinas"}},{icon:"fa-solid fa-boxes-packing",title:"Pequenas Máquinas",text:"Transporte especializado de empilhadeiras, equipamentos e maquinários leves com equipamentos adequados.",action:{type:"modal",text:"Solicitar Orçamento",modalId:"generic",modalTitle:"Orçamento: Transporte de Pequenas Máquinas",formId:"form-maquinas"}},{icon:"fa-solid fa-handshake",title:"Soluções Corporativas",text:"Parcerias estratégicas para empresas que necessitam de serviços de reboque confiáveis.",action:{type:"modal",text:"Falar com Consultor",modalId:"generic",modalTitle:"Contato: Soluções para Empresas",formId:"form-empresas"}}],x=[{icon:"fa-solid fa-user-tie",title:"Fale com o dono",text:"Você fala direto com o proprietário, sem intermediários."},{icon:"fa-solid fa-tag",title:"Preço justo",text:"Saiba o valor do serviço antes da contratação."},{icon:"fa-solid fa-truck",title:"Frota moderna",text:"Transportamos seu veículo com guinchos novos e seguros."},{icon:"fa-solid fa-map-location-dot",title:"Conhecemos a região",text:"Usamos as melhores rotas para chegar rápido."},{icon:"fa-solid fa-car",title:"Todo tipo de veículo",text:"Atendemos carros, motos, vans e até máquinas."},{icon:"fa-solid fa-clock",title:"Sempre disponível",text:"Estamos disponíveis 24 horas, todos os dias."}],y=[{id:"city-campinas",name:"Campinas"},{id:"city-indaiatuba",name:"Indaiatuba"},{id:"city-hortolandia",name:"Hortolândia"},{id:"city-sumare",name:"Sumaré"},{id:"city-americana",name:"Americana"},{id:"city-paulinia",name:"Paulínia"},{id:"city-valinhos",name:"Valinhos"},{id:"city-vinhedo",name:"Vinhedo"},{id:"city-jaguariuna",name:"Jaguariúna"},{id:"city-monte-mor",name:"Monte Mor"},{id:"city-nova-odessa",name:"Nova Odessa"},{id:"city-limeira",name:"Limeira"},{id:"city-sao-paulo",name:"São Paulo"},{id:"city-mogi-mirim",name:"Mogi Mirim"},{id:"city-piracicaba",name:"Piracicaba"}],w=[{title:"Transporte Técnico de Alto Valor",text:"Protocolo zero‑dano para veículos premium; cintas de roda e plataforma ajustada.",tag:"Serviço Especializado",stars:5,image:"assets/images/p01.jpg",alt:"Guincho carregando BMW X6 com cintas de roda, amarração técnica sem contato com a lataria."},{title:"Prontidão Operacional 24h",text:"Capacidade para SUVs e blindados; resposta rápida em rodovias e perímetros urbanos.",tag:"Emergência 24h",stars:5,image:"assets/images/p02.jpg",alt:"Guincho transportando viatura policial SUV, demonstrando capacidade de carga e amarração segura."},{title:"Resgate em Acesso Restrito",text:"Extração segura em subsolos e garagens com equipamento compacto e operadores treinados.",tag:"Acesso Difícil",stars:5,image:"assets/images/p03.jpg",alt:"Guincho realizando manobra próxima a condomínio, mostrando extração em acesso restrito."}];let c={basePath:""};function p(e){const o=document.querySelector(e);if(!o){console.warn(`UI Component: Container ${e} not found.`);return}o.innerHTML=v.map((t,i)=>{const l=t.isHighlight,n=t.action.type==="whatsapp"?`<a href="${t.action.link}" class="btn ${l?"btn-primary shadow-lg shadow-primary/20":"btn-outline"} btn-sm w-full gap-2 mt-auto hover:-translate-y-0.5 transition-all">
                 <i class="fa-brands fa-whatsapp"></i> ${t.action.text}
                </a>`:`<button class="btn btn-outline btn-sm w-full mt-auto hover:-translate-y-0.5 transition-all" 
                 data-toggle="modal" data-target="generic-modal" 
@@ -249,8 +241,8 @@ import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"h
                     <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">${t.title}</h3>
                     <p class="text-muted-foreground text-sm leading-relaxed mb-8">${t.text}</p>
                 </div>
-                ${l}
-                ${n?'<div class="absolute top-4 right-4"><span class="badge badge-success badge-sm py-3 px-3 text-white">24h</span></div>':""}
+                ${n}
+                ${l?'<div class="absolute top-4 right-4"><span class="badge badge-success badge-sm py-3 px-3 text-white">24h</span></div>':""}
             </div>
         `}).join("")}function u(e){const o=document.querySelector(e);o&&(o.innerHTML=x.map((t,i)=>`
         <div class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-${i%3+1}">
@@ -266,14 +258,14 @@ import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"h
         <button class="btn btn-outline btn-sm rounded-full animate-on-scroll hover:bg-primary hover:text-white hover:border-primary transition-all">
             ${t.name}
         </button>
-    `).join(""))}function h(e){const o=document.querySelector(e);o&&(o.innerHTML=w.map((t,i)=>{const n=Array(t.stars).fill('<i class="fa-solid fa-star"></i>').join("");return`
+    `).join(""))}function h(e){const o=document.querySelector(e);o&&(o.innerHTML=w.map((t,i)=>{const l=Array(t.stars).fill('<i class="fa-solid fa-star"></i>').join("");return`
         <div class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-${i%3+1}">
             <div class="relative h-48 overflow-hidden">
                 <img src="${c.basePath}${t.image}" alt="${t.alt}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
             <div class="card-body p-6 relative">
-                <div class="flex gap-1 text-warning text-sm mb-3">${n}</div>
+                <div class="flex gap-1 text-warning text-sm mb-3">${l}</div>
                 <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">${t.title}</h3>
                 <p class="text-muted-foreground text-sm leading-relaxed">${t.text}</p>
                 <div class="mt-4 pt-4 border-t border-border flex items-center gap-3">
@@ -281,4 +273,4 @@ import"./app-jJ719GPD.js";const b=(function(){let e={basePath:"./",activePage:"h
                 </div>
             </div>
         </div>
-    `}).join(""))}function $(e={}){c={...c,...e},p(".services__grid"),u(".features__list"),f(".coverage__cities"),h(".testimonials__list")}const q={init:$,renderServices:p,renderFeatures:u,renderCoverageCities:f,renderTestimonials:h};b.init({basePath:"./",activePage:"services"});q.init({basePath:"./"});
+    `}).join(""))}function $(e={}){c={...c,...e},p(".services__grid"),u(".features__list"),f(".coverage__cities"),h(".testimonials__list")}const q={init:$,renderServices:p,renderFeatures:u,renderCoverageCities:f,renderTestimonials:h};g.init({basePath:"./",activePage:"services"});q.init({basePath:"./"});

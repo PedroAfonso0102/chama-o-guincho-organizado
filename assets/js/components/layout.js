@@ -35,11 +35,7 @@ export const Layout = (function () {
         header.innerHTML = `
             <div class="container mx-auto px-4 h-full flex items-center justify-between">
                 <a href="${logoHref}" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500">
-                    <img src="${config.basePath}assets/images/logos/logo.svg" alt="Chama o Guincho Logo" class="h-10 w-auto">
-                    <span class="flex flex-col leading-none">
-                        <span class="text-lg font-black tracking-tighter uppercase">Chama o</span>
-                        <span class="text-sm font-bold text-primary tracking-widest uppercase -mt-0.5">Guincho</span>
-                    </span>
+                    <img src="${config.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" class="h-8 w-auto">
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-8">
@@ -100,11 +96,7 @@ export const Layout = (function () {
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-20">
                     <div class="md:col-span-12 lg:col-span-5">
                         <div class="flex items-center gap-3 mb-8">
-                            <img src="${config.basePath}assets/images/logos/logo.svg" alt="Chama o Guincho Logo" class="h-12 w-auto brightness-0 invert">
-                            <span class="flex flex-col leading-none">
-                                <span class="text-2xl font-black tracking-tighter uppercase">Chama o Guincho</span>
-                                <span class="text-xs font-bold text-primary tracking-[0.3em] uppercase">Reboque Automotivo</span>
-                            </span>
+                            <img src="${config.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" class="h-12 w-auto brightness-0 invert">
                         </div>
                         <p class="text-white/50 text-lg mb-8 max-w-md leading-relaxed">
                             Referência em assistência automotiva e transporte especializado. Tecnologia e agilidade para garantir sua tranquilidade em qualquer rodovia ou cidade.

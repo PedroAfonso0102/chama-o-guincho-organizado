@@ -16,68 +16,866 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Serviço profissional de Guincho e Reboque 24h em Campinas e região. Atendimento especializado, preços transparentes e chegada em até 30 minutos.">
+        content="Documentação de componentes e guia de estilo para o projeto Chama o Guincho. Premium Design System.">
 
     <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Component Library | Chama o Guincho">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#e63946">
+    <meta name="theme-color" content="#FF7A1A">
 
-    <title>Título da Página | Chama o Guincho</title>
-    <!-- <link rel="canonical" href="https://www.chamaoguincho.com.br/PAGE_URL" /> -->
+    <title>Component Library | Boilerplate</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/svg" href="assets/images/favicon.svg">
 
     <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- CSS Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <!-- Components -->
-    <script src="assets/js/components/layout.js"></script>
-    <script src="assets/js/components/ui-components.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Layout
-            if (typeof Layout !== 'undefined') {
-                Layout.init({
-                    basePath: './',
-                    activePage: 'other' // 'home' | 'services' | 'other'
-                });
-            }
-            // Initialize UI Components (if needed)
-            if (typeof UI !== 'undefined') {
-                UI.init();
-            }
-        });
+    <!-- Import Map for bare specifiers -->
+    <script type="importmap">
+    {
+        "imports": {
+            "toastify-js": "https://cdn.jsdelivr.net/npm/toastify-js/+esm",
+            "@formkit/auto-animate": "https://cdn.jsdelivr.net/npm/@formkit/auto-animate/+esm",
+            "toastify-js/src/toastify.css": "data:text/javascript,export default {}"
+        }
+    }
     </script>
+
+    <style>
+        :root {
+            --sidebar-width: 250px;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: hsl(var(--muted) / 0.3);
+        }
+
+        #component-sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: white;
+            border-right: 1px solid hsl(var(--border));
+            padding: 2rem 0;
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        #component-sidebar .sidebar-logo {
+            padding: 0 1.5rem 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid hsl(var(--border) / 0.5);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        #component-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #component-sidebar li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: hsl(var(--muted-foreground));
+            font-weight: 500;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        #component-sidebar li a:hover {
+            color: hsl(var(--primary));
+            background: hsl(var(--primary) / 0.05);
+        }
+
+        #component-sidebar li a.active {
+            color: hsl(var(--primary));
+            background: hsl(var(--primary) / 0.1);
+            border-right: 3px solid hsl(var(--primary));
+        }
+
+        main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 4rem 2rem;
+        }
+
+        .component-section {
+            background: white;
+            border-radius: var(--radius-xl);
+            border: 1px solid hsl(var(--border));
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid hsl(var(--border) / 0.5);
+            padding-bottom: 1.5rem;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .demo-box {
+            border: 1px dashed hsl(var(--border));
+            padding: 2rem;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: var(--radius);
+            border: 1px solid hsl(var(--border) / 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 1024px) {
+            #component-sidebar {
+                display: none;
+            }
+
+            main {
+                margin-left: 0;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-background text-foreground font-sans antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5PRZFB9" height="0" width="0"
             class="d-none"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div id="header-placeholder"></div>
+    <aside id="component-sidebar">
+        <div class="sidebar-logo text-center">
+            <img src="assets/images/logos/logo-laranja+texto-vertical.webp" alt="Logo" class="h-12 mx-auto mb-4">
+            <div class="font-bold text-xs uppercase tracking-widest text-muted-foreground">Component Library</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#typography">Tipografia</a></li>
+                <li><a href="#colors">Cores & Tokens</a></li>
+                <li><a href="#buttons">Botões & Badges</a></li>
+                <li><a href="#cards">Cards & Containers</a></li>
+                <li><a href="#forms">Formulários & Inputs</a></li>
+                <li><a href="#modals">Modais & Overlays</a></li>
+                <li><a href="#testimonials">Depoimentos & Trust</a></li>
+                <li><a href="#faq">FAQ (Acordion)</a></li>
+                <li><a href="#animations">Animações & Motion</a></li>
+                <li><a href="#components">Componentes Business</a></li>
+                <li><a href="#floating">Elementos Flutuantes</a></li>
+                <li><a href="#feedback">Feedback & UX</a></li>
+            </ul>
+        </nav>
+        <div class="p-6 mt-auto border-t border-border/50">
+            <p class="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Labareda Code © 2025</p>
+        </div>
+    </aside>
 
-    <!-- Page Content -->
-    <main style="padding-top: var(--header-height);">
-        <!-- CONTENT GOES HERE -->
-        <div class="container py-20">
-            <h1>Conteúdo da Página</h1>
-            <p>Este é um boilerplate para novas páginas.</p>
+    <main>
+        <div class="container max-w-5xl mx-auto">
+            <header class="mb-12">
+                <h1 class="text-4xl font-extrabold mb-4 tracking-tighter">Guia de Estilo Premium</h1>
+                <p class="text-lg text-muted-foreground">Sistema de design unificado para o projeto Chama o Guincho.
+                    Baseado em tokens de design e componentes modulares.</p>
+            </header>
+
+            <!-- Typography -->
+            <section id="typography" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Tipografia</h2>
+                    <p class="text-muted-foreground">Escala baseada em Plus Jakarta Sans com suporte a fluid typography.
+                    </p>
+                </div>
+                <details class="mb-8 p-4 bg-muted/20 rounded-lg text-sm">
+                    <summary class="cursor-pointer font-bold">Documentação da Escala</summary>
+                    <div class="mt-4 space-y-2">
+                        <p>Utilizamos <strong>Clamp</strong> para tipografia fluida. As classes utilitárias estendem o
+                            padrão do Tailwind:</p>
+                        <ul class="list-disc ml-6">
+                            <li><code>.hero__title</code>: H1 gigante para heros.</li>
+                            <li><code>.text-lead</code>: Parágrafos de introdução.</li>
+                            <li><code>.text-small</code>: 14px para textos secundários.</li>
+                            <li><code>.text-caption</code>: 12px Uppercase para rótulos.</li>
+                        </ul>
+                    </div>
+                </details>
+                <div class="space-y-8">
+                    <div>
+                        <h1 class="hero__title">Hero Title (H1)</h1>
+                        <p class="text-xs text-muted-foreground font-mono mt-1">.hero__title / clamp(2.5rem, 8vw,
+                            4.5rem)
+                        </p>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold tracking-tighter">Heading 2</h2>
+                        <p class="text-xs text-muted-foreground font-mono mt-1">h2 / clamp(2rem, 6vw, 3rem)</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Heading 3</h3>
+                        <p class="text-xs text-muted-foreground font-mono mt-1">h3 / 1.875rem</p>
+                    </div>
+                    <div>
+                        <p class="text-xl text-muted-foreground italic">"Lead paragraph for secondary headings or
+                            introductory text."</p>
+                        <p class="text-xs text-muted-foreground font-mono mt-1">.text-lead / 1.25rem</p>
+                    </div>
+                    <div class="max-w-2xl">
+                        <p>Texto de corpo padrão: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p class="text-xs text-muted-foreground font-mono mt-1">p / default (1rem)</p>
+                    </div>
+                    <div class="flex gap-8">
+                        <div>
+                            <p class="text-small font-medium">Small Paragraph Text</p>
+                            <p class="text-xs text-muted-foreground font-mono mt-1">.text-small / 0.875rem</p>
+                        </div>
+                        <div>
+                            <p class="text-caption font-bold">Uppercase Caption</p>
+                            <p class="text-xs text-muted-foreground font-mono mt-1">.text-caption / 0.75rem / UP</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors -->
+            <section id="colors" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Cores & Tokens</h2>
+                    <p class="text-muted-foreground">Tokens HSL para flexibilidade de opacidade e temas.</p>
+                </div>
+                <details class="mb-8 p-4 bg-muted/20 rounded-lg text-sm">
+                    <summary class="cursor-pointer font-bold">Como usar as Variáveis</summary>
+                    <div class="mt-4 space-y-2">
+                        <p>Sempre use <code>hsl(var(--token))</code>. Para controlar a opacidade, use
+                            <code>hsl(var(--primary) / 0.5)</code>.
+                        </p>
+                        <p><strong>Cores de Marca:</strong> Primary (Laranja), Secondary (Dark Zinc).</p>
+                        <p><strong>Cores Semânticas:</strong> Success, Warning, Destructive, WhatsApp.</p>
+                    </div>
+                </details>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="space-y-2">
+                        <div class="color-swatch" style="background-color: hsl(var(--primary)); text-shadow: none;">
+                            Primary</div>
+                        <p class="text-xs font-mono text-center">--primary</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="color-swatch" style="background-color: hsl(var(--secondary));">Secondary</div>
+                        <p class="text-xs font-mono text-center">--secondary</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="color-swatch" style="background-color: hsl(var(--success));">Success</div>
+                        <p class="text-xs font-mono text-center">--success</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="color-swatch" style="background-color: hsl(var(--warning));">Warning</div>
+                        <p class="text-xs font-mono text-center">--warning</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="color-swatch" style="background-color: hsl(var(--destructive));">Destructive</div>
+                        <p class="text-xs font-mono text-center">--destructive</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="color-swatch" style="background-color: hsl(var(--whatsapp));">WhatsApp</div>
+                        <p class="text-xs font-mono text-center">--whatsapp</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="color-swatch"
+                            style="background-color: hsl(var(--muted)); color: hsl(var(--muted-foreground)); text-shadow: none;">
+                            Muted</div>
+                        <p class="text-xs font-mono text-center">--muted</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="color-swatch"
+                            style="background-color: hsl(var(--border)); color: hsl(var(--foreground)); text-shadow: none;">
+                            Border</div>
+                        <p class="text-xs font-mono text-center">--border</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Buttons & Badges -->
+            <section id="buttons" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Botões & Badges</h2>
+                    <p class="text-muted-foreground">Action triggers e elementos de status.</p>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4">Variantes</h3>
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <button class="btn btn-primary">Primary Button</button>
+                    <button class="btn btn-outline">Outline Button</button>
+                    <button class="btn btn-ghost">Ghost Button</button>
+                    <button class="btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </button>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4">Interatividade</h3>
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <button class="btn btn-primary" onclick="demoLoading(this)">
+                        Simular Loading (2s)
+                    </button>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4">Tamanhos</h3>
+                <div class="flex flex-wrap items-center gap-4 mb-8">
+                    <button class="btn btn-primary btn-sm">Pequeno (sm)</button>
+                    <button class="btn btn-primary">Médio (default)</button>
+                    <button class="btn btn-primary btn-lg">Grande (lg)</button>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4">Badges</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge badge-primary">Destaque</span>
+                    <span class="badge badge-success">Online</span>
+                    <span class="badge badge-info">Info</span>
+                    <span class="badge badge-outline">Outline</span>
+                    <span class="badge badge-error">Erro</span>
+                </div>
+            </section>
+
+            <!-- Cards & Containers -->
+            <section id="cards" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Cards & Containers</h2>
+                    <p class="text-muted-foreground">Blocos de conteúdo para serviços, depoimentos e utilitários.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Standard Card -->
+                    <div class="card p-6 border border-border">
+                        <h4 class="text-xl font-bold mb-2">Card Padrão</h4>
+                        <p class="text-muted-foreground mb-4">Um container simples com padding e borda sutil para
+                            conteúdos genéricos.</p>
+                        <button class="btn btn-outline btn-sm">Saiba mais</button>
+                    </div>
+
+                    <!-- Highlight Card -->
+                    <div class="card card--highlight p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="badge badge-primary">Popular</span>
+                            <i class="fa-solid fa-star text-primary"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Card em Destaque</h4>
+                        <p class="text-muted-foreground mb-4">Utiliza fundo levemente colorido e borda mais presente
+                            para chamar atenção.</p>
+                    </div>
+
+                    <!-- Service Card Demo -->
+                    <div class="card card--service p-8 group">
+                        <div
+                            class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+                            <i class="fa-solid fa-truck-pickup text-3xl text-primary"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Card de Serviço</h4>
+                        <p class="text-muted-foreground mb-6">Exemplo de card usado na home para serviços específicos.
+                        </p>
+                        <a href="#" class="font-bold flex items-center gap-2 group/link">
+                            Ver detalhes
+                            <i class="fa-solid fa-arrow-right transition-transform group-hover/link:translate-x-1"></i>
+                        </a>
+                    </div>
+
+                    <!-- Case Study Style -->
+                    <div class="card card--case-study overflow-hidden group">
+                        <div
+                            class="card__image-wrapper aspect-video bg-gradient-to-br from-secondary to-secondary/80 relative">
+                            <!-- Premium Background Effect -->
+                            <div
+                                class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--primary)_0%,_transparent_70%)]">
+                            </div>
+                            <div
+                                class="absolute inset-0 flex items-center justify-center text-white/10 text-8xl transition-transform group-hover:scale-110">
+                                <i class="fa-solid fa-truck-monster"></i>
+                            </div>
+                            <div
+                                class="card__overlay p-6 flex flex-col justify-end text-white bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                                <span class="badge badge-primary w-fit mb-2">Sucesso de Remoção</span>
+                                <h4 class="text-lg font-bold">Resgate em Terreno Difícil</h4>
+                                <p class="text-xs text-white/70 line-clamp-1">Operação complexa realizada com sucesso em
+                                    Campinas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forms & Inputs -->
+            <section id="forms" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Formulários & Inputs</h2>
+                    <p class="text-muted-foreground">Elementos de entrada de dados com foco em usabilidade mobile.</p>
+                </div>
+
+                <div class="max-w-xl space-y-6">
+                    <!-- Standard Input -->
+                    <div class="form-group">
+                        <label class="form-label">Nome Completo</label>
+                        <input type="text" class="form-control" placeholder="Ex: João da Silva">
+                    </div>
+
+                    <!-- Input with Icon -->
+                    <div class="form-group">
+                        <label class="form-label">WhatsApp</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <input type="tel" class="form-control" placeholder="(11) 99999-9999">
+                        </div>
+                    </div>
+
+                    <!-- Location Detect Input -->
+                    <div class="form-group">
+                        <label class="form-label">Local de Coleta</label>
+                        <div class="input-location-wrapper">
+                            <input type="text" class="form-control" placeholder="Digite o endereço ou use o botão">
+                            <button class="location-detect" title="Usar minha localização">
+                                <i class="fa-solid fa-location-crosshairs"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-muted-foreground mt-2">Clique no ícone para detectar via GPS.</p>
+                    </div>
+
+                    <!-- Select -->
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Veículo</label>
+                        <select class="form-select">
+                            <option value="">Selecione...</option>
+                            <option value="passeio">Carro de Passeio</option>
+                            <option value="moto">Motocicleta</option>
+                            <option value="utilitario">Utilitário / SUV</option>
+                        </select>
+                    </div>
+
+                    <!-- Input Disabled/Loading -->
+                    <div class="form-group">
+                        <label class="form-label">Campo Bloqueado</label>
+                        <input type="text" class="form-control input-disabled" value="Somente leitura ou calculando..."
+                            readonly>
+                    </div>
+
+                    <div class="flex gap-4 pt-4">
+                        <button class="btn btn-primary flex-1">
+                            Enviar Formulário
+                        </button>
+                        <button class="btn btn-ghost">
+                            Limpar
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Modals & Overlays -->
+            <section id="modals" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Modais & Overlays</h2>
+                    <p class="text-muted-foreground">Diálogos parciais e overlays de interface.</p>
+                </div>
+
+                <div class="demo-box border-none p-0 flex-row flex-wrap">
+                    <button class="btn btn-primary"
+                        onclick="document.getElementById('generic-modal').classList.add('modal-open')">
+                        Abrir Modal Simples
+                    </button>
+                    <p class="text-sm text-muted-foreground self-center">Clique para visualizar a estrutura da modal e o
+                        efeito de backdrop blur.</p>
+                </div>
+            </section>
+
+            <!-- Animations & Motion -->
+            <section id="animations" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Animações & Motion</h2>
+                    <p class="text-muted-foreground">Coreografia visual e efeitos de transição.</p>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4">Scroll Reveal & Stagger</h3>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="h-32 bg-primary/20 rounded-xl flex items-center justify-center animate-on-scroll"
+                        style="transition-delay: 100ms;">
+                        Delay 100ms
+                    </div>
+                    <div class="h-32 bg-primary/40 rounded-xl flex items-center justify-center animate-on-scroll"
+                        style="transition-delay: 200ms;">
+                        Delay 200ms
+                    </div>
+                    <div class="h-32 bg-primary/60 rounded-xl flex items-center justify-center animate-on-scroll"
+                        style="transition-delay: 300ms;">
+                        Delay 300ms
+                    </div>
+                    <div class="h-32 bg-primary/80 rounded-xl flex items-center justify-center animate-on-scroll"
+                        style="transition-delay: 400ms;">
+                        Delay 400ms
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4 mt-8">Hover Effects</h3>
+                <div class="flex gap-4">
+                    <div
+                        class="w-24 h-24 bg-secondary rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12 cursor-pointer">
+                        <i class="fa-solid fa-bolt text-white text-2xl"></i>
+                    </div>
+                    <div
+                        class="w-24 h-24 bg-muted border border-border rounded-xl flex items-center justify-center group overflow-hidden cursor-pointer">
+                        <i class="fa-solid fa-arrow-up transition-transform group-hover:-translate-y-12"></i>
+                        <i
+                            class="fa-solid fa-arrow-up absolute translate-y-12 transition-transform group-hover:translate-y-0 text-primary"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Business Components -->
+            <section id="components" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Componentes Business</h2>
+                    <p class="text-muted-foreground">Funcionalidades complexas: Calculadora e Carousel.</p>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4">Calculadora de Preço (Mock)</h3>
+                <div class="card p-8 border border-border max-w-2xl bg-muted/10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="form-group">
+                            <label class="form-label">Origem</label>
+                            <input type="text" class="form-control" placeholder="Rua A, 123">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Destino</label>
+                            <input type="text" class="form-control" placeholder="Av. B, 456">
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-primary/20 flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-muted-foreground block">Distância Estimada</span>
+                            <span class="text-xl font-bold">12.5 km</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-sm text-muted-foreground block">Valor Total</span>
+                            <span class="text-3xl font-extrabold text-primary">R$ 150,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4 mt-12">Carousel de Conteúdo</h3>
+                <div class="relative group">
+                    <div class="slideshow slideshow--generic relative h-64 bg-muted rounded-2xl overflow-hidden">
+                        <div class="slideshow__track h-full">
+                            <div class="slideshow__slide h-full flex items-center justify-center bg-primary/10">
+                                <h2 class="text-2xl font-bold">Slide 1: Banner Principal</h2>
+                            </div>
+                            <div class="slideshow__slide h-full flex items-center justify-center bg-secondary/10">
+                                <h2 class="text-2xl font-bold">Slide 2: Funcionalidade X</h2>
+                            </div>
+                            <div class="slideshow__slide h-full flex items-center justify-center bg-primary/5">
+                                <h2 class="text-2xl font-bold">Slide 3: Promoção</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Controls (Dots) compatible with logic -->
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                        <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 transition-all"></button>
+                        <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 transition-all"></button>
+                        <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 transition-all"></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials & Trust -->
+            <section id="testimonials" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Depoimentos & Prova Social</h2>
+                    <p class="text-muted-foreground">Elementos para construção de autoridade e confiança.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Testimonial Card -->
+                    <div class="card p-6 border border-border bg-white italic relative">
+                        <i class="fa-solid fa-quote-left text-primary/20 text-4xl absolute top-4 left-4"></i>
+                        <p class="relative z-10 mb-4 text-sm">"O atendimento foi extremamente rápido e profissional.
+                            Superou minhas expectativas em um momento difícil."</p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-muted flex items-center justify-center font-bold text-xs">
+                                PA</div>
+                            <div>
+                                <p class="text-xs font-bold">Pedro Afonso</p>
+                                <div class="flex gap-0.5 text-[10px] text-yellow-500">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add 2 more similar cards or variation -->
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">FAQ (Acordion)</h2>
+                    <p class="text-muted-foreground">Utiliza AutoAnimate para transições suaves de abertura/fechamento.
+                    </p>
+                </div>
+
+                <div class="faq__container space-y-3">
+                    <div class="faq__item border border-border rounded-xl overflow-hidden">
+                        <button
+                            class="w-full p-5 text-left font-bold flex justify-between items-center bg-muted/5 hover:bg-muted/10 transition-colors">
+                            Como funciona o cálculo de preço?
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform"></i>
+                        </button>
+                        <div
+                            class="faq__answer p-5 border-t border-border bg-white text-sm text-muted-foreground hidden">
+                            Nossa calculadora utiliza as APIs OSRM e Nominatim para determinar a distância exata e
+                            aplica uma tarifa baseada no tipo de veículo.
+                        </div>
+                    </div>
+                    <div class="faq__item border border-border rounded-xl overflow-hidden">
+                        <button
+                            class="w-full p-5 text-left font-bold flex justify-between items-center bg-muted/5 hover:bg-muted/10 transition-colors">
+                            Qual o tempo médio de chegada?
+                            <i class="fa-solid fa-chevron-down text-xs transition-transform"></i>
+                        </button>
+                        <div
+                            class="faq__answer p-5 border-t border-border bg-white text-sm text-muted-foreground hidden">
+                            Geralmente chegamos entre 20 a 40 minutos nas principais regiões de Campinas.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Floating Elements -->
+            <section id="floating" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Elementos Flutuantes</h2>
+                    <p class="text-muted-foreground">Widgets que permanecem sobrepostos ao conteúdo.</p>
+                </div>
+
+                <div class="flex gap-8 items-center bg-muted/20 p-8 rounded-2xl border border-dashed border-border">
+                    <div class="text-center">
+                        <div
+                            class="btn-float btn-float--whatsapp relative inline-flex shadow-xl mb-4 hover:scale-110 active:scale-95 transition-transform">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        </div>
+                        <p class="text-xs font-bold">WhatsApp Float</p>
+                    </div>
+                    <div class="text-center">
+                        <button
+                            class="w-12 h-12 rounded-full bg-secondary text-white shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                        <p class="text-xs font-bold">Scroll to Top</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feedback & UX -->
+
+            <section id="feedback" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <h2 class="text-2xl font-bold">Feedback & UX</h2>
+                    <p class="text-muted-foreground">Indicações visuais de estado e notificações.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">Skeleton Loading</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-muted animate-pulse"></div>
+                                <div class="flex-1 space-y-2 py-1">
+                                    <div class="h-4 bg-muted rounded animate-pulse w-3/4"></div>
+                                    <div class="h-4 bg-muted rounded animate-pulse w-1/2"></div>
+                                </div>
+                            </div>
+                            <div class="h-32 w-full bg-muted rounded-xl animate-pulse"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">Notificações (Toast)</h3>
+                        <div class="space-y-3">
+                            <button class="btn btn-sm btn-outline btn-block"
+                                onclick="Toastify({text: 'Ação realizada com sucesso!', backgroundColor: 'hsl(var(--success))'}).showToast()">
+                                Trigger Success Toast
+                            </button>
+                            <button class="btn btn-sm btn-outline btn-block"
+                                onclick="Toastify({text: 'Ocorreu um erro inesperado.', backgroundColor: 'hsl(var(--destructive))'}).showToast()">
+                                Trigger Error Toast
+                            </button>
+                            <button class="btn btn-sm btn-outline btn-block"
+                                onclick="Toastify({text: 'Informação importante aqui.', backgroundColor: 'hsl(var(--secondary))'}).showToast()">
+                                Trigger Info Toast
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
         </div>
     </main>
 
-    <div id="footer-placeholder"></div>
+    <!-- Generic Modal Structure -->
+    <div id="generic-modal" class="modal">
+        <div
+            class="modal-box bg-white border border-white/10 shadow-2xl rounded-2xl p-0 overflow-hidden max-w-lg w-full">
+            <div class="bg-primary/5 p-4 border-b border-border flex justify-between items-center">
+                <h3 class="modal-title font-bold">Título da Modal</h3>
+                <button class="btn btn-sm btn-circle btn-ghost modal-close">✕</button>
+            </div>
+            <div class="content-area p-6">
+                <p>Conteúdo demonstrativo da modal.</p>
+            </div>
+            <div class="modal-footer p-4 border-t flex justify-end gap-2 bg-muted/20">
+                <button class="btn btn-ghost modal-close">Cancelar</button>
+                <button class="btn btn-primary">Confirmar</button>
+            </div>
+        </div>
+        <div class="modal-backdrop bg-black/50 backdrop-blur-sm"></div>
+    </div>
 
-    <!-- JavaScript -->
-    <script src="assets/js/main.js" defer></script>
+    <!-- Toastify Script -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { Layout } from './assets/js/components/layout.js';
+        import { UI as DataUI } from './assets/js/components/ui-components.js';
+        import { UI as LogicUI, Carousel } from './assets/js/modules/ui.js';
+        import autoAnimate from '@formkit/auto-animate';
+
+        // Custom observer for the component library to update sidebar active link
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('#component-sidebar a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.component-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize CORE UI Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Data UI
+            DataUI.init();
+
+            // AutoAnimate FAQ
+            const faqContainer = document.querySelector('.faq__container');
+            if (faqContainer) {
+                autoAnimate(faqContainer);
+            }
+
+            // FAQ Toggle
+            document.querySelectorAll('.faq__item button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const answer = button.nextElementSibling;
+                    const icon = button.querySelector('i');
+
+                    // Toggle visibility
+                    answer.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+
+                    // Close others in demo if desired
+                    document.querySelectorAll('.faq__answer').forEach(ans => {
+                        if (ans !== answer) ans.classList.add('hidden');
+                    });
+                    document.querySelectorAll('.faq__item i').forEach(ic => {
+                        if (ic !== icon) ic.classList.remove('rotate-180');
+                    });
+                });
+            });
+
+            // Initialize Carousel
+            const genericCarousel = document.querySelector('.slideshow--generic');
+            if (genericCarousel) {
+                new Carousel(genericCarousel);
+            }
+
+            // Modal Interactions
+            const modal = document.getElementById('generic-modal');
+            const closeButtons = document.querySelectorAll('.modal-close, .modal-backdrop');
+
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.remove('modal-open');
+                });
+            });
+
+            // Mock Loading State
+            window.demoLoading = (btn) => {
+                LogicUI.setButtonLoading(btn, true, 'Carregando...');
+                setTimeout(() => {
+                    LogicUI.setButtonLoading(btn, false);
+                    LogicUI.showNotification('Ação concluída!', 'success');
+                }, 2000);
+            };
+
+            // Add scroll reveal logic manually 
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => revealObserver.observe(el));
+        });
+    </script>
 </body>
 
 </html>
