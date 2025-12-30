@@ -6,15 +6,25 @@ import { initCoverageMap } from './modules/map.js';
 import { initModals } from './modules/modals.js';
 import autoAnimate from '@formkit/auto-animate';
 
+import { Layout } from './components/layout.js';
+import { UI as Components } from './components/ui-components.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Init Core UI
+    // Init Core Structural Layout
+    Layout.init({
+        basePath: './'
+    });
+
+    // Init Dynamic UI Components
+    Components.init({
+        basePath: './'
+    });
+
+    // Init Core UI Logic
     initNavigation();
     initScrollAnimation();
 
-    // Init Components
-    document.querySelectorAll('.slideshow').forEach(el => new Carousel(el));
-
-    // Init Business Logic
+    // Init Logic Modules
     initForms();
     initPriceCalculator();
     initCoverageMap();

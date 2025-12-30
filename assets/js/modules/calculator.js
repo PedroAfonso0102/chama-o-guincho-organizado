@@ -3,7 +3,7 @@ import { fetchWithTimeout } from './utils.js';
 import { UI } from './ui.js';
 
 export function initPriceCalculator() {
-    const estimator = document.getElementById('price-estimator');
+    const estimator = document.getElementById('price-estimator-form');
     if (!estimator) return;
 
     const originInput = document.getElementById('price-origin');

@@ -10,8 +10,8 @@ export function initForms() {
     setupFormSubmission();
 }
 
-function initInputMasks() {
-    const phoneInputs = document.querySelectorAll('input[type="tel"]');
+export function initInputMasks(scope = document) {
+    const phoneInputs = scope.querySelectorAll('input[type="tel"]');
     phoneInputs.forEach(input => {
         IMask(input, {
             mask: '(00) 00000-0000'

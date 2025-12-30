@@ -185,16 +185,16 @@ function renderServices(containerId) {
                </button>`;
 
         return `
-            <div class="group relative flex flex-col p-8 rounded-3xl bg-card border border-border hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500 animate-on-scroll stagger-${(index % 3) + 1}">
-                <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500 mb-6">
+            <div class="group relative flex flex-col p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-500 animate-on-scroll reveal-up stagger-${(index % 3) + 1}">
+                <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-3xl group-hover:bg-primary group-hover:text-white transition-all duration-500 mb-8">
                     <i class="${service.icon}"></i>
                 </div>
                 <div class="flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">${service.title}</h3>
-                    <p class="text-muted-foreground text-sm leading-relaxed mb-8">${service.text}</p>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">${service.title}</h3>
+                    <p class="text-muted-foreground text-base leading-relaxed mb-10">${service.text}</p>
                 </div>
                 ${actionBtn}
-                ${isEmergency ? '<div class="absolute top-4 right-4"><span class="badge badge-success badge-sm py-3 px-3 text-white animate-pulse">24h</span></div>' : ''}
+                ${isEmergency ? '<div class="absolute top-6 right-6"><span class="badge badge-success gap-2 py-4 px-4 text-white border-none shadow-lg shadow-success/20 animate-pulse">24H ONLINE</span></div>' : ''}
             </div>
         `;
     }).join('');
@@ -205,13 +205,13 @@ function renderFeatures(containerId) {
     if (!container) return;
 
     container.innerHTML = featuresData.map((feature, index) => `
-        <div class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-${(index % 3) + 1}">
-            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <div class="flex gap-5 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/5 group animate-on-scroll reveal-up stagger-${(index % 3) + 1}">
+            <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
                 <i class="${feature.icon}"></i>
             </div>
             <div>
-                <h3 class="font-bold text-lg mb-2">${feature.title}</h3>
-                <p class="text-muted-foreground text-sm leading-tight">${feature.text}</p>
+                <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">${feature.title}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed">${feature.text}</p>
             </div>
         </div>
     `).join('');

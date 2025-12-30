@@ -1,5 +1,5 @@
-
 import { UI } from './ui.js';
+import { initInputMasks } from './forms.js';
 import autoAnimate from '@formkit/auto-animate';
 
 export function initModals() {
@@ -26,6 +26,18 @@ export function initModals() {
     // Close Modal Events
     if (closeBtn) {
         closeBtn.addEventListener('click', () => closeModal(modal));
+    }
+
+    // Modal Footer Submit Button Handler
+    const submitBtn = modal.querySelector('#generic-modal-submit');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+            const currentForm = modalContent.querySelector('form');
+            if (currentForm) {
+                // Manually trigger submit event so forms.js catches it
+                currentForm.requestSubmit ? currentForm.requestSubmit() : currentForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+            }
+        });
     }
 
     // Close on click outside
@@ -67,8 +79,8 @@ function openModal(modal, container, contentId, title) {
 
     container.appendChild(clone);
 
-    // Re-initialize forms or interactions inside modal if needed
-    // dispatch event or call initForms() again restricted to modal scope if necessary
+    // Re-initialize masks for dynamic content
+    initInputMasks(container);
 
     modal.classList.add('modal-open');
     document.body.classList.add('overflow-hidden'); // Prevent background scrolling

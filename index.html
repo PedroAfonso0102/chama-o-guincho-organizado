@@ -1,4 +1,3 @@
-n
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -57,24 +56,12 @@ n
         { "@type": "City", "name": "Hortolândia" },
         { "@type": "City", "name": "Paulínia" }
     ],
-    "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Campinas",
-        "addressRegion": "SP",
-        "addressCountry": "BR"
-    },
     "description": "Serviço de guincho e reboque 24 horas em Campinas e região. Atendimento rápido para carros, motos e utilitários.",
        "openingHoursSpecification": [
         {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
             ],
             "opens": "00:00",
             "closes": "23:59"
@@ -106,46 +93,9 @@ n
             class="hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Header -->
-    <header id="header"
-        class="header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300">
-        <div class="container mx-auto px-4 h-full flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500">
-                <img src="assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" width="160"
-                    height="32" class="h-8 w-auto">
-            </a>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
 
-            <!-- Desktop Nav -->
-            <nav class="hidden lg:flex items-center gap-8">
-                <ul class="flex gap-2">
-                    <li><a href="#urgent-request" class="btn btn-ghost btn-sm">Emergência</a></li>
-                    <li><a href="#services" class="btn btn-ghost btn-sm">Serviços</a></li>
-                    <li><a href="servicos.html#price-estimator" class="btn btn-ghost btn-sm">Orçamento Rápido</a></li>
-                    <li><a href="#contact" class="btn btn-ghost btn-sm">Contato</a></li>
-                </ul>
-
-                <button data-toggle="modal" data-target="tmpl-contact-options" data-title="Fale Conosco"
-                    class="btn btn-primary btn-sm gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95">
-                    <i class="fa-brands fa-whatsapp"></i> Chamar Agora
-                </button>
-            </nav>
-
-            <!-- Mobile Toggle -->
-            <button id="nav-toggle" class="lg:hidden text-2xl text-foreground p-2">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="nav-menu"
-            class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40">
-            <a href="#urgent-request" class="btn btn-ghost w-full justify-start text-lg">Emergência</a>
-            <a href="#services" class="btn btn-ghost w-full justify-start text-lg">Serviços</a>
-            <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4">
-                <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
-            </a>
-        </div>
-    </header>
 
     <!-- Hero Section -->
     <section
@@ -486,57 +436,7 @@ n
                 <div class="h-1 w-16 bg-primary mx-auto rounded-full"></div>
             </div>
             <div class="features__list grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Features will be loaded via JS, but we can structure the skeleton/container here -->
-                <div
-                    class="flex gap-4 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/10 group animate-on-scroll reveal-up stagger-1">
-                    <div
-                        class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                        <i class="fa-solid fa-clock"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Rapidez Total</h3>
-                        <p class="text-muted-foreground leading-relaxed">Chegamos em média em 30 minutos na região de
-                            Campinas.</p>
-                    </div>
-                </div>
-                <div class="features__list grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div
-                        class="flex gap-4 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/10 group animate-on-scroll reveal-up stagger-1">
-                        <div
-                            class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                            <i class="fa-solid fa-clock"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-xl mb-3">Rapidez Total</h3>
-                            <p class="text-muted-foreground leading-relaxed">Chegamos em média em 30 minutos na região
-                                de Campinas.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="flex gap-4 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/10 group animate-on-scroll reveal-up stagger-2">
-                        <div
-                            class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                            <i class="fa-solid fa-tag"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-xl mb-3">Preço Justo</h3>
-                            <p class="text-muted-foreground leading-relaxed">Você sabe quanto vai pagar antes mesmo do
-                                guincho chegar.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="flex gap-4 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/10 group animate-on-scroll reveal-up stagger-3">
-                        <div
-                            class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                            <i class="fa-solid fa-shield-check"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-xl mb-3">Segurança Máxima</h3>
-                            <p class="text-muted-foreground leading-relaxed">Sua carga segurada e transportada por
-                                profissionais treinados.</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- Data loaded via app.js -> ui-components.js -->
             </div>
         </div>
     </section>
@@ -562,13 +462,7 @@ n
             </div>
 
             <div class="coverage__cities flex flex-wrap gap-2 justify-center">
-                <button class="btn btn-outline btn-sm rounded-full">Campinas</button>
-                <button class="btn btn-outline btn-sm rounded-full">Valinhos</button>
-                <button class="btn btn-outline btn-sm rounded-full">Vinhedo</button>
-                <button class="btn btn-outline btn-sm rounded-full">Sumaré</button>
-                <button class="btn btn-outline btn-sm rounded-full">Hortolândia</button>
-                <button class="btn btn-outline btn-sm rounded-full">Paulínia</button>
-                <button class="btn btn-outline btn-sm rounded-full">Indaiatuba</button>
+                <!-- Hydrated via JS -->
             </div>
         </div>
     </section>
@@ -858,119 +752,7 @@ n
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-[#0A0A0B] text-white pt-24 pb-12 border-t border-white/5">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-20">
-                <!-- Branding & Info -->
-                <div class="md:col-span-12 lg:col-span-5">
-                    <div class="flex items-center gap-3 mb-8">
-                        <img src="assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo"
-                            width="240" height="48" class="h-12 w-auto brightness-0 invert">
-                    </div>
-                    <p class="text-white/50 text-lg mb-8 max-w-md leading-relaxed">
-                        Referência em assistência automotiva e transporte especializado. Tecnologia e agilidade para
-                        garantir sua tranquilidade em qualquer rodovia ou cidade.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="#"
-                            class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary transition-all duration-500 group">
-                            <i class="fa-brands fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
-                        </a>
-                        <a href="#"
-                            class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-facebook transition-all duration-500 group">
-                            <i class="fa-brands fa-facebook text-xl group-hover:scale-110 transition-transform"></i>
-                        </a>
-                        <a href="#"
-                            class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-whatsapp transition-all duration-500 group">
-                            <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Navigation -->
-                <div class="md:col-span-4 lg:col-span-2">
-                    <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Navegação</h6>
-                    <ul class="space-y-4 text-white/80">
-                        <li><a href="#features"
-                                class="hover:text-white transition-colors flex items-center gap-2 group"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span>
-                                Diferenciais</a></li>
-                        <li><a href="#coverage"
-                                class="hover:text-white transition-colors flex items-center gap-2 group"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span>
-                                Áreas de Atendimento</a></li>
-                        <li><a href="#testimonials"
-                                class="hover:text-white transition-colors flex items-center gap-2 group"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span>
-                                Depoimentos</a></li>
-                    </ul>
-                </div>
-
-                <!-- Services -->
-                <div class="md:col-span-4 lg:col-span-2">
-                    <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Especialidades</h6>
-                    <ul class="space-y-4 text-white/80">
-                        <li class="hover:text-white transition-colors cursor-default">Guincho para Blindados</li>
-                        <li class="hover:text-white transition-colors cursor-default">Motos e Quadriciclos</li>
-                        <li class="hover:text-white transition-colors cursor-default">Máquinas Agrícolas</li>
-                        <li class="hover:text-white transition-colors cursor-default">Auxílio Pane Elétrica</li>
-                    </ul>
-                </div>
-
-                <!-- Direct Contact -->
-                <div class="md:col-span-4 lg:col-span-3">
-                    <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Central 24h</h6>
-                    <div class="space-y-6">
-                        <a href="tel:+5519993502969"
-                            class="block p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group">
-                            <span class="text-xs text-white/40 block mb-1">Emergência</span>
-                            <span class="text-xl font-bold group-hover:text-primary transition-colors">(19)
-                                99350-2969</span>
-                        </a>
-                        <div class="text-sm text-white/40 leading-relaxed">
-                            <p class="mb-2"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Base Central:
-                                Campinas - SP</p>
-                            <p><i class="fa-solid fa-envelope text-primary mr-2"></i> sos@chamaoguincho.com.br</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-white/30 text-xs text-center md:text-left">
-                    &copy; 2025 Chama o Guincho. Todos os direitos reservados. <br class="md:hidden">
-                    CNPJ: 54.676.258/0001-31
-                </p>
-                <div class="flex items-center gap-8 opacity-20 hover:opacity-100 transition-opacity">
-                    <i class="fa-brands fa-cc-visa text-2xl"></i>
-                    <i class="fa-brands fa-cc-mastercard text-2xl"></i>
-                    <i class="fa-solid fa-barcode text-2xl"></i>
-                    <i class="fa-solid fa-pix text-2xl"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Generic Modal Structure -->
-    <div id="generic-modal" class="modal">
-        <div
-            class="modal-box relative bg-white dark:bg-slate-900 border border-white/10 shadow-2xl rounded-2xl p-0 overflow-hidden max-w-lg w-full transform transition-all">
-            <!-- Header -->
-            <div class="bg-primary/5 p-4 border-b border-border flex justify-between items-center">
-                <h3 class="modal-title text-foreground">Atenção</h3>
-                <button class="btn btn-sm btn-circle btn-ghost modal-close text-muted-foreground hover:text-foreground">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Content -->
-            <div class="content-area p-6">
-                <!-- Dynamic Content Here -->
-            </div>
-        </div>
-        <div class="modal-backdrop bg-black/50 backdrop-blur-sm transition-opacity"></div>
-    </div>
+    <div id="footer-placeholder"></div>
 
     <!-- Hidden Templates -->
     <template id="tmpl-contact-options">

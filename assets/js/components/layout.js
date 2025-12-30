@@ -148,7 +148,7 @@ function renderFooter() {
                             <a href="#" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[#1877F2] transition-all duration-500 group">
                                 <i class="fa-brands fa-facebook text-xl group-hover:scale-110 transition-transform"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[#25D366] transition-all duration-500 group">
+                            <a href="https://wa.me/5519993502969" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[#25D366] transition-all duration-500 group">
                                 <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
                             </a>
                         </div>
@@ -243,18 +243,20 @@ function renderModals() {
 
     modalContainer.innerHTML = `
             <!-- Modals (Generic Container) -->
-            <div class="modal" id="modal-generic">
-                <div class="modal__content">
-                    <div class="modal__header">
-                        <h3 class="modal__title h5 m-0" id="generic-modal-title">Título</h3>
-                        <button class="modal__close btn btn--ghost p-2" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal" id="generic-modal">
+                <div class="modal-box max-w-lg rounded-[2rem] p-0 overflow-hidden bg-card border border-border transition-all duration-500">
+                    <div class="modal__header flex items-center justify-between p-8 border-b border-border">
+                        <h3 class="modal-title text-2xl font-black m-0 tracking-tight" id="generic-modal-title">Solicitar Guincho</h3>
+                        <button class="modal-close btn btn-circle btn-ghost btn-sm" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="modal__body" id="generic-modal-body">
+                    <div class="modal__body p-8 content-area">
                         <!-- Form content injected here -->
                     </div>
-                    <div class="modal__footer px-6 pb-6 pt-2 flex gap-3">
+                    <div class="modal__footer p-8 pt-2 flex gap-3">
                         <button type="button" class="btn btn-ghost flex-1 modal-close">Cancelar</button>
-                        <button type="submit" id="generic-modal-submit" class="btn btn-primary flex-1">Enviar</button>
+                        <button type="button" id="generic-modal-submit" class="btn btn-primary flex-1 shadow-lg shadow-primary/20">
+                            CONTINUAR <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
                     </div>
                 </div>
             </div>

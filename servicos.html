@@ -348,21 +348,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- JavaScript -->
-    <script type="module">
-        import { Layout } from './assets/js/components/layout.js';
-        import { UI } from './assets/js/components/ui-components.js';
-        import './assets/js/app.js'; // Import app.js as a module to ensure single execution context
-
-        // Initialize immediately as modules are deferred by default
-        Layout.init({
-            basePath: './',
-            activePage: 'services'
-        });
-
-        UI.init({
-            basePath: './'
-        });
-    </script>
+    <script type="module" src="assets/js/app.js"></script>
 </body>
 
 </html>
