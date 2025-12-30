@@ -42,7 +42,6 @@ export const Layout = (function () {
                     <ul class="flex gap-2">
                         <li><a href="${getLink('#urgent-request')}" class="btn btn-ghost btn-sm">Emergência</a></li>
                         <li><a href="${getLink('servicos.html')}" class="btn btn-ghost btn-sm ${config.activePage === 'services' ? 'text-primary bg-primary/5' : ''}">Serviços</a></li>
-                        <li><a href="${getLink('#price-estimator')}" class="btn btn-ghost btn-sm">Calcular Preço</a></li>
                         <li><a href="${getLink('#contact')}" class="btn btn-ghost btn-sm">Contato</a></li>
                     </ul>
                     <button data-toggle="modal" data-target="tmpl-contact-options" data-title="Fale Conosco"
@@ -59,7 +58,6 @@ export const Layout = (function () {
             <div id="nav-menu" class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40">
                 <a href="${getLink('#urgent-request')}" class="btn btn-ghost w-full justify-start text-lg">Emergência</a>
                 <a href="${getLink('servicos.html')}" class="btn btn-ghost w-full justify-start text-lg">Serviços</a>
-                <a href="${getLink('#price-estimator')}" class="btn btn-ghost w-full justify-start text-lg">Calcular Preço</a>
                 <a href="${getLink('#contact')}" class="btn btn-ghost w-full justify-start text-lg">Contato</a>
                 <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4">
                     <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
@@ -119,7 +117,6 @@ export const Layout = (function () {
                         <ul class="space-y-4 text-white/60">
                             <li><a href="${getLink('#features')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Diferenciais</a></li>
                             <li><a href="${getLink('#coverage')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Cobertura</a></li>
-                            <li><a href="${getLink('#price-estimator')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Preço</a></li>
                             <li><a href="${getLink('#testimonials')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Atendimentos</a></li>
                         </ul>
                     </div>

@@ -36,26 +36,34 @@ async function updateDistance(originInput, destinationInput, distanceInput) {
             getCoordinates(destination)
         ]);
 
-        const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat}?overview=false`;
+        const base = CONFIG.BASE_COORDS;
+
+        // Multi-point route: Base -> Origin -> Destination -> Base
+        const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${base.lon},${base.lat};${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat};${base.lon},${base.lat}?overview=false`;
+
         const response = await fetchWithTimeout(osrmUrl);
         const data = await response.json();
 
         if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
             const distanceInKm = Math.round(data.routes[0].distance / 1000);
             distanceInput.value = distanceInKm > 0 ? distanceInKm : 1;
+
             // Trigger calculation
             distanceInput.dispatchEvent(new Event('input'));
-            UI.showNotification(`Distância calculada: ${distanceInKm} km`, 'success');
+
+            // Detail the segments for transparency in log (optional but good for debugging)
+            console.log(`Circular Distance: ${distanceInKm} km (Base -> ${origin} -> ${destination} -> Base)`);
+            UI.showNotification(`Logística calculada: ${distanceInKm} km (trajeto circular)`, 'success');
         }
     } catch (error) {
         console.warn('Distance calculation failed', error);
-        UI.showNotification('Não foi possível calcular a distância automaticamente.', 'warning');
+        UI.showNotification('Não foi possível calcular a logística automaticamente.', 'warning');
     }
 }
 
 async function getCoordinates(address) {
     const cleanAddr = address.toLowerCase().trim();
-     // Check cache
+    // Check cache
     for (const [city, coords] of Object.entries(CONFIG.CITY_COORDS)) {
         if (cleanAddr.includes(city)) return coords;
     }
