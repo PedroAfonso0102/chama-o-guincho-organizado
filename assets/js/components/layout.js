@@ -292,7 +292,7 @@ function renderModals() {
                             <i class="fa-solid fa-circle-check"></i>
                         </div>
                         <h3 class="modal__title text-2xl font-black m-0 text-white text-center">Tudo Pronto!</h3>
-                        <button class="modal__close absolute top-4 right-4 text-white/50 hover:text-white transition-colors" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="modal-close absolute top-4 right-4 text-white/50 hover:text-white transition-colors" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal__body text-center p-8 bg-card">
                         <p class="text-muted-foreground mb-8">Sua solicitação foi processada. Clique no botão abaixo para iniciar o atendimento no WhatsApp.</p>

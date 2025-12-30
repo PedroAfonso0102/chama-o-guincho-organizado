@@ -7,52 +7,55 @@ import autoAnimate from '@formkit/auto-animate';
  * Sets up triggers, close handlers, and dynamic content injection.
  */
 export function initModals() {
-    const modal = document.getElementById('generic-modal');
-    if (!modal) return;
+    // 1. Generic Modal Specific Logic (Triggers & Submit)
+    const genericModal = document.getElementById('generic-modal');
+    if (genericModal) {
+        const modalContent = genericModal.querySelector('.modal-box .content-area');
+        if (modalContent) autoAnimate(modalContent);
 
-    const modalContent = modal.querySelector('.modal-box .content-area');
-    const closeBtn = modal.querySelector('.modal-close');
+        // Bind data-toggle triggers
+        document.querySelectorAll('[data-toggle="modal"]').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = trigger.dataset.target;
+                const title = trigger.dataset.title;
+                openModal(genericModal, modalContent, targetId, title);
+            });
+        });
 
-    // Auto-animate modal content for smooth height changes
-    autoAnimate(modalContent);
+        // Submit Action
+        const submitBtn = genericModal.querySelector('#generic-modal-submit');
+        if (submitBtn && modalContent) {
+            submitBtn.addEventListener('click', () => {
+                const currentForm = modalContent.querySelector('form');
+                if (currentForm) {
+                    currentForm.requestSubmit ? currentForm.requestSubmit() : currentForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+                }
+            });
+        }
+    }
 
-    // Open Modal Triggers
-    document.querySelectorAll('[data-toggle="modal"]').forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = trigger.dataset.target; // ID of the template/hidden content
-            const title = trigger.dataset.title;
+    // 2. Global Modal Closing Logic (Handles generic-modal, modal-success, and any future modals)
+    document.querySelectorAll('.modal').forEach(modal => {
+        // Close Button (.modal-close)
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => closeModal(modal));
+        }
 
-            openModal(modal, modalContent, targetId, title);
+        // Click Outside (Background)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal(modal);
         });
     });
 
-    // Close Modal Events
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => closeModal(modal));
-    }
-
-    // Modal Footer Submit Button Handler
-    const submitBtn = modal.querySelector('#generic-modal-submit');
-    if (submitBtn) {
-        submitBtn.addEventListener('click', () => {
-            const currentForm = modalContent.querySelector('form');
-            if (currentForm) {
-                // Manually trigger submit event so forms.js catches it
-                currentForm.requestSubmit ? currentForm.requestSubmit() : currentForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-            }
-        });
-    }
-
-    // Close on click outside
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal(modal);
-    });
-
-    // Close on Escape
+    // 3. Global ESC Key Handler
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('modal-open')) {
-            closeModal(modal);
+        if (e.key === 'Escape') {
+            const openModal = document.querySelector('.modal.modal-open');
+            if (openModal) {
+                closeModal(openModal);
+            }
         }
     });
 }
