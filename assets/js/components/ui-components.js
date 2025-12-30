@@ -185,7 +185,7 @@ function renderServices(containerId) {
                </button>`;
 
         return `
-            <div class="group relative flex flex-col p-8 rounded-3xl bg-card border border-border hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-500 animate-on-scroll stagger-${(index % 3) + 1}">
+            <div class="group relative flex flex-col p-8 rounded-3xl bg-card border border-border hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500 animate-on-scroll stagger-${(index % 3) + 1}">
                 <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500 mb-6">
                     <i class="${service.icon}"></i>
                 </div>
@@ -194,7 +194,7 @@ function renderServices(containerId) {
                     <p class="text-muted-foreground text-sm leading-relaxed mb-8">${service.text}</p>
                 </div>
                 ${actionBtn}
-                ${isEmergency ? '<div class="absolute top-4 right-4"><span class="badge badge-success badge-sm py-3 px-3 text-white">24h</span></div>' : ''}
+                ${isEmergency ? '<div class="absolute top-4 right-4"><span class="badge badge-success badge-sm py-3 px-3 text-white animate-pulse">24h</span></div>' : ''}
             </div>
         `;
     }).join('');
@@ -237,7 +237,7 @@ function renderTestimonials(containerId) {
         return `
         <div class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-${(index % 3) + 1}">
             <div class="relative h-48 overflow-hidden">
-                <img src="${config.basePath}${item.image}" alt="${item.alt}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                <img src="${config.basePath}${item.image}" alt="${item.alt}" width="400" height="192" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
             <div class="card-body p-6 relative">

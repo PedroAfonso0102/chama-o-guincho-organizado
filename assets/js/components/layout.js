@@ -2,37 +2,35 @@
  * @fileoverview Global Layout Components (Header, Footer, Modals)
  */
 
-export const Layout = (function () {
+let config = {
+    basePath: './',
+    activePage: 'home' // 'home' | 'services' | 'other'
+};
 
-    let config = {
-        basePath: './',
-        activePage: 'home' // 'home' | 'services' | 'other'
-    };
-
-    function getLink(target) {
-        if (target.startsWith('#')) {
-            if (config.activePage === 'home') {
-                return target;
-            } else {
-                return `${config.basePath}index.html${target}`;
-            }
+function getLink(target) {
+    if (target.startsWith('#')) {
+        if (config.activePage === 'home') {
+            return target;
+        } else {
+            return `${config.basePath}index.html${target}`;
         }
-        if (target === 'index.html') return `${config.basePath}index.html`;
-        if (target === 'servicos.html') return `${config.basePath}servicos.html`;
-        if (!target.startsWith('http') && !target.startsWith('tel:') && !target.startsWith('mailto:')) {
-            return `${config.basePath}${target}`;
-        }
-        return target;
     }
+    if (target === 'index.html') return `${config.basePath}index.html`;
+    if (target === 'servicos.html') return `${config.basePath}servicos.html`;
+    if (!target.startsWith('http') && !target.startsWith('tel:') && !target.startsWith('mailto:')) {
+        return `${config.basePath}${target}`;
+    }
+    return target;
+}
 
-    function renderHeader() {
-        const header = document.createElement('header');
-        header.id = 'header';
-        header.className = 'header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300';
+function renderHeader() {
+    const header = document.createElement('header');
+    header.id = 'header';
+    header.className = 'header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300';
 
-        const logoHref = config.activePage === 'home' ? '#' : `${config.basePath}index.html`;
+    const logoHref = config.activePage === 'home' ? '#' : `${config.basePath}index.html`;
 
-        header.innerHTML = `
+    header.innerHTML = `
             <div class="container mx-auto px-4 h-full flex items-center justify-between">
                 <a href="${logoHref}" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500">
                     <img src="${config.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" class="h-8 w-auto">
@@ -65,31 +63,75 @@ export const Layout = (function () {
             </div>
         `;
 
-        const placeholder = document.getElementById('header-placeholder');
-        if (placeholder) {
-            placeholder.replaceWith(header);
-        } else {
-            document.body.prepend(header);
-        }
-
-        // Re-attach nav toggle logic since we replaced the HTML
-        const navToggle = header.querySelector('#nav-toggle');
-        const navMenu = header.querySelector('#nav-menu');
-        if (navToggle && navMenu) {
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('hidden');
-            });
-        }
+    const placeholder = document.getElementById('header-placeholder');
+    if (placeholder) {
+        placeholder.replaceWith(header);
+    } else {
+        document.body.prepend(header);
     }
 
-    function renderFooter() {
-        const footer = document.createElement('footer');
-        footer.id = 'contact';
-        footer.className = 'bg-[#0A0A0B] text-white pt-24 pb-12 border-t border-white/5';
+    // Re-attach nav toggle logic
+    const navToggle = header.querySelector('#nav-toggle');
+    const navMenu = header.querySelector('#nav-menu');
+    const navOverlay = document.createElement('div');
+    navOverlay.className = 'nav-overlay fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 z-30';
+    document.body.appendChild(navOverlay);
 
-        const year = new Date().getFullYear();
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            const isOpened = !navMenu.classList.contains('hidden');
+            if (isOpened) {
+                navMenu.classList.add('hidden');
+                navOverlay.classList.remove('opacity-100');
+                navOverlay.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                navMenu.classList.remove('hidden');
+                navOverlay.classList.add('opacity-100');
+                navOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            }
+        });
 
-        footer.innerHTML = `
+        navOverlay.addEventListener('click', () => {
+            navMenu.classList.add('hidden');
+            navOverlay.classList.remove('opacity-100');
+            navOverlay.classList.add('opacity-0', 'pointer-events-none');
+        });
+    }
+
+    // Smooth scroll for anchors
+    header.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#') && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+
+                    // Close mobile menu if open
+                    navMenu.classList.add('hidden');
+                    navOverlay.classList.add('opacity-0', 'pointer-events-none');
+                }
+            }
+        });
+    });
+}
+
+function renderFooter() {
+    const footer = document.createElement('footer');
+    footer.id = 'contact';
+    footer.className = 'bg-[#0A0A0B] text-white pt-24 pb-12 border-t border-white/5';
+
+    const year = new Date().getFullYear();
+
+    footer.innerHTML = `
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-20">
                     <div class="md:col-span-12 lg:col-span-5">
@@ -114,7 +156,7 @@ export const Layout = (function () {
 
                     <div class="md:col-span-4 lg:col-span-2">
                         <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Navegação</h6>
-                        <ul class="space-y-4 text-white/60">
+                        <ul class="space-y-4 text-white/80">
                             <li><a href="${getLink('#features')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Diferenciais</a></li>
                             <li><a href="${getLink('#coverage')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Cobertura</a></li>
                             <li><a href="${getLink('#testimonials')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Atendimentos</a></li>
@@ -123,7 +165,7 @@ export const Layout = (function () {
 
                     <div class="md:col-span-4 lg:col-span-2">
                         <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Cidades</h6>
-                        <ul class="space-y-4 text-white/60">
+                        <ul class="space-y-4 text-white/80">
                             <li><a href="${config.basePath}guincho-sumare/" class="hover:text-white transition-colors">Sumaré</a></li>
                             <li><a href="${config.basePath}guincho-hortolandia/" class="hover:text-white transition-colors">Hortolândia</a></li>
                             <li><a href="${config.basePath}guincho-indaiatuba/" class="hover:text-white transition-colors">Indaiatuba</a></li>
@@ -157,19 +199,19 @@ export const Layout = (function () {
             </div>
         `;
 
-        const placeholder = document.getElementById('footer-placeholder');
-        if (placeholder) {
-            placeholder.replaceWith(footer);
-        } else {
-            document.body.appendChild(footer);
-        }
+    const placeholder = document.getElementById('footer-placeholder');
+    if (placeholder) {
+        placeholder.replaceWith(footer);
+    } else {
+        document.body.appendChild(footer);
     }
+}
 
 
-    function renderFloatButtons() {
-        const div = document.createElement('div');
-        div.className = 'float-buttons';
-        div.innerHTML = `
+function renderFloatButtons() {
+    const div = document.createElement('div');
+    div.className = 'float-buttons';
+    div.innerHTML = `
             <a href="https://wa.me/5519993502969" target="_blank" rel="noopener noreferrer" class="float-button float-button--whatsapp" aria-label="WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
@@ -177,29 +219,29 @@ export const Layout = (function () {
                 <i class="fa-solid fa-phone"></i>
             </a>
         `;
-        document.body.appendChild(div);
+    document.body.appendChild(div);
 
-        const scrollBtn = document.createElement('button');
-        scrollBtn.className = 'scroll-top';
-        scrollBtn.id = 'scrollTop';
-        scrollBtn.setAttribute('aria-label', 'Voltar ao topo');
-        scrollBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
-        document.body.appendChild(scrollBtn);
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'scroll-top';
+    scrollBtn.id = 'scrollTop';
+    scrollBtn.setAttribute('aria-label', 'Voltar ao topo');
+    scrollBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+    document.body.appendChild(scrollBtn);
 
-        const notif = document.createElement('div');
-        notif.className = 'notification';
-        notif.id = 'notification';
-        notif.innerHTML = `
+    const notif = document.createElement('div');
+    notif.className = 'notification';
+    notif.id = 'notification';
+    notif.innerHTML = `
             <i class="notification__icon fa-solid fa-circle-info" aria-hidden="true"></i>
             <span class="notification__message text-sm font-medium">Mensagem de notificação</span>
         `;
-        document.body.appendChild(notif);
-    }
+    document.body.appendChild(notif);
+}
 
-    function renderModals() {
-        const modalContainer = document.createElement('div');
+function renderModals() {
+    const modalContainer = document.createElement('div');
 
-        modalContainer.innerHTML = `
+    modalContainer.innerHTML = `
             <!-- Modals (Generic Container) -->
             <div class="modal" id="modal-generic">
                 <div class="modal__content">
@@ -210,26 +252,27 @@ export const Layout = (function () {
                     <div class="modal__body" id="generic-modal-body">
                         <!-- Form content injected here -->
                     </div>
-                    <div class="modal__footer">
-                        <button type="button" class="btn btn--ghost modal-close">Cancelar</button>
-                        <button type="submit" id="generic-modal-submit" class="btn btn--primary">Enviar</button>
+                    <div class="modal__footer px-6 pb-6 pt-2 flex gap-3">
+                        <button type="button" class="btn btn-ghost flex-1 modal-close">Cancelar</button>
+                        <button type="submit" id="generic-modal-submit" class="btn btn-primary flex-1">Enviar</button>
                     </div>
                 </div>
             </div>
 
             <!-- Success Modal -->
             <div class="modal" id="modal-success">
-                <div class="modal__content">
-                    <div class="modal__header" style="background-color: hsl(var(--success)); color: white;">
-                        <h3 class="modal__title h5 m-0 text-white">Sucesso!</h3>
-                        <button class="modal__close btn btn--ghost p-2 text-white" style="color: white"><i class="fa-solid fa-xmark"></i></button>
+                <div class="modal__content max-w-sm rounded-[2rem] overflow-hidden">
+                    <div class="modal__header bg-success text-success-foreground p-8 flex flex-col items-center">
+                        <div class="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-4xl mb-4">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h3 class="modal__title text-2xl font-black m-0 text-white text-center">Tudo Pronto!</h3>
+                        <button class="modal__close absolute top-4 right-4 text-white/50 hover:text-white transition-colors" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="modal__body text-center py-8">
-                        <div style="font-size: 4rem; color: hsl(var(--success)); margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-check"></i></div>
-                        <h4 class="h5 mb-2">Solicitação Recebida</h4>
-                        <p class="mb-6">Clique abaixo para finalizar no WhatsApp.</p>
-                        <a href="#" id="success-modal-whatsapp-btn" class="btn btn--whatsapp btn--lg w-full">
-                            <i class="fa-brands fa-whatsapp"></i> Abrir WhatsApp
+                    <div class="modal__body text-center p-8 bg-card">
+                        <p class="text-muted-foreground mb-8">Sua solicitação foi processada. Clique no botão abaixo para iniciar o atendimento no WhatsApp.</p>
+                        <a href="#" id="success-modal-whatsapp-btn" class="btn btn-whatsapp btn-lg w-full gap-3 shadow-xl shadow-whatsapp/20">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> ENVIAR SOLICITAÇÃO
                         </a>
                     </div>
                 </div>
@@ -318,19 +361,17 @@ export const Layout = (function () {
             </div>
         `;
 
-        document.body.appendChild(modalContainer);
-    }
+    document.body.appendChild(modalContainer);
+}
 
-    function init(options = {}) {
-        config = { ...config, ...options };
-        renderHeader();
-        renderFooter();
-        renderFloatButtons();
-        renderModals();
-    }
+function init(options = {}) {
+    config = { ...config, ...options };
+    renderHeader();
+    renderFooter();
+    renderFloatButtons();
+    renderModals();
+}
 
-    return {
-        init
-    };
-
-})();
+export const Layout = {
+    init
+};

@@ -164,7 +164,7 @@
      * TIPOGRAFIA (Typography Scale & Hierarchy)
      * ========================================================================= */
 
-    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
     /* Base Font Sizes */
     --text-3xs: 0.625rem;
