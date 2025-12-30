@@ -118,14 +118,15 @@
                 </p>
             </div>
 
-            <div class="max-w-4xl mx-auto bg-card border border-border rounded-2xl p-8 shadow-xl animate-on-scroll">
+            <form id="price-estimator-form"
+                class="max-w-4xl mx-auto bg-card border border-border rounded-2xl p-8 shadow-xl animate-on-scroll">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-4">
                         <div class="form-control">
                             <label class="label label-text font-medium" for="price-origin">Ponto de Retirada (A)</label>
                             <div class="relative">
-                                <input type="text" class="input input-bordered w-full pr-12" id="price-origin"
-                                    placeholder="Endereço de origem">
+                                <input type="text" name="Ponto de Retirada" class="input input-bordered w-full pr-12"
+                                    id="price-origin" placeholder="Endereço de origem" required>
                                 <button type="button"
                                     class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
                                     id="price-detect-origin">
@@ -136,14 +137,14 @@
                         <div class="form-control">
                             <label class="label label-text font-medium" for="price-destination">Ponto de Entrega
                                 (B)</label>
-                            <input type="text" class="input input-bordered w-full" id="price-destination"
-                                placeholder="Endereço de destino">
+                            <input type="text" name="Ponto de Entrega" class="input input-bordered w-full"
+                                id="price-destination" placeholder="Endereço de destino" required>
                         </div>
                         <div class="form-control">
                             <label class="label label-text font-medium" for="price-distance">Distância Logística Total
                                 (km)</label>
-                            <input type="number" class="input input-bordered w-full" id="price-distance" min="1"
-                                max="2000" value="20" readonly>
+                            <input type="number" name="Distância Total" class="input input-bordered w-full"
+                                id="price-distance" min="1" max="2000" value="20" readonly>
                             <label class="label text-xs text-muted-foreground mt-1">Calculado automaticamente via
                                 GPS</label>
                         </div>
@@ -152,7 +153,8 @@
                     <div class="flex flex-col space-y-4">
                         <div class="form-control">
                             <label class="label label-text font-medium" for="price-vehicle">Categoria do Veículo</label>
-                            <select class="select select-bordered w-full" id="price-vehicle">
+                            <select name="Categoria do Veículo" class="select select-bordered w-full" id="price-vehicle"
+                                required>
                                 <option value="moto">Motocicletas</option>
                                 <option value="car" selected>Carro de Passeio</option>
                                 <option value="suv">SUV / Caminhonete / Blindado</option>
@@ -163,13 +165,13 @@
                         <div class="bg-muted/50 border border-border rounded-lg p-6 text-center mt-auto">
                             <div class="text-xs font-bold uppercase tracking-wider opacity-70 mb-2">Investimento
                                 Estimado</div>
-                            <div class="price-estimator__price text-4xl font-extrabold text-primary mb-6">R$ ---,---
+                            <div id="price-estimate-display"
+                                class="price-estimator__price text-4xl font-extrabold text-primary mb-6">R$ ---,---
                             </div>
                             <div class="grid grid-cols-1 gap-2">
-                                <a href="https://wa.me/5519993502969?text=Gostaria%20de%20confirmar%20orçamento%20logístico"
-                                    class="btn btn-primary text-white">
+                                <button type="submit" class="btn btn-primary text-white">
                                     <i class="fa-brands fa-whatsapp"></i> Confirmar Agendamento
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -177,7 +179,7 @@
                 <p class="text-center text-xs mt-6 text-muted-foreground">
                     * Cálculo exato sujeito a variáveis técnicas (ex: rodas travadas, subsolo, uso de patins técnicos).
                 </p>
-            </div>
+            </form>
         </div>
     </section>
 

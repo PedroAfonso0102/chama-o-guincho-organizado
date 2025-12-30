@@ -150,7 +150,12 @@ n
     <!-- Hero Section -->
     <section
         class="relative pt-28 pb-20 overflow-hidden bg-[radial-gradient(circle_at_top_center,hsl(var(--primary)/0.05)_0%,transparent_70%)]">
-        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Glow Orbital Background Decoration -->
+        <div class="glow-orbital top-0 -left-64 opacity-30"></div>
+        <div class="glow-orbital -bottom-32 -right-32 opacity-20"
+            style="animation-delay: -5s; animation-direction: reverse;"></div>
+
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div class="text-center lg:text-left">
                 <div
                     class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 animate-on-scroll visible stagger-1">
@@ -356,76 +361,123 @@ n
                         </p>
                     </div>
 
-                    <form id="emergency-form" class="hidden md:block space-y-4">
-                        <div class="form-control">
-                            <label for="emergency-location" class="label label-text font-medium">Onde você está?</label>
-                            <div class="relative">
-                                <input type="text" id="emergency-location" class="input input-bordered w-full pr-24"
-                                    placeholder="Digite ou detecte..." required>
-                                <button type="button"
-                                    class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
-                                    id="emergency-detect-location">
-                                    <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
+                    <form id="emergency-form" class="hidden md:block space-y-6 relative">
+                        <!-- Step 1: Logistics -->
+                        <div id="form-step-1" class="space-y-4 transition-all duration-500">
+                            <div class="form-control">
+                                <label for="emergency-location" class="label label-text font-medium">Onde você
+                                    está?</label>
+                                <div class="relative group">
+                                    <input type="text" id="emergency-location" name="Localização (Origem)"
+                                        class="input input-bordered w-full pr-24 h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="Digite ou detecte..." required>
+                                    <button type="button"
+                                        class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
+                                        id="emergency-detect-location">
+                                        <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control w-full">
+                                    <label for="emergency-destination" class="label label-text font-medium">Para onde
+                                        vai?</label>
+                                    <div class="relative">
+                                        <i
+                                            class="fa-solid fa-location-dot absolute left-4 top-1/2 -translate-y-1/2 text-primary/50 pointer-events-none"></i>
+                                        <input type="text" id="emergency-destination" name="Destino (Opcional)"
+                                            class="input input-bordered w-full pl-12 h-14 bg-white/5 focus:bg-white transition-all"
+                                            placeholder="Destino (Opcional)">
+                                    </div>
+                                </div>
+                                <div class="form-control w-full">
+                                    <label for="emergency-vehicle" class="label label-text font-medium">Seu
+                                        Veículo</label>
+                                    <select id="emergency-vehicle" name="Tipo de Veículo"
+                                        class="select select-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        required>
+                                        <option value="" disabled selected>Selecione...</option>
+                                        <option value="Carro de Passeio">Carro de Passeio</option>
+                                        <option value="Moto">Moto</option>
+                                        <option value="SUV / Caminhonete">SUV / Pickup</option>
+                                        <option value="Van / Utilitário">Van / Utilitário</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="button" id="btn-next-step"
+                                class="btn btn-primary btn-lg w-full h-14 mt-4 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+                                CONTINUAR <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Step 2: Contact (Hidden initially) -->
+                        <div id="form-step-2"
+                            class="hidden space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div
+                                class="p-4 bg-primary/5 rounded-xl border border-primary/10 mb-4 flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                                    <i class="fa-solid fa-truck-bolt"></i>
+                                </div>
+                                <p class="text-sm font-medium leading-snug">Logística capturada! Agora informe quem
+                                    devemos procurar:</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control w-full">
+                                    <label for="emergency-name" class="label label-text font-medium">Seu Nome</label>
+                                    <input type="text" id="emergency-name" name="Nome do Cliente"
+                                        class="input input-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="Nome" required disabled>
+                                </div>
+
+                                <div class="form-control w-full">
+                                    <label for="emergency-phone" class="label label-text font-medium">WhatsApp para
+                                        Contato</label>
+                                    <input type="tel" id="emergency-phone" name="WhatsApp / Telefone"
+                                        class="input input-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="(19) 99999-9999" required disabled>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 mt-4">
+                                <button type="button" id="btn-prev-step"
+                                    class="btn btn-ghost btn-lg h-14 px-6 border border-border">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </button>
+                                <button type="submit"
+                                    class="btn btn-primary btn-lg flex-1 h-14 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+                                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i> SOLICITAR AGORA
                                 </button>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="form-control w-full">
-                                <label for="emergency-destination" class="label label-text font-medium">Para onde
-                                    vai?</label>
-                                <div class="relative">
-                                    <i
-                                        class="fa-solid fa-location-dot absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"></i>
-                                    <input type="text" id="emergency-destination"
-                                        class="input input-bordered w-full pl-10" placeholder="Destino (Opcional)">
-                                </div>
-                            </div>
-                            <div class="form-control w-full">
-                                <label for="emergency-vehicle" class="label label-text font-medium">Seu Veículo</label>
-                                <select id="emergency-vehicle" class="select select-bordered w-full" required>
-                                    <option value="" disabled selected>Selecione...</option>
-                                    <option value="Carro de Passeio">Carro de Passeio</option>
-                                    <option value="Moto">Moto</option>
-                                    <option value="SUV / Caminhonete">SUV / Pickup</option>
-                                    <option value="Van / Utilitário">Van / Utilitário</option>
-                                </select>
-                            </div>
+                        <!-- Decorative Glow -->
+                        <div
+                            class="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none">
                         </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="form-control w-full">
-                                <label for="emergency-name" class="label label-text font-medium">Seu Nome</label>
-                                <input type="text" id="emergency-name" class="input input-bordered w-full"
-                                    placeholder="Nome" required>
-                            </div>
-
-                            <div class="form-control w-full">
-                                <label for="emergency-phone" class="label label-text font-medium">Seu WhatsApp</label>
-                                <input type="tel" id="emergency-phone" class="input input-bordered w-full"
-                                    placeholder="(DDD) 99999-9999" required>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-lg w-full mt-4">
-                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Solicitar Guincho Agora
-                        </button>
                     </form>
                 </div>
 
                 <div
-                    class="hidden md:flex bg-primary text-primary-foreground items-center justify-center text-8xl relative overflow-hidden">
-                    <i class="fa-solid fa-truck-pickup z-10" aria-hidden="true"></i>
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                    class="hidden md:flex bg-primary text-primary-foreground items-center justify-center text-8xl relative overflow-hidden group">
+                    <i class="fa-solid fa-truck-pickup z-10 transition-transform duration-1000 group-hover:scale-110 group-hover:-rotate-3"
+                        aria-hidden="true"></i>
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/20"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-16 lg:py-24 bg-muted/30">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+    <section id="features" class="relative py-16 lg:py-24 bg-muted/30 overflow-hidden">
+        <!-- Decoration -->
+        <div class="glow-orbital -top-20 -right-20 opacity-10"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll reveal-up">
                 <span
                     class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Diferenciais</span>
                 <h2 class="font-extrabold animate-on-scroll">
@@ -436,73 +488,53 @@ n
             <div class="features__list grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Features will be loaded via JS, but we can structure the skeleton/container here -->
                 <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-1">
+                    class="flex gap-4 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/10 group animate-on-scroll reveal-up stagger-1">
                     <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                        class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
                         <i class="fa-solid fa-clock"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-lg mb-2">Rapidez Total</h3>
-                        <p class="text-muted-foreground">Chegamos em média em 30 minutos na região de Campinas.</p>
+                        <h3 class="font-bold text-xl mb-3">Rapidez Total</h3>
+                        <p class="text-muted-foreground leading-relaxed">Chegamos em média em 30 minutos na região de
+                            Campinas.</p>
                     </div>
                 </div>
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-2">
+                <div class="features__list grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-dollar-sign"></i>
+                        class="flex gap-4 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/10 group animate-on-scroll reveal-up stagger-1">
+                        <div
+                            class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-3">Rapidez Total</h3>
+                            <p class="text-muted-foreground leading-relaxed">Chegamos em média em 30 minutos na região
+                                de Campinas.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Preço Justo</h3>
-                        <p class="text-muted-foreground">Valores transparentes e combinados antes. Sem surpresas.</p>
-                    </div>
-                </div>
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-3">
                     <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-star"></i>
+                        class="flex gap-4 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/10 group animate-on-scroll reveal-up stagger-2">
+                        <div
+                            class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-tag"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-3">Preço Justo</h3>
+                            <p class="text-muted-foreground leading-relaxed">Você sabe quanto vai pagar antes mesmo do
+                                guincho chegar.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Profissionalismo</h3>
-                        <p class="text-muted-foreground">Equipe treinada e caminhões novos para sua segurança.</p>
-                    </div>
-                </div>
-                <!-- Missing Features Restored -->
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-1">
                     <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Segurança Total</h3>
-                        <p class="text-muted-foreground">Veículos monitorados e seguro total para sua carga durante o
-                            transporte.</p>
-                    </div>
-                </div>
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-2">
-                    <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Atendimento 24h</h3>
-                        <p class="text-muted-foreground">Estamos prontos para te atender a qualquer hora do dia ou da
-                            noite.</p>
-                    </div>
-                </div>
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-3">
-                    <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Cobertura Ampla</h3>
-                        <p class="text-muted-foreground">Atendemos Campinas e toda região metropolitana num raio de
-                            100km.</p>
+                        class="flex gap-4 items-start p-8 rounded-3xl glass-panel hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out border border-white/10 group animate-on-scroll reveal-up stagger-3">
+                        <div
+                            class="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-shield-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-3">Segurança Máxima</h3>
+                            <p class="text-muted-foreground leading-relaxed">Sua carga segurada e transportada por
+                                profissionais treinados.</p>
+                        </div>
                     </div>
                 </div>
             </div>
