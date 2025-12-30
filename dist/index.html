@@ -1,4 +1,3 @@
-n
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -27,10 +26,23 @@ n
     <meta property="og:image" content="assets/images/base-2.JPG">
     <meta property="og:url" content="https://www.chamaoguincho.com.br/">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#FF7A1A">
-
-    <title>Guincho em Campinas 24h - Chegamos em 30 Minutos | Chama o Guincho</title>
+    <title>Guincho 24h em Campinas e Região | Chegamos em 30 Minutos</title>
     <link rel="canonical" href="https://www.chamaoguincho.com.br/" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Chama o Guincho",
+      "url": "https://www.chamaoguincho.com.br/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.chamaoguincho.com.br/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -57,24 +69,12 @@ n
         { "@type": "City", "name": "Hortolândia" },
         { "@type": "City", "name": "Paulínia" }
     ],
-    "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Campinas",
-        "addressRegion": "SP",
-        "addressCountry": "BR"
-    },
     "description": "Serviço de guincho e reboque 24 horas em Campinas e região. Atendimento rápido para carros, motos e utilitários.",
        "openingHoursSpecification": [
         {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
             ],
             "opens": "00:00",
             "closes": "23:59"
@@ -98,8 +98,8 @@ n
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-  <script type="module" crossorigin src="./assets/app-BGAToQna.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/app-CHSdm7bC.css">
+  <script type="module" crossorigin src="./assets/app-CKJLG4sn.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/app-CPbg09vu.css">
 </head>
 
 <body class="bg-background text-foreground font-sans antialiased">
@@ -108,51 +108,19 @@ n
             class="hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Header -->
-    <header id="header"
-        class="header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300">
-        <div class="container mx-auto px-4 h-full flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500">
-                <img src="assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" width="160"
-                    height="32" class="h-8 w-auto">
-            </a>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
 
-            <!-- Desktop Nav -->
-            <nav class="hidden lg:flex items-center gap-8">
-                <ul class="flex gap-2">
-                    <li><a href="#urgent-request" class="btn btn-ghost btn-sm">Emergência</a></li>
-                    <li><a href="#services" class="btn btn-ghost btn-sm">Serviços</a></li>
-                    <li><a href="servicos.html#price-estimator" class="btn btn-ghost btn-sm">Orçamento Rápido</a></li>
-                    <li><a href="#contact" class="btn btn-ghost btn-sm">Contato</a></li>
-                </ul>
-
-                <button data-toggle="modal" data-target="tmpl-contact-options" data-title="Fale Conosco"
-                    class="btn btn-primary btn-sm gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95">
-                    <i class="fa-brands fa-whatsapp"></i> Chamar Agora
-                </button>
-            </nav>
-
-            <!-- Mobile Toggle -->
-            <button id="nav-toggle" class="lg:hidden text-2xl text-foreground p-2">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="nav-menu"
-            class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40">
-            <a href="#urgent-request" class="btn btn-ghost w-full justify-start text-lg">Emergência</a>
-            <a href="#services" class="btn btn-ghost w-full justify-start text-lg">Serviços</a>
-            <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4">
-                <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
-            </a>
-        </div>
-    </header>
 
     <!-- Hero Section -->
     <section
         class="relative pt-28 pb-20 overflow-hidden bg-[radial-gradient(circle_at_top_center,hsl(var(--primary)/0.05)_0%,transparent_70%)]">
-        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Glow Orbital Background Decoration -->
+        <div class="glow-orbital top-0 -left-64 opacity-30"></div>
+        <div class="glow-orbital -bottom-32 -right-32 opacity-20"
+            style="animation-delay: -5s; animation-direction: reverse;"></div>
+
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div class="text-center lg:text-left">
                 <div
                     class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 animate-on-scroll visible stagger-1">
@@ -358,76 +326,123 @@ n
                         </p>
                     </div>
 
-                    <form id="emergency-form" class="hidden md:block space-y-4">
-                        <div class="form-control">
-                            <label for="emergency-location" class="label label-text font-medium">Onde você está?</label>
-                            <div class="relative">
-                                <input type="text" id="emergency-location" class="input input-bordered w-full pr-24"
-                                    placeholder="Digite ou detecte..." required>
-                                <button type="button"
-                                    class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
-                                    id="emergency-detect-location">
-                                    <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
+                    <form id="emergency-form" class="hidden md:block space-y-6 relative">
+                        <!-- Step 1: Logistics -->
+                        <div id="form-step-1" class="space-y-4 transition-all duration-500">
+                            <div class="form-control">
+                                <label for="emergency-location" class="label label-text font-medium">Onde você
+                                    está?</label>
+                                <div class="relative group">
+                                    <input type="text" id="emergency-location" name="Localização (Origem)"
+                                        class="input input-bordered w-full pr-24 h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="Digite ou detecte..." required>
+                                    <button type="button"
+                                        class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
+                                        id="emergency-detect-location">
+                                        <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control w-full">
+                                    <label for="emergency-destination" class="label label-text font-medium">Para onde
+                                        vai?</label>
+                                    <div class="relative">
+                                        <i
+                                            class="fa-solid fa-location-dot absolute left-4 top-1/2 -translate-y-1/2 text-primary/50 pointer-events-none"></i>
+                                        <input type="text" id="emergency-destination" name="Destino (Opcional)"
+                                            class="input input-bordered w-full pl-12 h-14 bg-white/5 focus:bg-white transition-all"
+                                            placeholder="Destino (Opcional)">
+                                    </div>
+                                </div>
+                                <div class="form-control w-full">
+                                    <label for="emergency-vehicle" class="label label-text font-medium">Seu
+                                        Veículo</label>
+                                    <select id="emergency-vehicle" name="Tipo de Veículo"
+                                        class="select select-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        required>
+                                        <option value="" disabled selected>Selecione...</option>
+                                        <option value="Carro de Passeio">Carro de Passeio</option>
+                                        <option value="Moto">Moto</option>
+                                        <option value="SUV / Caminhonete">SUV / Pickup</option>
+                                        <option value="Van / Utilitário">Van / Utilitário</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="button" id="btn-next-step"
+                                class="btn btn-primary btn-lg w-full h-14 mt-4 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+                                CONTINUAR <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Step 2: Contact (Hidden initially) -->
+                        <div id="form-step-2"
+                            class="hidden space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div
+                                class="p-4 bg-primary/5 rounded-xl border border-primary/10 mb-4 flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                                    <i class="fa-solid fa-truck-bolt"></i>
+                                </div>
+                                <p class="text-sm font-medium leading-snug">Logística capturada! Agora informe quem
+                                    devemos procurar:</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control w-full">
+                                    <label for="emergency-name" class="label label-text font-medium">Seu Nome</label>
+                                    <input type="text" id="emergency-name" name="Nome do Cliente"
+                                        class="input input-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="Nome" required disabled>
+                                </div>
+
+                                <div class="form-control w-full">
+                                    <label for="emergency-phone" class="label label-text font-medium">WhatsApp para
+                                        Contato</label>
+                                    <input type="tel" id="emergency-phone" name="WhatsApp / Telefone"
+                                        class="input input-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="(19) 99999-9999" required disabled>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 mt-4">
+                                <button type="button" id="btn-prev-step"
+                                    class="btn btn-ghost btn-lg h-14 px-6 border border-border">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </button>
+                                <button type="submit"
+                                    class="btn btn-primary btn-lg flex-1 h-14 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+                                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i> SOLICITAR AGORA
                                 </button>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="form-control w-full">
-                                <label for="emergency-destination" class="label label-text font-medium">Para onde
-                                    vai?</label>
-                                <div class="relative">
-                                    <i
-                                        class="fa-solid fa-location-dot absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"></i>
-                                    <input type="text" id="emergency-destination"
-                                        class="input input-bordered w-full pl-10" placeholder="Destino (Opcional)">
-                                </div>
-                            </div>
-                            <div class="form-control w-full">
-                                <label for="emergency-vehicle" class="label label-text font-medium">Seu Veículo</label>
-                                <select id="emergency-vehicle" class="select select-bordered w-full" required>
-                                    <option value="" disabled selected>Selecione...</option>
-                                    <option value="Carro de Passeio">Carro de Passeio</option>
-                                    <option value="Moto">Moto</option>
-                                    <option value="SUV / Caminhonete">SUV / Pickup</option>
-                                    <option value="Van / Utilitário">Van / Utilitário</option>
-                                </select>
-                            </div>
+                        <!-- Decorative Glow -->
+                        <div
+                            class="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none">
                         </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="form-control w-full">
-                                <label for="emergency-name" class="label label-text font-medium">Seu Nome</label>
-                                <input type="text" id="emergency-name" class="input input-bordered w-full"
-                                    placeholder="Nome" required>
-                            </div>
-
-                            <div class="form-control w-full">
-                                <label for="emergency-phone" class="label label-text font-medium">Seu WhatsApp</label>
-                                <input type="tel" id="emergency-phone" class="input input-bordered w-full"
-                                    placeholder="(DDD) 99999-9999" required>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-lg w-full mt-4">
-                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Solicitar Guincho Agora
-                        </button>
                     </form>
                 </div>
 
                 <div
-                    class="hidden md:flex bg-primary text-primary-foreground items-center justify-center text-8xl relative overflow-hidden">
-                    <i class="fa-solid fa-truck-pickup z-10" aria-hidden="true"></i>
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                    class="hidden md:flex bg-primary text-primary-foreground items-center justify-center text-8xl relative overflow-hidden group">
+                    <i class="fa-solid fa-truck-pickup z-10 transition-transform duration-1000 group-hover:scale-110 group-hover:-rotate-3"
+                        aria-hidden="true"></i>
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/20"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-16 lg:py-24 bg-muted/30">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+    <section id="features" class="relative py-16 lg:py-24 bg-muted/30 overflow-hidden">
+        <!-- Decoration -->
+        <div class="glow-orbital -top-20 -right-20 opacity-10"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll reveal-up">
                 <span
                     class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Diferenciais</span>
                 <h2 class="font-extrabold animate-on-scroll">
@@ -436,77 +451,7 @@ n
                 <div class="h-1 w-16 bg-primary mx-auto rounded-full"></div>
             </div>
             <div class="features__list grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Features will be loaded via JS, but we can structure the skeleton/container here -->
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-1">
-                    <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-clock"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Rapidez Total</h3>
-                        <p class="text-muted-foreground">Chegamos em média em 30 minutos na região de Campinas.</p>
-                    </div>
-                </div>
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-2">
-                    <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-dollar-sign"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Preço Justo</h3>
-                        <p class="text-muted-foreground">Valores transparentes e combinados antes. Sem surpresas.</p>
-                    </div>
-                </div>
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-3">
-                    <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Profissionalismo</h3>
-                        <p class="text-muted-foreground">Equipe treinada e caminhões novos para sua segurança.</p>
-                    </div>
-                </div>
-                <!-- Missing Features Restored -->
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-1">
-                    <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Segurança Total</h3>
-                        <p class="text-muted-foreground">Veículos monitorados e seguro total para sua carga durante o
-                            transporte.</p>
-                    </div>
-                </div>
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-2">
-                    <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Atendimento 24h</h3>
-                        <p class="text-muted-foreground">Estamos prontos para te atender a qualquer hora do dia ou da
-                            noite.</p>
-                    </div>
-                </div>
-                <div
-                    class="flex gap-4 items-start p-6 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out border border-transparent hover:border-primary/10 group animate-on-scroll stagger-3">
-                    <div
-                        class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Cobertura Ampla</h3>
-                        <p class="text-muted-foreground">Atendemos Campinas e toda região metropolitana num raio de
-                            100km.</p>
-                    </div>
-                </div>
+                <!-- Data loaded via app.js -> ui-components.js -->
             </div>
         </div>
     </section>
@@ -532,13 +477,7 @@ n
             </div>
 
             <div class="coverage__cities flex flex-wrap gap-2 justify-center">
-                <button class="btn btn-outline btn-sm rounded-full">Campinas</button>
-                <button class="btn btn-outline btn-sm rounded-full">Valinhos</button>
-                <button class="btn btn-outline btn-sm rounded-full">Vinhedo</button>
-                <button class="btn btn-outline btn-sm rounded-full">Sumaré</button>
-                <button class="btn btn-outline btn-sm rounded-full">Hortolândia</button>
-                <button class="btn btn-outline btn-sm rounded-full">Paulínia</button>
-                <button class="btn btn-outline btn-sm rounded-full">Indaiatuba</button>
+                <!-- Hydrated via JS -->
             </div>
         </div>
     </section>
@@ -828,119 +767,7 @@ n
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-[#0A0A0B] text-white pt-24 pb-12 border-t border-white/5">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-20">
-                <!-- Branding & Info -->
-                <div class="md:col-span-12 lg:col-span-5">
-                    <div class="flex items-center gap-3 mb-8">
-                        <img src="assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo"
-                            width="240" height="48" class="h-12 w-auto brightness-0 invert">
-                    </div>
-                    <p class="text-white/50 text-lg mb-8 max-w-md leading-relaxed">
-                        Referência em assistência automotiva e transporte especializado. Tecnologia e agilidade para
-                        garantir sua tranquilidade em qualquer rodovia ou cidade.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="#"
-                            class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary transition-all duration-500 group">
-                            <i class="fa-brands fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
-                        </a>
-                        <a href="#"
-                            class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-facebook transition-all duration-500 group">
-                            <i class="fa-brands fa-facebook text-xl group-hover:scale-110 transition-transform"></i>
-                        </a>
-                        <a href="#"
-                            class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-whatsapp transition-all duration-500 group">
-                            <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Navigation -->
-                <div class="md:col-span-4 lg:col-span-2">
-                    <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Navegação</h6>
-                    <ul class="space-y-4 text-white/80">
-                        <li><a href="#features"
-                                class="hover:text-white transition-colors flex items-center gap-2 group"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span>
-                                Diferenciais</a></li>
-                        <li><a href="#coverage"
-                                class="hover:text-white transition-colors flex items-center gap-2 group"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span>
-                                Áreas de Atendimento</a></li>
-                        <li><a href="#testimonials"
-                                class="hover:text-white transition-colors flex items-center gap-2 group"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span>
-                                Depoimentos</a></li>
-                    </ul>
-                </div>
-
-                <!-- Services -->
-                <div class="md:col-span-4 lg:col-span-2">
-                    <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Especialidades</h6>
-                    <ul class="space-y-4 text-white/80">
-                        <li class="hover:text-white transition-colors cursor-default">Guincho para Blindados</li>
-                        <li class="hover:text-white transition-colors cursor-default">Motos e Quadriciclos</li>
-                        <li class="hover:text-white transition-colors cursor-default">Máquinas Agrícolas</li>
-                        <li class="hover:text-white transition-colors cursor-default">Auxílio Pane Elétrica</li>
-                    </ul>
-                </div>
-
-                <!-- Direct Contact -->
-                <div class="md:col-span-4 lg:col-span-3">
-                    <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Central 24h</h6>
-                    <div class="space-y-6">
-                        <a href="tel:+5519993502969"
-                            class="block p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group">
-                            <span class="text-xs text-white/40 block mb-1">Emergência</span>
-                            <span class="text-xl font-bold group-hover:text-primary transition-colors">(19)
-                                99350-2969</span>
-                        </a>
-                        <div class="text-sm text-white/40 leading-relaxed">
-                            <p class="mb-2"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Base Central:
-                                Campinas - SP</p>
-                            <p><i class="fa-solid fa-envelope text-primary mr-2"></i> sos@chamaoguincho.com.br</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-white/30 text-xs text-center md:text-left">
-                    &copy; 2025 Chama o Guincho. Todos os direitos reservados. <br class="md:hidden">
-                    CNPJ: 54.676.258/0001-31
-                </p>
-                <div class="flex items-center gap-8 opacity-20 hover:opacity-100 transition-opacity">
-                    <i class="fa-brands fa-cc-visa text-2xl"></i>
-                    <i class="fa-brands fa-cc-mastercard text-2xl"></i>
-                    <i class="fa-solid fa-barcode text-2xl"></i>
-                    <i class="fa-solid fa-pix text-2xl"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Generic Modal Structure -->
-    <div id="generic-modal" class="modal">
-        <div
-            class="modal-box relative bg-white dark:bg-slate-900 border border-white/10 shadow-2xl rounded-2xl p-0 overflow-hidden max-w-lg w-full transform transition-all">
-            <!-- Header -->
-            <div class="bg-primary/5 p-4 border-b border-border flex justify-between items-center">
-                <h3 class="modal-title text-foreground">Atenção</h3>
-                <button class="btn btn-sm btn-circle btn-ghost modal-close text-muted-foreground hover:text-foreground">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Content -->
-            <div class="content-area p-6">
-                <!-- Dynamic Content Here -->
-            </div>
-        </div>
-        <div class="modal-backdrop bg-black/50 backdrop-blur-sm transition-opacity"></div>
-    </div>
+    <div id="footer-placeholder"></div>
 
     <!-- Hidden Templates -->
     <template id="tmpl-contact-options">
