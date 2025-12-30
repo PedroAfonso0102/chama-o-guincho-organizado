@@ -19,7 +19,7 @@ export class GeoService {
         const base = CONFIG.BASE_COORDS;
 
         // Route: Base -> Origin -> Destination -> Base (Circular Logic)
-        const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${base.lon},${base.lat};${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat};${base.lon},${base.lat}?overview=false`;
+        const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${base.lon},${base.lat};${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat};${base.lon},${base.lat}?overview=false&skip_waypoints=true`;
 
         const response = await fetchWithTimeout(osrmUrl);
         const data = await response.json();
