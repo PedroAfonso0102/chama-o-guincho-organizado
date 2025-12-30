@@ -1,123 +1,74 @@
-import { CONFIG } from './config.js';
-import { fetchWithTimeout } from './utils.js';
+import { PricingService } from '../services/pricing.service.js';
+import { GeoService } from '../services/geo.service.js';
 import { UI } from './ui.js';
 
 /**
  * Initializes the price calculator module.
- * Sets up event listeners for inputs and automatic distance calculation.
+ * Acts as a View Controller, delegating logic to Services.
  */
 export function initPriceCalculator() {
     const estimator = document.getElementById('price-estimator-form');
     if (!estimator) return;
 
-    const originInput = document.getElementById('price-origin');
-    const destinationInput = document.getElementById('price-destination');
-    const distanceInput = document.getElementById('price-distance');
-    const vehicleSelect = document.getElementById('price-vehicle');
-    const priceOutput = estimator.querySelector('.price-estimator__price');
+    const dom = {
+        origin: document.getElementById('price-origin'),
+        destination: document.getElementById('price-destination'),
+        distance: document.getElementById('price-distance'),
+        vehicle: document.getElementById('price-vehicle'),
+        output: estimator.querySelector('.price-estimator__price')
+    };
 
     // Auto-calculate on input
-    const inputs = [distanceInput, vehicleSelect];
-    inputs.forEach(el => {
-        if (el) el.addEventListener('input', () => calculatePrice(distanceInput, vehicleSelect, priceOutput));
+    [dom.distance, dom.vehicle].forEach(el => {
+        if (el) el.addEventListener('input', () => updatePriceDisplay(dom));
     });
 
     // Distance calculation on blur
-    [originInput, destinationInput].forEach(el => {
-        if (el) el.addEventListener('blur', () => updateDistance(originInput, destinationInput, distanceInput));
+    [dom.origin, dom.destination].forEach(el => {
+        if (el) el.addEventListener('blur', () => handleDistanceUpdate(dom));
     });
 }
 
 /**
- * Updates the distance input based on origin and destination addresses.
- * Uses Nominatim for geocoding and OSRM for routing.
- *
- * @param {HTMLInputElement} originInput - The input element for origin address.
- * @param {HTMLInputElement} destinationInput - The input element for destination address.
- * @param {HTMLInputElement} distanceInput - The input element for distance (to be updated).
+ * Handles the async distance update process.
+ * @param {object} dom - Reference to DOM elements.
  */
-async function updateDistance(originInput, destinationInput, distanceInput) {
-    const origin = originInput.value.trim();
-    const destination = destinationInput.value.trim();
+async function handleDistanceUpdate(dom) {
+    const origin = dom.origin.value.trim();
+    const destination = dom.destination.value.trim();
 
     if (origin.length < 3 || destination.length < 3) return;
 
     try {
-        const [originCoords, destCoords] = await Promise.all([
-            getCoordinates(origin),
-            getCoordinates(destination)
-        ]);
+        UI.setInputLoading(dom.distance, true);
 
-        const base = CONFIG.BASE_COORDS;
+        const result = await GeoService.getDistance(origin, destination);
 
-        // Multi-point route: Base -> Origin -> Destination -> Base
-        const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${base.lon},${base.lat};${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat};${base.lon},${base.lat}?overview=false`;
+        dom.distance.value = result.distanceInKm;
+        dom.distance.dispatchEvent(new Event('input')); // Trigger price update
 
-        const response = await fetchWithTimeout(osrmUrl);
-        const data = await response.json();
+        console.log(`Calculated Distance: ${result.distanceInKm} km`);
+        UI.showNotification(`Logística calculada: ${result.distanceInKm} km`, 'success');
 
-        if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
-            const distanceInKm = Math.round(data.routes[0].distance / 1000);
-            distanceInput.value = distanceInKm > 0 ? distanceInKm : 1;
-
-            // Trigger calculation
-            distanceInput.dispatchEvent(new Event('input'));
-
-            // Detail the segments for transparency in log (optional but good for debugging)
-            console.log(`Circular Distance: ${distanceInKm} km (Base -> ${origin} -> ${destination} -> Base)`);
-            UI.showNotification(`Logística calculada: ${distanceInKm} km (trajeto circular)`, 'success');
-        }
     } catch (error) {
         console.warn('Distance calculation failed', error);
         UI.showNotification('Não foi possível calcular a logística automaticamente.', 'warning');
+    } finally {
+        UI.setInputLoading(dom.distance, false);
     }
 }
 
 /**
- * Geocodes an address to coordinates using Nominatim API or local cache.
- *
- * @param {string} address - The address to geocode.
- * @returns {Promise<{lat: number, lon: number}>} - The coordinates.
- * @throws {Error} - If address is not found.
+ * Updates the price display using the PricingService.
+ * @param {object} dom - Reference to DOM elements.
  */
-async function getCoordinates(address) {
-    const cleanAddr = address.toLowerCase().trim();
-    // Check cache
-    for (const [city, coords] of Object.entries(CONFIG.CITY_COORDS)) {
-        if (cleanAddr.includes(city)) return coords;
-    }
+function updatePriceDisplay(dom) {
+    const distance = parseInt(dom.distance.value, 10) || 0;
+    const vehicleType = dom.vehicle.value;
 
-    const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&countrycodes=br`;
-    const response = await fetchWithTimeout(nominatimUrl);
-    const data = await response.json();
-    if (data && data.length > 0) {
-        return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
-    }
-    throw new Error('Address not found');
-}
+    const price = PricingService.calculate(distance, vehicleType);
 
-/**
- * Calculates the estimated price based on distance and vehicle type.
- * Updates the price output element.
- *
- * @param {HTMLInputElement} distanceInput - Input containing the distance in km.
- * @param {HTMLSelectElement} vehicleSelect - Select element for vehicle type.
- * @param {HTMLElement} priceOutput - Element to display the calculated price.
- */
-function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
-    let distance = parseInt(distanceInput.value, 10) || 0;
-    if (distance < 0) distance = 0;
-
-    const vehicleType = vehicleSelect.value;
-    const vehicleMultiplier = CONFIG.PRICING.TIPO_VEICULO[vehicleType] || 1.0;
-
-    let total = (CONFIG.PRICING.PRECO_BASE * vehicleMultiplier) + (distance * CONFIG.PRICING.PRECO_POR_KM);
-
-    // Weekend logic
-    const day = new Date().getDay();
-    if (day === 0) total *= CONFIG.PRICING.ADICIONAL_FDS;
-
-    if (priceOutput) {
-        priceOutput.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    if (dom.output) {
+        dom.output.textContent = PricingService.formatPrice(price);
     }
 }
