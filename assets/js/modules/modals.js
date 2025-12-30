@@ -7,23 +7,13 @@ import autoAnimate from '@formkit/auto-animate';
  * Sets up triggers, close handlers, and dynamic content injection.
  */
 export function initModals() {
-    // 1. Generic Modal Specific Logic (Triggers & Submit)
+    // 1. Generic Modal Specific Logic (Animation & Submit)
     const genericModal = document.getElementById('generic-modal');
     if (genericModal) {
         const modalContent = genericModal.querySelector('.modal-box .content-area');
         if (modalContent) autoAnimate(modalContent);
 
-        // Bind data-toggle triggers
-        document.querySelectorAll('[data-toggle="modal"]').forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = trigger.dataset.target;
-                const title = trigger.dataset.title;
-                openModal(genericModal, modalContent, targetId, title);
-            });
-        });
-
-        // Submit Action
+        // Submit Action (Specific to Generic Modal)
         const submitBtn = genericModal.querySelector('#generic-modal-submit');
         if (submitBtn && modalContent) {
             submitBtn.addEventListener('click', () => {
@@ -35,18 +25,40 @@ export function initModals() {
         }
     }
 
-    // 2. Global Modal Closing Logic (Handles generic-modal, modal-success, and any future modals)
-    document.querySelectorAll('.modal').forEach(modal => {
-        // Close Button (.modal-close)
-        const closeBtn = modal.querySelector('.modal-close');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => closeModal(modal));
+    // 2. Global Event Delegation (Triggers, Closing & Background)
+    // Uses delegation to handle static and dynamic elements robustly
+    document.body.addEventListener('click', (e) => {
+        const target = e.target;
+
+        // A. Data Toggle Triggers
+        const trigger = target.closest('[data-toggle="modal"]');
+        if (trigger) {
+            e.preventDefault();
+            const targetId = trigger.dataset.target;
+            const title = trigger.dataset.title;
+            const modal = document.getElementById('generic-modal');
+            const content = modal?.querySelector('.modal-box .content-area');
+
+            if (modal && content) {
+                openModal(modal, content, targetId, title);
+            }
+            return;
         }
 
-        // Click Outside (Background)
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal(modal);
-        });
+        // B. Close Button (.modal-close)
+        const closeBtn = target.closest('.modal-close');
+        if (closeBtn) {
+            e.preventDefault();
+            const modal = closeBtn.closest('.modal');
+            if (modal) closeModal(modal);
+            return;
+        }
+
+        // C. Click Outside (Background)
+        // Checks if the click target is the modal container itself (overlay)
+        if (target.classList.contains('modal')) {
+            closeModal(target);
+        }
     });
 
     // 3. Global ESC Key Handler
