@@ -32,11 +32,11 @@ function renderHeader() {
 
     header.innerHTML = `
             <div class="container mx-auto px-4 h-full flex items-center justify-between">
-                <a href="${logoHref}" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500">
+                <a href="${logoHref}" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500" aria-label="Chama o Guincho - Página Inicial">
                     <img src="${config.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" class="h-8 w-auto">
                 </a>
 
-                <nav class="hidden lg:flex items-center gap-8">
+                <nav class="hidden lg:flex items-center gap-8" aria-label="Menu Principal Desktop">
                     <ul class="flex gap-2">
                         <li><a href="${getLink('#urgent-request')}" class="btn btn-ghost btn-sm">Emergência</a></li>
                         <li><a href="${getLink('servicos.html')}" class="btn btn-ghost btn-sm ${config.activePage === 'services' ? 'text-primary bg-primary/5' : ''}">Serviços</a></li>
@@ -44,21 +44,21 @@ function renderHeader() {
                     </ul>
                     <button data-toggle="modal" data-target="tmpl-contact-options" data-title="Fale Conosco"
                         class="btn btn-primary btn-sm gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95">
-                        <i class="fa-brands fa-whatsapp"></i> Chamar Agora
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar Agora
                     </button>
                 </nav>
 
-                <button id="nav-toggle" class="lg:hidden text-2xl text-foreground p-2">
-                    <i class="fa-solid fa-bars"></i>
+                <button id="nav-toggle" class="lg:hidden text-2xl text-foreground p-2" aria-label="Abrir Menu Principal" aria-expanded="false" aria-controls="nav-menu">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
 
-            <div id="nav-menu" class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40">
-                <a href="${getLink('#urgent-request')}" class="btn btn-ghost w-full justify-start text-lg">Emergência</a>
-                <a href="${getLink('servicos.html')}" class="btn btn-ghost w-full justify-start text-lg">Serviços</a>
-                <a href="${getLink('#contact')}" class="btn btn-ghost w-full justify-start text-lg">Contato</a>
-                <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4">
-                    <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+            <div id="nav-menu" class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40" aria-label="Menu Principal Mobile">
+                <a href="${getLink('#urgent-request')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Pedido de Emergência">Emergência</a>
+                <a href="${getLink('servicos.html')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Página de Serviços">Serviços</a>
+                <a href="${getLink('#contact')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Contato">Contato</a>
+                <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4" aria-label="Chamar no WhatsApp">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
                 </a>
             </div>
         `;
@@ -84,10 +84,12 @@ function renderHeader() {
                 navMenu.classList.add('hidden');
                 navOverlay.classList.remove('opacity-100');
                 navOverlay.classList.add('opacity-0', 'pointer-events-none');
+                navToggle.setAttribute('aria-expanded', 'false');
             } else {
                 navMenu.classList.remove('hidden');
                 navOverlay.classList.add('opacity-100');
                 navOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                navToggle.setAttribute('aria-expanded', 'true');
             }
         });
 
@@ -209,17 +211,17 @@ function renderFooter() {
 
 
 function renderFloatButtons() {
-    const div = document.createElement('div');
-    div.className = 'float-buttons';
-    div.innerHTML = `
-            <a href="https://wa.me/5519993502969" target="_blank" rel="noopener noreferrer" class="float-button float-button--whatsapp" aria-label="WhatsApp">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="tel:+5519993502969" class="float-button float-button--phone" aria-label="Ligar">
-                <i class="fa-solid fa-phone"></i>
-            </a>
-        `;
-    document.body.appendChild(div);
+    const floatBtns = document.createElement('div');
+    floatBtns.className = 'fixed bottom-4 right-4 flex flex-col gap-3 z-40';
+    floatBtns.innerHTML = `
+        <a href="https://wa.me/5519993502969"
+           target="_blank"
+           class="btn btn-circle btn-whatsapp shadow-xl w-14 h-14 text-2xl hover:scale-110 transition-transform duration-300"
+           aria-label="Fale conosco no WhatsApp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        </a>
+    `;
+    document.body.appendChild(floatBtns);
 
     const scrollBtn = document.createElement('button');
     scrollBtn.className = 'scroll-top';

@@ -10,9 +10,14 @@ import { Layout } from './components/layout.js';
 import { UI as Components } from './components/ui-components.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Determine active page
+    const path = window.location.pathname;
+    const activePage = path.includes('servicos') ? 'services' : 'home';
+
     // Init Core Structural Layout
     Layout.init({
-        basePath: './'
+        basePath: './',
+        activePage: activePage
     });
 
     // Init Dynamic UI Components
@@ -29,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initPriceCalculator();
     initCoverageMap();
     initModals();
+
+    // Init Carousel
+    document.querySelectorAll('.slideshow').forEach(el => new Carousel(el));
 
     // Init Effects
     const faqContainer = document.querySelector('.faq__container');
