@@ -164,6 +164,10 @@ const testimonialsData = [
 
 let config = { basePath: '' };
 
+/**
+ * Renders the services grid into the specified container.
+ * @param {string} containerId - The selector for the container element.
+ */
 function renderServices(containerId) {
     const container = document.querySelector(containerId);
     if (!container) {
@@ -200,6 +204,10 @@ function renderServices(containerId) {
     }).join('');
 }
 
+/**
+ * Renders the features list into the specified container.
+ * @param {string} containerId - The selector for the container element.
+ */
 function renderFeatures(containerId) {
     const container = document.querySelector(containerId);
     if (!container) return;
@@ -217,6 +225,10 @@ function renderFeatures(containerId) {
     `).join('');
 }
 
+/**
+ * Renders the list of covered cities as buttons.
+ * @param {string} containerId - The selector for the container element.
+ */
 function renderCoverageCities(containerId) {
     const container = document.querySelector(containerId);
     if (!container) return;
@@ -228,6 +240,10 @@ function renderCoverageCities(containerId) {
     `).join('');
 }
 
+/**
+ * Renders testimonials/case studies into the specified container.
+ * @param {string} containerId - The selector for the container element.
+ */
 function renderTestimonials(containerId) {
     const container = document.querySelector(containerId);
     if (!container) return;
@@ -252,6 +268,10 @@ function renderTestimonials(containerId) {
     `}).join('');
 }
 
+/**
+ * Initializes the UI components by rendering them into their default containers.
+ * @param {object} options - Configuration options (basePath).
+ */
 function init(options = {}) {
     config = { ...config, ...options };
 

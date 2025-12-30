@@ -1,4 +1,9 @@
 // Map logic (preserving iframe approach)
+
+/**
+ * Initializes the coverage map interaction.
+ * Updates the map iframe source when a city button is clicked.
+ */
 export function initCoverageMap() {
     const cityButtonsContainer = document.querySelector('.coverage__cities');
     const mapFrame = document.getElementById('coverage-map');

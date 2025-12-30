@@ -2,6 +2,10 @@ import { UI } from './ui.js';
 import { initInputMasks } from './forms.js';
 import autoAnimate from '@formkit/auto-animate';
 
+/**
+ * Initializes modal interactions.
+ * Sets up triggers, close handlers, and dynamic content injection.
+ */
 export function initModals() {
     const modal = document.getElementById('generic-modal');
     if (!modal) return;
@@ -53,6 +57,14 @@ export function initModals() {
     });
 }
 
+/**
+ * Opens a modal with specific content.
+ *
+ * @param {HTMLElement} modal - The modal element.
+ * @param {HTMLElement} container - The container within the modal to inject content.
+ * @param {string} contentId - The ID of the template or element to clone content from.
+ * @param {string} title - The title to set for the modal.
+ */
 function openModal(modal, container, contentId, title) {
     const contentTemplate = document.getElementById(contentId);
     if (!contentTemplate) {
@@ -86,6 +98,10 @@ function openModal(modal, container, contentId, title) {
     document.body.classList.add('overflow-hidden'); // Prevent background scrolling
 }
 
+/**
+ * Closes the modal.
+ * @param {HTMLElement} modal - The modal element.
+ */
 function closeModal(modal) {
     modal.classList.remove('modal-open');
     document.body.classList.remove('overflow-hidden');

@@ -2,7 +2,16 @@
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
+/**
+ * Global UI utilities for user feedback and state management.
+ */
 export const UI = {
+    /**
+     * Toggles a button's loading state.
+     * @param {HTMLButtonElement} btn - The button to update.
+     * @param {boolean} loading - Whether to show the loading state.
+     * @param {string} [loadingText] - Optional text to display while loading.
+     */
     setButtonLoading(btn, loading, loadingText) {
         if (!btn) return;
 
@@ -23,6 +32,11 @@ export const UI = {
         }
     },
 
+    /**
+     * Toggles an input's loading/disabled state.
+     * @param {HTMLInputElement} input - The input element.
+     * @param {boolean} loading - Whether to disable/show loading.
+     */
     setInputLoading(input, loading) {
         if (!input) return;
 
@@ -36,6 +50,12 @@ export const UI = {
         }
     },
 
+    /**
+     * Displays a toast notification.
+     * @param {string} message - The message text.
+     * @param {string} [type='info'] - The type ('success', 'error', 'info').
+     * @param {number} [duration=5000] - Duration in ms.
+     */
     showNotification(message, type = 'info', duration = 5000) {
         let backgroundColor;
         switch (type) {
@@ -55,6 +75,12 @@ export const UI = {
         }).showToast();
     },
 
+    /**
+     * Renders skeleton loading states into a container.
+     * @param {HTMLElement} container - The container element.
+     * @param {number} [count=3] - Number of skeletons to render.
+     * @param {string} [type='card'] - Type of skeleton (currently only 'card').
+     */
     renderSkeletons(container, count = 3, type = 'card') {
         if (!container) return;
 
@@ -72,6 +98,10 @@ export const UI = {
     }
 };
 
+/**
+ * Initializes the intersection observer for scroll-triggered animations.
+ * Elements with class .animate-on-scroll will receive the .visible class when in view.
+ */
 export function initScrollAnimation() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -84,7 +114,10 @@ export function initScrollAnimation() {
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 }
 
-// Carousel Logic
+/**
+ * A simple Carousel class for handling slideshows.
+ * Supports autoplay, navigation buttons, and dots.
+ */
 export class Carousel {
     constructor(element) {
         this.element = element;
@@ -173,6 +206,9 @@ export class Carousel {
     stopAutoplay() { clearInterval(this.autoplayInterval); }
 }
 
+/**
+ * Initializes global navigation logic (mobile menu toggle, sticky header).
+ */
 export function initNavigation() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');

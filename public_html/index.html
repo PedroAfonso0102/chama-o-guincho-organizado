@@ -98,8 +98,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-  <script type="module" crossorigin src="./assets/app-CKJLG4sn.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/app-CPbg09vu.css">
+  <script type="module" crossorigin src="./assets/app-CDOoaOGq.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/app-CGuKDvL-.css">
 </head>
 
 <body class="bg-background text-foreground font-sans antialiased">
@@ -113,7 +113,7 @@
 
 
     <!-- Hero Section -->
-    <section
+    <section aria-label="Introdução"
         class="relative pt-28 pb-20 overflow-hidden bg-[radial-gradient(circle_at_top_center,hsl(var(--primary)/0.05)_0%,transparent_70%)]">
         <!-- Glow Orbital Background Decoration -->
         <div class="glow-orbital top-0 -left-64 opacity-30"></div>
@@ -150,11 +150,11 @@
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 animate-on-scroll visible stagger-3">
                     <a href="https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20Guincho%20Agora"
                         class="btn btn-primary btn-lg w-full lg:w-auto shadow-2xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-500 ease-in-out text-white"
-                        target="_blank" rel="noopener noreferrer">
+                        target="_blank" rel="noopener noreferrer" aria-label="Solicitar guincho pelo WhatsApp">
                         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> SOLICITAR GUINCHO AGORA
                     </a>
                     <a href="tel:+5519993502969"
-                        class="btn btn-outline btn-lg w-full lg:w-auto bg-white/5 backdrop-blur-xl border-white/10 hover:bg-secondary hover:text-white hover:border-secondary hover:-translate-y-1 transition-all duration-500 ease-in-out">
+                        class="btn btn-outline btn-lg w-full lg:w-auto bg-white/5 backdrop-blur-xl border-white/10 hover:bg-secondary hover:text-white hover:border-secondary hover:-translate-y-1 transition-all duration-500 ease-in-out" aria-label="Ligar para o guincho">
                         <i class="fa-solid fa-phone" aria-hidden="true"></i> (19) 99350-2969
                     </a>
                 </div>
@@ -179,7 +179,7 @@
             <!-- Slideshow Column -->
             <div class="hidden lg:block">
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-border bg-white h-[400px]">
-                    <div class="slideshow h-full w-full">
+                    <div class="slideshow h-full w-full" role="region" aria-roledescription="carousel" aria-label="Galeria de imagens">
                         <div class="slideshow__track h-full flex transition-transform duration-500">
                             <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-01.jpg"
                                     class="w-full h-full object-cover"
@@ -235,7 +235,7 @@
     </section>
 
     <!-- Services CTA Section -->
-    <section id="services" class="py-16 lg:py-24 bg-muted/30">
+    <section id="services" class="py-16 lg:py-24 bg-muted/30" aria-label="Nossos Serviços">
         <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="animate-on-scroll">
                 <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Serviços
@@ -296,7 +296,7 @@
     </section>
 
     <!-- Emergency Section -->
-    <section id="urgent-request" class="py-16 lg:py-24">
+    <section id="urgent-request" class="py-16 lg:py-24" aria-label="Pedido de Emergência">
         <div class="container mx-auto px-4">
             <div
                 class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] bg-card border border-primary/20 rounded-3xl shadow-2xl shadow-primary/5 overflow-hidden animate-on-scroll ring-4 ring-primary/5">
@@ -315,10 +315,10 @@
 
                     <!-- Mobile Quick Actions -->
                     <div class="flex flex-col gap-4 mb-8 md:hidden">
-                        <a href="tel:+5519993502969" class="btn btn-primary btn-lg w-full">
+                        <a href="tel:+5519993502969" class="btn btn-primary btn-lg w-full" aria-label="Ligar Agora">
                             <i class="fa-solid fa-phone" aria-hidden="true"></i> LIGAR AGORA
                         </a>
-                        <button type="button" id="btn-panic-location" class="btn btn-whatsapp btn-lg w-full">
+                        <button type="button" id="btn-panic-location" class="btn btn-whatsapp btn-lg w-full" aria-label="Enviar Localização pelo WhatsApp">
                             <i class="fa-solid fa-location-dot" aria-hidden="true"></i> ENVIAR LOCALIZAÇÃO
                         </button>
                         <p class="text-center text-sm mt-2"><a href="#" id="btn-show-form"
@@ -338,7 +338,7 @@
                                         placeholder="Digite ou detecte..." required>
                                     <button type="button"
                                         class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
-                                        id="emergency-detect-location">
+                                        id="emergency-detect-location" aria-label="Detectar minha localização">
                                         <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
                                     </button>
                                 </div>
@@ -437,7 +437,7 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="relative py-16 lg:py-24 bg-muted/30 overflow-hidden">
+    <section id="features" class="relative py-16 lg:py-24 bg-muted/30 overflow-hidden" aria-label="Diferenciais">
         <!-- Decoration -->
         <div class="glow-orbital -top-20 -right-20 opacity-10"></div>
 
@@ -457,7 +457,7 @@
     </section>
 
     <!-- Coverage Area Section -->
-    <section id="coverage" class="py-16 lg:py-24">
+    <section id="coverage" class="py-16 lg:py-24" aria-label="Área de Cobertura">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
                 <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Cobertura</span>
@@ -470,7 +470,7 @@
 
             <div
                 class="coverage__map rounded-2xl overflow-hidden border border-border shadow-md h-[400px] mb-8 animate-on-scroll">
-                <iframe id="coverage-map"
+                <iframe id="coverage-map" title="Mapa da Área de Cobertura"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14638.123456789!2d-47.060833!3d-22.905833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8cf4f12345678%3A0x123456789abcdef!2sCampinas%2C%20SP!5e0!3m2!1sen!2sbr!4v1617886322168!5m2!1sen!2sbr"
                     width="100%" height="100%" allowfullscreen="" loading="lazy" style="border:0; display: block;">
                 </iframe>
@@ -485,7 +485,7 @@
 
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 lg:pt-24 lg:pb-6 bg-muted/30">
+    <section id="testimonials" class="py-16 lg:pt-24 lg:pb-6 bg-muted/30" aria-label="Depoimentos e Casos de Sucesso">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
                 <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Cases de
@@ -497,23 +497,24 @@
             <!-- Carousel Controls -->
             <div class="flex justify-between items-center mb-8 animate-on-scroll">
                 <div class="flex gap-2">
-                    <button
+                    <button aria-label="Anterior"
                         class="carousel-arrow carousel-arrow--prev btn btn-outline btn-sm rounded-full w-10 h-10 p-0">
                         <i class="fa-solid fa-chevron-left mr-0"></i>
                     </button>
-                    <button
+                    <button aria-label="Próximo"
                         class="carousel-arrow carousel-arrow--next btn btn-outline btn-sm rounded-full w-10 h-10 p-0">
                         <i class="fa-solid fa-chevron-right mr-0"></i>
                     </button>
                 </div>
-                <div class="carousel-dots flex gap-2">
-                    <span
-                        class="carousel-dot carousel-dot--active w-8 h-2 bg-primary rounded-full transition-all duration-300"></span>
-                    <span class="carousel-dot w-2 h-2 bg-border rounded-full transition-all duration-300"></span>
+                <div class="carousel-dots flex gap-2" role="tablist">
+                    <button role="tab" aria-label="Slide 1" aria-selected="true"
+                        class="carousel-dot carousel-dot--active w-8 h-2 bg-primary rounded-full transition-all duration-300"></button>
+                    <button role="tab" aria-label="Slide 2" aria-selected="false"
+                        class="carousel-dot w-2 h-2 bg-border rounded-full transition-all duration-300"></button>
                 </div>
             </div>
 
-            <div class="slideshow slideshow--cases overflow-hidden">
+            <div class="slideshow slideshow--cases overflow-hidden" role="region" aria-roledescription="carousel" aria-label="Casos de Sucesso">
                 <div class="slideshow__track flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
                     <!-- Slide 1: Premium, B2B, Government -->
                     <div class="slideshow__slide w-full flex-shrink-0">
@@ -728,7 +729,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-16 lg:pt-6 lg:pb-24">
+    <section id="faq" class="py-16 lg:pt-6 lg:pb-24" aria-label="Perguntas Frequentes">
         <div class="container mx-auto px-4 max-w-3xl">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl lg:text-4xl font-bold mb-6">Perguntas Frequentes</h2>
@@ -798,7 +799,7 @@
         </div>
     </template>
 
-    <!-- JavaScript -->
+    <!-- JavaScript -->
 </body>
 
 </html>

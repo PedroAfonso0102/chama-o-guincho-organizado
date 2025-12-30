@@ -9,6 +9,10 @@ import autoAnimate from '@formkit/auto-animate';
 import { Layout } from './components/layout.js';
 import { UI as Components } from './components/ui-components.js';
 
+/**
+ * Main application entry point.
+ * Initializes layout, UI components, and all functional modules.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     // Determine active page
     const path = window.location.pathname;

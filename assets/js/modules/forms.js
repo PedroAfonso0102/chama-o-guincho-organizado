@@ -3,6 +3,10 @@ import { CONFIG } from './config.js';
 import { UI } from './ui.js';
 import { fetchWithTimeout } from './utils.js';
 
+/**
+ * Initializes form-related functionality.
+ * Sets up input masks, location detection, multi-step forms, and submission handling.
+ */
 export function initForms() {
     initInputMasks();
     initLocationDetection();
@@ -10,6 +14,10 @@ export function initForms() {
     setupFormSubmission();
 }
 
+/**
+ * Applies input masks (e.g., phone number) to inputs within a given scope.
+ * @param {HTMLElement|Document} scope - The DOM element to search for inputs.
+ */
 export function initInputMasks(scope = document) {
     const phoneInputs = scope.querySelectorAll('input[type="tel"]');
     phoneInputs.forEach(input => {
@@ -19,6 +27,9 @@ export function initInputMasks(scope = document) {
     });
 }
 
+/**
+ * Initializes location detection functionality for inputs with specific triggers.
+ */
 function initLocationDetection() {
     document.body.addEventListener('click', e => {
         const button = e.target.closest('.location-detect');
@@ -40,6 +51,12 @@ function initLocationDetection() {
     });
 }
 
+/**
+ * Retrieves the user's current geolocation and reverse geocodes it to an address.
+ * Updates the target input with the address or coordinates.
+ *
+ * @param {HTMLInputElement} input - The input element to populate with the location.
+ */
 function getCurrentLocation(input) {
     if (!navigator.geolocation) {
         UI.showNotification('Geolocalização não suportada', 'error');
@@ -80,6 +97,10 @@ function getCurrentLocation(input) {
     );
 }
 
+/**
+ * Sets up logic for multi-step forms (e.g., emergency form).
+ * Handles navigation between steps and validation.
+ */
 function setupFormSteps() {
     const form = document.getElementById('emergency-form');
     if (!form) return;
@@ -123,6 +144,10 @@ function setupFormSteps() {
     }
 }
 
+/**
+ * Handles form submissions globally.
+ * Validates forms, generates WhatsApp URLs, and handles redirects/notifications.
+ */
 function setupFormSubmission() {
     document.body.addEventListener('submit', function (e) {
         const form = e.target.closest('form');
@@ -180,6 +205,14 @@ function setupFormSubmission() {
     });
 }
 
+/**
+ * Generates a WhatsApp API URL with pre-filled message data from the form.
+ *
+ * @param {HTMLFormElement} form - The form element.
+ * @param {string} title - The title/subject of the message.
+ * @param {object} extraData - Additional key-value pairs to include in the message.
+ * @returns {string} - The complete WhatsApp URL.
+ */
 function generateWhatsAppUrl(form, title, extraData = {}) {
     let message = `*${title.toUpperCase()}*\n\n`;
 

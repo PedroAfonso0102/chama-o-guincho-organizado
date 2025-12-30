@@ -2,6 +2,10 @@ import { CONFIG } from './config.js';
 import { fetchWithTimeout } from './utils.js';
 import { UI } from './ui.js';
 
+/**
+ * Initializes the price calculator module.
+ * Sets up event listeners for inputs and automatic distance calculation.
+ */
 export function initPriceCalculator() {
     const estimator = document.getElementById('price-estimator-form');
     if (!estimator) return;
@@ -24,6 +28,14 @@ export function initPriceCalculator() {
     });
 }
 
+/**
+ * Updates the distance input based on origin and destination addresses.
+ * Uses Nominatim for geocoding and OSRM for routing.
+ *
+ * @param {HTMLInputElement} originInput - The input element for origin address.
+ * @param {HTMLInputElement} destinationInput - The input element for destination address.
+ * @param {HTMLInputElement} distanceInput - The input element for distance (to be updated).
+ */
 async function updateDistance(originInput, destinationInput, distanceInput) {
     const origin = originInput.value.trim();
     const destination = destinationInput.value.trim();
@@ -61,6 +73,13 @@ async function updateDistance(originInput, destinationInput, distanceInput) {
     }
 }
 
+/**
+ * Geocodes an address to coordinates using Nominatim API or local cache.
+ *
+ * @param {string} address - The address to geocode.
+ * @returns {Promise<{lat: number, lon: number}>} - The coordinates.
+ * @throws {Error} - If address is not found.
+ */
 async function getCoordinates(address) {
     const cleanAddr = address.toLowerCase().trim();
     // Check cache
@@ -77,6 +96,14 @@ async function getCoordinates(address) {
     throw new Error('Address not found');
 }
 
+/**
+ * Calculates the estimated price based on distance and vehicle type.
+ * Updates the price output element.
+ *
+ * @param {HTMLInputElement} distanceInput - Input containing the distance in km.
+ * @param {HTMLSelectElement} vehicleSelect - Select element for vehicle type.
+ * @param {HTMLElement} priceOutput - Element to display the calculated price.
+ */
 function calculatePrice(distanceInput, vehicleSelect, priceOutput) {
     let distance = parseInt(distanceInput.value, 10) || 0;
     if (distance < 0) distance = 0;
