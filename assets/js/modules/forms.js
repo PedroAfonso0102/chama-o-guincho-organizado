@@ -60,7 +60,7 @@ function animateButton(button) {
  */
 function handleLocationRequest(input) {
     if (!navigator.geolocation) {
-        UI.showNotification('Geolocalização não suportada', 'error');
+        UI.showNotification('Seu navegador não permite localização automática.', 'error');
         return;
     }
 
@@ -84,7 +84,7 @@ function handleLocationRequest(input) {
         },
         error => {
             UI.setInputLoading(input, false);
-            UI.showNotification('Erro ao obter localização.', 'error');
+            UI.showNotification('Não conseguimos acessar sua localização. Digite o endereço.', 'error');
         }
     );
 }
@@ -127,9 +127,9 @@ function toggleStep(hideStep, showStep, forward) {
     // Manage disabled state for validation purposes
     showStep.querySelectorAll('input').forEach(input => input.disabled = false);
     if (forward) {
-       // hideStep.querySelectorAll('input').forEach(input => input.disabled = true);
-       // Careful: disabling inputs might remove them from FormData.
-       // Better to just hide visually.
+        // hideStep.querySelectorAll('input').forEach(input => input.disabled = true);
+        // Careful: disabling inputs might remove them from FormData.
+        // Better to just hide visually.
     }
 }
 
@@ -171,18 +171,24 @@ function setupFormSubmission() {
 
         const whatsappUrl = WhatsAppService.generateUrl(title, combinedData);
 
-        setTimeout(() => {
-            UI.setButtonLoading(submitBtn, false);
+        // Chaos & Domain Logic Fix:
+        // Removing setTimeout to prevent pop-up blockers from intercepting the window.open call.
+        // The redirection happens immediately.
+        UI.setButtonLoading(submitBtn, false);
 
-            // Security: Control window opener
-            const win = window.open(whatsappUrl, '_blank');
-            if (win) win.opener = null;
+        // Security: Control window opener
+        const win = window.open(whatsappUrl, '_blank');
 
-            handleSuccessModal(whatsappUrl);
-            form.reset();
-            resetEmergencyFormSteps(form);
+        if (!win || win.closed || typeof win.closed == 'undefined') {
+            // Fallback for pop-up blockers
+            window.location.href = whatsappUrl;
+        } else {
+            win.opener = null;
+        }
 
-        }, 800);
+        handleSuccessModal(whatsappUrl);
+        form.reset();
+        resetEmergencyFormSteps(form);
     });
 }
 

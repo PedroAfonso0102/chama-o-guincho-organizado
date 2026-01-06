@@ -52,7 +52,7 @@ async function handleDistanceUpdate(dom) {
 
     } catch (error) {
         console.warn('Distance calculation failed', error);
-        UI.showNotification('Não foi possível calcular a logística automaticamente.', 'warning');
+        UI.showNotification('Não conseguimos calcular a rota automaticamente. Por favor, insira a distância manualmente.', 'warning');
     } finally {
         UI.setInputLoading(dom.distance, false);
     }

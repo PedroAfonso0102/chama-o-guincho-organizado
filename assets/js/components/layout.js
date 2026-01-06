@@ -55,7 +55,7 @@ function renderHeader() {
                     </ul>
                     <button data-toggle="modal" data-target="tmpl-contact-options" data-title="Fale Conosco"
                         class="btn btn-primary btn-sm gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar Agora
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Orçamento Rápido
                     </button>
                 </nav>
 
@@ -312,14 +312,14 @@ function renderModals() {
                             <label class="label font-medium text-muted-foreground">Onde o veículo está?</label>
                             <div class="relative">
                                 <i class="fa-solid fa-location-dot absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
-                                <input type="text" name="Origem" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Cidade de Origem" required>
+                                <input type="text" name="Origem" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Ex: Campinas, SP" required>
                             </div>
                         </div>
                         <div class="form-control w-full">
                             <label class="label font-medium text-muted-foreground">Para onde vai?</label>
                             <div class="relative">
                                 <i class="fa-solid fa-flag-checkered absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
-                                <input type="text" name="Destino" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Cidade de Destino" required>
+                                <input type="text" name="Destino" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Ex: São Paulo, SP" required>
                             </div>
                         </div>
                     </div>
@@ -409,7 +409,7 @@ function renderModals() {
                         <label class="label font-medium text-muted-foreground">Nome da Oficina</label>
                         <div class="relative">
                             <i class="fa-solid fa-wrench absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
-                            <input type="text" name="Nome Oficina" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Ex: Mecânica Silva" required>
+                            <input type="text" name="Nome Oficina" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Nome da Oficina Parceira" required>
                         </div>
                     </div>
 

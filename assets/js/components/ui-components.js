@@ -10,73 +10,73 @@
 
 const servicesData = [
     {
-        icon: 'fa-solid fa-car-burst',
-        title: 'Reboque de Emergência 24h',
-        text: 'Veículo quebrou ou sofreu colisão? Atendemos em até 30 minutos em Campinas e região. Guincho plataforma para transporte seguro.',
+        icon: 'fa-solid fa-truck-fast',
+        title: 'Resgate Emergencial',
+        text: 'Pane mecânica ou colisão? Chegamos em ~30 minutos para resolver. Atendimento prioritário em toda Campinas e RMC.',
         isHighlight: true,
         action: {
             type: 'whatsapp',
-            text: 'CHAMAR NO WHATSAPP',
-            link: 'https://wa.me/5519993502969?text=Olá!%20Preciso%20de%20um%20guincho%20de%20emergência.'
+            text: 'PEDIR SOCORRO AGORA',
+            link: 'https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20um%20guincho%20de%20emergência%20agora!'
         }
     },
     {
-        icon: 'fa-solid fa-route',
-        title: 'Transporte Intermunicipal',
-        text: 'Transporte de veículos para qualquer cidade da região com total segurança e preço transparente.',
+        icon: 'fa-solid fa-map-location-dot',
+        title: 'Logística Intermunicipal',
+        text: 'Vai comprar ou vender um carro em outra cidade? Levamos seu veículo com seguro total, hora marcada e monitoramento.',
         action: {
             type: 'modal',
-            text: 'Solicitar Orçamento',
+            text: 'Cotar Viagem',
             modalId: 'generic',
-            modalTitle: 'Orçamento: Transporte para Outras Cidades',
+            modalTitle: 'Orçamento: Viagem Intermunicipal',
             formId: 'form-transporte-cidades'
         }
     },
     {
-        icon: 'fa-solid fa-calendar-days',
-        title: 'Agendamento de Transporte',
-        text: 'Planeje o transporte do seu veículo para revisão, eventos ou outras necessidades. Agende com antecedência.',
+        icon: 'fa-solid fa-calendar-check',
+        title: 'Transporte Programado',
+        text: 'Transporte para revisões, eventos ou transferências. Reserve o horário e evite esperas desnecessárias.',
         action: {
             type: 'modal',
-            text: 'Agendar',
+            text: 'Agendar Horário',
             modalId: 'generic',
-            modalTitle: 'Agendar Transporte',
+            modalTitle: 'Agendar Transporte Técnico',
             formId: 'form-agendamento'
         }
     },
     {
         icon: 'fa-solid fa-screwdriver-wrench',
-        title: 'Transporte para Oficinas',
-        text: 'Serviço de coleta e entrega do seu veículo na oficina de sua confiança. Condições especiais para oficinas.',
+        title: 'Gestão de Oficina',
+        text: 'Buscamos o veículo do seu cliente e entregamos pronto. Parceria técnica que valoriza o seu pós-venda.',
         action: {
             type: 'modal',
-            text: 'Solicitar Orçamento',
+            text: 'Seja um Parceiro',
             modalId: 'generic',
-            modalTitle: 'Orçamento: Leva e Traz para Oficinas',
+            modalTitle: 'Parceria: Leva e Traz para Oficinas',
             formId: 'form-oficinas'
         }
     },
     {
-        icon: 'fa-solid fa-boxes-packing',
-        title: 'Pequenas Máquinas',
-        text: 'Transporte especializado de empilhadeiras, equipamentos e maquinários leves com equipamentos adequados.',
+        icon: 'fa-solid fa-dolly',
+        title: 'Maquinário Leve',
+        text: 'Solução para empilhadeiras e mini-carregadeiras. Plataforma com capacidade de carga e fixação técnica certificada.',
         action: {
             type: 'modal',
-            text: 'Solicitar Orçamento',
+            text: 'Orçamento Especial',
             modalId: 'generic',
-            modalTitle: 'Orçamento: Transporte de Pequenas Máquinas',
+            modalTitle: 'Orçamento: Transporte de Equipamentos',
             formId: 'form-maquinas'
         }
     },
     {
-        icon: 'fa-solid fa-handshake',
-        title: 'Soluções Corporativas',
-        text: 'Parcerias estratégicas para empresas que necessitam de serviços de reboque confiáveis.',
+        icon: 'fa-solid fa-building-shield',
+        title: 'Frotas Corporativas',
+        text: 'Atendimento dedicado para empresas. Faturamento mensal, gestão de pátio e relatórios digitais de cada remoção.',
         action: {
             type: 'modal',
             text: 'Falar com Consultor',
             modalId: 'generic',
-            modalTitle: 'Contato: Soluções para Empresas',
+            modalTitle: 'Contato: Soluções Corporativas',
             formId: 'form-empresas'
         }
     }
@@ -84,34 +84,34 @@ const servicesData = [
 
 const featuresData = [
     {
-        icon: 'fa-solid fa-user-tie',
-        title: 'Fale com o dono',
-        text: 'Você fala direto com o proprietário, sem intermediários.'
+        icon: 'fa-solid fa-user-shield',
+        title: 'Direto com o Especialista',
+        text: 'Sem call centers robóticos ou espera. Você fala diretamente com quem resolve o seu problema.'
     },
     {
-        icon: 'fa-solid fa-tag',
-        title: 'Preço justo',
-        text: 'Saiba o valor do serviço antes da contratação.'
+        icon: 'fa-solid fa-file-invoice-dollar',
+        title: 'Orçamento Garantido',
+        text: 'Preço fechado via WhatsApp antes da saída. Sem taxas surpresas ou "adicionais" na hora H.'
     },
     {
-        icon: 'fa-solid fa-truck',
-        title: 'Frota moderna',
-        text: 'Transportamos seu veículo com guinchos novos e seguros.'
+        icon: 'fa-solid fa-truck-ramp-box',
+        title: 'Tecnologia de Ponta',
+        text: 'Caminhões monitorados e equipados com cintas de roda (zero contato com a lataria) e patins.'
     },
     {
-        icon: 'fa-solid fa-map-location-dot',
-        title: 'Conhecemos a região',
-        text: 'Usamos as melhores rotas para chegar rápido.'
+        icon: 'fa-solid fa-route',
+        title: 'Expertise Regional',
+        text: 'Conhecemos cada atalho da RMC. Fugimos do trânsito pesado para chegar mais rápido até você.'
     },
     {
-        icon: 'fa-solid fa-car',
-        title: 'Todo tipo de veículo',
-        text: 'Atendemos carros, motos, vans e até máquinas.'
+        icon: 'fa-solid fa-car-on',
+        title: 'Versatilidade Técnica',
+        text: 'De carros esportivos baixos a utilitários pesados. Temos o equipamento certo para o seu caso.'
     },
     {
         icon: 'fa-solid fa-clock',
-        title: 'Sempre disponível',
-        text: 'Estamos disponíveis 24 horas, todos os dias.'
+        title: 'Disponibilidade Real',
+        text: 'Madrugada, feriado ou chuva. Se você chamar, nós vamos. Simples assim.'
     }
 ];
 
@@ -135,28 +135,52 @@ const coverageCitiesData = [
 
 const testimonialsData = [
     {
-        title: 'Transporte Técnico de Alto Valor',
-        text: 'Protocolo zero‑dano para veículos premium; cintas de roda e plataforma ajustada.',
-        tag: 'Serviço Especializado',
+        title: 'Logística de Ativos de Alto Valor',
+        text: 'Procedimentos técnicos dedicados a veículos de luxo e superesportivos. Utilização de guincho plataforma com ângulo de ataque reduzido.',
+        tag: 'Transporte Premium',
         stars: 5,
-        image: 'assets/images/p01.jpg',
-        alt: 'Guincho carregando BMW X6 com cintas de roda, amarração técnica sem contato com a lataria.'
+        image: 'assets/images/case-01.jpg',
+        alt: 'Transporte técnico de veículo importado com fixação em 4 pontos para máxima segurança.'
     },
     {
-        title: 'Prontidão Operacional 24h',
-        text: 'Capacidade para SUVs e blindados; resposta rápida em rodovias e perímetros urbanos.',
-        tag: 'Emergência 24h',
+        title: 'Operações de Frota Corporativa',
+        text: 'Parceria estratégica para locadoras e gestores de frota. Execução de logística de pátio e remanejamento de veículos em escala.',
+        tag: 'Soluções B2B',
         stars: 5,
-        image: 'assets/images/p02.jpg',
-        alt: 'Guincho transportando viatura policial SUV, demonstrando capacidade de carga e amarração segura.'
+        image: 'assets/images/case-02.jpg',
+        alt: 'Logística de pátio para frotas corporativas com sistema de rastreamento em tempo real.'
     },
     {
-        title: 'Resgate em Acesso Restrito',
-        text: 'Extração segura em subsolos e garagens com equipamento compacto e operadores treinados.',
-        tag: 'Acesso Difícil',
+        title: 'Logística Governamental e Tática',
+        text: 'Capacidade técnica para transporte de viaturas policiais e veículos de serviço público em conformidade com exigências estatais.',
+        tag: 'Veículos Oficiais',
         stars: 5,
-        image: 'assets/images/p03.jpg',
-        alt: 'Guincho realizando manobra próxima a condomínio, mostrando extração em acesso restrito.'
+        image: 'assets/images/case-03.jpg',
+        alt: 'Atendimento técnico especializado para órgãos públicos e frotas táticas.'
+    },
+    {
+        title: 'Remoção de Sinistros Graves',
+        text: 'Especialização no transporte de veículos com danos estruturais severos. Alta capacidade de tração para veículos travados.',
+        tag: 'Alta Complexidade',
+        stars: 5,
+        image: 'assets/images/case-06.jpg',
+        alt: 'Resgate de SUV blindado com uso de patins técnicos para evitar danos à transmissão.'
+    },
+    {
+        title: 'Veículos de Prestígio',
+        text: 'Transporte de alta precisão para automóveis importados. Amarração técnica (cintas de roda) sem contato com a lataria.',
+        tag: 'Transporte VIP',
+        stars: 5,
+        image: 'assets/images/case-05.jpg',
+        alt: 'Transporte de superesportivo utilizando cintas de roda e ganchos emborrachados.'
+    },
+    {
+        title: 'Logística de Carga Múltipla',
+        text: 'Otimização de frete através de transporte combinado. Movimentação simultânea de automóveis e motocicletas.',
+        tag: 'Logística Integrada',
+        stars: 5,
+        image: 'assets/images/case-04.jpg',
+        alt: 'Transporte compartilhado de motocicletas e carros otimizando custo logístico.'
     }
 ];
 
@@ -248,26 +272,39 @@ function renderTestimonials(containerId) {
     const container = document.querySelector(containerId);
     if (!container) return;
 
-    container.innerHTML = testimonialsData.map((item, index) => {
+    const chunkSize = 3;
+    const slides = [];
+    for (let i = 0; i < testimonialsData.length; i += chunkSize) {
+        slides.push(testimonialsData.slice(i, i + chunkSize));
+    }
+
+    container.innerHTML = slides.map((chunk, slideIndex) => `
+        <div class="slideshow__slide w-full flex-shrink-0">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 testimonials__list">
+                ${chunk.map((item, index) => {
         const stars = Array(item.stars).fill('<i class="fa-solid fa-star"></i>').join('');
         return `
-        <div class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-${(index % 3) + 1}">
-            <div class="card__image-wrapper">
-                <div class="absolute inset-0">
-                    <img src="${config.basePath}${item.image}" alt="${item.alt}" width="400" height="250" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div>
-            <div class="card-body p-6 relative flex flex-col flex-grow">
-                <div class="flex gap-1 text-warning text-sm mb-3">${stars}</div>
-                <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">${item.title}</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">${item.text}</p>
-                <div class="mt-auto pt-4 border-t border-border flex items-center gap-3">
-                    <span class="badge badge-primary/10 text-primary border-none font-bold text-xs uppercase tracking-wider">${item.tag}</span>
-                </div>
+                    <div class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-${(index % 3) + 1}">
+                        <div class="card__image-wrapper">
+                            <div class="absolute inset-0">
+                                <img src="${config.basePath}${item.image}" alt="${item.alt}" width="400" height="250" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                        <div class="card-body p-6 relative flex flex-col flex-grow">
+                            <div class="flex gap-1 text-warning text-sm mb-3">${stars}</div>
+                            <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">${item.title}</h3>
+                            <p class="text-muted-foreground text-sm leading-relaxed mb-4">${item.text}</p>
+                            <div class="mt-auto pt-4 border-t border-border flex items-center gap-3">
+                                <span class="badge badge-primary/10 text-primary border-none font-bold text-xs uppercase tracking-wider">${item.tag}</span>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+    }).join('')}
             </div>
         </div>
-    `}).join('');
+    `).join('');
 }
 
 /**
@@ -280,7 +317,7 @@ function init(options = {}) {
     renderServices('.services__grid');
     renderFeatures('.features__list');
     renderCoverageCities('.coverage__cities');
-    renderTestimonials('.testimonials__list');
+    renderTestimonials('#cases-track');
 }
 
 export const UI = {
