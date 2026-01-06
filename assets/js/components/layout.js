@@ -1,32 +1,46 @@
 /**
- * @fileoverview Global Layout Components (Header, Footer, Modals)
+ * @fileoverview Global Layout Components (Header, Footer, Modals).
+ * Handles the rendering of shared structural elements across all pages to ensure consistency.
+ * Eliminates the need for duplicating HTML for Header and Footer in every file.
  */
 
+/**
+ * Global configuration state for the layout.
+ * @type {{basePath: string, activePage: string}}
+ */
 let config = {
     basePath: './',
     activePage: 'home' // 'home' | 'services' | 'other'
 };
 
 /**
- * Resolves a link target based on the current page context.
- * Handles scrolling to anchors on the home page vs navigating from other pages.
+ * Resolves a navigation link based on the current page context.
+ * Enables SPA-like behavior for anchor links on the home page while providing full URLs for subpages.
  *
- * @param {string} target - The target link (e.g., '#contact', 'servicos.html').
- * @returns {string} - The resolved URL.
+ * @param {string} target - The target destination (e.g., '#contact', 'servicos.html').
+ * @returns {string} - The fully resolved URL or anchor.
  */
 function getLink(target) {
+    // Handle anchor links
     if (target.startsWith('#')) {
+        // If on home page, simple scroll to anchor
         if (config.activePage === 'home') {
             return target;
         } else {
+            // If on subpage, redirect to home page with anchor
             return `${config.basePath}index.html${target}`;
         }
     }
+
+    // Normalize internal page links
     if (target === 'index.html') return `${config.basePath}index.html`;
     if (target === 'servicos.html') return `${config.basePath}servicos.html`;
+
+    // Handle relative paths that aren't external links or protocols
     if (!target.startsWith('http') && !target.startsWith('tel:') && !target.startsWith('mailto:')) {
         return `${config.basePath}${target}`;
     }
+
     return target;
 }
 

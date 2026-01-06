@@ -1,3 +1,7 @@
+/**
+ * Forms Module.
+ * Manages form interactions, validation, geolocation integration, and WhatsApp submission.
+ */
 import IMask from 'imask';
 import { UI } from './ui.js';
 import { fetchWithTimeout } from './utils.js';
@@ -17,7 +21,9 @@ export function initForms() {
 
 /**
  * Applies input masks (e.g., phone number) to inputs within a given scope.
- * @param {HTMLElement|Document} scope - The DOM element to search for inputs.
+ * Uses IMask library.
+ *
+ * @param {HTMLElement|Document} scope - The DOM element to search for inputs. Defaults to document.
  */
 export function initInputMasks(scope = document) {
     const phoneInputs = scope.querySelectorAll('input[type="tel"]');
@@ -29,7 +35,8 @@ export function initInputMasks(scope = document) {
 }
 
 /**
- * Initializes location detection functionality for inputs.
+ * Initializes location detection functionality for inputs with the .location-detect class.
+ * Uses Event Delegation.
  */
 function initLocationDetection() {
     document.body.addEventListener('click', e => {
@@ -45,6 +52,10 @@ function initLocationDetection() {
     });
 }
 
+/**
+ * Adds a visual feedback animation to the clicked button.
+ * @param {HTMLElement} button - The button to animate.
+ */
 function animateButton(button) {
     button.classList.remove('animating');
     void button.offsetWidth; // force reflow
@@ -55,8 +66,10 @@ function animateButton(button) {
 }
 
 /**
- * Handles the logic for retrieving and setting the current location.
- * @param {HTMLInputElement} input
+ * Handles the logic for retrieving and setting the current location via Geolocation API.
+ * Updates the input with the resolved address or coordinates.
+ *
+ * @param {HTMLInputElement} input - The input element to populate.
  */
 function handleLocationRequest(input) {
     if (!navigator.geolocation) {
@@ -76,6 +89,7 @@ function handleLocationRequest(input) {
                 input.value = address;
                 UI.showNotification('Localização encontrada!', 'success');
             } catch (error) {
+                // Fallback to coordinates if reverse geocoding fails
                 input.value = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
                 UI.showNotification('Endereço não encontrado, usando coordenadas.', 'info');
             } finally {
@@ -90,7 +104,8 @@ function handleLocationRequest(input) {
 }
 
 /**
- * Sets up logic for multi-step forms (e.g., emergency form).
+ * Sets up logic for multi-step forms (specifically the #emergency-form).
+ * Handles visibility toggling between steps.
  */
 function setupFormSteps() {
     const form = document.getElementById('emergency-form');
@@ -103,16 +118,19 @@ function setupFormSteps() {
 
     if (!step1 || !step2 || !btnNext) return;
 
+    // Next Step Logic
     btnNext.addEventListener('click', () => {
         const location = form.querySelector('#emergency-location');
         const vehicle = form.querySelector('#emergency-vehicle');
 
+        // Basic validation before proceeding
         if (!location.value) { location.reportValidity(); return; }
         if (!vehicle.value) { vehicle.reportValidity(); return; }
 
         toggleStep(step1, step2, true);
     });
 
+    // Previous Step Logic
     if (btnPrev) {
         btnPrev.addEventListener('click', () => {
             toggleStep(step2, step1, false);
@@ -120,6 +138,13 @@ function setupFormSteps() {
     }
 }
 
+/**
+ * Toggles visibility between two form steps.
+ *
+ * @param {HTMLElement} hideStep - The step to hide.
+ * @param {HTMLElement} showStep - The step to show.
+ * @param {boolean} forward - Direction of navigation (true = next, false = prev).
+ */
 function toggleStep(hideStep, showStep, forward) {
     hideStep.classList.add('hidden');
     showStep.classList.remove('hidden');
@@ -127,14 +152,13 @@ function toggleStep(hideStep, showStep, forward) {
     // Manage disabled state for validation purposes
     showStep.querySelectorAll('input').forEach(input => input.disabled = false);
     if (forward) {
-        // hideStep.querySelectorAll('input').forEach(input => input.disabled = true);
-        // Careful: disabling inputs might remove them from FormData.
-        // Better to just hide visually.
+        // Note: We don't disable hidden inputs here to ensure they are included in FormData
     }
 }
 
 /**
  * Handles form submissions globally.
+ * Intercepts submit events, gathers data, generates a WhatsApp link, and redirects the user.
  */
 function setupFormSubmission() {
     document.body.addEventListener('submit', function (e) {
@@ -155,6 +179,7 @@ function setupFormSubmission() {
         let title = "Solicitação de Orçamento";
         const extraData = {};
 
+        // Custom logic based on form ID
         if (form.id === 'emergency-form') {
             title = "Emergência 24h";
         } else if (form.id === 'price-estimator-form') {
@@ -171,27 +196,30 @@ function setupFormSubmission() {
 
         const whatsappUrl = WhatsAppService.generateUrl(title, combinedData);
 
-        // Chaos & Domain Logic Fix:
-        // Removing setTimeout to prevent pop-up blockers from intercepting the window.open call.
-        // The redirection happens immediately.
+        // Reset UI state
         UI.setButtonLoading(submitBtn, false);
 
-        // Security: Control window opener
+        // Security: Control window opener to prevent malicious redirects
         const win = window.open(whatsappUrl, '_blank');
 
         if (!win || win.closed || typeof win.closed == 'undefined') {
-            // Fallback for pop-up blockers
+            // Fallback for pop-up blockers: standard redirection
             window.location.href = whatsappUrl;
         } else {
             win.opener = null;
         }
 
+        // Show success modal to user (in case they come back to the tab)
         handleSuccessModal(whatsappUrl);
         form.reset();
         resetEmergencyFormSteps(form);
     });
 }
 
+/**
+ * Displays the success modal with a link to reopen WhatsApp.
+ * @param {string} url - The WhatsApp URL.
+ */
 function handleSuccessModal(url) {
     const modalSuccess = document.getElementById('modal-success');
     if (modalSuccess) {
@@ -201,6 +229,10 @@ function handleSuccessModal(url) {
     }
 }
 
+/**
+ * Resets the multi-step emergency form to its initial state.
+ * @param {HTMLFormElement} form - The form element.
+ */
 function resetEmergencyFormSteps(form) {
     if (form.id === 'emergency-form') {
         const step1 = form.querySelector('#form-step-1');

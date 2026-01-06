@@ -1,13 +1,15 @@
 /**
- * @fileoverview Reusable UI Components data and renderer
- */
-
-/**
- * @fileoverview Reusable UI Components data and renderer
+ * @fileoverview Reusable UI Components data and renderer.
+ * Centralizes the content and markup generation for dynamic UI sections like Services, Features, and Testimonials.
+ * Makes it easy to update content without touching the HTML structure.
  */
 
 // === DATA DEFINITIONS ===
 
+/**
+ * Data definitions for the Service Cards.
+ * @type {Array<{icon: string, title: string, text: string, isHighlight?: boolean, action: object}>}
+ */
 const servicesData = [
     {
         icon: 'fa-solid fa-truck-fast',

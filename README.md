@@ -1,123 +1,152 @@
-# Chama o Guincho
+# Chama o Guincho - Plataforma de Auto-Socorro 24h
 
-Este é um projeto de site para um serviço de guincho 24 horas. O site foi desenvolvido com foco em performance, usabilidade e SEO Local.
+Bem-vindo ao repositório oficial do projeto **Chama o Guincho**. Este é um site estático de alta performance desenvolvido para um serviço de guincho e assistência automotiva na região de Campinas e RMC.
 
-## Tecnologias Utilizadas
+O projeto foca em **Velocidade (Core Web Vitals)**, **SEO Local** e **Conversão (UX Mobile-First)**, utilizando tecnologias modernas sem a sobrecarga de frameworks complexos.
 
-* HTML5
-* CSS3
-* JavaScript (ES6+)
+---
 
-## Estrutura do Projeto e Arquitetura (Diretrizes)
+## 🚀 Tecnologias e Ferramentas
 
-Este projeto adota uma arquitetura de **Site Estático** para garantir máxima performance e facilidade de hospedagem. Embora não utilizemos um framework como React ou Next.js, nem bundlers como Webpack, seguimos uma organização lógica para manter o código sustentável.
+*   **HTML5 Semântico:** Estrutura acessível e otimizada para SEO.
+*   **CSS3 & Tailwind CSS:** Estilização utilitária com design tokens personalizados para consistência visual.
+*   **JavaScript (ES6+):** Lógica modular (Vanilla JS) para interatividade, livre de dependências pesadas.
+*   **Vite:** Ferramenta de build e servidor de desenvolvimento ultrarrápido.
+*   **PostCSS:** Processamento de CSS moderno.
+*   **Bibliotecas Auxiliares:**
+    *   `imask`: Máscaras de input (telefones, etc).
+    *   `toastify-js`: Notificações toast leves.
+    *   `@formkit/auto-animate`: Animações automáticas de lista.
 
-### Organização de Pastas (Lógica)
+---
 
-* **Raiz (`/`)**: Contém a `index.html` (Home - Foco em Campinas) e arquivos de configuração global.
-* **Páginas de Cidades (`/guincho-{cidade}/`)**: Cada cidade atendida possui um diretório próprio com um arquivo `index.html`.
-  * *Exemplo:* `/guincho-valinhos/index.html`, `/guincho-vinhedo/index.html`.
-  * Isso garante URLs limpas e amigáveis para SEO (ex: `chamaoguincho.com.br/guincho-valinhos/`).
-* **Assets (`/assets/`)**:
-  * `/css`: Estilos globais.
-  * `/js`: Lógica de interação (formulários, modais, cálculo de preço).
-  * `/images`: Imagens otimizadas (WebP).
+## 📂 Estrutura do Projeto
 
-### Componentes Reutilizáveis
+A arquitetura segue o padrão de **Site Estático** com organização modular de assets.
 
-Como não há um processo de build, "componentes" como **Header** e **Footer** são replicados em cada arquivo HTML.
+```text
+/
+├── assets/
+│   ├── css/
+│   │   ├── design-tokens.css   # Variáveis CSS (Cores, Tipografia, Espaçamentos)
+│   │   └── input.css           # Diretivas Tailwind e Estilos Globais
+│   ├── js/
+│   │   ├── components/         # Componentes de UI (Layout, Cards)
+│   │   ├── modules/            # Módulos funcionais (Forms, Mapa, Calculadora)
+│   │   ├── services/           # Lógica de negócio pura (API, Preços)
+│   │   └── app.js              # Ponto de entrada (Entry Point)
+│   └── images/                 # Ativos de imagem otimizados (WebP)
+├── dist/                       # Saída de produção (gerado pelo build)
+├── public/                     # Arquivos estáticos copiados para a raiz
+├── .gitignore
+├── index.html                  # Página Principal (Home)
+├── servicos.html               # Página de Serviços Detalhada
+├── portfolio-labareda.html     # Landing Page Específica (Legado/Campanha)
+├── package.json                # Dependências e Scripts
+├── tailwind.config.js          # Configuração do Tailwind
+└── vite.config.js              # Configuração do Vite
+```
 
-* **Diretriz de Manutenção:** Ao alterar o Header ou Footer na Home, a alteração deve ser replicada manualmente para todas as páginas de cidade (`guincho-*/index.html`).
-* **Futuro:** Em caso de migração para um Gerador de Site Estático (SSG), esses blocos de código devem ser extraídos para uma pasta `/components` (ex: `Header.js`, `Footer.js`).
+---
 
-### Padrões de Nomeação
+## 🛠️ Instalação e Uso
 
-* **Arquivos e Pastas:** Sempre utilizar `kebab-case` (ex: `guincho-valinhos`, `style.css`).
-* **IDs e Classes CSS:** Utilizar `kebab-case` (ex: `emergency-form`, `btn-primary`).
+### Pré-requisitos
 
-## Otimizações Implementadas
+*   Node.js (versão 16 ou superior)
+*   NPM ou Yarn
 
-* **SEO Local:**
-  * Páginas dedicadas para cidades satélites com conteúdo customizado (Title, Meta Description, H1).
-  * Tags `Canonical` para evitar punição por conteúdo duplicado.
-  * Schema.org (`AutoTowingService`) com `areaServed` detalhada.
-* **Performance:**
-  * Imagens em formato WebP.
-  * Scripts deferidos (`defer`).
-  * CSS crítico otimizado para Mobile First.
+### Passo a Passo
 
-## Relatório de Mudanças (Últimos 5 Dias)
-
-### Resumo Executivo
-
-Nos últimos cinco dias, a base de código do site "Chama o Guincho" passou por uma refatoração significativa para melhorar sua estrutura, manutenibilidade e desempenho. O foco principal foi a redução da duplicação de código, a centralização da configuração e a otimização do carregamento de ativos. Essas mudanças resultaram em uma base de código mais robusta e escalável, mais fácil de gerenciar e estender no futuro.
-
-### Relatório de Programação
-
-#### 1. Refatoração do Manuseio de Formulários
-
-* **O que foi alterado:** A lógica de manipulação de formulários em `assets/js/forms.js` foi completamente reformulada. Anteriormente, cada formulário tinha sua própria função dedicada para gerar and enviar uma mensagem de WhatsApp. Isso resultava em muito código duplicado.
-* **Como foi alterado:** Implementei uma função genérica `sendWhatsAppMessage` que recebe um elemento de formulário e um título como argumentos. Essa função gera dinamicamente uma mensagem de WhatsApp com base nos campos de entrada do formulário e seus rótulos correspondentes. As funções individuais `send...WhatsApp` foram removidas, e a função `setupSpecificForm` foi atualizada para usar a nova função genérica.
-* **Como o site está programado agora:** O manuseio de formulários agora é muito mais eficiente e de fácil manutenção. Para adicionar um novo formulário, você só precisa criar o HTML para o formulário e, em seguida, chamar a função `setupSpecificForm` com o ID do formulário, um título para a mensagem do WhatsApp e uma notificação de sucesso.
-
-#### 2. Refatoração do Manuseio de Modais
-
-* **O que foi alterado:** O site tinha um grande número de modais com estruturas muito semelhantes, o que levava a uma grande quantidade de HTML redundante.
-* **Como foi alterado:** Substituí todos os modais individuais por uma única estrutura de modal genérica em `index.html`. O arquivo `assets/js/modals.js` foi atualizado para preencher dinamicamente este modal com o conteúdo correto com base nos atributos `data-modal`, `data-title` e `data-form-id` nos botões de acionamento. Os formulários que são exibidos nos modais agora são armazenados em uma `div` oculta e clonados no modal quando necessário.
-* **Como o site está programado agora:** O sistema de modais agora é muito mais flexível e fácil de gerenciar. Para criar um novo modal, você só precisa adicionar um botão de acionamento com os atributos `data-` apropriados.
-
-#### 3. Arquitetura Modular e Otimização de JavaScript
-
-* **O que foi alterado:** A arquitetura de scripts foi migrada de um monolito para um sistema modular baseado em módulos ES6 em `/assets/js/modules/`.
-* **Módulos Implementados:**
-  * `app.js`: Ponto de entrada (Entry Point) principal.
-  * `forms.js`: Centralização da lógica de formulários e integração com WhatsApp.
-  * `modals.js`: Sistema genérico de modais via templates.
-  * `ui.js`: Controladores de interface (animações, navegação, skeletons).
-  * `calculator.js`: Motor de cálculo de preços dinâmicos.
-  * `config.js`: Centralização de constantes de negócio.
-  * `map.js`: Integração com mapas de cobertura.
-* **Como o site está programado agora:** O site carrega um único bundle via `app.js` (em desenvolvimento via Vite, em produção via bundle otimizado). Isso garante baixo tempo de carregamento e alta manutenibilidade.
-
-#### 4. Novo Sistema de Modais Genéricos
-
-* **O que foi alterado:** Removidos modais redundantes e implementada uma estrutura única em `index.html` que é populada dinamicamente.
-* **Funcionamento:** Botões agora usam `data-toggle="modal"` e `data-target="TEMPLATE_ID"` para disparar modais leves e performáticos.
-* **Resultados:** Redução drástica de linhas de HTML repetidas e carregamento instantâneo de janelas de diálogo.
-
-#### 5. Otimização de Ativos de Imagem
-
-* **O que foi alterado:** O diretório `assets/images` continha imagens duplicadas, e muitas das imagens eram grandes e não otimizadas.
-* **Como foi alterado:** Removi as imagens duplicadas do diretório.
-* **Melhorias futuras:** Recomendo que as imagens sejam compactadas e convertidas para um formato mais moderno como WebP para melhorar ainda mais a velocidade de carregamento da página.
-
-#### 5. Configuração Centralizada
-
-* **O que foi alterado:** Valores embutidos para regras de preços e o número do WhatsApp estavam espalhados pelos arquivos JavaScript.
-* **Como foi alterado:** Criei um arquivo `assets/js/config.js` para armazenar todos os valores de configuração em um único local centralizado. O arquivo `app.js` foi atualizado para usar os valores deste novo arquivo de configuração.
-* **Como o site está programado agora:** Todos os valores de configuração agora são armazenados em um único arquivo, tornando-os muito mais fáceis de gerenciar e atualizar.
-
-### Relatório de Usabilidade
-
-A refatoração recente teve um impacto positivo na usabilidade do site, principalmente em termos de desempenho. Ao consolidar os arquivos JavaScript e remover imagens duplicadas, o site agora carrega mais rápido, proporcionando uma melhor experiência ao usuário. A acessibilidade do site já era boa e eu a mantive.
-
-### Melhorias Futuras
-
-* **Otimização de Imagens:** Conforme mencionado acima, as imagens devem ser compactadas e convertidas para o formato WebP para melhorar ainda mais o desempenho.
-* **Minificação de Código:** Para um ambiente de produção, os arquivos `app.js` e `style.css` devem ser minificados para reduzir o tamanho do arquivo e melhorar ainda mais os tempos de carregamento.
-* **Processo de Build Automatizado:** Um processo de build automatizado poderia ser implementado para lidar com a consolidação e minificação dos arquivos JavaScript e CSS automaticamente.
-* **Integração com Backend:** Os formulários atualmente enviam dados via WhatsApp. Para uma solução mais robusta, os formulários poderiam ser integrados a um serviço de backend para armazenar os dados em um banco de dados e enviar notificações por e-mail.
-
-## Como Executar o Projeto
-
-1. Clone o repositório:
-
+1.  **Clone o repositório:**
     ```bash
     git clone https://github.com/seu-usuario/chama-o-guincho.git
+    cd chama-o-guincho
     ```
 
-2. Abra o arquivo `index.html` em seu navegador.
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
 
-## Contato
+3.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+    O site estará disponível em `http://localhost:5173` (ou porta similar).
 
-Para mais informações, entre em contato através do e-mail [afonsoguinchocampinas@gmail.com](mailto:afonsoguinchocampinas@gmail.com).
+4.  **Gere a versão de produção:**
+    ```bash
+    npm run build
+    ```
+    Os arquivos otimizados serão gerados na pasta `dist/`.
+
+5.  **Visualize a versão de produção localmente:**
+    ```bash
+    npm run preview
+    ```
+
+---
+
+## ✨ Funcionalidades Principais
+
+### 1. 📱 Mobile-First & Responsivo
+Interface projetada pensando primeiramente na experiência em dispositivos móveis, garantindo botões acessíveis, textos legíveis e navegação fluida em qualquer tamanho de tela.
+
+### 2. 📍 Geolocalização Inteligente
+*   Detecção automática da localização do usuário via API do navegador.
+*   Cálculo de distância em tempo real utilizando OSRM (Open Source Routing Machine).
+*   Preenchimento automático de endereços (Reverse Geocoding) via Nominatim/OpenStreetMap.
+
+### 3. 💰 Calculadora de Preços Dinâmica
+*   Estimativa de custo baseada na distância (KM) e tipo de veículo.
+*   Regras de negócio configuráveis (Preço base, adicional noturno/fim de semana).
+*   Feedback visual imediato para o usuário.
+
+### 4. 💬 Integração com WhatsApp
+*   Todos os formulários (Emergência, Agendamento, Orçamento) geram links diretos para a API do WhatsApp.
+*   Mensagens pré-formatadas com os dados preenchidos pelo usuário, facilitando o atendimento.
+
+### 5. 🗺️ Mapa de Cobertura Interativo
+*   Visualização das cidades atendidas.
+*   Atualização dinâmica do mapa ao selecionar uma região.
+
+---
+
+## 🎨 Design System e Estilização
+
+O projeto utiliza um sistema de **Design Tokens** definido em `assets/css/design-tokens.css`. Isso garante que cores, tipografia e espaçamentos sejam consistentes em toda a aplicação.
+
+*   **Primary Color:** Laranja Intenso (`hsl(25 95% 53%)`) - Foco em ação e urgência.
+*   **Secondary/Background:** Tons de Cinza e Preto - Sofisticação e contraste.
+*   **Tipografia:** Família Sans-Serif moderna para legibilidade máxima.
+
+---
+
+## 📝 Documentação do Código
+
+O código JavaScript é documentado utilizando **JSDoc**.
+*   **Services (`assets/js/services/`):** Classes estáticas contendo lógica pura e chamadas de API.
+*   **Modules (`assets/js/modules/`):** Funções que conectam a lógica de negócio (Services) com a interface (DOM).
+*   **Components (`assets/js/components/`):** Renderizadores de HTML reutilizável (Header, Footer, Cards).
+
+---
+
+## 🤝 Contribuição
+
+1.  Faça um Fork do projeto.
+2.  Crie uma Branch para sua Feature (`git checkout -b feature/MinhaFeature`).
+3.  Commit suas mudanças (`git commit -m 'Adiciona funcionalidade X'`).
+4.  Push para a Branch (`git push origin feature/MinhaFeature`).
+5.  Abra um Pull Request.
+
+---
+
+## 📞 Contato e Suporte
+
+Para suporte técnico ou dúvidas sobre o projeto:
+*   **Email:** afonsoguinchocampinas@gmail.com
+*   **WhatsApp:** (19) 99350-2969
+
+---
+&copy; 2024 Chama o Guincho. Todos os direitos reservados.

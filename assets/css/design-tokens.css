@@ -3,11 +3,13 @@
  * DESIGN TOKENS — Chama o Guincho (Premium SaaS Theme)
  * ============================================================================
  * 
- * Este arquivo centraliza todos os tokens de design do projeto.
- * Estilo: Shadcn UI / Magic UI
- * Paleta: Laranja/Amarelo (Action) + Preto/Cinza (Sophistication)
+ * This file centralizes all design tokens (CSS Variables) for the project.
+ * It serves as the single source of truth for colors, spacing, typography, and effects.
  * 
- * USO: hsl(var(--nome-do-token))
+ * Style Guide: Shadcn UI / Magic UI inspired.
+ * Palette: Intense Orange (Action) + Black/Zinc (Sophistication).
+ *
+ * USAGE: color: hsl(var(--token-name));
  * ============================================================================
  */
 

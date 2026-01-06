@@ -1,16 +1,22 @@
-// UI and Feedback logic
+/**
+ * UI Module.
+ * Provides utility functions for user interface feedback, state management, and interaction.
+ * Includes helpers for loading states, notifications, skeletons, carousels, and navigation.
+ */
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
 /**
- * Global UI utilities for user feedback and state management.
+ * Global UI utilities object.
  */
 export const UI = {
     /**
-     * Toggles a button's loading state.
-     * @param {HTMLButtonElement} btn - The button to update.
-     * @param {boolean} loading - Whether to show the loading state.
-     * @param {string} [loadingText] - Optional text to display while loading.
+     * Toggles a button's visual loading state.
+     * Prevents multiple submissions by disabling the button.
+     *
+     * @param {HTMLButtonElement} btn - The button element to update.
+     * @param {boolean} loading - True to show loading spinner, false to reset.
+     * @param {string} [loadingText] - Optional text to display while loading (e.g., "Sending...").
      */
     setButtonLoading(btn, loading, loadingText) {
         if (!btn) return;
@@ -18,7 +24,7 @@ export const UI = {
         if (loading) {
             btn._originalText = btn.innerHTML;
             btn._originalDisabled = btn.disabled;
-            btn.classList.add('loading'); // DaisyUI/Tailwind class
+            btn.classList.add('loading'); // Class for styling (e.g., via Tailwind/daisyUI)
             btn.disabled = true;
             if (loadingText) {
                 btn.innerHTML = `<span class="loading loading-spinner"></span> ${loadingText}`;
@@ -33,17 +39,17 @@ export const UI = {
     },
 
     /**
-     * Toggles an input's loading/disabled state.
+     * Toggles an input's disabled/readonly state to prevent editing during processes.
+     *
      * @param {HTMLInputElement} input - The input element.
-     * @param {boolean} loading - Whether to disable/show loading.
+     * @param {boolean} loading - True to disable, false to enable.
      */
     setInputLoading(input, loading) {
         if (!input) return;
 
         if (loading) {
-            input.classList.add('input-disabled'); // Tailwind style
+            input.classList.add('input-disabled'); // Custom utility class
             input.readOnly = true;
-            // Maybe add a spinner icon sibling if structure allows
         } else {
             input.classList.remove('input-disabled');
             input.readOnly = false;
@@ -51,10 +57,11 @@ export const UI = {
     },
 
     /**
-     * Displays a toast notification.
-     * @param {string} message - The message text.
-     * @param {string} [type='info'] - The type ('success', 'error', 'info').
-     * @param {number} [duration=5000] - Duration in ms.
+     * Displays a toast notification using Toastify.js.
+     *
+     * @param {string} message - The message text to display.
+     * @param {string} [type='info'] - The notification type: 'success', 'error', or 'info'.
+     * @param {number} [duration=5000] - Time in milliseconds before auto-closing.
      */
     showNotification(message, type = 'info', duration = 5000) {
         let backgroundColor;
@@ -68,18 +75,20 @@ export const UI = {
             text: message,
             duration: duration,
             close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
+            gravity: "top", // Position: top or bottom
+            position: "right", // Position: left, center, right
             backgroundColor: backgroundColor,
-            stopOnFocus: true, // Prevents dismissing of toast on hover
+            stopOnFocus: true, // Prevents dismissing on hover
         }).showToast();
     },
 
     /**
-     * Renders skeleton loading states into a container.
-     * @param {HTMLElement} container - The container element.
-     * @param {number} [count=3] - Number of skeletons to render.
-     * @param {string} [type='card'] - Type of skeleton (currently only 'card').
+     * Renders skeleton loading placeholders into a container.
+     * Useful for indicating content is loading asynchronously.
+     *
+     * @param {HTMLElement} container - The container element to inject skeletons into.
+     * @param {number} [count=3] - Number of skeleton items to render.
+     * @param {string} [type='card'] - Type of skeleton (currently only 'card' is supported).
      */
     renderSkeletons(container, count = 3, type = 'card') {
         if (!container) return;
@@ -100,7 +109,7 @@ export const UI = {
 
 /**
  * Initializes the intersection observer for scroll-triggered animations.
- * Elements with class .animate-on-scroll will receive the .visible class when in view.
+ * Elements with class .animate-on-scroll will receive the .visible class when they enter the viewport.
  */
 export function initScrollAnimation() {
     const observer = new IntersectionObserver((entries) => {
@@ -115,10 +124,13 @@ export function initScrollAnimation() {
 }
 
 /**
- * A simple Carousel class for handling slideshows.
- * Supports autoplay, navigation buttons, and dots.
+ * A custom Carousel class for handling image slideshows.
+ * Supports auto-play, manual navigation, and pagination dots.
  */
 export class Carousel {
+    /**
+     * @param {HTMLElement} element - The root carousel element containing track and slides.
+     */
     constructor(element) {
         this.element = element;
         this.track = this.element.querySelector('.slideshow__track');
@@ -133,11 +145,14 @@ export class Carousel {
         this.setup();
     }
 
+    /**
+     * Sets up event listeners and starts the carousel.
+     */
     setup() {
         this.goTo(0);
         this.startAutoplay();
 
-        // Control buttons
+        // Control buttons (scoped to parent to find siblings)
         const prevBtn = this.element.parentElement.querySelector('.carousel-arrow--prev');
         const nextBtn = this.element.parentElement.querySelector('.carousel-arrow--next');
         const dots = this.element.parentElement.querySelectorAll('.carousel-dot');
@@ -165,14 +180,21 @@ export class Carousel {
         }
     }
 
+    /**
+     * Transitions the carousel to a specific slide index.
+     * @param {number} index - The target slide index.
+     */
     goTo(index) {
         if (this.isAnimating) return;
         this.isAnimating = true;
 
+        // Circular navigation logic
         this.currentIndex = (index < 0) ? this.totalSlides - 1 : (index >= this.totalSlides) ? 0 : index;
+
+        // CSS Transform for sliding effect
         this.track.style.transform = `translateX(${-this.currentIndex * 100}%)`;
 
-        // Update dots
+        // Update active state of dots
         const dots = this.element.parentElement.querySelectorAll('.carousel-dot');
         if (dots.length > 0) {
             dots.forEach((dot, i) => {
@@ -196,9 +218,12 @@ export class Carousel {
     next() { this.goTo(this.currentIndex + 1); }
     prev() { this.goTo(this.currentIndex - 1); }
 
+    /**
+     * Starts the auto-play timer.
+     */
     startAutoplay() {
         this.stopAutoplay();
-        // Only autoplay if it's the hero slideshow (no controls found in parent usually)
+        // Skip autoplay for specific carousel types (e.g., cases)
         if (this.element.classList.contains('slideshow--cases')) return;
         this.autoplayInterval = setInterval(() => this.next(), 5000);
     }
@@ -207,7 +232,8 @@ export class Carousel {
 }
 
 /**
- * Initializes global navigation logic (mobile menu toggle, sticky header).
+ * Initializes global navigation logic.
+ * Handles mobile menu toggling and the sticky header effect on scroll.
  */
 export function initNavigation() {
     const navToggle = document.getElementById('nav-toggle');
@@ -217,11 +243,10 @@ export function initNavigation() {
         navToggle.addEventListener('click', () => {
             const isHidden = navMenu.classList.contains('hidden');
             navMenu.classList.toggle('hidden');
-            // Animate transition if desired
         });
     }
 
-    // Header scroll effect
+    // Header scroll effect (Change background/shadow on scroll)
     window.addEventListener('scroll', throttle(() => {
         const header = document.getElementById('header');
         if (header) {
@@ -236,6 +261,12 @@ export function initNavigation() {
     }, 100));
 }
 
+/**
+ * Throttles a function to limit its execution rate.
+ * @param {Function} func - The function to throttle.
+ * @param {number} limit - The time limit in milliseconds.
+ * @returns {Function} - The throttled function.
+ */
 function throttle(func, limit) {
     let inThrottle;
     return function() {

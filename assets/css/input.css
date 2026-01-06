@@ -1,14 +1,24 @@
-﻿@import './design-tokens.css';
+/**
+ * ============================================================================
+ * MAIN STYLESHEET
+ * ============================================================================
+ *
+ * Compiles Tailwind CSS layers and custom component styles.
+ * Imports design tokens as the source of truth for variables.
+ */
+@import './design-tokens.css';
 
 @tailwind base;
 
+/* Global Html Settings */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--header-height);
+    scroll-padding-top: var(--header-height); /* Offset for sticky header */
 }
 
 
 /* =========== TYPOGRAPHY =========== */
+/* Base Heading Styles */
 h1,
 h2,
 h3,

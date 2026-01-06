@@ -1,15 +1,21 @@
+/**
+ * Calculator Module.
+ * Manages the interactive price estimation form.
+ * Connects user inputs (Origin, Destination, Vehicle) with the GeoService and PricingService.
+ */
 import { PricingService } from '../services/pricing.service.js';
 import { GeoService } from '../services/geo.service.js';
 import { UI } from './ui.js';
 
 /**
  * Initializes the price calculator module.
- * Acts as a View Controller, delegating logic to Services.
+ * Binds event listeners to form inputs to enable real-time updates and distance calculation.
  */
 export function initPriceCalculator() {
     const estimator = document.getElementById('price-estimator-form');
     if (!estimator) return;
 
+    // DOM references for key inputs
     const dom = {
         origin: document.getElementById('price-origin'),
         destination: document.getElementById('price-destination'),
@@ -18,34 +24,40 @@ export function initPriceCalculator() {
         output: estimator.querySelector('.price-estimator__price')
     };
 
-    // Auto-calculate on input
+    // Auto-calculate price when distance or vehicle type changes
     [dom.distance, dom.vehicle].forEach(el => {
         if (el) el.addEventListener('input', () => updatePriceDisplay(dom));
     });
 
-    // Distance calculation on blur
+    // Trigger automatic distance calculation when origin or destination loses focus
     [dom.origin, dom.destination].forEach(el => {
         if (el) el.addEventListener('blur', () => handleDistanceUpdate(dom));
     });
 }
 
 /**
- * Handles the async distance update process.
- * @param {object} dom - Reference to DOM elements.
+ * Handles the asynchronous distance update process.
+ * Calls GeoService to get the distance between origin and destination.
+ * Updates the distance input and triggers a price recalculation.
+ *
+ * @param {object} dom - Object containing references to DOM elements.
  */
 async function handleDistanceUpdate(dom) {
     const origin = dom.origin.value.trim();
     const destination = dom.destination.value.trim();
 
+    // Only attempt calculation if both fields have sufficient content
     if (origin.length < 3 || destination.length < 3) return;
 
     try {
         UI.setInputLoading(dom.distance, true);
 
+        // Fetch distance from external service
         const result = await GeoService.getDistance(origin, destination);
 
+        // Update DOM
         dom.distance.value = result.distanceInKm;
-        dom.distance.dispatchEvent(new Event('input')); // Trigger price update
+        dom.distance.dispatchEvent(new Event('input')); // Trigger price update automatically
 
         console.log(`Calculated Distance: ${result.distanceInKm} km`);
         UI.showNotification(`Logística calculada: ${result.distanceInKm} km`, 'success');
@@ -59,8 +71,10 @@ async function handleDistanceUpdate(dom) {
 }
 
 /**
- * Updates the price display using the PricingService.
- * @param {object} dom - Reference to DOM elements.
+ * Updates the price display based on current form values.
+ * Uses PricingService to perform the business logic calculation.
+ *
+ * @param {object} dom - Object containing references to DOM elements.
  */
 function updatePriceDisplay(dom) {
     const distance = parseInt(dom.distance.value, 10) || 0;

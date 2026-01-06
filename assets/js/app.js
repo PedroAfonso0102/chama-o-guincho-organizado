@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Main application entry point (Bundle Entry).
+ * Imports styles, core logic, and initializes the application state.
+ */
 import '../css/input.css';
 import { initNavigation, initScrollAnimation, Carousel, UI } from './modules/ui.js';
 import { initForms } from './modules/forms.js';
@@ -10,45 +14,52 @@ import { Layout } from './components/layout.js';
 import { UI as Components } from './components/ui-components.js';
 
 /**
- * Main application entry point.
- * Initializes layout, UI components, and all functional modules.
+ * Main application initializer.
+ * Orchestrates the setup of layout, UI components, and all functional modules once the DOM is ready.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // Determine active page
+    // 1. Context Detection
+    // Determine the current active page to highlight navigation and adjust paths
     const path = window.location.pathname;
     const activePage = path.includes('servicos') ? 'services' : 'home';
 
-    // Init Core Structural Layout
+    // 2. Structural Initialization (Layout)
+    // Renders the global Header and Footer dynamically
     Layout.init({
         basePath: './',
         activePage: activePage
     });
 
-    // Init Dynamic UI Components
+    // 3. Content Initialization (Components)
+    // Renders dynamic content areas like Services Grid, Features, and Testimonials
     Components.init({
         basePath: './'
     });
 
-    // Init Core UI Logic
+    // 4. Core UI Behaviors
+    // Sets up navigation toggles, scroll animations, and sticky headers
     initNavigation();
     initScrollAnimation();
 
-    // Init Logic Modules
-    initForms();
-    initPriceCalculator();
-    initCoverageMap();
-    initModals();
+    // 5. Functional Modules Initialization
+    initForms();            // Form handling and validations
+    initPriceCalculator();  // Dynamic pricing logic
+    initCoverageMap();      // Interactive map
+    initModals();           // Modal system
 
-    // Init Carousel
+    // 6. Interactive Widgets
+    // Initialize Carousels/Slideshows
     document.querySelectorAll('.slideshow').forEach(el => new Carousel(el));
 
-    // Init Effects
+    // 7. Visual Effects
+    // Initialize AutoAnimate for smooth list transitions (FAQ, Features)
     const faqContainer = document.querySelector('.faq__container');
     if (faqContainer) autoAnimate(faqContainer);
 
     const lists = document.querySelectorAll('.features__list, .services__grid');
     lists.forEach(list => autoAnimate(list));
 
-    // Expose UI for debugging or inline scripts if strictly necessary
+    // 8. Debug / Global Access
+    // Expose UI helpers to the global scope for debugging or edge-case inline scripts
     window.UI = UI;
 });
