@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-K5PRZFB9');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#FF7A1A">
+
+    <title>Guincho Profissional em Campinas | Atendimento Ágil | Chama o Guincho</title>
+    <meta name="description"
+        content="Serviço de guincho e reboque em Campinas e região. Atendimento profissional, preço justo e pagamento facilitado no cartão. Fale direto com a equipe.">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg" href="assets/images/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Guincho Profissional em Campinas | Atendimento Ágil | Chama o Guincho">
+    <meta property="og:description"
+        content="Atendimento profissional e preço justo. Aceitamos cartão. Fale com a gente.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chamaoguincho.com.br/emergencia">
+
+    <!-- Schema.org (Adjusted for Compliance) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutomotiveBusiness",
+      "name": "Chama o Guincho",
+      "description": "Serviço de guincho e transporte de veículos em Campinas e região",
+      "telephone": "+55-19-99350-2969",
+      "url": "https://chamaoguincho.com.br/emergencia",
+      "areaServed": {
+        "@type": "City",
+        "name": "Campinas",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "São Paulo"
+        }
+      },
+      "priceRange": "$$"
+    }
+    </script>
+
+    <!-- Critical CSS Inline -->
+    <style>
+        :root {
+            --primary: #FF7A1A;
+            --primary-hover: #e06811;
+            --whatsapp-green: #25D366;
+            --whatsapp-green-hover: #128C7E;
+            --foreground: #18181B;
+            --muted: #71717A;
+            --background: #FFFFFF;
+            --border: #E4E4E7;
+            --header-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--foreground);
+            min-height: 100vh;
+            padding-top: 64px;
+            /* Space for fixed header */
+        }
+
+        /* Header Style matching institutional */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 50;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        .site-link {
+            font-size: 0.875rem;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            background: white;
+            font-weight: 500;
+        }
+
+        .site-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #FFF7ED;
+        }
+
+        /* Hero Section (Full Viewport) */
+        .hero {
+            min-height: calc(100vh - 64px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            background: radial-gradient(circle at top center, rgba(255, 122, 26, 0.03) 0%, transparent 70%);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #FFF7ED;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.6rem 1.25rem;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 122, 26, 0.1);
+            box-shadow: 0 2px 4px rgba(255, 122, 26, 0.05);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse-orange 2s infinite;
+        }
+
+        @keyframes pulse-orange {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+        }
+
+        .headline {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            letter-spacing: -0.02em;
+        }
+
+        .headline-highlight {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .subheadline {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 550px;
+        }
+
+        /* CTAs */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            width: 100%;
+            max-width: 340px;
+            margin-bottom: 3rem;
+        }
+
+        .cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.125rem 2rem;
+            border-radius: 1rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-whatsapp {
+            background: var(--whatsapp-green);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(37, 211, 102, 0.3);
+        }
+
+        .cta-whatsapp:hover {
+            background: var(--whatsapp-green-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -5px rgba(37, 211, 102, 0.4);
+        }
+
+        .cta-phone {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(255, 122, 26, 0.3);
+        }
+
+        .cta-phone:hover {
+            background: var(--primary-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -5px rgba(255, 122, 26, 0.4);
+        }
+
+        .cta-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Trust Indicators Header */
+        .trust-indicators {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            max-width: 600px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.875rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .trust-icon {
+            color: var(--primary);
+            opacity: 0.8;
+        }
+
+        /* Success Cases Section */
+        .cases-section {
+            padding: 6rem 1.5rem;
+            background: #F9FAFB;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cases-container {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .cases-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .cases-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--foreground);
+            margin-top: 0.5rem;
+        }
+
+        .cases-badge {
+            font-size: 0.75rem;
+            background: rgba(255, 122, 26, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .case-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .case-card:hover .case-img {
+            transform: scale(1.05);
+        }
+
+        .case-info {
+            padding: 1.5rem;
+        }
+
+        .case-tag {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .case-desc {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--foreground);
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        .page-footer {
+            background: #111827;
+            color: white;
+            padding: 4rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand .logo-img {
+            filter: brightness(0) invert(1);
+            height: 40px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: #9CA3AF;
+            font-size: 0.875rem;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .footer-contacts h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #D1D5DB;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #6B7280;
+            font-size: 0.75rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (min-width: 768px) {
+            .cases-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .cta-group {
+                flex-direction: row;
+                max-width: 600px;
+            }
+
+            .cta-btn {
+                flex: 1;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                padding: 4rem 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5PRZFB9" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header -->
+    <header class="header">
+        <a href="/" aria-label="Chama o Guincho - Página Inicial">
+            <img src="assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho" class="logo-img">
+        </a>
+        <a href="/" class="site-link">Ver site completo</a>
+    </header>
+
+    <!-- Hero Section (Full Viewport on arrival) -->
+    <main class="hero">
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            Aceitamos Cartão
+        </div>
+
+        <h1 class="headline">
+            Guincho em <span class="headline-highlight">Campinas</span> e Região
+        </h1>
+
+        <p class="subheadline">
+            Serviço profissional de reboque com foco em segurança, transparência e agilidade. Fale diretamente com quem
+            resolve.
+        </p>
+
+        <!-- CTAs -->
+        <div class="cta-group">
+            <a href="https://wa.me/5519993502969?text=Ol%C3%A1%2C%20preciso%20de%20um%20or%C3%A7amento%20de%20guincho."
+                class="cta-btn cta-whatsapp" aria-label="Falar no WhatsApp">
+                <svg class="cta-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                Falar no WhatsApp
+            </a>
+            <a href="tel:+5519993502969" class="cta-btn cta-phone" aria-label="Ligar agora">
+                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                Ligar Agora
+            </a>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="trust-indicators">
+            <div class="trust-item">
+                <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z" />
+                </svg>
+                <span>Transparência</span>
+            </div>
+            <div class="trust-item">
+                <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z" />
+                </svg>
+                <span>Fale Conosco</span>
+            </div>
+            <div class="trust-item">
+                <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                </svg>
+                <span>Nota Fiscal</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Cases Section (Scrollable) -->
+    <section class="cases-section" id="proof-of-value">
+        <div class="cases-container">
+            <header class="cases-header">
+                <span class="cases-badge">Nossa Experiência</span>
+                <h2 class="cases-title">Excelência em Atendimento</h2>
+            </header>
+
+            <div class="cases-grid">
+                <article class="case-card">
+                    <div class="case-img-wrapper">
+                        <img src="assets/images/case-02.jpg" alt="Resgate em rodovia em Campinas" class="case-img"
+                            loading="lazy">
+                    </div>
+                    <div class="case-info">
+                        <span class="case-tag">Resgate Leve</span>
+                        <h3 class="case-desc">Atendimento ágil em rodovias da região</h3>
+                    </div>
+                </article>
+
+                <article class="case-card">
+                    <div class="case-img-wrapper">
+                        <img src="assets/images/case-04.jpg" alt="Transporte seguro de veículos" class="case-img"
+                            loading="lazy">
+                    </div>
+                    <div class="case-info">
+                        <span class="case-tag">Especializado</span>
+                        <h3 class="case-desc">Logística segura para longas distâncias</h3>
+                    </div>
+                </article>
+
+                <article class="case-card">
+                    <div class="case-img-wrapper">
+                        <img src="assets/images/case-05.jpg" alt="Transporte de veículo premium" class="case-img"
+                            loading="lazy">
+                    </div>
+                    <div class="case-info">
+                        <span class="case-tag">Luxo & Performance</span>
+                        <h3 class="case-desc">Cuidado absoluto com veículos premium</h3>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="page-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho" class="logo-img">
+                <p>O socorro que você precisa, com a transparência que você merece. Atendimento em toda a Região
+                    Metropolitana de Campinas.</p>
+            </div>
+
+            <div class="footer-contacts">
+                <h4>Contato Rápido</h4>
+                <a href="https://wa.me/5519993502969" class="footer-link">
+                    <i class="fa-brands fa-whatsapp"></i> (19) 99350-2969
+                </a>
+                <a href="tel:+5519993502969" class="footer-link">
+                    <i class="fa-solid fa-phone"></i> Chamar por Telefone
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Chama o Guincho. Todos os direitos reservados. CNPJ: 54.676.258/0001-31</p>
+        </div>
+    </footer>
+</body>
+
+</html>

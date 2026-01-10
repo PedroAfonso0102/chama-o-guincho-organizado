@@ -14,7 +14,7 @@ const servicesData = [
     {
         icon: 'fa-solid fa-truck-fast',
         title: 'Resgate Emergencial',
-        text: 'Pane mecânica ou colisão? Chegamos em ~30 minutos para resolver. Atendimento prioritário em toda Campinas e RMC.',
+        text: 'Pane mecânica ou colisão? Atendimento ágil para resolver seu problema. Disponibilidade prioritária em toda Campinas e RMC.',
         isHighlight: true,
         action: {
             type: 'whatsapp',
@@ -87,13 +87,13 @@ const servicesData = [
 const featuresData = [
     {
         icon: 'fa-solid fa-user-shield',
-        title: 'Direto com o Especialista',
-        text: 'Sem call centers robóticos ou espera. Você fala diretamente com quem resolve o seu problema.'
+        title: 'Atendimento Direto',
+        text: 'Sem call centers ou esperas prolongadas. Você fala com uma equipe que entende e resolve o seu problema.'
     },
     {
         icon: 'fa-solid fa-file-invoice-dollar',
-        title: 'Orçamento Garantido',
-        text: 'Preço fechado via WhatsApp antes da saída. Sem taxas surpresas ou "adicionais" na hora H.'
+        title: 'Orçamento Transparente',
+        text: 'Preço fechado via WhatsApp antes da saída. Sem taxas surpresas ou custos adicionais na hora do atendimento.'
     },
     {
         icon: 'fa-solid fa-truck-ramp-box',
@@ -140,7 +140,6 @@ const testimonialsData = [
         title: 'Logística de Ativos de Alto Valor',
         text: 'Procedimentos técnicos dedicados a veículos de luxo e superesportivos. Utilização de guincho plataforma com ângulo de ataque reduzido.',
         tag: 'Transporte Premium',
-        stars: 5,
         image: 'assets/images/case-01.jpg',
         alt: 'Transporte técnico de veículo importado com fixação em 4 pontos para máxima segurança.'
     },
@@ -148,7 +147,6 @@ const testimonialsData = [
         title: 'Operações de Frota Corporativa',
         text: 'Parceria estratégica para locadoras e gestores de frota. Execução de logística de pátio e remanejamento de veículos em escala.',
         tag: 'Soluções B2B',
-        stars: 5,
         image: 'assets/images/case-02.jpg',
         alt: 'Logística de pátio para frotas corporativas com sistema de rastreamento em tempo real.'
     },
@@ -156,7 +154,6 @@ const testimonialsData = [
         title: 'Logística Governamental e Tática',
         text: 'Capacidade técnica para transporte de viaturas policiais e veículos de serviço público em conformidade com exigências estatais.',
         tag: 'Veículos Oficiais',
-        stars: 5,
         image: 'assets/images/case-03.jpg',
         alt: 'Atendimento técnico especializado para órgãos públicos e frotas táticas.'
     },
@@ -164,7 +161,6 @@ const testimonialsData = [
         title: 'Remoção de Sinistros Graves',
         text: 'Especialização no transporte de veículos com danos estruturais severos. Alta capacidade de tração para veículos travados.',
         tag: 'Alta Complexidade',
-        stars: 5,
         image: 'assets/images/case-06.jpg',
         alt: 'Resgate de SUV blindado com uso de patins técnicos para evitar danos à transmissão.'
     },
@@ -172,7 +168,6 @@ const testimonialsData = [
         title: 'Veículos de Prestígio',
         text: 'Transporte de alta precisão para automóveis importados. Amarração técnica (cintas de roda) sem contato com a lataria.',
         tag: 'Transporte VIP',
-        stars: 5,
         image: 'assets/images/case-05.jpg',
         alt: 'Transporte de superesportivo utilizando cintas de roda e ganchos emborrachados.'
     },
@@ -180,7 +175,6 @@ const testimonialsData = [
         title: 'Logística de Carga Múltipla',
         text: 'Otimização de frete através de transporte combinado. Movimentação simultânea de automóveis e motocicletas.',
         tag: 'Logística Integrada',
-        stars: 5,
         image: 'assets/images/case-04.jpg',
         alt: 'Transporte compartilhado de motocicletas e carros otimizando custo logístico.'
     }
@@ -284,7 +278,6 @@ function renderTestimonials(containerId) {
         <div class="slideshow__slide w-full flex-shrink-0">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 testimonials__list">
                 ${chunk.map((item, index) => {
-        const stars = Array(item.stars).fill('<i class="fa-solid fa-star"></i>').join('');
         return `
                     <div class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-${(index % 3) + 1}">
                         <div class="card__image-wrapper">
@@ -294,7 +287,6 @@ function renderTestimonials(containerId) {
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         </div>
                         <div class="card-body p-6 relative flex flex-col flex-grow">
-                            <div class="flex gap-1 text-warning text-sm mb-3">${stars}</div>
                             <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">${item.title}</h3>
                             <p class="text-muted-foreground text-sm leading-relaxed mb-4">${item.text}</p>
                             <div class="mt-auto pt-4 border-t border-border flex items-center gap-3">

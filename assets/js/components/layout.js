@@ -77,61 +77,93 @@ function renderHeader() {
                     <i class="fa-solid fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
-
-            <div id="nav-menu" class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40" aria-label="Menu Principal Mobile">
-                <a href="${getLink('#urgent-request')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Pedido de Emergência">Emergência</a>
-                <a href="${getLink('servicos.html')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Página de Serviços">Serviços</a>
-                <a href="${getLink('#contact')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Contato">Contato</a>
-                <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4" aria-label="Chamar no WhatsApp">
-                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
-                </a>
-            </div>
         `;
 
     const placeholder = document.getElementById('header-placeholder');
+    let headerEl;
     if (placeholder) {
+        headerEl = header;
         placeholder.replaceWith(header);
     } else {
+        headerEl = header;
         document.body.prepend(header);
     }
 
-    // Re-attach nav toggle logic
-    const navToggle = header.querySelector('#nav-toggle');
-    const navMenu = header.querySelector('#nav-menu');
-    const navOverlay = document.createElement('div');
-    navOverlay.className = 'nav-overlay fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 z-30';
-    document.body.appendChild(navOverlay);
+    // --- MOBILE MENU (Rendered outside header for stability) ---
+    let navMenu = document.getElementById('nav-menu');
+    if (!navMenu) {
+        navMenu = document.createElement('div');
+        navMenu.id = 'nav-menu';
+        navMenu.className = 'mobile-nav-panel fixed inset-y-0 right-0 w-[280px] p-8 flex flex-col gap-4 transform translate-x-full transition-transform duration-500 ease-in-out shadow-2xl';
+        navMenu.setAttribute('aria-label', 'Menu Principal Mobile');
+        navMenu.innerHTML = `
+            <div class="flex justify-between items-center mb-8 border-b border-border pb-4">
+                <img src="${config.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Logo" class="h-8 w-auto">
+                <button id="nav-close" class="text-2xl text-foreground p-2" aria-label="Fechar Menu Principal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <a href="${getLink('#urgent-request')}" class="btn btn-ghost w-full justify-start text-lg font-bold" aria-label="Ir para Pedido de Emergência">Emergência</a>
+            <a href="${getLink('servicos.html')}" class="btn btn-ghost w-full justify-start text-lg font-bold" aria-label="Ir para Página de Serviços">Serviços</a>
+            <a href="${getLink('#contact')}" class="btn btn-ghost w-full justify-start text-lg font-bold" aria-label="Ir para Contato">Contato</a>
+            <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4 shadow-lg shadow-primary/30" aria-label="Chamar no WhatsApp">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
+            </a>
+            <div class="mt-auto pt-8 border-t border-border">
+                <p class="text-xs text-muted-foreground text-center">Atendimento 24h em Campinas e Região</p>
+            </div>
+        `;
+        document.body.appendChild(navMenu);
+    }
 
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            const isOpened = !navMenu.classList.contains('hidden');
-            if (isOpened) {
-                navMenu.classList.add('hidden');
-                navOverlay.classList.remove('opacity-100');
-                navOverlay.classList.add('opacity-0', 'pointer-events-none');
-                navToggle.setAttribute('aria-expanded', 'false');
-            } else {
-                navMenu.classList.remove('hidden');
-                navOverlay.classList.add('opacity-100');
-                navOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                navToggle.setAttribute('aria-expanded', 'true');
-            }
-        });
+    // Toggle Logic
+    const navToggle = headerEl.querySelector('#nav-toggle');
+    const navClose = navMenu.querySelector('#nav-close');
 
-        navOverlay.addEventListener('click', () => {
-            navMenu.classList.add('hidden');
+    // Check if overlay already exists to avoid duplicates
+    let navOverlay = document.querySelector('.nav-overlay-heavy');
+    if (!navOverlay) {
+        navOverlay = document.createElement('div');
+        navOverlay.className = 'nav-overlay-heavy fixed inset-0 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500';
+        document.body.appendChild(navOverlay);
+    }
+
+    const toggleMenu = (open) => {
+        if (open) {
+            navMenu.classList.remove('translate-x-full');
+            navOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            navOverlay.classList.add('opacity-100');
+            navToggle.setAttribute('aria-expanded', 'true');
+            document.body.classList.add('overflow-hidden');
+        } else {
+            navMenu.classList.add('translate-x-full');
             navOverlay.classList.remove('opacity-100');
             navOverlay.classList.add('opacity-0', 'pointer-events-none');
+            navToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('overflow-hidden');
+        }
+    };
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => toggleMenu(true));
+        if (navClose) navClose.addEventListener('click', () => toggleMenu(false));
+        navOverlay.addEventListener('click', () => toggleMenu(false));
+
+        // Close menu on link click
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
         });
     }
 
     // Smooth scroll for anchors
-    header.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    headerEl.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href.startsWith('#') && href.length > 1) {
                 e.preventDefault();
-                const target = document.querySelector(href);
+                const targetId = href;
+                const target = document.querySelector(targetId);
+
                 if (target) {
                     const headerOffset = 80;
                     const elementPosition = target.getBoundingClientRect().top;
@@ -141,10 +173,6 @@ function renderHeader() {
                         top: offsetPosition,
                         behavior: "smooth"
                     });
-
-                    // Close mobile menu if open
-                    navMenu.classList.add('hidden');
-                    navOverlay.classList.add('opacity-0', 'pointer-events-none');
                 }
             }
         });

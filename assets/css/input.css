@@ -1461,6 +1461,16 @@ p {
 }
 
 /* Custom styles injected below */
+.mobile-nav-panel {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    opacity: 1 !important;
+    z-index: 9999 !important;
+}
+
+.nav-overlay-heavy {
+    z-index: 9998 !important;
+}
 
 @tailwind components;
 @tailwind utilities;

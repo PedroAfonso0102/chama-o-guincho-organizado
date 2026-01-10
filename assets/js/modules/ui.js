@@ -233,19 +233,9 @@ export class Carousel {
 
 /**
  * Initializes global navigation logic.
- * Handles mobile menu toggling and the sticky header effect on scroll.
+ * Handles the sticky header effect on scroll.
  */
 export function initNavigation() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            const isHidden = navMenu.classList.contains('hidden');
-            navMenu.classList.toggle('hidden');
-        });
-    }
-
     // Header scroll effect (Change background/shadow on scroll)
     window.addEventListener('scroll', throttle(() => {
         const header = document.getElementById('header');
@@ -269,7 +259,7 @@ export function initNavigation() {
  */
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {

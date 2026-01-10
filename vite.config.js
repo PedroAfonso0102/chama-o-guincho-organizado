@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         servicos: resolve(__dirname, 'servicos.html'),
+        emergencia: resolve(__dirname, 'emergencia.html'),
       },
     },
   },
