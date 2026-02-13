@@ -288,12 +288,59 @@
     --z-tooltip: 420;
     
     /* =========================================================================
-     * LAYOUT
+     * LAYOUT (Figma Professional Wireframe System)
+     * =========================================================================
+     * Sistema baseado em Auto Layout do Figma:
+     * - Container principal: 1200px (padrão Figma)
+     * - Content area: 1072px (1200 - 128px de padding lateral)
+     * - Padding de seção: 64px
+     * - Gap principal: 48px
      * ========================================================================= */
     
-    --header-height: 5rem;          /* 80px - Escalável com preferências do usuário */
-    --container-max: 80rem;         /* 1280px */
-    --container-xl: 87.5rem;        /* 1400px */
+    /* Header */
+    --header-height: 5rem;          /* 80px */
+    --header-padding: 2rem;         /* 32px - Padrão Figma */
+    --header-gap: 1.5rem;           /* 24px */
+    
+    /* Containers - Sistema de larguras */
+    --container-max: 75rem;         /* 1200px - Padrão Figma */
+    --container-content: 67rem;     /* 1072px - Área de conteúdo */
+    --container-narrow: 50rem;      /* 800px - Para texto/formulários */
+    --container-xl: 87.5rem;        /* 1400px - Extra large */
+    
+    /* Section Spacing - Espaçamentos verticais */
+    --section-padding-y: 4rem;      /* 64px - Padding vertical de seção */
+    --section-padding-x: 4rem;      /* 64px - Padding horizontal de seção */
+    --section-gap: 3rem;            /* 48px - Gap entre elementos de seção */
+    
+    /* Content Gaps - Sistema de gaps */
+    --gap-xl: 4rem;                 /* 64px - Entre seções/cards grid */
+    --gap-lg: 3rem;                 /* 48px - Entre grupos de conteúdo */
+    --gap-md: 1.5rem;               /* 24px - Entre elementos relacionados */
+    --gap-sm: 1rem;                 /* 16px - Entre items de lista */
+    --gap-xs: 0.5rem;               /* 8px - Entre texto/ícones */
+    
+    /* Card System */
+    --card-min-width: 15rem;        /* 240px - Mínimo para responsividade */
+    --card-gap: 1.5rem;             /* 24px - Gap dentro de cards */
+    --card-padding: 1.5rem;         /* 24px - Padding interno */
+    
+    /* Navigation Pills */
+    --nav-pill-padding: 0.5rem;     /* 8px */
+    --nav-pill-radius: 0.5rem;      /* 8px */
+    
+    /* Button System */
+    --btn-height-sm: 2rem;          /* 32px */
+    --btn-height-md: 2.5rem;        /* 40px */
+    --btn-height-lg: 3rem;          /* 48px */
+    --btn-padding-x: 0.5rem;        /* 8px */
+    --btn-gap: 0.5rem;              /* 8px */
+    
+    /* Footer */
+    --footer-padding-top: 2rem;     /* 32px */
+    --footer-padding-bottom: 10rem; /* 160px */
+    --footer-gap: 1rem;             /* 16px */
+    --footer-column-min: 15rem;     /* 240px */
 }
 
 /* =============================================================================
@@ -484,3 +531,67 @@
     .d-lg-none { display: none !important; }
     .d-flex-lg { display: flex !important; }
 }
+
+/* =============================================================================
+ * CLASSES UTILITÁRIAS - LAYOUT PROFISSIONAL (Figma Wireframe System)
+ * ============================================================================= */
+
+/* Flex Layout Utilities */
+.flex { display: flex; }
+.flex-row { flex-direction: row; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+/* Flex Alignment - Padrão Auto Layout Figma */
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.items-stretch { align-items: stretch; }
+
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+.content-start { align-content: flex-start; }
+.content-center { align-content: center; }
+.content-end { align-content: flex-end; }
+
+/* Flex Item Properties */
+.flex-none { flex: none; }
+.flex-grow { flex-grow: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+.self-stretch { align-self: stretch; }
+
+/* Gap Utilities - Sistema de Gaps Profissional */
+.gap-xs { gap: var(--gap-xs); }    /* 8px */
+.gap-sm { gap: var(--gap-sm); }    /* 16px */
+.gap-md { gap: var(--gap-md); }    /* 24px */
+.gap-lg { gap: var(--gap-lg); }    /* 48px */
+.gap-xl { gap: var(--gap-xl); }    /* 64px */
+
+/* Padding Utilities - Seções Profissionais */
+.p-section { padding: var(--section-padding-y) var(--section-padding-x); }
+.px-section { padding-left: var(--section-padding-x); padding-right: var(--section-padding-x); }
+.py-section { padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); }
+
+.p-card { padding: var(--card-padding); }
+.p-header { padding: var(--header-padding); }
+
+/* Width Utilities */
+.w-full { width: 100%; }
+.max-w-container { max-width: var(--container-max); }
+.max-w-content { max-width: var(--container-content); }
+.max-w-narrow { max-width: var(--container-narrow); }
+.min-w-card { min-width: var(--card-min-width); }
+
+/* Order Utilities - Para Auto Layout */
+.order-0 { order: 0; }
+.order-1 { order: 1; }
+.order-2 { order: 2; }
+.order-3 { order: 3; }
+
+/* Box Sizing */
+.box-border { box-sizing: border-box; }
