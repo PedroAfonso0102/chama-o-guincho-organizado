@@ -35,12 +35,17 @@ export function initModals() {
         if (trigger) {
             e.preventDefault();
             const targetId = trigger.dataset.target;
+            const formId = trigger.dataset.formId;
             const title = trigger.dataset.title;
-            const modal = document.getElementById('generic-modal');
+
+            // If target is generic-modal but we have a specific form, use the form as content
+            const contentId = formId || targetId;
+
+            const modal = document.getElementById(targetId) || document.getElementById('generic-modal');
             const content = modal?.querySelector('.modal-box .content-area');
 
             if (modal && content) {
-                openModal(modal, content, targetId, title);
+                openModal(modal, content, contentId, title);
             }
             return;
         }

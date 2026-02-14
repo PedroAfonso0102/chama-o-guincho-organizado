@@ -1,7 +1,8 @@
 import IMask from 'imask';
-import { CONFIG } from './config.js';
 import { UI } from './ui.js';
 import { fetchWithTimeout } from './utils.js';
+import { GeoService } from '../services/geo.service.js';
+import { WhatsAppService } from '../services/whatsapp.service.js';
 
 /**
  * Initializes form-related functionality.
@@ -28,38 +29,38 @@ export function initInputMasks(scope = document) {
 }
 
 /**
- * Initializes location detection functionality for inputs with specific triggers.
+ * Initializes location detection functionality for inputs.
  */
 function initLocationDetection() {
     document.body.addEventListener('click', e => {
         const button = e.target.closest('.location-detect');
         if (button) {
-            // Trigger animation
-            button.classList.remove('animating');
-            void button.offsetWidth; // force reflow
-            button.classList.add('animating');
-            button.addEventListener('animationend', () => {
-                button.classList.remove('animating');
-            }, { once: true });
-
+            animateButton(button);
             const wrapper = button.parentElement;
             const input = wrapper.querySelector('input');
             if (input) {
-                getCurrentLocation(input);
+                handleLocationRequest(input);
             }
         }
     });
 }
 
+function animateButton(button) {
+    button.classList.remove('animating');
+    void button.offsetWidth; // force reflow
+    button.classList.add('animating');
+    button.addEventListener('animationend', () => {
+        button.classList.remove('animating');
+    }, { once: true });
+}
+
 /**
- * Retrieves the user's current geolocation and reverse geocodes it to an address.
- * Updates the target input with the address or coordinates.
- *
- * @param {HTMLInputElement} input - The input element to populate with the location.
+ * Handles the logic for retrieving and setting the current location.
+ * @param {HTMLInputElement} input
  */
-function getCurrentLocation(input) {
+function handleLocationRequest(input) {
     if (!navigator.geolocation) {
-        UI.showNotification('Geolocalização não suportada', 'error');
+        UI.showNotification('Seu navegador não permite localização automática.', 'error');
         return;
     }
 
@@ -68,38 +69,28 @@ function getCurrentLocation(input) {
     UI.setInputLoading(input, true);
 
     navigator.geolocation.getCurrentPosition(
-        position => {
+        async position => {
             const { latitude, longitude } = position.coords;
-            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-
-            fetchWithTimeout(url)
-                .then(res => res.json())
-                .then(data => {
-                    if (data && data.display_name) {
-                        input.value = data.display_name;
-                        UI.showNotification('Localização encontrada!', 'success');
-                    } else {
-                        input.value = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
-                    }
-                })
-                .catch(() => {
-                    input.value = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
-                    UI.showNotification('Endereço não encontrado, usando coordenadas.', 'info');
-                })
-                .finally(() => {
-                    UI.setInputLoading(input, false);
-                });
+            try {
+                const address = await GeoService.getAddressFromCoords(latitude, longitude);
+                input.value = address;
+                UI.showNotification('Localização encontrada!', 'success');
+            } catch (error) {
+                input.value = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+                UI.showNotification('Endereço não encontrado, usando coordenadas.', 'info');
+            } finally {
+                UI.setInputLoading(input, false);
+            }
         },
         error => {
             UI.setInputLoading(input, false);
-            UI.showNotification('Erro ao obter localização.', 'error');
+            UI.showNotification('Não conseguimos acessar sua localização. Digite o endereço.', 'error');
         }
     );
 }
 
 /**
  * Sets up logic for multi-step forms (e.g., emergency form).
- * Handles navigation between steps and validation.
  */
 function setupFormSteps() {
     const form = document.getElementById('emergency-form');
@@ -113,40 +104,37 @@ function setupFormSteps() {
     if (!step1 || !step2 || !btnNext) return;
 
     btnNext.addEventListener('click', () => {
-        // Basic validation for Step 1
         const location = form.querySelector('#emergency-location');
         const vehicle = form.querySelector('#emergency-vehicle');
 
-        if (!location.value) {
-            location.reportValidity();
-            return;
-        }
-        if (!vehicle.value) {
-            vehicle.reportValidity();
-            return;
-        }
+        if (!location.value) { location.reportValidity(); return; }
+        if (!vehicle.value) { vehicle.reportValidity(); return; }
 
-        // Transition to Step 2
-        step1.classList.add('hidden');
-        step2.classList.remove('hidden');
-
-        // Enable Step 2 fields
-        step2.querySelectorAll('input').forEach(input => input.disabled = false);
+        toggleStep(step1, step2, true);
     });
 
     if (btnPrev) {
         btnPrev.addEventListener('click', () => {
-            step2.classList.add('hidden');
-            step1.classList.remove('hidden');
-            // Disable Step 2 fields to avoid submitting them if not visible (though they are required)
-            step2.querySelectorAll('input').forEach(input => input.disabled = true);
+            toggleStep(step2, step1, false);
         });
+    }
+}
+
+function toggleStep(hideStep, showStep, forward) {
+    hideStep.classList.add('hidden');
+    showStep.classList.remove('hidden');
+
+    // Manage disabled state for validation purposes
+    showStep.querySelectorAll('input').forEach(input => input.disabled = false);
+    if (forward) {
+        // hideStep.querySelectorAll('input').forEach(input => input.disabled = true);
+        // Careful: disabling inputs might remove them from FormData.
+        // Better to just hide visually.
     }
 }
 
 /**
  * Handles form submissions globally.
- * Validates forms, generates WhatsApp URLs, and handles redirects/notifications.
  */
 function setupFormSubmission() {
     document.body.addEventListener('submit', function (e) {
@@ -155,7 +143,6 @@ function setupFormSubmission() {
 
         e.preventDefault();
 
-        // Validation logic
         if (!form.checkValidity()) {
             form.reportValidity();
             return;
@@ -164,8 +151,9 @@ function setupFormSubmission() {
         const submitBtn = form.querySelector('button[type="submit"]');
         UI.setButtonLoading(submitBtn, true, 'Iniciando...');
 
+        // Gather Data
         let title = "Solicitação de Orçamento";
-        let extraData = {};
+        const extraData = {};
 
         if (form.id === 'emergency-form') {
             title = "Emergência 24h";
@@ -177,58 +165,49 @@ function setupFormSubmission() {
             }
         }
 
-        const whatsappUrl = generateWhatsAppUrl(form, title, extraData);
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        const combinedData = { ...data, ...extraData };
 
-        setTimeout(() => {
-            UI.setButtonLoading(submitBtn, false);
-            window.open(whatsappUrl, '_blank');
+        const whatsappUrl = WhatsAppService.generateUrl(title, combinedData);
 
-            // Redirect to success or show success state
-            const modalSuccess = document.getElementById('modal-success');
-            if (modalSuccess) {
-                const waBtn = modalSuccess.querySelector('#success-modal-whatsapp-btn');
-                if (waBtn) waBtn.href = whatsappUrl;
-                modalSuccess.classList.add('modal-open');
-            }
+        // Chaos & Domain Logic Fix:
+        // Removing setTimeout to prevent pop-up blockers from intercepting the window.open call.
+        // The redirection happens immediately.
+        UI.setButtonLoading(submitBtn, false);
 
-            form.reset();
-            // Reset steps if it's the emergency form
-            if (form.id === 'emergency-form') {
-                const step1 = form.querySelector('#form-step-1');
-                const step2 = form.querySelector('#form-step-2');
-                if (step1 && step2) {
-                    step1.classList.remove('hidden');
-                    step2.classList.add('hidden');
-                }
-            }
-        }, 800);
+        // Security: Control window opener
+        const win = window.open(whatsappUrl, '_blank');
+
+        if (!win || win.closed || typeof win.closed == 'undefined') {
+            // Fallback for pop-up blockers
+            window.location.href = whatsappUrl;
+        } else {
+            win.opener = null;
+        }
+
+        handleSuccessModal(whatsappUrl);
+        form.reset();
+        resetEmergencyFormSteps(form);
     });
 }
 
-/**
- * Generates a WhatsApp API URL with pre-filled message data from the form.
- *
- * @param {HTMLFormElement} form - The form element.
- * @param {string} title - The title/subject of the message.
- * @param {object} extraData - Additional key-value pairs to include in the message.
- * @returns {string} - The complete WhatsApp URL.
- */
-function generateWhatsAppUrl(form, title, extraData = {}) {
-    let message = `*${title.toUpperCase()}*\n\n`;
+function handleSuccessModal(url) {
+    const modalSuccess = document.getElementById('modal-success');
+    if (modalSuccess) {
+        const waBtn = modalSuccess.querySelector('#success-modal-whatsapp-btn');
+        if (waBtn) waBtn.href = url;
+        modalSuccess.classList.add('modal-open');
+    }
+}
 
-    // Form data
-    new FormData(form).forEach((value, key) => {
-        if (value && value.trim()) {
-            message += `*${key}:*\n${value.trim()}\n\n`;
+function resetEmergencyFormSteps(form) {
+    if (form.id === 'emergency-form') {
+        const step1 = form.querySelector('#form-step-1');
+        const step2 = form.querySelector('#form-step-2');
+        if (step1 && step2) {
+            step1.classList.remove('hidden');
+            step2.classList.add('hidden');
         }
-    });
-
-    // Extra data (like calculated price)
-    Object.entries(extraData).forEach(([key, value]) => {
-        if (value) {
-            message += `*${key}:*\n${value}\n\n`;
-        }
-    });
-
-    return `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    }
 }

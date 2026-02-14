@@ -55,7 +55,7 @@ function renderHeader() {
                     </ul>
                     <button data-toggle="modal" data-target="tmpl-contact-options" data-title="Fale Conosco"
                         class="btn btn-primary btn-sm gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar Agora
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Orçamento Rápido
                     </button>
                 </nav>
 
@@ -267,15 +267,15 @@ function renderModals() {
     modalContainer.innerHTML = `
             <!-- Modals (Generic Container) -->
             <div class="modal" id="generic-modal">
-                <div class="modal-box max-w-lg rounded-[2rem] p-0 overflow-hidden bg-card border border-border transition-all duration-500">
-                    <div class="modal__header flex items-center justify-between p-8 border-b border-border">
+                <div class="modal-box max-w-lg w-full rounded-[2rem] p-0 overflow-hidden bg-card border border-border transition-all duration-500 flex flex-col max-h-[90vh]">
+                    <div class="modal__header flex-shrink-0 flex items-center justify-between p-8 border-b border-border">
                         <h3 class="modal-title text-2xl font-black m-0 tracking-tight" id="generic-modal-title">Solicitar Guincho</h3>
                         <button class="modal-close btn btn-circle btn-ghost btn-sm" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="modal__body p-8 content-area">
+                    <div class="modal__body p-8 content-area flex-grow overflow-y-auto">
                         <!-- Form content injected here -->
                     </div>
-                    <div class="modal__footer p-8 pt-2 flex gap-3">
+                    <div class="modal__footer p-8 pt-4 flex-shrink-0 flex gap-3 border-t border-border/50">
                         <button type="button" class="btn btn-ghost flex-1 modal-close">Cancelar</button>
                         <button type="button" id="generic-modal-submit" class="btn btn-primary flex-1 shadow-lg shadow-primary/20">
                             CONTINUAR <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
@@ -304,83 +304,211 @@ function renderModals() {
             </div>
 
             <!-- Hidden Forms Templates -->
-            <div class="d-none">
-                <form id="form-transporte-cidades">
-                    <div class="form-group">
-                        <label class="form-label" for="transporte-cidades-nome">Nome</label>
-                        <input type="text" name="Nome" class="form-control" id="transporte-cidades-nome" required>
+            <div class="hidden">
+                <!-- 1. Transporte para Outras Cidades -->
+                <form id="form-transporte-cidades" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Onde o veículo está?</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-location-dot absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="text" name="Origem" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Ex: Campinas, SP" required>
+                            </div>
+                        </div>
+                        <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Para onde vai?</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-flag-checkered absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="text" name="Destino" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Ex: São Paulo, SP" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="transporte-cidades-telefone">Telefone</label>
-                        <input type="tel" name="Telefone" class="form-control" id="transporte-cidades-telefone" required>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Tipo de Veículo</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-car absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <select name="Veículo" class="select select-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" required>
+                                <option value="" disabled selected>Selecione...</option>
+                                <option value="Carro Passeio">Carro de Passeio</option>
+                                <option value="Moto">Moto</option>
+                                <option value="SUV/Caminhonete">SUV / Caminhonete</option>
+                                <option value="Van/Utilitário">Van / Utilitário</option>
+                                <option value="Esportivo/Luxo">Esportivo / Luxo</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="transporte-cidades-origem">Origem</label>
-                        <input type="text" name="Cidade de Origem" class="form-control" id="transporte-cidades-origem" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="transporte-cidades-destino">Destino</label>
-                        <input type="text" name="Cidade de Destino" class="form-control" id="transporte-cidades-destino" required>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Data Preferencial (Opcional)</label>
+                        <div class="relative">
+                            <i class="fa-regular fa-calendar absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <input type="date" name="Data Prevista" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary">
+                        </div>
                     </div>
                 </form>
 
-                <form id="form-agendamento">
-                    <div class="form-group">
-                        <label class="form-label" for="agendamento-nome">Nome</label>
-                        <input type="text" name="Nome" class="form-control" id="agendamento-nome" required>
+                <!-- 2. Agendar Transporte -->
+                <form id="form-agendamento" class="space-y-4">
+                    <div class="alert alert-info shadow-sm py-2 text-sm bg-blue-50 text-blue-800 border-blue-100">
+                        <i class="fa-solid fa-circle-info"></i> Para emergências agora, use o botão vermelho.
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="agendamento-telefone">Telefone</label>
-                        <input type="tel" name="Telefone" class="form-control" id="agendamento-telefone" required>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Data do Agendamento</label>
+                            <div class="relative">
+                                <i class="fa-regular fa-calendar absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="date" name="Data Agendada" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" required>
+                            </div>
+                        </div>
+                        <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Horário Aproximado</label>
+                            <div class="relative">
+                                <i class="fa-regular fa-clock absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="time" name="Hora Agendada" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="agendamento-data">Data</label>
-                        <input type="date" name="Data" class="form-control" id="agendamento-data" required>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                         <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Local de Retirada</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-location-dot absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="text" name="Origem" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Endereço ou Bairro" required>
+                            </div>
+                        </div>
+                        <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Local de Entrega</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-flag-checkered absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="text" name="Destino" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Endereço ou Bairro" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Veículo</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-car absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <select name="Veículo" class="select select-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" required>
+                                <option value="" disabled selected>Selecione...</option>
+                                <option value="Carro Passeio">Carro de Passeio</option>
+                                <option value="Moto">Moto</option>
+                                <option value="SUV/Caminhonete">SUV / Caminhonete</option>
+                                <option value="Clássico/Coleção">Clássico / Coleção</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
 
-                <form id="form-oficinas">
-                    <div class="form-group">
-                        <label class="form-label">Nome</label>
-                        <input type="text" name="Nome" class="form-control" required>
+                <!-- 3. Leva e Traz para Oficinas -->
+                <form id="form-oficinas" class="space-y-4">
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Nome da Oficina</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-wrench absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <input type="text" name="Nome Oficina" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Nome da Oficina Parceira" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Telefone</label>
-                        <input type="tel" name="Telefone" class="form-control" required>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Endereço da Oficina</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-location-dot absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <input type="text" name="Endereço Oficina" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Onde devemos entregar?" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Endereço da Oficina</label>
-                        <input type="text" name="Oficina" class="form-control" required>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Endereço de Retirada do Veículo</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-car-side absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <input type="text" name="Endereço Retirada" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Endereço do cliente" required>
+                        </div>
+                    </div>
+
+                    <div class="form-control w-full">
+                         <label class="label font-medium text-muted-foreground">Responsável / Contato</label>
+                         <div class="relative">
+                            <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <input type="text" name="Responsável" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Quem recebe/entrega" required>
+                        </div>
                     </div>
                 </form>
 
-                <form id="form-maquinas">
-                    <div class="form-group">
-                        <label class="form-label">Nome</label>
-                        <input type="text" name="Nome" class="form-control" required>
+                <!-- 4. Transporte de Pequenas Máquinas -->
+                <form id="form-maquinas" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Tipo de Máquina</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-dolly absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="text" name="Tipo Máquina" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Ex: Empilhadeira, Mini-escavadeira" required>
+                            </div>
+                        </div>
+                        <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Peso Estimado</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-weight-hanging absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="text" name="Peso" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Ex: 2.5 toneladas">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Telefone</label>
-                        <input type="tel" name="Telefone" class="form-control" required>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Origem</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-map-pin absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <input type="text" name="Origem" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Local de Retirada" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Tipo de Máquina</label>
-                        <input type="text" name="Maquina" class="form-control" required>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Destino</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-flag absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <input type="text" name="Destino" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Local de Entrega" required>
+                        </div>
                     </div>
                 </form>
 
-                <form id="form-empresas">
-                    <div class="form-group">
-                        <label class="form-label">Nome da Empresa</label>
-                        <input type="text" name="Empresa" class="form-control" required>
+                <!-- 5. Soluções para Empresas -->
+                <form id="form-empresas" class="space-y-4">
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Nome da Empresa</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-building absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="text" name="Empresa" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Nome Comercial" required>
+                            </div>
+                        </div>
+                         <div class="form-control w-full">
+                            <label class="label font-medium text-muted-foreground">Telefone / WhatsApp</label>
+                            <div class="relative">
+                                <i class="fa-brands fa-whatsapp absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                                <input type="tel" name="WhatsApp" class="input input-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Telefone</label>
-                        <input type="tel" name="Telefone" class="form-control" required>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Tamanho da Frota</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-truck-fast absolute left-4 top-1/2 -translate-y-1/2 text-primary/60"></i>
+                            <select name="Frota" class="select select-bordered w-full pl-12 h-12 bg-muted/20 focus:bg-white transition-all focus:border-primary">
+                                <option value="" disabled selected>Selecione...</option>
+                                <option value="1-5 veículos">1-5 veículos</option>
+                                <option value="6-20 veículos">6-20 veículos</option>
+                                <option value="20+ veículos">20+ veículos</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Mensagem</label>
-                        <textarea name="Mensagem" class="form-control" rows="4" required></textarea>
+
+                    <div class="form-control w-full">
+                        <label class="label font-medium text-muted-foreground">Descreva sua necessidade</label>
+                        <textarea name="Mensagem" class="textarea textarea-bordered w-full h-24 bg-muted/20 focus:bg-white transition-all focus:border-primary" placeholder="Precisa de pátio? Transporte recorrente? Gestão de sinistros?"></textarea>
                     </div>
                 </form>
             </div>

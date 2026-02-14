@@ -5,7 +5,7 @@
 export const CONFIG = {
     WHATSAPP_NUMBER: '5519993502969',
     BASE_ADDRESS: 'Rua Coronel Job de Figueiredo, 847, Campinas, SP',
-    BASE_COORDS: { lat: -22.956637, lon: -47.062085 },
+    BASE_COORDS: { lat: -22.9261, lon: -47.0452 },
     PRICING: {
         PRECO_BASE: 100.00,
         PRECO_POR_KM: 4.50,

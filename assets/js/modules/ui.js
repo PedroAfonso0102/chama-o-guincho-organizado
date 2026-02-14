@@ -222,7 +222,7 @@ export function initNavigation() {
     }
 
     // Header scroll effect
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', throttle(() => {
         const header = document.getElementById('header');
         if (header) {
             if (window.scrollY > 50) {
@@ -233,5 +233,18 @@ export function initNavigation() {
                 header.classList.add('bg-transparent');
             }
         }
-    });
+    }, 100));
+}
+
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
 }
