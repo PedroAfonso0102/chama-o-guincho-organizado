@@ -164,6 +164,10 @@ const testimonialsData = [
 
 let config = { basePath: '' };
 
+/**
+ * Renders the services grid into the specified container.
+ * @param {string} containerId - The selector for the container element.
+ */
 function renderServices(containerId) {
     const container = document.querySelector(containerId);
     if (!container) {
@@ -200,6 +204,10 @@ function renderServices(containerId) {
     }).join('');
 }
 
+/**
+ * Renders the features list into the specified container.
+ * @param {string} containerId - The selector for the container element.
+ */
 function renderFeatures(containerId) {
     const container = document.querySelector(containerId);
     if (!container) return;
@@ -217,6 +225,10 @@ function renderFeatures(containerId) {
     `).join('');
 }
 
+/**
+ * Renders the list of covered cities as buttons.
+ * @param {string} containerId - The selector for the container element.
+ */
 function renderCoverageCities(containerId) {
     const container = document.querySelector(containerId);
     if (!container) return;
@@ -228,6 +240,10 @@ function renderCoverageCities(containerId) {
     `).join('');
 }
 
+/**
+ * Renders testimonials/case studies into the specified container.
+ * @param {string} containerId - The selector for the container element.
+ */
 function renderTestimonials(containerId) {
     const container = document.querySelector(containerId);
     if (!container) return;
@@ -236,15 +252,17 @@ function renderTestimonials(containerId) {
         const stars = Array(item.stars).fill('<i class="fa-solid fa-star"></i>').join('');
         return `
         <div class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-${(index % 3) + 1}">
-            <div class="relative h-48 overflow-hidden">
-                <img src="${config.basePath}${item.image}" alt="${item.alt}" width="400" height="192" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+            <div class="card__image-wrapper">
+                <div class="absolute inset-0">
+                    <img src="${config.basePath}${item.image}" alt="${item.alt}" width="400" height="250" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
-            <div class="card-body p-6 relative">
+            <div class="card-body p-6 relative flex flex-col flex-grow">
                 <div class="flex gap-1 text-warning text-sm mb-3">${stars}</div>
                 <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">${item.title}</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed">${item.text}</p>
-                <div class="mt-4 pt-4 border-t border-border flex items-center gap-3">
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">${item.text}</p>
+                <div class="mt-auto pt-4 border-t border-border flex items-center gap-3">
                     <span class="badge badge-primary/10 text-primary border-none font-bold text-xs uppercase tracking-wider">${item.tag}</span>
                 </div>
             </div>
@@ -252,6 +270,10 @@ function renderTestimonials(containerId) {
     `}).join('');
 }
 
+/**
+ * Initializes the UI components by rendering them into their default containers.
+ * @param {object} options - Configuration options (basePath).
+ */
 function init(options = {}) {
     config = { ...config, ...options };
 

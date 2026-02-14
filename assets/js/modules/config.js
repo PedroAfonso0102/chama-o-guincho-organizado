@@ -1,4 +1,7 @@
-// Global configuration constants
+/**
+ * Global configuration constants for the application.
+ * Contains WhatsApp number, base address, pricing rules, and city coordinates.
+ */
 export const CONFIG = {
     WHATSAPP_NUMBER: '5519993502969',
     BASE_ADDRESS: 'Rua Coronel Job de Figueiredo, 847, Campinas, SP',

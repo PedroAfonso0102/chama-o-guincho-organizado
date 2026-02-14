@@ -7,6 +7,13 @@ let config = {
     activePage: 'home' // 'home' | 'services' | 'other'
 };
 
+/**
+ * Resolves a link target based on the current page context.
+ * Handles scrolling to anchors on the home page vs navigating from other pages.
+ *
+ * @param {string} target - The target link (e.g., '#contact', 'servicos.html').
+ * @returns {string} - The resolved URL.
+ */
 function getLink(target) {
     if (target.startsWith('#')) {
         if (config.activePage === 'home') {
@@ -23,6 +30,10 @@ function getLink(target) {
     return target;
 }
 
+/**
+ * Renders the global header/navigation.
+ * Injects it into #header-placeholder or prepends to body.
+ */
 function renderHeader() {
     const header = document.createElement('header');
     header.id = 'header';
@@ -126,6 +137,10 @@ function renderHeader() {
     });
 }
 
+/**
+ * Renders the global footer.
+ * Injects it into #footer-placeholder or appends to body.
+ */
 function renderFooter() {
     const footer = document.createElement('footer');
     footer.id = 'contact';
@@ -210,6 +225,9 @@ function renderFooter() {
 }
 
 
+/**
+ * Renders floating action buttons (WhatsApp, Scroll to Top) and notification containers.
+ */
 function renderFloatButtons() {
     const floatBtns = document.createElement('div');
     floatBtns.className = 'fixed bottom-4 right-4 flex flex-col gap-3 z-40';
@@ -240,6 +258,9 @@ function renderFloatButtons() {
     document.body.appendChild(notif);
 }
 
+/**
+ * Renders the generic modal structure and hidden form templates.
+ */
 function renderModals() {
     const modalContainer = document.createElement('div');
 
@@ -271,7 +292,7 @@ function renderModals() {
                             <i class="fa-solid fa-circle-check"></i>
                         </div>
                         <h3 class="modal__title text-2xl font-black m-0 text-white text-center">Tudo Pronto!</h3>
-                        <button class="modal__close absolute top-4 right-4 text-white/50 hover:text-white transition-colors" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="modal-close absolute top-4 right-4 text-white/50 hover:text-white transition-colors" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal__body text-center p-8 bg-card">
                         <p class="text-muted-foreground mb-8">Sua solicitação foi processada. Clique no botão abaixo para iniciar o atendimento no WhatsApp.</p>
@@ -368,6 +389,10 @@ function renderModals() {
     document.body.appendChild(modalContainer);
 }
 
+/**
+ * Initializes the Layout components.
+ * @param {object} options - Configuration options (basePath, activePage).
+ */
 function init(options = {}) {
     config = { ...config, ...options };
     renderHeader();
