@@ -2,198 +2,281 @@
  * @fileoverview Global Layout Components (Header, Footer, Modals)
  */
 
-const Layout = (function() {
+let config = {
+    basePath: './',
+    activePage: 'home' // 'home' | 'services' | 'other'
+};
 
-    let config = {
-        basePath: './',
-        activePage: 'home' // 'home' | 'services' | 'other'
-    };
-
-    function getLink(target) {
-        if (target.startsWith('#')) {
-            if (config.activePage === 'home') {
-                return target;
-            } else {
-                return `${config.basePath}index.html${target}`;
-            }
+function getLink(target) {
+    if (target.startsWith('#')) {
+        if (config.activePage === 'home') {
+            return target;
+        } else {
+            return `${config.basePath}index.html${target}`;
         }
-        if (target === 'index.html') return `${config.basePath}index.html`;
-        if (target === 'servicos.html') return `${config.basePath}servicos.html`;
-        if (!target.startsWith('http') && !target.startsWith('tel:') && !target.startsWith('mailto:')) {
-             return `${config.basePath}${target}`;
-        }
-        return target;
     }
+    if (target === 'index.html') return `${config.basePath}index.html`;
+    if (target === 'servicos.html') return `${config.basePath}servicos.html`;
+    if (!target.startsWith('http') && !target.startsWith('tel:') && !target.startsWith('mailto:')) {
+        return `${config.basePath}${target}`;
+    }
+    return target;
+}
 
-    function renderHeader() {
-        const header = document.createElement('header');
-        header.className = 'header';
-        header.id = 'header';
+function renderHeader() {
+    const header = document.createElement('header');
+    header.id = 'header';
+    header.className = 'header fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur z-50 border-b border-white/10 shadow-2xl shadow-black/5 transition-all duration-300';
 
-        const logoHref = config.activePage === 'home' ? '#' : `${config.basePath}index.html`;
+    const logoHref = config.activePage === 'home' ? '#' : `${config.basePath}index.html`;
 
-        header.innerHTML = `
-            <div class="container header__container">
-                <a href="${logoHref}" class="logo">
-                    <img src="${config.basePath}assets/images/logo.svg" alt="Chama o Guincho" class="logo__svg" />
-                    <div class="logo__text">Chama o <span class="logo__highlight">Guincho</span></div>
+    header.innerHTML = `
+            <div class="container mx-auto px-4 h-full flex items-center justify-between">
+                <a href="${logoHref}" class="flex items-center gap-3 transition-transform hover:scale-105 duration-500" aria-label="Chama o Guincho - Página Inicial">
+                    <img src="${config.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" class="h-8 w-auto">
                 </a>
 
-                <nav class="nav">
-                    <button class="nav__toggle" id="nav-toggle" aria-label="Menu de navegação" aria-expanded="false">
-                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
-                    </button>
-
-                    <ul class="nav__menu" id="nav-menu">
-                        <li><a href="${getLink('index.html')}" class="nav__link ${config.activePage === 'home' ? 'active' : ''}">Início</a></li>
-                        <li><a href="${getLink('servicos.html')}" class="nav__link ${config.activePage === 'services' ? 'active' : ''}">Serviços</a></li>
-                        <li><a href="${getLink('#features')}" class="nav__link">Diferenciais</a></li>
-                        <li><a href="${getLink('#coverage')}" class="nav__link">Cobertura</a></li>
-                        <li><a href="${getLink('#testimonials')}" class="nav__link">Atendimentos</a></li>
-                        <li><a href="${getLink('#price-estimator')}" class="nav__link">Preço</a></li>
-                        <li>
-                            <a href="tel:+5519993502969" class="btn btn--primary btn--sm d-md-none">
-                                <i class="fa-solid fa-phone" aria-hidden="true"></i> Chamar Agora
-                            </a>
-                        </li>
+                <nav class="hidden lg:flex items-center gap-8" aria-label="Menu Principal Desktop">
+                    <ul class="flex gap-2">
+                        <li><a href="${getLink('#urgent-request')}" class="btn btn-ghost btn-sm">Emergência</a></li>
+                        <li><a href="${getLink('servicos.html')}" class="btn btn-ghost btn-sm ${config.activePage === 'services' ? 'text-primary bg-primary/5' : ''}">Serviços</a></li>
+                        <li><a href="${getLink('#contact')}" class="btn btn-ghost btn-sm">Contato</a></li>
                     </ul>
-
-                    <a href="tel:+5519993502969" class="btn btn--primary d-none d-md-inline-flex ml-4">
-                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Chamar Agora
-                    </a>
+                    <button data-toggle="modal" data-target="tmpl-contact-options" data-title="Fale Conosco"
+                        class="btn btn-primary btn-sm gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar Agora
+                    </button>
                 </nav>
+
+                <button id="nav-toggle" class="lg:hidden text-2xl text-foreground p-2" aria-label="Abrir Menu Principal" aria-expanded="false" aria-controls="nav-menu">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div id="nav-menu" class="hidden fixed inset-0 top-16 bg-background border-t border-border p-8 flex-col gap-4 z-40" aria-label="Menu Principal Mobile">
+                <a href="${getLink('#urgent-request')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Pedido de Emergência">Emergência</a>
+                <a href="${getLink('servicos.html')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Página de Serviços">Serviços</a>
+                <a href="${getLink('#contact')}" class="btn btn-ghost w-full justify-start text-lg" aria-label="Ir para Contato">Contato</a>
+                <a href="https://wa.me/5519993502969" class="btn btn-primary w-full gap-2 mt-4" aria-label="Chamar no WhatsApp">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
+                </a>
             </div>
         `;
 
-        const placeholder = document.getElementById('header-placeholder');
-        if (placeholder) {
-            placeholder.replaceWith(header);
-        } else {
-            document.body.prepend(header);
-        }
+    const placeholder = document.getElementById('header-placeholder');
+    if (placeholder) {
+        placeholder.replaceWith(header);
+    } else {
+        document.body.prepend(header);
     }
 
-    function renderFooter() {
-        const footer = document.createElement('footer');
-        footer.className = 'footer';
-        footer.id = 'footer';
+    // Re-attach nav toggle logic
+    const navToggle = header.querySelector('#nav-toggle');
+    const navMenu = header.querySelector('#nav-menu');
+    const navOverlay = document.createElement('div');
+    navOverlay.className = 'nav-overlay fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 z-30';
+    document.body.appendChild(navOverlay);
 
-        const year = new Date().getFullYear();
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            const isOpened = !navMenu.classList.contains('hidden');
+            if (isOpened) {
+                navMenu.classList.add('hidden');
+                navOverlay.classList.remove('opacity-100');
+                navOverlay.classList.add('opacity-0', 'pointer-events-none');
+                navToggle.setAttribute('aria-expanded', 'false');
+            } else {
+                navMenu.classList.remove('hidden');
+                navOverlay.classList.add('opacity-100');
+                navOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                navToggle.setAttribute('aria-expanded', 'true');
+            }
+        });
 
-        footer.innerHTML = `
-            <div class="container">
-                <div class="footer__grid">
-                    <div>
-                        <div class="footer__logo mb-4">
-                            <div class="logo__text" style="color: white; font-weight: bold; font-size: 1.25rem;">Chama o Guincho</div>
+        navOverlay.addEventListener('click', () => {
+            navMenu.classList.add('hidden');
+            navOverlay.classList.remove('opacity-100');
+            navOverlay.classList.add('opacity-0', 'pointer-events-none');
+        });
+    }
+
+    // Smooth scroll for anchors
+    header.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#') && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+
+                    // Close mobile menu if open
+                    navMenu.classList.add('hidden');
+                    navOverlay.classList.add('opacity-0', 'pointer-events-none');
+                }
+            }
+        });
+    });
+}
+
+function renderFooter() {
+    const footer = document.createElement('footer');
+    footer.id = 'contact';
+    footer.className = 'bg-[#0A0A0B] text-white pt-24 pb-12 border-t border-white/5';
+
+    const year = new Date().getFullYear();
+
+    footer.innerHTML = `
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-20">
+                    <div class="md:col-span-12 lg:col-span-5">
+                        <div class="flex items-center gap-3 mb-8">
+                            <img src="${config.basePath}assets/images/logos/logo-laranja+texto-vertical.webp" alt="Chama o Guincho Logo" class="h-12 w-auto brightness-0 invert">
                         </div>
-                        <p class="text-sm" style="color: rgba(255,255,255,0.7);">
-                            Guincho e reboque 24h em Campinas e região. Segurança e preço justo.
+                        <p class="text-white/50 text-lg mb-8 max-w-md leading-relaxed">
+                            Referência em assistência automotiva e transporte especializado. Tecnologia e agilidade para garantir sua tranquilidade em qualquer rodovia ou cidade.
                         </p>
-                        <div class="footer__social">
-                            <a href="#" class="footer__social-link"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" class="footer__social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary transition-all duration-500 group">
+                                <i class="fa-brands fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[#1877F2] transition-all duration-500 group">
+                                <i class="fa-brands fa-facebook text-xl group-hover:scale-110 transition-transform"></i>
+                            </a>
+                            <a href="https://wa.me/5519993502969" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[#25D366] transition-all duration-500 group">
+                                <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
 
-                    <div>
-                        <h3 class="h5 mb-4 text-white">Contato</h3>
-                        <ul class="d-flex flex-col gap-2 text-sm" style="color: rgba(255,255,255,0.7);">
-                            <li class="d-flex items-center gap-2"><i class="fa-solid fa-phone"></i> (19) 99350-2969</li>
-                            <li class="d-flex items-center gap-2"><i class="fa-brands fa-whatsapp"></i> (19) 99350-2969</li>
-                            <li class="d-flex items-center gap-2"><i class="fa-solid fa-envelope"></i> contato@chamaoguincho.com.br</li>
+                    <div class="md:col-span-4 lg:col-span-2">
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Navegação</h6>
+                        <ul class="space-y-4 text-white/80">
+                            <li><a href="${getLink('#features')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Diferenciais</a></li>
+                            <li><a href="${getLink('#coverage')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Cobertura</a></li>
+                            <li><a href="${getLink('#testimonials')}" class="hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform"></span> Atendimentos</a></li>
                         </ul>
                     </div>
 
-                    <div>
-                        <h3 class="h5 mb-4 text-white">Cidades</h3>
-                        <ul class="d-flex flex-col gap-2 text-sm" style="color: rgba(255,255,255,0.7);">
-                            <li><a href="${config.basePath}guincho-sumare/">Sumaré</a></li>
-                            <li><a href="${config.basePath}guincho-hortolandia/">Hortolândia</a></li>
-                            <li><a href="${config.basePath}guincho-indaiatuba/">Indaiatuba</a></li>
-                            <li><a href="${config.basePath}guincho-valinhos/">Valinhos</a></li>
+                    <div class="md:col-span-4 lg:col-span-2">
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Cidades</h6>
+                        <ul class="space-y-4 text-white/80">
+                            <li><a href="${config.basePath}guincho-sumare/" class="hover:text-white transition-colors">Sumaré</a></li>
+                            <li><a href="${config.basePath}guincho-hortolandia/" class="hover:text-white transition-colors">Hortolândia</a></li>
+                            <li><a href="${config.basePath}guincho-indaiatuba/" class="hover:text-white transition-colors">Indaiatuba</a></li>
+                            <li><a href="${config.basePath}guincho-valinhos/" class="hover:text-white transition-colors">Valinhos</a></li>
                         </ul>
+                    </div>
+
+                    <div class="md:col-span-4 lg:col-span-3">
+                        <h6 class="text-white font-bold uppercase tracking-wider text-sm mb-6">Central 24h</h6>
+                        <div class="space-y-6">
+                            <a href="tel:+5519993502969" class="block p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group">
+                                <span class="text-xs text-white/40 block mb-1">Emergência</span>
+                                <span class="text-xl font-bold group-hover:text-primary transition-colors">(19) 99350-2969</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="footer__copy">
-                    &copy; <span id="current-year">${year}</span> Chama o Guincho. Todos os direitos reservados.
+                <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p class="text-white/30 text-xs text-center md:text-left">
+                        &copy; ${year} Chama o Guincho. Todos os direitos reservados. <br class="md:hidden">
+                        CNPJ: 54.676.258/0001-31
+                    </p>
+                    <div class="flex items-center gap-8 opacity-20 hover:opacity-100 transition-opacity">
+                        <i class="fa-brands fa-cc-visa text-2xl"></i>
+                        <i class="fa-brands fa-cc-mastercard text-2xl"></i>
+                        <i class="fa-solid fa-barcode text-2xl"></i>
+                        <i class="fa-solid fa-pix text-2xl"></i>
+                    </div>
                 </div>
             </div>
         `;
 
-        const placeholder = document.getElementById('footer-placeholder');
-        if (placeholder) {
-            placeholder.replaceWith(footer);
-        } else {
-            document.body.appendChild(footer);
-        }
+    const placeholder = document.getElementById('footer-placeholder');
+    if (placeholder) {
+        placeholder.replaceWith(footer);
+    } else {
+        document.body.appendChild(footer);
     }
+}
 
-    function renderFloatButtons() {
-        const div = document.createElement('div');
-        div.className = 'float-buttons';
-        div.innerHTML = `
-            <a href="https://wa.me/5519993502969" target="_blank" rel="noopener noreferrer" class="float-button float-button--whatsapp" aria-label="WhatsApp">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="tel:+5519993502969" class="float-button float-button--phone" aria-label="Ligar">
-                <i class="fa-solid fa-phone"></i>
-            </a>
-        `;
-        document.body.appendChild(div);
 
-        const scrollBtn = document.createElement('button');
-        scrollBtn.className = 'scroll-top';
-        scrollBtn.id = 'scrollTop';
-        scrollBtn.setAttribute('aria-label', 'Voltar ao topo');
-        scrollBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
-        document.body.appendChild(scrollBtn);
+function renderFloatButtons() {
+    const floatBtns = document.createElement('div');
+    floatBtns.className = 'fixed bottom-4 right-4 flex flex-col gap-3 z-40';
+    floatBtns.innerHTML = `
+        <a href="https://wa.me/5519993502969"
+           target="_blank"
+           class="btn btn-circle btn-whatsapp shadow-xl w-14 h-14 text-2xl hover:scale-110 transition-transform duration-300"
+           aria-label="Fale conosco no WhatsApp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        </a>
+    `;
+    document.body.appendChild(floatBtns);
 
-        const notif = document.createElement('div');
-        notif.className = 'notification';
-        notif.id = 'notification';
-        notif.innerHTML = `
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'scroll-top';
+    scrollBtn.id = 'scrollTop';
+    scrollBtn.setAttribute('aria-label', 'Voltar ao topo');
+    scrollBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+    document.body.appendChild(scrollBtn);
+
+    const notif = document.createElement('div');
+    notif.className = 'notification';
+    notif.id = 'notification';
+    notif.innerHTML = `
             <i class="notification__icon fa-solid fa-circle-info" aria-hidden="true"></i>
             <span class="notification__message text-sm font-medium">Mensagem de notificação</span>
         `;
-        document.body.appendChild(notif);
-    }
+    document.body.appendChild(notif);
+}
 
-    function renderModals() {
-        const modalContainer = document.createElement('div');
+function renderModals() {
+    const modalContainer = document.createElement('div');
 
-        modalContainer.innerHTML = `
+    modalContainer.innerHTML = `
             <!-- Modals (Generic Container) -->
-            <div class="modal" id="modal-generic">
-                <div class="modal__content">
-                    <div class="modal__header">
-                        <h3 class="modal__title h5 m-0" id="generic-modal-title">Título</h3>
-                        <button class="modal__close btn btn--ghost p-2" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal" id="generic-modal">
+                <div class="modal-box max-w-lg rounded-[2rem] p-0 overflow-hidden bg-card border border-border transition-all duration-500">
+                    <div class="modal__header flex items-center justify-between p-8 border-b border-border">
+                        <h3 class="modal-title text-2xl font-black m-0 tracking-tight" id="generic-modal-title">Solicitar Guincho</h3>
+                        <button class="modal-close btn btn-circle btn-ghost btn-sm" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="modal__body" id="generic-modal-body">
+                    <div class="modal__body p-8 content-area">
                         <!-- Form content injected here -->
                     </div>
-                    <div class="modal__footer">
-                        <button type="button" class="btn btn--ghost modal-close">Cancelar</button>
-                        <button type="submit" id="generic-modal-submit" class="btn btn--primary">Enviar</button>
+                    <div class="modal__footer p-8 pt-2 flex gap-3">
+                        <button type="button" class="btn btn-ghost flex-1 modal-close">Cancelar</button>
+                        <button type="button" id="generic-modal-submit" class="btn btn-primary flex-1 shadow-lg shadow-primary/20">
+                            CONTINUAR <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Success Modal -->
             <div class="modal" id="modal-success">
-                <div class="modal__content">
-                    <div class="modal__header" style="background-color: hsl(var(--success)); color: white;">
-                        <h3 class="modal__title h5 m-0 text-white">Sucesso!</h3>
-                        <button class="modal__close btn btn--ghost p-2 text-white" style="color: white"><i class="fa-solid fa-xmark"></i></button>
+                <div class="modal__content max-w-sm rounded-[2rem] overflow-hidden">
+                    <div class="modal__header bg-success text-success-foreground p-8 flex flex-col items-center">
+                        <div class="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-4xl mb-4">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h3 class="modal__title text-2xl font-black m-0 text-white text-center">Tudo Pronto!</h3>
+                        <button class="modal__close absolute top-4 right-4 text-white/50 hover:text-white transition-colors" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="modal__body text-center py-8">
-                        <div style="font-size: 4rem; color: hsl(var(--success)); margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-check"></i></div>
-                        <h4 class="h5 mb-2">Solicitação Recebida</h4>
-                        <p class="mb-6">Clique abaixo para finalizar no WhatsApp.</p>
-                        <a href="#" id="success-modal-whatsapp-btn" class="btn btn--whatsapp btn--lg w-full">
-                            <i class="fa-brands fa-whatsapp"></i> Abrir WhatsApp
+                    <div class="modal__body text-center p-8 bg-card">
+                        <p class="text-muted-foreground mb-8">Sua solicitação foi processada. Clique no botão abaixo para iniciar o atendimento no WhatsApp.</p>
+                        <a href="#" id="success-modal-whatsapp-btn" class="btn btn-whatsapp btn-lg w-full gap-3 shadow-xl shadow-whatsapp/20">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> ENVIAR SOLICITAÇÃO
                         </a>
                     </div>
                 </div>
@@ -282,19 +365,17 @@ const Layout = (function() {
             </div>
         `;
 
-        document.body.appendChild(modalContainer);
-    }
+    document.body.appendChild(modalContainer);
+}
 
-    function init(options = {}) {
-        config = { ...config, ...options };
-        renderHeader();
-        renderFooter();
-        renderFloatButtons();
-        renderModals();
-    }
+function init(options = {}) {
+    config = { ...config, ...options };
+    renderHeader();
+    renderFooter();
+    renderFloatButtons();
+    renderModals();
+}
 
-    return {
-        init
-    };
-
-})();
+export const Layout = {
+    init
+};

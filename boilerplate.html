@@ -16,68 +16,1116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Serviço profissional de Guincho e Reboque 24h em Campinas e região. Atendimento especializado, preços transparentes e chegada em até 30 minutos.">
+        content="Documentação de componentes e guia de estilo para o projeto Chama o Guincho. Premium Design System.">
 
     <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Component Library | Chama o Guincho">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#e63946">
+    <meta name="theme-color" content="#FF7A1A">
 
-    <title>Título da Página | Chama o Guincho</title>
-    <!-- <link rel="canonical" href="https://www.chamaoguincho.com.br/PAGE_URL" /> -->
+    <title>Component Library | Boilerplate</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/svg" href="assets/images/favicon.svg">
 
     <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- CSS Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <!-- Components -->
-    <script src="assets/js/components/layout.js"></script>
-    <script src="assets/js/components/ui-components.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Layout
-            if (typeof Layout !== 'undefined') {
-                Layout.init({
-                    basePath: './',
-                    activePage: 'other' // 'home' | 'services' | 'other'
-                });
-            }
-            // Initialize UI Components (if needed)
-            if (typeof UI !== 'undefined') {
-                UI.init();
-            }
-        });
+    <!-- Import Map for bare specifiers -->
+    <script type="importmap">
+    {
+        "imports": {
+            "toastify-js": "https://cdn.jsdelivr.net/npm/toastify-js/+esm",
+            "@formkit/auto-animate": "https://cdn.jsdelivr.net/npm/@formkit/auto-animate/+esm",
+            "toastify-js/src/toastify.css": "data:text/javascript,export default {}"
+        }
+    }
     </script>
+
+    <style>
+        :root {
+            --radius: 1rem;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Typography Expressiva */
+        h1,
+        h2,
+        h3 {
+            letter-spacing: -0.04em !important;
+            line-height: 0.95 !important;
+        }
+
+        .label-premium {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Layout & Grid Systematizer */
+        body {
+            overflow-x: hidden;
+            background-color: #fafafa;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        #component-sidebar {
+            width: 320px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-right: 1px solid hsl(var(--border) / 0.5);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        #component-sidebar .sidebar-logo {
+            padding: 3rem 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        #component-sidebar nav {
+            padding: 1rem 1.5rem 2rem;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-search {
+            padding: 0 1.5rem 1rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-search input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid transparent;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+            font-size: 0.85rem;
+            color: hsl(var(--foreground));
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .sidebar-search input:focus {
+            background: white;
+            border-color: hsl(var(--primary) / 0.3);
+            box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+        }
+
+        .sidebar-search-icon {
+            position: absolute;
+            left: 2rem;
+            top: 6.8rem;
+            /* Adjusted based on logo height */
+            font-size: 0.8rem;
+            color: hsl(var(--muted-foreground));
+            pointer-events: none;
+        }
+
+        #component-sidebar ul li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 1rem;
+            color: hsl(var(--muted-foreground));
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s var(--ease-out-expo);
+            position: relative;
+            margin-bottom: 2px;
+        }
+
+        #component-sidebar ul li a:hover {
+            color: hsl(var(--foreground));
+            background: rgba(0, 0, 0, 0.04);
+            transform: translateX(4px);
+        }
+
+        #component-sidebar ul li a.active {
+            color: hsl(var(--primary));
+            background: hsl(var(--primary) / 0.08);
+            /* Glow effect */
+            font-weight: 700;
+        }
+
+        #component-sidebar ul li a.active::before {
+            display: none;
+            /* Remove old border stripe */
+        }
+
+        #component-sidebar ul li a.active::after {
+            content: '●';
+            font-size: 0.5rem;
+            color: hsl(var(--primary));
+        }
+
+        .sidebar-footer {
+            padding: 1.5rem;
+            border-top: 1px solid hsl(var(--border) / 0.4);
+            text-align: center;
+            font-size: 0.7rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        main {
+            margin-left: 320px;
+            flex-grow: 1;
+            padding: 4rem 6rem;
+            max-width: 1400px;
+        }
+
+        /* Component Showcase Sections */
+        .component-section {
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: all 0.8s var(--ease-out-expo);
+        }
+
+        .component-section.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Enhance contrast */
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+        }
+
+        /* Ripple Effect Animation */
+        span.ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 600ms linear;
+            background-color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Stagger Delays */
+        .stagger-1 {
+            transition-delay: 100ms;
+        }
+
+        .stagger-2 {
+            transition-delay: 200ms;
+        }
+
+        .stagger-3 {
+            transition-delay: 300ms;
+        }
+
+        /* Documentation Panel Premium */
+        .doc-panel {
+            background: white;
+            border: 1px solid hsl(var(--border) / 0.6);
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .doc-panel__trigger {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.01);
+            user-select: none;
+        }
+
+        .doc-panel__content {
+            padding: 1.5rem;
+            background: #18181b;
+            color: #d4d4d8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            border-top: 1px solid hsl(var(--border) / 0.4);
+        }
+
+        /* Swatches & Demos */
+        .demo-canvas {
+            background: white;
+            border-radius: var(--radius);
+            padding: 3rem;
+            border: 1px solid hsl(var(--border) / 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+            margin-bottom: 2rem;
+        }
+
+        .color-swatch {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.25rem;
+            font-family: inherit;
+            transition: transform 0.4s var(--ease-out-expo);
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .color-swatch:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-premium-hover {
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .btn-premium-hover:active {
+            transform: scale(0.96);
+        }
+
+        @media (max-width: 1100px) {
+            #component-sidebar {
+                transform: translateX(-100%);
+            }
+
+            main {
+                margin-left: 0;
+                padding: 4rem 5%;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-background text-foreground font-sans antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5PRZFB9" height="0" width="0"
             class="d-none"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div id="header-placeholder"></div>
+    <aside id="component-sidebar">
+        <div class="sidebar-logo text-center">
+            <img src="assets/images/logos/logo-laranja+texto-vertical.webp" alt="Logo" class="h-12 mx-auto mb-4">
+            <div class="font-bold text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Component Library</div>
+        </div>
 
-    <!-- Page Content -->
-    <main style="padding-top: var(--header-height);">
-        <!-- CONTENT GOES HERE -->
-        <div class="container py-20">
-            <h1>Conteúdo da Página</h1>
-            <p>Este é um boilerplate para novas páginas.</p>
+        <div class="sidebar-search relative">
+            <i class="fa-solid fa-magnifying-glass sidebar-search-icon"></i>
+            <input type="text" id="component-search" placeholder="Buscar componente... (Ctrl+K)">
+        </div>
+
+        <nav>
+            <ul id="sidebar-list">
+                <li><a href="#typography">Tipografia</a></li>
+                <li><a href="#colors">Cores & Tokens</a></li>
+                <li><a href="#buttons">Botões & Badges</a></li>
+                <li><a href="#cards">Cards & Containers</a></li>
+                <li><a href="#forms">Formulários & Inputs</a></li>
+                <li><a href="#modals">Modals & Overlays</a></li>
+                <li><a href="#animations">Animações & Motion</a></li>
+                <li><a href="#components">Business Logic</a></li>
+                <li><a href="#testimonials">Prova Social</a></li>
+                <li><a href="#faq">FAQ System</a></li>
+                <li><a href="#floating">Widgets Flutuantes</a></li>
+                <li><a href="#feedback">Feedback & UX</a></li>
+            </ul>
+        </nav>
+
+        <div class="px-6 mb-4">
+            <a href="portfolio-labareda.html" class="btn btn-primary btn-sm w-full shadow-lg shadow-primary/20">
+                <i class="fa-solid fa-rocket mr-2"></i> Ver Portfolio
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <p><strong>Labareda Design System</strong></p>
+            <p class="opacity-50 mt-1">v.2.0 • Gold Master</p>
+        </div>
+    </aside>
+
+    <main>
+        <div class="container max-w-5xl mx-auto">
+            <header class="mb-12">
+                <h1 class="text-4xl font-extrabold mb-4 tracking-tighter">Guia de Estilo Premium</h1>
+                <p class="text-lg text-muted-foreground">Sistema de design unificado para o projeto Chama o Guincho.
+                    Baseado em tokens de design e componentes modulares.</p>
+            </header>
+
+            <!-- Typography -->
+            <section id="typography" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <span class="label-premium">Type system</span>
+                    <h2 class="text-2xl font-bold">Tipografia</h2>
+                    <p class="section-lead">Uma escala tipográfica baseada no ritmo vertical e legibilidade premium.</p>
+                </div>
+
+                <div class="demo-canvas">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <!-- Display Styles -->
+                        <div class="space-y-8">
+                            <div>
+                                <span class="label-premium mb-2 block text-primary">H1 - Display Large</span>
+                                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter">Design for Impact.</h1>
+                                <p class="text-xs text-muted-foreground mt-2">font-extrabold | tracking-tighter |
+                                    leading-none</p>
+                            </div>
+                            <div>
+                                <span class="label-premium mb-2 block text-primary">H2 - Section Heading</span>
+                                <h2 class="text-3xl font-bold tracking-tight">Elegance in structure.</h2>
+                                <p class="text-xs text-muted-foreground mt-2">font-bold | tracking-tight</p>
+                            </div>
+                            <div>
+                                <span class="label-premium mb-2 block text-primary">H3 - Sub Heading</span>
+                                <h3 class="text-xl font-bold">Detailed precision.</h3>
+                            </div>
+                        </div>
+
+                        <!-- Body Styles -->
+                        <div class="space-y-8">
+                            <div>
+                                <span class="label-premium mb-2 block">Lead Paragraph</span>
+                                <p class="section-lead">Este é um parágrafo de introdução (lead). É leve, espaçoso e
+                                    convida à leitura de conteúdos mais densos.</p>
+                            </div>
+                            <div>
+                                <span class="label-premium mb-2 block">Standard Body</span>
+                                <p class="text-base text-muted-foreground leading-relaxed">
+                                    O corpo de texto padrão utiliza uma altura de linha relaxada para garantir conforto
+                                    visual em dispositivos móveis e desktops.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="label-premium mb-2 block">Caption & Small</span>
+                                <p class="text-xs font-medium uppercase tracking-widest text-muted-foreground">Nota de
+                                    sistema ou categoria</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Type Tester -->
+                    <div class="mt-16 pt-8 border-t border-border/40">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="label-premium">Type Tester</span>
+                            <div class="flex items-center gap-4">
+                                <span class="text-xs font-mono text-muted-foreground" id="tester-size-label">24px</span>
+                                <input type="range" min="12" max="72" value="24"
+                                    class="range range-xs range-primary w-32" id="type-tester-range">
+                            </div>
+                        </div>
+                        <textarea
+                            class="w-full bg-transparent resize-none outline-none border-l-2 border-primary/20 pl-4 text-foreground placeholder:text-muted-foreground/30 transition-all focus:border-primary"
+                            style="font-size: 24px; min-height: 120px; line-height: 1.2;" id="type-tester-input"
+                            placeholder="Type here to preview typographic rhythm..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors -->
+            <section id="colors" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <span class="label-premium">Visual identity</span>
+                    <h2 class="text-2xl font-bold">Cores & Tokens</h2>
+                    <p class="section-lead">Tokens HSL para máxima flexibilidade de opacidade e temas.</p>
+                </div>
+
+                <details class="doc-panel">
+                    <summary class="doc-panel__trigger">
+                        <i class="fa-solid fa-code"></i> Arquitetura de Cores
+                    </summary>
+                    <div class="doc-panel__content">
+                        /* Como usar as Variáveis */<br>
+                        Sempre use hsl(var(--token)). Para opacidade: hsl(var(--primary) / 0.5).
+                    </div>
+                </details>
+
+                <div class="demo-canvas">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div
+                            class="color-swatch bg-primary text-white h-32 flex flex-col justify-between p-4 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                            <span class="text-[10px] font-bold uppercase tracking-widest opacity-80">Primary</span>
+                            <span class="font-mono text-sm font-bold bg-black/20 p-1 rounded w-fit">#FF7A1A</span>
+                        </div>
+                        <div
+                            class="color-swatch bg-[#18181b] text-white h-32 flex flex-col justify-between p-4 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                            <span class="text-[10px] font-bold uppercase tracking-widest opacity-80">Secondary</span>
+                            <span class="font-mono text-sm font-bold bg-white/20 p-1 rounded w-fit">#18181b</span>
+                        </div>
+                        <div
+                            class="color-swatch bg-[#fafafa] text-black border border-border h-32 flex flex-col justify-between p-4 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                            <span class="text-[10px] font-bold uppercase tracking-widest opacity-50">Background</span>
+                            <span class="font-mono text-sm font-bold bg-black/5 p-1 rounded w-fit">#FAFAFA</span>
+                        </div>
+                        <div
+                            class="color-swatch bg-red-500 text-white h-32 flex flex-col justify-between p-4 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                            <span class="text-[10px] font-bold uppercase tracking-widest opacity-80">Destructive</span>
+                            <span class="font-mono text-sm font-bold bg-black/20 p-1 rounded w-fit">#EF4444</span>
+                        </div>
+                        <div
+                            class="color-swatch bg-green-500 text-white h-32 flex flex-col justify-between p-4 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                            <span class="text-[10px] font-bold uppercase tracking-widest opacity-80">Success</span>
+                            <span class="font-mono text-sm font-bold bg-black/20 p-1 rounded w-fit">#22C55E</span>
+                        </div>
+                        <div
+                            class="color-swatch bg-yellow-500 text-white h-32 flex flex-col justify-between p-4 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                            <span class="text-[10px] font-bold uppercase tracking-widest opacity-80">Warning</span>
+                            <span class="font-mono text-sm font-bold bg-black/20 p-1 rounded w-fit">#EAB308</span>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-muted-foreground mt-4 text-center">Click any color to copy HEX code.</p>
+                </div>
+            </section>
+
+            <!-- Buttons & Badges -->
+            <section id="buttons" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <span class="label-premium">Interactive elements</span>
+                    <h2 class="text-2xl font-bold">Botões & Badges</h2>
+                    <p class="section-lead">Ações táteis com estados de interação polidos e consistência de marca.</p>
+                </div>
+
+                <div class="demo-canvas">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <button class="btn btn-outline border-primary text-primary btn-premium-hover"
+                            onclick="LogicUI.showNotification('Operação realizada com sucesso!', 'success')">
+                            Success Toast
+                        </button>
+                        <button class="btn btn-outline border-blue-500 text-blue-500 btn-premium-hover"
+                            onclick="LogicUI.showNotification('Nova atualização disponível.', 'info')">
+                            Info Toast
+                        </button>
+                        <button class="btn btn-outline border-destructive text-destructive btn-premium-hover"
+                            onclick="LogicUI.showNotification('Erro ao processar solicitação.', 'error')">
+                            Error Toast
+                        </button>
+                    </div>
+                </div>
+                <div class="demo-canvas">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <!-- Primary Actions -->
+                        <div>
+                            <span class="label-premium mb-6 block">Principais Variantes</span>
+                            <div class="flex flex-wrap gap-4">
+                                <button class="btn btn-primary btn-premium-hover shadow-lg shadow-primary/20">Call to
+                                    action</button>
+                                <button class="btn btn-secondary btn-premium-hover">Secondary</button>
+                                <button class="btn btn-outline btn-premium-hover">Outline link</button>
+                                <button class="btn btn-ghost btn-premium-hover">Ghost action</button>
+                            </div>
+                        </div>
+
+                        <!-- Special / Functional -->
+                        <div>
+                            <span class="label-premium mb-6 block">Funcionalidades</span>
+                            <div class="flex flex-wrap gap-4">
+                                <button class="btn btn-primary btn-premium-hover" onclick="demoLoading(this)">
+                                    Simular Ação
+                                </button>
+                                <button class="btn btn-success gap-2 text-white">
+                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                                </button>
+                                <div class="badge badge-primary">Destaque</div>
+                                <div class="badge badge-outline">Badge Outline</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 pt-8 border-t border-border/40">
+                        <span class="label-premium mb-6 block">Hierarquia de Tamanhos</span>
+                        <div class="flex flex-wrap items-center gap-6">
+                            <button class="btn btn-primary btn-sm btn-premium-hover">Small btn</button>
+                            <button class="btn btn-primary btn-premium-hover">Default size</button>
+                            <button class="btn btn-primary btn-lg btn-premium-hover shadow-xl shadow-primary/20">Large
+                                CTA</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards & Containers -->
+            <section id="cards" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <span class="label-premium">Content containers</span>
+                    <h2 class="text-2xl font-bold">Cards & Containers</h2>
+                    <p class="section-lead">Estruturas versáteis para organizar informação com hierarquia visual clara.
+                    </p>
+                </div>
+
+                <div class="demo-canvas">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Service Card -->
+                        <div
+                            class="group p-8 rounded-3xl bg-white border border-border hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-500 stagger-1 animate-on-scroll">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500 mb-6">
+                                <i class="fa-solid fa-car-burst"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">Service Card
+                            </h3>
+                            <p class="text-muted-foreground text-sm leading-relaxed mb-8">Padrão utilizado para listar
+                                serviços com ícone, título e descrição curta.</p>
+                            <button class="btn btn-outline btn-sm w-full">Saiba mais</button>
+                        </div>
+
+                        <!-- Case Study Card -->
+                        <div
+                            class="card card--case-study overflow-hidden group border border-border rounded-3xl bg-white hover:shadow-2xl transition-all duration-500 stagger-2 animate-on-scroll">
+                            <div
+                                class="aspect-video bg-gradient-to-br from-secondary to-secondary/80 relative overflow-hidden">
+                                <div
+                                    class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--primary)_0%,_transparent_70%)]">
+                                </div>
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center text-white/5 text-8xl transition-transform group-hover:scale-110">
+                                    <i class="fa-solid fa-truck-monster"></i>
+                                </div>
+                                <div
+                                    class="card__overlay p-6 flex flex-col justify-end text-white bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                                    <span class="badge badge-primary w-fit mb-2">Sucesso de Remoção</span>
+                                    <h4 class="text-lg font-bold">Resgate em Terreno Difícil</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Premium Portfolio Card -->
+                        <div
+                            class="relative group rounded-3xl overflow-hidden aspect-[4/5] bg-secondary shadow-lg stagger-3 animate-on-scroll">
+                            <div class="absolute inset-0 opacity-40 bg-center bg-cover"
+                                style="background-image: url('assets/images/hero-01.jpg')"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent">
+                            </div>
+                            <div class="absolute bottom-0 left-0 p-8 text-white w-full">
+                                <span class="label-premium text-white/60 mb-2 block">Web Application</span>
+                                <h3 class="text-2xl font-bold mb-4">Chama o Guincho</h3>
+                                <div class="h-1 w-0 group-hover:w-full bg-primary transition-all duration-500"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formulários & Inputs -->
+            <section id="forms" class="component-section animate-on-scroll">
+                <div class="section-header">
+                    <span class="label-premium">Data input</span>
+                    <h2 class="text-2xl font-bold">Formulários & Inputs</h2>
+                    </button>
+                </div>
+        </div>
+        </section>
+
+
+        <!-- Modals & Overlays -->
+        <section id="modals" class="component-section animate-on-scroll">
+            <div class="section-header">
+                <h2 class="text-2xl font-bold">Modais & Overlays</h2>
+                <p class="text-muted-foreground">Diálogos parciais e overlays de interface.</p>
+            </div>
+
+            <div class="demo-box border-none p-0 flex-row flex-wrap">
+                <button class="btn btn-primary"
+                    onclick="document.getElementById('generic-modal').classList.add('modal-open')">
+                    Abrir Modal Simples
+                </button>
+                <p class="text-sm text-muted-foreground self-center">Clique para visualizar a estrutura da modal e o
+                    efeito de backdrop blur.</p>
+            </div>
+        </section>
+
+        <!-- Animações & Motion -->
+        <section id="animations" class="component-section animate-on-scroll">
+            <div class="section-header">
+                <span class="label-premium">Fluidity & Physics</span>
+                <h2 class="text-2xl font-bold">Animações & Motion</h2>
+                <p class="section-lead">Padrões de movimento que guiam o olhar e comunicam mudança de estado.</p>
+            </div>
+
+            <div class="demo-canvas">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="font-bold mb-4">Staggered Entry</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Elementos que entram em cascata criam ritmo
+                            visual.</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="h-12 bg-primary/20 rounded-lg animate-pulse"></div>
+                            <div class="h-12 bg-primary/40 rounded-lg animate-pulse" style="animation-delay: 100ms">
+                            </div>
+                            <div class="h-12 bg-primary/60 rounded-lg animate-pulse" style="animation-delay: 200ms">
+                            </div>
+                            <div class="h-12 bg-primary/80 rounded-lg animate-pulse" style="animation-delay: 300ms">
+                            </div>
+                            <div class="h-12 bg-primary rounded-lg animate-pulse" style="animation-delay: 400ms"></div>
+                            <div class="h-12 bg-primary/80 rounded-lg animate-pulse" style="animation-delay: 500ms">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-4">Hover Phsyics</h3>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-20 h-20 bg-secondary rounded-2xl transition-all duration-300 hover:scale-110 hover:rotate-6 hover:shadow-xl cursor-pointer flex items-center justify-center text-white">
+                                Scale
+                            </div>
+                            <div
+                                class="w-20 h-20 bg-primary rounded-2xl transition-all duration-500 ease-out hover:-translate-y-4 hover:shadow-2xl shadow-primary/30 cursor-pointer flex items-center justify-center text-white">
+                                Lift
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Components -->
+        <section id="components" class="component-section animate-on-scroll">
+            <div class="section-header">
+                <h2 class="text-2xl font-bold">Componentes Business</h2>
+                <p class="text-muted-foreground">Funcionalidades complexas: Calculadora e Carousel.</p>
+            </div>
+
+            <h3 class="text-lg font-bold mb-4">Calculadora de Preço (Mock)</h3>
+            <div class="card p-8 border border-border max-w-2xl bg-muted/10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="form-group">
+                        <label class="form-label">Origem</label>
+                        <input type="text" class="form-control" placeholder="Rua A, 123">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Destino</label>
+                        <input type="text" class="form-control" placeholder="Av. B, 456">
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-primary/20 flex justify-between items-center">
+                    <div>
+                        <span class="text-sm text-muted-foreground block">Distância Estimada</span>
+                        <span class="text-xl font-bold">12.5 km</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-muted-foreground block">Valor Total</span>
+                        <span class="text-3xl font-extrabold text-primary">R$ 150,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-bold mb-4 mt-12">Carousel de Conteúdo</h3>
+            <div class="relative group">
+                <div class="slideshow slideshow--generic relative h-64 bg-muted rounded-2xl overflow-hidden">
+                    <div class="slideshow__track h-full">
+                        <div class="slideshow__slide h-full flex items-center justify-center bg-primary/10">
+                            <h2 class="text-2xl font-bold">Slide 1: Banner Principal</h2>
+                        </div>
+                        <div class="slideshow__slide h-full flex items-center justify-center bg-secondary/10">
+                            <h2 class="text-2xl font-bold">Slide 2: Funcionalidade X</h2>
+                        </div>
+                        <div class="slideshow__slide h-full flex items-center justify-center bg-primary/5">
+                            <h2 class="text-2xl font-bold">Slide 3: Promoção</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controls (Dots) compatible with logic -->
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 transition-all"></button>
+                    <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 transition-all"></button>
+                    ```html
+                    <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 transition-all"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials & Trust -->
+        <section id="testimonials" class="component-section animate-on-scroll">
+            <div class="section-header">
+                <span class="label-premium">Social proof</span>
+                <h2 class="text-2xl font-bold">Depoimentos & Trust</h2>
+                <p class="section-lead">Elementos para construir autoridade e validar a qualidade do serviço através de
+                    feedback real.</p>
+            </div>
+
+            <div class="demo-canvas">
+                <div class="max-w-4xl mx-auto">
+                    <div class="p-12 rounded-[2.5rem] bg-secondary text-white relative overflow-hidden">
+                        <i class="fa-solid fa-quote-left absolute top-10 left-10 text-6xl opacity-10"></i>
+                        <div class="relative z-10">
+                            <div class="flex gap-1 text-primary mb-6">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-2xl font-medium leading-relaxed mb-8 italic">"A Labareda Code elevou o
+                                patamar digital da nossa empresa. O foco em cada detalhe da interface foi o que nos
+                                convenceu."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-primary"></div>
+                                <div>
+                                    <p class="font-bold">Ricardo Afonso</p>
+                                    <p class="text-xs text-white/60 uppercase tracking-widest">Diretor Executivo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ (Acordion) -->
+        <section id="faq" class="component-section animate-on-scroll">
+            <div class="section-header">
+                <span class="label-premium">Questions & answers</span>
+                <h2 class="text-2xl font-bold">FAQ (Acordion)</h2>
+                <p class="section-lead">Acordeões otimizados para clareza e redução de ruído visual.</p>
+            </div>
+
+            <div class="demo-canvas">
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div
+                        class="faq__item border border-border rounded-2xl bg-white overflow-hidden transition-all hover:border-primary/20">
+                        <button class="w-full p-6 text-left flex justify-between items-center group">
+                            <span class="font-bold text-lg">Como funciona o processo criativo?</span>
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq__answer hidden px-6 pb-6 text-muted-foreground leading-relaxed">
+                            Nosso processo é dividido em 4 etapas: Descoberta, Estratégia, Design e Implementação,
+                            garantindo que o produto final esteja alinhado com os seus objetivos de negócio.
+                        </div>
+                    </div>
+                    <div
+                        class="faq__item border border-border rounded-2xl bg-white overflow-hidden transition-all hover:border-primary/20">
+                        <button class="w-full p-6 text-left flex justify-between items-center group">
+                            <span class="font-bold text-lg">Qual o prazo médio de entrega?</span>
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq__answer hidden px-6 pb-6 text-muted-foreground leading-relaxed">
+                            Depende da complexidade, mas projetos institucionais costumam levar entre 3 a 6 semanas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floating Elements -->
+        <section id="floating" class="component-section animate-on-scroll">
+            <div class="section-header">
+                <span class="label-premium">Persistent widgets</span>
+                <h2 class="text-2xl font-bold">Elementos Flutuantes</h2>
+                <p class="section-lead">Widgets que permanecem sobrepostos ao conteúdo, oferecendo acesso rápido a
+                    funcionalidades essenciais.</p>
+            </div>
+
+            <div class="demo-canvas">
+                <div
+                    class="flex gap-8 items-center justify-center bg-muted/20 p-8 rounded-2xl border border-dashed border-border">
+                    <div class="text-center">
+                        <div
+                            class="btn-float btn-float--whatsapp relative inline-flex shadow-xl mb-4 hover:scale-110 active:scale-95 transition-transform">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        </div>
+                        <p class="text-xs font-bold">WhatsApp Float</p>
+                    </div>
+                    <div class="text-center">
+                        <button
+                            class="btn-float-scroll w-12 h-12 rounded-full bg-secondary text-white shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all opacity-0 translate-y-4 pointer-events-none">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                        <p class="text-xs font-bold mt-2">Scroll to Top</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .btn-float-scroll.visible {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+        </style>
+
+        <!-- Feedback & UX -->
+        <section id="feedback" class="component-section animate-on-scroll">
+            <div class="section-header">
+                <span class="label-premium">Communication cues</span>
+                <h2 class="text-2xl font-bold">Feedback & UX</h2>
+                <button class="btn btn-sm btn-outline btn-block"
+                    onclick="Toastify({text: 'Ação realizada com sucesso!', backgroundColor: 'hsl(var(--success))'}).showToast()">
+                    Trigger Success Toast
+                </button>
+                <button class="btn btn-sm btn-outline btn-block"
+                    onclick="Toastify({text: 'Ocorreu um erro inesperado.', backgroundColor: 'hsl(var(--destructive))'}).showToast()">
+                    Trigger Error Toast
+                </button>
+                <button class="btn btn-sm btn-outline btn-block"
+                    onclick="Toastify({text: 'Informação importante aqui.', backgroundColor: 'hsl(var(--secondary))'}).showToast()">
+                    Trigger Info Toast
+                </button>
+            </div>
+            </div>
+            </div>
+        </section>
+
+
         </div>
     </main>
 
-    <div id="footer-placeholder"></div>
+    <!-- Generic Modal Structure -->
+    <div id="generic-modal" class="modal">
+        <div
+            class="modal-box bg-white border border-white/10 shadow-2xl rounded-2xl p-0 overflow-hidden max-w-lg w-full">
+            <div class="bg-primary/5 p-4 border-b border-border flex justify-between items-center">
+                <h3 class="modal-title font-bold">Título da Modal</h3>
+                <button class="btn btn-sm btn-circle btn-ghost modal-close">✕</button>
+            </div>
+            <div class="content-area p-6">
+                <p>Conteúdo demonstrativo da modal.</p>
+            </div>
+            <div class="modal-footer p-4 border-t flex justify-end gap-2 bg-muted/20">
+                <button class="btn btn-ghost modal-close">Cancelar</button>
+                <button class="btn btn-primary">Confirmar</button>
+            </div>
+        </div>
+        <div class="modal-backdrop bg-black/50 backdrop-blur-sm"></div>
+    </div>
 
-    <!-- JavaScript -->
-    <script src="assets/js/main.js" defer></script>
+    <!-- Toastify Script -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { Layout } from './assets/js/components/layout.js';
+        import { UI as DataUI } from './assets/js/components/ui-components.js';
+        import { UI as LogicUI, Carousel } from './assets/js/modules/ui.js';
+        import autoAnimate from '@formkit/auto-animate';
+
+        // Expose LogicUI for inline onclick handlers
+        window.LogicUI = LogicUI;
+
+        // Custom observer for the component library to update sidebar active link
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('#component-sidebar a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.component-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize CORE UI Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Data UI
+            DataUI.init();
+
+            // AutoAnimate FAQ
+            const faqContainer = document.querySelector('.faq__container');
+            if (faqContainer) {
+                autoAnimate(faqContainer);
+            }
+
+            // FAQ Toggle
+            document.querySelectorAll('.faq__item button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const answer = button.nextElementSibling;
+                    const icon = button.querySelector('i');
+
+                    // Toggle visibility
+                    answer.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+
+                    // Close others in demo if desired
+                    document.querySelectorAll('.faq__answer').forEach(ans => {
+                        if (ans !== answer) ans.classList.add('hidden');
+                    });
+                    document.querySelectorAll('.faq__item i').forEach(ic => {
+                        if (ic !== icon) ic.classList.remove('rotate-180');
+                    });
+                });
+            });
+
+            // Initialize Carousel
+            const genericCarousel = document.querySelector('.slideshow--generic');
+            if (genericCarousel) {
+                new Carousel(genericCarousel);
+            }
+
+            // Modal Interactions
+            const modal = document.getElementById('generic-modal');
+            const closeButtons = document.querySelectorAll('.modal-close, .modal-backdrop');
+
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.remove('modal-open');
+                });
+            });
+
+            // Mock Loading State
+            window.demoLoading = (btn) => {
+                LogicUI.setButtonLoading(btn, true, 'Carregando...');
+                setTimeout(() => {
+                    LogicUI.setButtonLoading(btn, false);
+                    LogicUI.showNotification('Ação concluída!', 'success');
+                }, 2000);
+            };
+
+            // Add scroll reveal logic manually 
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => revealObserver.observe(el));
+
+            // --- Sidebar Search Logic ---
+            const searchInput = document.getElementById('component-search');
+            const sidebarList = document.getElementById('sidebar-list');
+            const listItems = sidebarList.getElementsByTagName('li');
+
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                Array.from(listItems).forEach(li => {
+                    const text = li.textContent.toLowerCase();
+                    li.style.display = text.includes(term) ? 'block' : 'none';
+                });
+            });
+
+            // Keyboard Shortcut (Ctrl+K)
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+
+            // --- Ripple Effect ---
+            function createRipple(event) {
+                const button = event.currentTarget;
+                const circle = document.createElement('span');
+                const diameter = Math.max(button.clientWidth, button.clientHeight);
+                const radius = diameter / 2;
+
+                // Remove old ripples
+                const oldRipple = button.getElementsByClassName('ripple')[0];
+                if (oldRipple) {
+                    oldRipple.remove();
+                }
+
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+                circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+                circle.classList.add('ripple');
+
+                button.appendChild(circle);
+            }
+
+            // Attach ripple to premium hover buttons
+            document.querySelectorAll('.btn-premium-hover').forEach(btn => {
+                btn.style.position = 'relative';
+                btn.style.overflow = 'hidden';
+                btn.addEventListener('click', createRipple);
+            });
+
+            // --- Color Click to Copy ---
+            document.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.style.cursor = 'pointer';
+                swatch.title = 'Click to copy color code';
+
+                swatch.addEventListener('click', () => {
+                    const hexText = swatch.querySelector('.font-mono').innerText;
+                    navigator.clipboard.writeText(hexText).then(() => {
+                        LogicUI.showNotification(`Copied ${hexText} to clipboard!`, 'success');
+                        // Visual flash
+                        swatch.style.transform = 'scale(0.95)';
+                        setTimeout(() => swatch.style.transform = '', 150);
+                    });
+                });
+            });
+
+            // --- Type Tester Logic ---
+            const rangeInput = document.getElementById('type-tester-range');
+            const testerInput = document.getElementById('type-tester-input');
+            const sizeLabel = document.getElementById('tester-size-label');
+
+            if (rangeInput && testerInput) {
+                rangeInput.addEventListener('input', (e) => {
+                    const size = e.target.value;
+                    testerInput.style.fontSize = `${size}px`;
+                    sizeLabel.textContent = `${size}px`;
+                });
+            }
+
+            // --- Scroll to Top Visibility ---
+            const fab = document.querySelector('.btn-float-scroll');
+            if (fab) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        fab.classList.add('visible');
+                    } else {
+                        fab.classList.remove('visible');
+                    }
+                });
+
+                fab.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

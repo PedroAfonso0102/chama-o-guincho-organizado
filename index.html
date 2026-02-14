@@ -23,14 +23,26 @@
     <meta property="og:title" content="Guincho em Campinas 24h - Chegamos em 30 Minutos | Chama o Guincho">
     <meta property="og:description"
         content="Serviço profissional de Guincho e Reboque 24h em Campinas e região. Atendimento especializado, preços transparentes e chegada em até 30 minutos.">
-    <meta property="og:image"
-        content="assets/images/base-2.JPG">
+    <meta property="og:image" content="assets/images/base-2.JPG">
     <meta property="og:url" content="https://www.chamaoguincho.com.br/">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#FF7A1A">
-
-    <title>Guincho em Campinas 24h - Chegamos em 30 Minutos | Chama o Guincho</title>
+    <title>Guincho 24h em Campinas e Região | Chegamos em 30 Minutos</title>
     <link rel="canonical" href="https://www.chamaoguincho.com.br/" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Chama o Guincho",
+      "url": "https://www.chamaoguincho.com.br/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.chamaoguincho.com.br/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -57,24 +69,12 @@
         { "@type": "City", "name": "Hortolândia" },
         { "@type": "City", "name": "Paulínia" }
     ],
-    "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Campinas",
-        "addressRegion": "SP",
-        "addressCountry": "BR"
-    },
     "description": "Serviço de guincho e reboque 24 horas em Campinas e região. Atendimento rápido para carros, motos e utilitários.",
        "openingHoursSpecification": [
         {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
             ],
             "opens": "00:00",
             "closes": "23:59"
@@ -95,114 +95,137 @@
 
     <!-- Fonts and Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-    <!-- CSS Styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Components -->
-    <script src="assets/js/components/layout.js"></script>
-    <script src="assets/js/components/ui-components.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof Layout !== 'undefined') {
-                Layout.init({
-                    basePath: './',
-                    activePage: 'home'
-                });
-            }
-            if (typeof UI !== 'undefined') {
-                UI.init();
-            }
-        });
-    </script>
 </head>
 
-<body>
+<body class="bg-background text-foreground font-sans antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5PRZFB9" height="0" width="0"
-            class="d-none"></iframe></noscript>
+            class="hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
 
+
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero__container">
-            <div class="hero__content text-center lg:text-left">
-                <div class="d-flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
-                    <span class="badge badge--success">
-                        <i class="fa-solid fa-circle-check"></i> Disponível Agora
+    <section
+        class="relative pt-28 pb-20 overflow-hidden bg-[radial-gradient(circle_at_top_center,hsl(var(--primary)/0.05)_0%,transparent_70%)]">
+        <!-- Glow Orbital Background Decoration -->
+        <div class="glow-orbital top-0 -left-64 opacity-30"></div>
+        <div class="glow-orbital -bottom-32 -right-32 opacity-20"
+            style="animation-delay: -5s; animation-direction: reverse;"></div>
+
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="text-center lg:text-left">
+                <div
+                    class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 animate-on-scroll visible stagger-1">
+                    <span
+                        class="badge badge-success gap-2 py-4 px-4 text-white border-none shadow-lg shadow-success/20">
+                        <i class="fa-solid fa-circle-check"></i> Prontos para atender agora
                     </span>
-                    <span class="badge badge--info">
-                        <i class="fa-solid fa-stopwatch"></i> Chegada em ~30 min
+                    <span class="badge badge-info gap-2 py-4 px-4 text-white border-none shadow-lg shadow-info/20">
+                        <i class="fa-solid fa-clock"></i> Chegada em ~30 min
                     </span>
                 </div>
 
-                <h1 class="hero__title">
-                    Guincho Rápido em <span class="hero__highlight">Campinas</span> e Região 24h
+                <h1 class="hero__title font-extrabold animate-on-scroll visible stagger-1">
+                    Guincho 24h em <span class="relative inline-block text-primary whitespace-nowrap">
+                        Campinas
+                        <span
+                            class="absolute bottom-2 left-0 w-full h-4 bg-primary/20 -z-10 -rotate-1 rounded-sm"></span>
+                    </span> e RMC.
                 </h1>
 
-                <p class="hero__subtitle">
-                    Ficou na mão? Chegamos rápido para te ajudar. Preço justo, motoristas profissionais e segurança total para seu veículo.
+                <p
+                    class="text-xl text-muted-foreground mb-10 max-w-xl animate-on-scroll visible stagger-2 mx-auto lg:mx-0">
+                    Chegada em até 30 min com preço fechado via WhatsApp. Saiba exatamente quanto vai pagar antes do
+                    resgate sair.
                 </p>
 
-                <div class="hero__actions">
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 animate-on-scroll visible stagger-3">
                     <a href="https://wa.me/5519993502969?text=SOS%20-%20Preciso%20de%20Guincho%20Agora"
-                        class="btn btn--primary btn--lg btn--full-mobile" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CHAMA NO ZAP (RÁPIDO)
+                        class="btn btn-primary btn-lg w-full lg:w-auto shadow-2xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-500 ease-in-out text-white"
+                        target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> SOLICITAR GUINCHO AGORA
                     </a>
-                    <a href="tel:+5519993502969" class="btn btn--outline btn--lg btn--full-mobile bg-white/80 backdrop-blur">
-                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Ligar (19) 99935-0296
+                    <a href="tel:+5519993502969"
+                        class="btn btn-outline btn-lg w-full lg:w-auto bg-white/5 backdrop-blur-xl border-white/10 hover:bg-secondary hover:text-white hover:border-secondary hover:-translate-y-1 transition-all duration-500 ease-in-out">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> (19) 99350-2969
                     </a>
                 </div>
 
-                <div class="hero__trust-bar">
-                    <div class="trust-item">
-                        <i class="fa-regular fa-credit-card"></i>
+                <div
+                    class="mt-8 pt-6 border-t border-border flex flex-wrap justify-center lg:justify-start gap-6 animate-on-scroll visible stagger-4">
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                        <i class="fa-regular fa-credit-card text-primary"></i>
                         <span>Cartão & Pix</span>
                     </div>
-                    <div class="trust-item">
-                        <i class="fa-solid fa-shield-halved"></i>
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                        <i class="fa-solid fa-shield-halved text-primary"></i>
                         <span>Seguro de Carga</span>
                     </div>
-                    <div class="trust-item">
-                        <i class="fa-solid fa-receipt"></i>
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                        <i class="fa-solid fa-receipt text-primary"></i>
                         <span>Nota Fiscal</span>
                     </div>
                 </div>
             </div>
 
             <!-- Slideshow Column -->
-            <div class="d-none d-flex-lg">
-                 <div class="hero__img-wrapper">
-                    <div class="slideshow">
-                        <div class="slideshow__track">
-                            <div class="slideshow__slide"><img src="assets/images/base-2.JPG" alt="Caminhão guincho da Chama o Guincho em Campinas" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/base-3.JPG" alt="Frota de caminhões da Chama o Guincho" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/img-1.JPG" alt="Resgate de veículo em rodovia de Campinas" loading="lazy"></div>
-                            <div class="slideshow__slide"><img src="assets/images/img-2.JPG" alt="Transporte de carro de luxo com segurança" loading="lazy"></div>
+            <div class="hidden lg:block">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-border bg-white h-[400px]">
+                    <div class="slideshow h-full w-full">
+                        <div class="slideshow__track h-full flex transition-transform duration-500">
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-01.jpg"
+                                    class="w-full h-full object-cover"
+                                    alt="Atendimento especializado de guincho e resgate 24h" loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-02.jpg"
+                                    class="w-full h-full object-cover"
+                                    alt="Caminhão guincho da Chama o Guincho em Campinas" loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-03.jpg"
+                                    class="w-full h-full object-cover" alt="Frota de caminhões da Chama o Guincho"
+                                    loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-04.jpg"
+                                    class="w-full h-full object-cover" alt="Resgate de veículo em rodovia de Campinas"
+                                    loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-05.jpg"
+                                    class="w-full h-full object-cover" alt="Transporte de carro de luxo com segurança"
+                                    loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-06.jpg"
+                                    class="w-full h-full object-cover" alt="Operação de resgate técnico especializado"
+                                    loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-07.jpg"
+                                    class="w-full h-full object-cover" alt="Logística de veículos pesados e frotas"
+                                    loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-08.jpg"
+                                    class="w-full h-full object-cover"
+                                    alt="Atendimento emergencial em pátios e rodovias" loading="lazy"></div>
+                            <div class="slideshow__slide w-full flex-shrink-0"><img src="assets/images/hero-09.jpg"
+                                    class="w-full h-full object-cover" alt="Transporte seguro de ativos de alto valor"
+                                    loading="lazy"></div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
-
         </div>
 
-        <div class="container">
-            <div class="hero__stats-wrapper">
-                <div class="stats__container animate-on-scroll">
-                    <div class="stat text-center">
-                        <div class="stat__value">500+</div>
-                        <div class="stat__label">Atendimentos</div>
-                    </div>
-                    <div class="stat text-center">
-                        <div class="stat__value">4.9/5</div>
-                        <div class="stat__label">Avaliação</div>
-                    </div>
-                    <div class="stat text-center">
-                        <div class="stat__value">24h</div>
-                        <div class="stat__label">Disponibilidade</div>
+        <div class="container mx-auto px-4 mt-12">
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white border border-border rounded-lg p-8 shadow-md animate-on-scroll">
+                <div class="text-center">
+                    <div class="text-4xl font-extrabold text-foreground mb-1">500+</div>
+                    <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Atendimentos</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-extrabold text-foreground mb-1">4.9/5</div>
+                    <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Avaliação</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-extrabold text-foreground mb-1">24h</div>
+                    <div class="text-xs uppercase text-muted-foreground font-semibold tracking-wider">Disponibilidade
                     </div>
                 </div>
             </div>
@@ -210,290 +233,531 @@
     </section>
 
     <!-- Services CTA Section -->
-    <section id="services" class="section section--gray">
-        <div class="container services-cta__layout">
-            <div class="services-cta__content animate-on-scroll">
-                <span class="section__pretitle">Serviços 24/7</span>
-                <h2 class="section__title">Precisa de reboque agora?</h2>
-                <p class="section__subtitle mb-6">
-                    Direcionamos quem precisa de atendimento imediato para uma página dedicada, com todos os serviços detalhados e opções rápidas de contato.
+    <section id="services" class="py-16 lg:py-24 bg-muted/30">
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="animate-on-scroll">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Serviços
+                    24/7</span>
+                <h2 class="animate-on-scroll">O que fazemos por você</h2>
+                <p class="text-xl text-muted-foreground mb-8">
+                    Não é apenas sobre rebocar um carro. Entendemos que você está em um momento de stress e nosso
+                    objetivo é resolver seu problema com empatia, segurança e agilidade.
                 </p>
 
-                <div class="d-flex flex-wrap gap-4 mb-6">
-                    <a href="servicos.html" class="btn btn--primary btn--lg">
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <a href="servicos.html" class="btn btn-primary btn-lg">
                         <i class="fa-solid fa-list" aria-hidden="true"></i> Ver serviços completos
                     </a>
-                    <a href="tel:+5519993502969" class="btn btn--outline btn--lg">
+                    <a href="tel:+5519993502969" class="btn btn-outline btn-lg">
                         <i class="fa-solid fa-phone" aria-hidden="true"></i> Falar com o guincho
                     </a>
                 </div>
 
-                <div class="services-cta__badges">
-                    <span class="services-cta__badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Chegada média ~30min</span>
-                    <span class="services-cta__badge"><i class="fa-solid fa-route" aria-hidden="true"></i> Cobertura RM Campinas</span>
-                    <span class="services-cta__badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> Atendimento 24h</span>
+                <div class="flex flex-wrap gap-3">
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i
+                            class="fa-solid fa-bolt text-primary" aria-hidden="true"></i> Chegada média ~30min</span>
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i
+                            class="fa-solid fa-route text-primary" aria-hidden="true"></i> Cobertura RM Campinas</span>
+                    <span class="badge badge-outline gap-2 py-3 px-4 h-auto text-muted-foreground"><i
+                            class="fa-solid fa-clock text-primary" aria-hidden="true"></i> Atendimento 24h</span>
                 </div>
             </div>
 
-            <div class="services-cta__card animate-on-scroll">
-                <div class="mb-4">
-                    <div class="services-cta__pill">Casos mais chamados</div>
-                    <h3>Resolvemos sem enrolação</h3>
-                    <p class="text-muted">Pane, colisão, pneu furado ou transporte programado. Chame e seguimos direto para o local.</p>
-                </div>
-                <ul class="services-cta__list">
-                    <li><i class="fa-solid fa-check-circle" aria-hidden="true"></i> Guincho plataforma seguro</li>
-                    <li><i class="fa-solid fa-check-circle" aria-hidden="true"></i> Agendamentos rápidos</li>
-                    <li><i class="fa-solid fa-check-circle" aria-hidden="true"></i> Reboque para oficinas</li>
-                    <li><i class="fa-solid fa-check-circle" aria-hidden="true"></i> Transporte intermunicipal</li>
-                </ul>
-                <div class="d-grid gap-4 mt-auto">
-                    <a href="https://wa.me/5519993502969?text=Preciso%20de%20guincho%20agora" class="btn btn--whatsapp btn--lg w-full" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
-                    </a>
-                    <a href="servicos.html" class="btn btn--ghost w-full">Ver detalhes dos serviços</a>
+            <div class="card bg-card border border-border shadow-xl animate-on-scroll">
+                <div class="card-body p-8">
+                    <div class="mb-6">
+                        <span class="badge badge-primary font-bold uppercase mb-4">Casos mais chamados</span>
+                        <h3 class="text-2xl font-bold mb-2">Resolvemos sem enrolação</h3>
+                        <p class="text-muted-foreground">Pane, colisão, pneu furado ou transporte programado. Chame e
+                            seguimos direto para o local.</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success"
+                                aria-hidden="true"></i> Guincho plataforma seguro</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success"
+                                aria-hidden="true"></i> Agendamentos rápidos</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success"
+                                aria-hidden="true"></i> Reboque para oficinas</li>
+                        <li class="flex items-center gap-3 font-medium"><i class="fa-solid fa-check-circle text-success"
+                                aria-hidden="true"></i> Transporte intermunicipal</li>
+                    </ul>
+                    <div class="grid gap-4 mt-auto">
+                        <a href="https://wa.me/5519993502969?text=Preciso%20de%20guincho%20agora"
+                            class="btn btn-whatsapp w-full" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
+                        </a>
+                        <a href="servicos.html" class="btn btn-ghost w-full">Ver detalhes dos serviços</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Emergency Section -->
-    <section id="urgent-request" class="section">
-        <div class="container">
-            <div class="emergency-card animate-on-scroll">
-                <div class="emergency-card__content">
-                    <div class="d-flex items-center gap-2 mb-4">
-                        <span class="badge badge--success">
+    <section id="urgent-request" class="py-16 lg:py-24">
+        <div class="container mx-auto px-4">
+            <div
+                class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] bg-card border border-primary/20 rounded-3xl shadow-2xl shadow-primary/5 overflow-hidden animate-on-scroll ring-4 ring-primary/5">
+                <div class="p-8 lg:p-12">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="badge badge-success gap-2 py-3 px-4 h-auto font-bold uppercase tracking-wide">
                             <i class="fa-solid fa-bolt-lightning"></i> EMERGÊNCIA 24H
                         </span>
                     </div>
 
-                    <h2 class="h3 mb-2">Pedido Rápido</h2>
+                    <h2 class="font-bold">Pedido Rápido</h2>
 
-                    <p class="text-muted text-lg mb-8">
+                    <p class="text-lg text-muted-foreground mb-8">
                         Preencha para um atendimento prioritário.
                     </p>
 
                     <!-- Mobile Quick Actions -->
-                    <div class="d-flex flex-col gap-4 mb-4 d-md-none">
-                         <a href="tel:+5519993502969" class="btn btn--primary btn--lg w-full">
+                    <div class="flex flex-col gap-4 mb-8 md:hidden">
+                        <a href="tel:+5519993502969" class="btn btn-primary btn-lg w-full">
                             <i class="fa-solid fa-phone" aria-hidden="true"></i> LIGAR AGORA
                         </a>
-                        <button type="button" id="btn-panic-location" class="btn btn--whatsapp btn--lg w-full">
+                        <button type="button" id="btn-panic-location" class="btn btn-whatsapp btn-lg w-full">
                             <i class="fa-solid fa-location-dot" aria-hidden="true"></i> ENVIAR LOCALIZAÇÃO
                         </button>
-                         <p class="text-center text-sm mt-2"><a href="#" id="btn-show-form" style="text-decoration: underline;">ou preencher formulário</a></p>
+                        <p class="text-center text-sm mt-2"><a href="#" id="btn-show-form"
+                                class="underline text-muted-foreground hover:text-primary">ou preencher formulário</a>
+                        </p>
                     </div>
 
-                    <form id="emergency-form" class="emergency-form d-none d-md-block">
-                        <div class="form-group location-group">
-                             <label for="emergency-location" class="form-label">Onde você está?</label>
-                            <div class="input-location-wrapper">
-                                <input type="text" id="emergency-location" class="form-control" placeholder="Digite ou detecte..." required>
-                                <button type="button" class="location-detect" id="emergency-detect-location">
-                                    <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
+                    <form id="emergency-form" class="hidden md:block space-y-6 relative">
+                        <!-- Step 1: Logistics -->
+                        <div id="form-step-1" class="space-y-4 transition-all duration-500">
+                            <div class="form-control">
+                                <label for="emergency-location" class="label label-text font-medium">Onde você
+                                    está?</label>
+                                <div class="relative group">
+                                    <input type="text" id="emergency-location" name="Localização (Origem)"
+                                        class="input input-bordered w-full pr-24 h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="Digite ou detecte..." required>
+                                    <button type="button"
+                                        class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm text-primary location-detect"
+                                        id="emergency-detect-location">
+                                        <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> Detectar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control w-full">
+                                    <label for="emergency-destination" class="label label-text font-medium">Para onde
+                                        vai?</label>
+                                    <div class="relative">
+                                        <i
+                                            class="fa-solid fa-location-dot absolute left-4 top-1/2 -translate-y-1/2 text-primary/50 pointer-events-none"></i>
+                                        <input type="text" id="emergency-destination" name="Destino (Opcional)"
+                                            class="input input-bordered w-full pl-12 h-14 bg-white/5 focus:bg-white transition-all"
+                                            placeholder="Destino (Opcional)">
+                                    </div>
+                                </div>
+                                <div class="form-control w-full">
+                                    <label for="emergency-vehicle" class="label label-text font-medium">Seu
+                                        Veículo</label>
+                                    <select id="emergency-vehicle" name="Tipo de Veículo"
+                                        class="select select-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        required>
+                                        <option value="" disabled selected>Selecione...</option>
+                                        <option value="Carro de Passeio">Carro de Passeio</option>
+                                        <option value="Moto">Moto</option>
+                                        <option value="SUV / Caminhonete">SUV / Pickup</option>
+                                        <option value="Van / Utilitário">Van / Utilitário</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="button" id="btn-next-step"
+                                class="btn btn-primary btn-lg w-full h-14 mt-4 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+                                CONTINUAR <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Step 2: Contact (Hidden initially) -->
+                        <div id="form-step-2"
+                            class="hidden space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div
+                                class="p-4 bg-primary/5 rounded-xl border border-primary/10 mb-4 flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                                    <i class="fa-solid fa-truck-bolt"></i>
+                                </div>
+                                <p class="text-sm font-medium leading-snug">Logística capturada! Agora informe quem
+                                    devemos procurar:</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control w-full">
+                                    <label for="emergency-name" class="label label-text font-medium">Seu Nome</label>
+                                    <input type="text" id="emergency-name" name="Nome do Cliente"
+                                        class="input input-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="Nome" required disabled>
+                                </div>
+
+                                <div class="form-control w-full">
+                                    <label for="emergency-phone" class="label label-text font-medium">WhatsApp para
+                                        Contato</label>
+                                    <input type="tel" id="emergency-phone" name="WhatsApp / Telefone"
+                                        class="input input-bordered w-full h-14 bg-white/5 focus:bg-white transition-all"
+                                        placeholder="(19) 99999-9999" required disabled>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 mt-4">
+                                <button type="button" id="btn-prev-step"
+                                    class="btn btn-ghost btn-lg h-14 px-6 border border-border">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </button>
+                                <button type="submit"
+                                    class="btn btn-primary btn-lg flex-1 h-14 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+                                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i> SOLICITAR AGORA
                                 </button>
                             </div>
                         </div>
 
-                        <div class="d-flex gap-4 mb-4 flex-col md:flex-row">
-                             <div class="form-group w-full">
-                                <label for="emergency-destination" class="form-label">Para onde vai?</label>
-                                <div class="input-icon-wrapper">
-                                    <i class="fa-solid fa-location-dot input-icon"></i>
-                                    <input type="text" id="emergency-destination" class="form-control" placeholder="Destino (Opcional)">
-                                </div>
-                            </div>
-                            <div class="form-group w-full">
-                                <label for="emergency-vehicle" class="form-label">Seu Veículo</label>
-                                <select id="emergency-vehicle" class="form-select" required>
-                                    <option value="" disabled selected>Selecione...</option>
-                                    <option value="Carro de Passeio">Carro de Passeio</option>
-                                    <option value="Moto">Moto</option>
-                                    <option value="SUV / Caminhonete">SUV / Pickup</option>
-                                    <option value="Van / Utilitário">Van / Utilitário</option>
-                                </select>
-                            </div>
+                        <!-- Decorative Glow -->
+                        <div
+                            class="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none">
                         </div>
-
-                        <div class="d-flex gap-4 mb-6 flex-col md:flex-row">
-                            <div class="form-group w-full">
-                                <label for="emergency-name" class="form-label">Seu Nome</label>
-                                <input type="text" id="emergency-name" class="form-control" placeholder="Nome" required>
-                            </div>
-
-                            <div class="form-group w-full">
-                                <label for="emergency-phone" class="form-label">Seu WhatsApp</label>
-                                <input type="tel" id="emergency-phone" class="form-control" placeholder="(DDD) 99999-9999" required>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn--primary btn--lg w-full">
-                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Solicitar Guincho Agora
-                        </button>
                     </form>
                 </div>
 
-                <div class="emergency-card__decoration">
-                    <i class="fa-solid fa-truck-pickup" aria-hidden="true"></i>
+                <div
+                    class="hidden md:flex bg-primary text-primary-foreground items-center justify-center text-8xl relative overflow-hidden group">
+                    <i class="fa-solid fa-truck-pickup z-10 transition-transform duration-1000 group-hover:scale-110 group-hover:-rotate-3"
+                        aria-hidden="true"></i>
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/20"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="section section--gray">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Diferenciais</span>
-                <h2 class="section__title">Por que chamar a gente?</h2>
-                <div class="section__divider"></div>
+    <section id="features" class="relative py-16 lg:py-24 bg-muted/30 overflow-hidden">
+        <!-- Decoration -->
+        <div class="glow-orbital -top-20 -right-20 opacity-10"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll reveal-up">
+                <span
+                    class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Diferenciais</span>
+                <h2 class="font-extrabold animate-on-scroll">
+                    Por que somos a sua melhor escolha?
+                </h2>
+                <div class="h-1 w-16 bg-primary mx-auto rounded-full"></div>
             </div>
-            <div class="features__list">
-                <!-- Features will be loaded via JS -->
+            <div class="features__list grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Data loaded via app.js -> ui-components.js -->
             </div>
         </div>
     </section>
 
     <!-- Coverage Area Section -->
-    <section id="coverage" class="section">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Cobertura</span>
-                <h2 class="section__title">Onde atendemos</h2>
-                <div class="section__divider"></div>
-                <p class="section__subtitle">
+    <section id="coverage" class="py-16 lg:py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Cobertura</span>
+                <h2 class="font-bold">Onde atendemos</h2>
+                <div class="h-1 w-16 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-muted-foreground">
                     Atendemos em Campinas e em um raio de até 100km.
                 </p>
             </div>
 
-            <div class="coverage__map animate-on-scroll">
+            <div
+                class="coverage__map rounded-2xl overflow-hidden border border-border shadow-md h-[400px] mb-8 animate-on-scroll">
                 <iframe id="coverage-map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14638.123456789!2d-47.060833!3d-22.905833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8cf4f12345678%3A0x123456789abcdef!2sCampinas%2C%20SP!5e0!3m2!1sen!2sbr!4v1617886322168!5m2!1sen!2sbr"
                     width="100%" height="100%" allowfullscreen="" loading="lazy" style="border:0; display: block;">
                 </iframe>
             </div>
 
-            <div class="coverage__cities">
-                <!-- Cities will be loaded via JS -->
+            <div class="coverage__cities flex flex-wrap gap-2 justify-center">
+                <!-- Hydrated via JS -->
             </div>
         </div>
     </section>
 
-    <!-- Price Estimator Section -->
-    <section id="price-estimator" class="section section--gray">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Transparência</span>
-                <h2 class="section__title">Calcule o Valor</h2>
-                <div class="section__divider"></div>
-                <p class="section__subtitle">
-                    Simulador de preço baseado na distância e tipo de veículo.
-                </p>
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 lg:pt-24 lg:pb-6 bg-muted/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-widest uppercase text-xs mb-2 block">Cases de
+                    Sucesso</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tighter mb-6">Excelência em Atendimento</h2>
+                <div class="h-1 w-16 bg-primary mx-auto rounded-full"></div>
             </div>
 
-            <div class="price-estimator animate-on-scroll">
-                <div class="d-flex flex-col md:flex-row gap-6">
-                    <div class="w-full">
-                        <div class="form-group">
-                            <label class="form-label" for="price-origin">Origem</label>
-                            <div class="input-location-wrapper">
-                                <input type="text" class="form-control" id="price-origin" placeholder="Local de partida">
-                                <button type="button" class="location-detect" id="price-detect-origin">
-                                    <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
-                                </button>
+            <!-- Carousel Controls -->
+            <div class="flex justify-between items-center mb-8 animate-on-scroll">
+                <div class="flex gap-2">
+                    <button
+                        class="carousel-arrow carousel-arrow--prev btn btn-outline btn-sm rounded-full w-10 h-10 p-0">
+                        <i class="fa-solid fa-chevron-left mr-0"></i>
+                    </button>
+                    <button
+                        class="carousel-arrow carousel-arrow--next btn btn-outline btn-sm rounded-full w-10 h-10 p-0">
+                        <i class="fa-solid fa-chevron-right mr-0"></i>
+                    </button>
+                </div>
+                <div class="carousel-dots flex gap-2">
+                    <span
+                        class="carousel-dot carousel-dot--active w-8 h-2 bg-primary rounded-full transition-all duration-300"></span>
+                    <span class="carousel-dot w-2 h-2 bg-border rounded-full transition-all duration-300"></span>
+                </div>
+            </div>
+
+            <div class="slideshow slideshow--cases overflow-hidden">
+                <div class="slideshow__track flex transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
+                    <!-- Slide 1: Premium, B2B, Government -->
+                    <div class="slideshow__slide w-full flex-shrink-0">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 testimonials__list">
+                            <!-- Case 1 -->
+                            <div
+                                class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-1">
+                                <div class="card__image-wrapper">
+                                    <div class="absolute inset-0">
+                                        <img src="assets/images/case-01.jpg"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            alt="Transporte técnico de veículo importado com fixação em 4 pontos para máxima segurança."
+                                            loading="lazy">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    </div>
+                                </div>
+                                <div class="card-body p-6 relative">
+                                    <div class="flex gap-1 text-warning text-sm mb-3">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                    </div>
+                                    <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                                        Logística de Ativos de Alto Valor</h3>
+                                    <p class="text-muted-foreground text-sm">Procedimentos técnicos dedicados a veículos
+                                        de luxo e superesportivos. Utilização de guincho plataforma com ângulo de ataque
+                                        reduzido.</p>
+                                    <div class="mt-4 pt-4 border-t border-border flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs group-hover:bg-primary group-hover:text-white transition-all">
+                                            TP</div>
+                                        <span class="text-sm font-medium">Transporte Premium</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="price-destination">Destino</label>
-                            <input type="text" class="form-control" id="price-destination" placeholder="Local de destino">
-                        </div>
-                         <div class="form-group">
-                            <label class="form-label" for="price-distance">Distância (km)</label>
-                            <input type="number" class="form-control" id="price-distance" min="1" max="2000" value="20">
+                            <!-- Case 2 -->
+                            <div
+                                class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-2">
+                                <div class="card__image-wrapper">
+                                    <div class="absolute inset-0">
+                                        <img src="assets/images/case-02.jpg"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            alt="Logística de pátio para frotas corporativas com sistema de rastreamento em tempo real."
+                                            loading="lazy">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    </div>
+                                </div>
+                                <div class="card-body p-6 relative">
+                                    <div class="flex gap-1 text-warning text-sm mb-3">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                    </div>
+                                    <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                                        Operações de Frota Corporativa</h3>
+                                    <p class="text-muted-foreground text-sm">Parceria estratégica para locadoras e
+                                        gestores de frota. Execução de logística de pátio e remanejamento de veículos em
+                                        escala.</p>
+                                    <div class="mt-4 pt-4 border-t border-border flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs group-hover:bg-primary group-hover:text-white transition-all">
+                                            B2B</div>
+                                        <span class="text-sm font-medium">Soluções B2B</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Case 3 -->
+                            <div
+                                class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group animate-on-scroll stagger-3">
+                                <div class="card__image-wrapper">
+                                    <div class="absolute inset-0">
+                                        <img src="assets/images/case-03.jpg"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            alt="Atendimento técnico especializado para órgãos públicos e frotas táticas."
+                                            loading="lazy">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    </div>
+                                </div>
+                                <div class="card-body p-6 relative">
+                                    <div class="flex gap-1 text-warning text-sm mb-3">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                    </div>
+                                    <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                                        Logística Governamental e Tática</h3>
+                                    <p class="text-muted-foreground text-sm">Capacidade técnica para transporte de
+                                        viaturas policiais e veículos de serviço público em conformidade com exigências
+                                        estatais.</p>
+                                    <div class="mt-4 pt-4 border-t border-border flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs group-hover:bg-primary group-hover:text-white transition-all">
+                                            VO</div>
+                                        <span class="text-sm font-medium">Veículos Oficiais</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="w-full d-flex flex-col">
-                        <div class="form-group">
-                            <label class="form-label" for="price-vehicle">Veículo</label>
-                            <select class="form-select" id="price-vehicle">
-                                <option value="moto">Moto</option>
-                                <option value="car" selected>Carro de passeio</option>
-                                <option value="suv">SUV / Caminhonete</option>
-                                <option value="van">Van / Furgão</option>
-                            </select>
-                        </div>
-
-                        <div class="price-estimator__result w-full mt-auto">
-                            <div class="text-sm mb-2 font-bold uppercase tracking-wide opacity-70">Orçamento Estimado</div>
-                            <div class="price-estimator__price">R$ 162,00</div>
-                            <div class="d-grid gap-2 mt-4" style="grid-template-columns: 1fr auto;">
-                                <button class="btn btn--primary btn--full-mobile">
-                                    <i class="fa-brands fa-whatsapp"></i> Agendar
-                                </button>
-                                <button class="btn btn--outline" id="save-quote-btn" title="Receber por email">
-                                    <i class="fa-regular fa-envelope"></i>
-                                </button>
+                    <!-- Slide 2: Sinistros, Luxo, Carga Múltipla -->
+                    <div class="slideshow__slide w-full flex-shrink-0">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 testimonials__list">
+                            <!-- Case 4 -->
+                            <div
+                                class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group">
+                                <div class="card__image-wrapper">
+                                    <div class="absolute inset-0">
+                                        <img src="assets/images/case-06.jpg"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            alt="Resgate de SUV blindado com uso de patins técnicos para evitar danos à transmissão."
+                                            loading="lazy">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    </div>
+                                </div>
+                                <div class="card-body p-6 relative">
+                                    <div class="flex gap-1 text-warning text-sm mb-3" aria-label="Avaliação 5 estrelas"
+                                        role="img">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                            aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                            class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                    <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                                        Remoção de Sinistros Graves</h3>
+                                    <p class="text-muted-foreground text-sm">Especialização no transporte de veículos
+                                        com danos estruturais severos. Alta capacidade de tração para veículos travados.
+                                    </p>
+                                    <div class="mt-4 pt-4 border-t border-border">
+                                        <span class="text-primary font-bold uppercase text-xs tracking-wider">Gestão de
+                                            Sinistros</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Case 5 -->
+                            <div
+                                class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group">
+                                <div class="card__image-wrapper">
+                                    <div class="absolute inset-0">
+                                        <img src="assets/images/case-05.jpg"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            alt="Transporte de superesportivo utilizando cintas de nylon de alta resistência e ganchos emborrachados."
+                                            loading="lazy">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    </div>
+                                </div>
+                                <div class="card-body p-6 relative">
+                                    <div class="flex gap-1 text-warning text-sm mb-3" aria-label="Avaliação 5 estrelas"
+                                        role="img">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                            aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                            class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                    <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                                        Veículos de Prestígio</h3>
+                                    <p class="text-muted-foreground text-sm">Transporte de alta precisão para automóveis
+                                        importados. Amarração técnica (cintas de roda) sem contato com a lataria.</p>
+                                    <div class="mt-4 pt-4 border-t border-border">
+                                        <span class="text-primary font-bold uppercase text-xs tracking-wider">Transporte
+                                            VIP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Case 6 -->
+                            <div
+                                class="card card--case-study bg-card border border-border overflow-hidden h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ease-in-out group">
+                                <div class="card__image-wrapper">
+                                    <div class="absolute inset-0">
+                                        <img src="assets/images/case-04.jpg"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            alt="Transporte compartilhado de motocicletas e carros otimizando custo logístico."
+                                            loading="lazy">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    </div>
+                                </div>
+                                <div class="card-body p-6 relative">
+                                    <div class="flex gap-1 text-warning text-sm mb-3" aria-label="Avaliação 5 estrelas"
+                                        role="img">
+                                        <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                            aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                            class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                    <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                                        Logística de Carga Múltipla</h3>
+                                    <p class="text-muted-foreground text-sm">Otimização de frete através de transporte
+                                        combinado. Movimentação simultânea de automóveis e motocicletas.</p>
+                                    <div class="mt-4 pt-4 border-t border-border">
+                                        <span class="text-primary font-bold uppercase text-xs tracking-wider">Logística
+                                            Integrada</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                 <p class="text-center text-xs mt-4 text-muted">
-                    * Valor estimado. Pode variar conforme condições reais (ex: rodas travadas).
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-     <section id="testimonials" class="section">
-        <div class="container">
-            <div class="section__header animate-on-scroll">
-                <span class="section__pretitle">Depoimentos</span>
-                <h2 class="section__title">Clientes Satisfeitos</h2>
-                <div class="section__divider"></div>
-            </div>
-
-            <div class="testimonials__list">
-                <!-- Testimonials will be loaded via JS -->
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="section section--gray">
-        <div class="container" style="max-width: 800px;">
-            <div class="section__header animate-on-scroll">
-                <h2 class="section__title">Perguntas Frequentes</h2>
+    <section id="faq" class="py-16 lg:pt-6 lg:pb-24">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">Perguntas Frequentes</h2>
             </div>
 
-            <div class="faq__container animate-on-scroll">
-                <div class="faq__item">
-                    <button class="faq__question">
-                        <span>O que devo fazer enquanto espero?</span>
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                    <div class="faq__answer">
-                        <p>Ligue o pisca-alerta, posicione o triângulo a 30m e aguarde em local seguro fora do veículo.</p>
+            <div class="faq__container space-y-4 animate-on-scroll">
+                <div class="collapse collapse-arrow bg-base-200 border border-base-300 rounded-box">
+                    <input type="radio" name="my-accordion-2" checked="checked" />
+                    <div class="collapse-title text-xl font-medium">
+                        O que devo fazer enquanto espero?
+                    </div>
+                    <div class="collapse-content">
+                        <p>Ligue o pisca-alerta, posicione o triângulo a 30m e aguarde em local seguro fora do veículo.
+                        </p>
                     </div>
                 </div>
-
-                <div class="faq__item">
-                    <button class="faq__question">
-                        <span>Aceitam cartão?</span>
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                    <div class="faq__answer">
+                <div class="collapse collapse-arrow bg-base-200 border border-base-300 rounded-box">
+                    <input type="radio" name="my-accordion-2" />
+                    <div class="collapse-title text-xl font-medium">
+                        Aceitam cartão?
+                    </div>
+                    <div class="collapse-content">
                         <p>Sim, aceitamos cartões de crédito, débito e Pix.</p>
                     </div>
                 </div>
-                 <div class="faq__item">
-                    <button class="faq__question">
-                        <span>Atendem fora de Campinas?</span>
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                    <div class="faq__answer">
+                <div class="collapse collapse-arrow bg-base-200 border border-base-300 rounded-box">
+                    <input type="radio" name="my-accordion-2" />
+                    <div class="collapse-title text-xl font-medium">
+                        Atendem fora de Campinas?
+                    </div>
+                    <div class="collapse-content">
                         <p>Sim, atendemos toda a região metropolitana e viagens intermunicipais.</p>
                     </div>
                 </div>
@@ -503,8 +767,37 @@
 
     <div id="footer-placeholder"></div>
 
+    <!-- Hidden Templates -->
+    <template id="tmpl-contact-options">
+        <div class="space-y-4">
+            <p class="text-muted-foreground text-center mb-6">Escolha como prefere falar com a gente:</p>
+
+            <a href="https://wa.me/5519993502969?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20preciso%20de%20ajuda."
+                target="_blank"
+                class="btn btn-whatsapp w-full btn-lg gap-3 shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                <div class="flex flex-col items-start leading-tight">
+                    <span class="text-xs font-normal opacity-90">Resposta Imediata</span>
+                    <span class="font-bold">Chamar no WhatsApp</span>
+                </div>
+            </a>
+
+            <a href="tel:+5519993502969" class="btn btn-outline w-full btn-lg gap-3 hover:bg-muted transition-all">
+                <i class="fa-solid fa-phone text-xl"></i>
+                <div class="flex flex-col items-start leading-tight">
+                    <span class="text-xs font-normal opacity-70">Ligação Convencional</span>
+                    <span class="font-bold">(19) 99350-2969</span>
+                </div>
+            </a>
+
+            <div class="text-center text-xs text-muted-foreground mt-4">
+                <p>Atendimento 24 horas • 7 dias por semana</p>
+            </div>
+        </div>
+    </template>
+
     <!-- JavaScript -->
-    <script src="assets/js/main.js" defer></script>
+    <script type="module" src="assets/js/app.js"></script>
 </body>
 
 </html>

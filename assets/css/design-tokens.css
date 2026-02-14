@@ -15,263 +15,669 @@
     /* =========================================================================
      * CORES BASE (Zinc Palette modified for warmth)
      * ========================================================================= */
-    
+
     /* Background & Foreground */
-    --background: 0 0% 100%;              /* #FFFFFF - Fundo principal */
-    --foreground: 240 10% 3.9%;           /* #09090B - Texto principal (Quase preto) */
-    
+    --background: 0 0% 100%;
+    /* #FFFFFF - Fundo principal */
+    --foreground: 240 10% 3.9%;
+    /* #09090B - Texto principal (Quase preto) */
+
     /* Card & Popover */
-    --card: 0 0% 100%;                    /* #FFFFFF - Fundo de cards */
-    --card-foreground: 240 10% 3.9%;      /* #09090B - Texto em cards */
-    --popover: 0 0% 100%;                 /* #FFFFFF */
-    --popover-foreground: 240 10% 3.9%;   /* #09090B */
-    
+    --card: 0 0% 100%;
+    /* #FFFFFF - Fundo de cards */
+    --card-foreground: 240 10% 3.9%;
+    /* #09090B - Texto em cards */
+    --popover: 0 0% 100%;
+    /* #FFFFFF */
+    --popover-foreground: 240 10% 3.9%;
+    /* #09090B */
+
     /* =========================================================================
      * CORES DE MARCA (Brand Colors)
      * ========================================================================= */
-    
+
     /* Primary - Laranja Intenso (Action/Alert/Brand)
        Hue ~25 (Orange) / Saturation High / Lightness Medium */
-    --primary: 25 95% 53%;                /* #FF7A1A - Laranja Vibrante */
-    --primary-foreground: 0 0% 98%;       /* #FAFAFA - Texto claro no laranja */
-    
+    --primary: 25 95% 53%;
+    /* #FF7A1A - Laranja Vibrante */
+    --primary-foreground: 0 0% 98%;
+    /* #FAFAFA - Texto claro no laranja */
+
     /* Secondary - Preto Sofisticado */
-    --secondary: 240 5.9% 10%;            /* #18181B - Zinc 900 */
-    --secondary-foreground: 0 0% 98%;     /* #FAFAFA */
-    
+    --secondary: 240 5.9% 10%;
+    /* #18181B - Zinc 900 */
+    --secondary-foreground: 0 0% 98%;
+    /* #FAFAFA */
+
     /* =========================================================================
      * CORES SEMÂNTICAS
      * ========================================================================= */
-    
+
     /* Muted - Para fundos sutis e textos secundários */
-    --muted: 240 4.8% 95.9%;              /* #F4F4F5 - Zinc 100 */
-    --muted-foreground: 240 3.8% 46.1%;   /* #71717A - Zinc 500 */
-    
+    --muted: 240 5% 96%;
+    /* #F8F8F9 - Mais nítido */
+    --muted-foreground: 240 5% 35%;
+    /* #52525B - Melhor contraste para legibilidade */
+
     /* Accent - Para hovers e destaques sutis */
-    --accent: 240 4.8% 95.9%;             /* #F4F4F5 */
-    --accent-foreground: 240 5.9% 10%;    /* #18181B */
-    
+    --accent: 240 4.8% 95.9%;
+    /* #F4F4F5 */
+    --accent-foreground: 240 5.9% 10%;
+    /* #18181B */
+
     /* Destructive - Erros */
-    --destructive: 0 84.2% 60.2%;         /* #EF4444 */
+    --destructive: 0 84.2% 60.2%;
+    /* #EF4444 */
     --destructive-foreground: 0 0% 98%;
-    
+
     /* Success */
-    --success: 142 76% 36%;               /* #16A34A */
+    --success: 142 76% 36%;
+    /* #16A34A */
     --success-foreground: 355 100% 97%;
-    
+
     /* Warning */
-    --warning: 38 92% 50%;                /* #F59E0B */
+    --warning: 38 92% 50%;
+    /* #F59E0B */
     --warning-foreground: 48 96% 89%;
 
     /* WhatsApp - Verde Oficial */
-    --whatsapp: 142 70% 49%;              /* #25D366 */
+    --whatsapp: 142 70% 49%;
+    /* #25D366 */
     --whatsapp-foreground: 0 0% 100%;
-    
+
     /* =========================================================================
      * BORDAS E INPUTS
      * ========================================================================= */
-    
-    --border: 240 5.9% 90%;               /* #E4E4E7 - Zinc 200 */
+
+    --border: 240 5.9% 90%;
+    /* #E4E4E7 - Zinc 200 */
     --input: 240 5.9% 90%;
-    --ring: 25 95% 53%;                   /* Primary Ring */
-    
+    --ring: 25 95% 53%;
+    /* Primary Ring */
+
     /* =========================================================================
      * RAIOS DE BORDA (Radius)
      * ========================================================================= */
-    
-    --radius-sm: 0.25rem;                 /* 4px */
-    --radius: 0.5rem;                     /* 8px - Default */
-    --radius-md: 0.5rem;                  /* 8px */
-    --radius-lg: 0.75rem;                 /* 12px */
-    --radius-xl: 1rem;                    /* 16px */
+
+    --radius-sm: 0.25rem;
+    /* 4px */
+    --radius: 0.5rem;
+    /* 8px - Default */
+    --radius-md: 0.5rem;
+    /* 8px */
+    --radius-lg: 0.75rem;
+    /* 12px */
+    --radius-xl: 1rem;
+    /* 16px */
     --radius-full: 9999px;
-    
+
     /* =========================================================================
      * SOMBRAS (Shadows - Tailwind/Shadcn style)
      * ========================================================================= */
-    
+
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    
+
     /* Brand Shadows */
-    --shadow-primary: 0 4px 14px 0 rgba(255, 122, 26, 0.39);
-    
+    --shadow-primary: 0 10px 30px -5px rgba(255, 122, 26, 0.25);
+    /* Mais suave e difuso */
+
     /* Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.8);
     --glass-blur: blur(12px);
-    
+
     /* =========================================================================
      * ESPAÇAMENTOS (Base 4px Scale)
      * ========================================================================= */
-    
+
     --space-0: 0px;
-    --space-1: 0.25rem;    /* 4px */
-    --space-2: 0.5rem;     /* 8px */
-    --space-3: 0.75rem;    /* 12px */
-    --space-4: 1rem;       /* 16px */
-    --space-5: 1.25rem;    /* 20px */
-    --space-6: 1.5rem;     /* 24px */
-    --space-8: 2rem;       /* 32px */
-    --space-10: 2.5rem;    /* 40px */
-    --space-12: 3rem;      /* 48px */
-    --space-16: 4rem;      /* 64px */
-    --space-20: 5rem;      /* 80px */
-    --space-24: 6rem;      /* 96px */
-    
+    --space-1: 0.25rem;
+    /* 4px */
+    --space-2: 0.5rem;
+    /* 8px */
+    --space-3: 0.75rem;
+    /* 12px */
+    --space-4: 1rem;
+    /* 16px */
+    --space-5: 1.25rem;
+    /* 20px */
+    --space-6: 1.5rem;
+    /* 24px */
+    --space-8: 2rem;
+    /* 32px */
+    --space-10: 2.5rem;
+    /* 40px */
+    --space-12: 3rem;
+    /* 48px */
+    --space-16: 4rem;
+    /* 64px */
+    --space-20: 5rem;
+    /* 80px */
+    --space-24: 6rem;
+    /* 96px */
+
     /* =========================================================================
-     * TIPOGRAFIA
+     * TIPOGRAFIA (Typography Scale & Hierarchy)
      * ========================================================================= */
-    
-    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    
-    --text-xs: 0.75rem;     /* 12px */
-    --text-sm: 0.875rem;    /* 14px */
-    --text-base: 1rem;      /* 16px */
-    --text-lg: 1.125rem;    /* 18px */
-    --text-xl: 1.25rem;     /* 20px */
-    --text-2xl: 1.5rem;     /* 24px */
-    --text-3xl: 1.875rem;   /* 30px */
-    --text-4xl: 2.25rem;    /* 36px */
-    --text-5xl: 3rem;       /* 48px */
-    
+
+    --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    /* Base Font Sizes */
+    --text-3xs: 0.625rem;
+    /* 10px */
+    --text-2xs: 0.6875rem;
+    /* 11px */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+    --text-5xl: 3rem;
+    /* 48px */
+    --text-6xl: 3.75rem;
+    /* 60px */
+    --text-7xl: 4.5rem;
+    /* 72px */
+
+    /* Headings Fluid Scale (Mobile to Desktop) */
+    --h1-size: clamp(2.5rem, 8vw, 4.5rem);
+    --h2-size: clamp(2rem, 6vw, 3rem);
+    --h3-size: clamp(1.75rem, 5vw, 2.25rem);
+    --h4-size: clamp(1.5rem, 4vw, 1.875rem);
+    --h5-size: clamp(1.25rem, 2vw, 1.5rem);
+    --h6-size: 1.125rem;
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.1;
+    --leading-snug: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+
+    /* Letter Spacing */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+
+    /* Font Weights */
     --font-normal: 400;
     --font-medium: 500;
     --font-semibold: 600;
     --font-bold: 700;
     --font-extrabold: 800;
-    
+
     /* =========================================================================
      * LAYOUT & GRID
      * ========================================================================= */
-    
+
     --container-max: 1280px;
     --container-padding: 2rem;
     --header-height: 4.5rem;
-    
+
     --breakpoint-sm: 640px;
     --breakpoint-md: 768px;
     --breakpoint-lg: 1024px;
     --breakpoint-xl: 1280px;
-    
+
     /* =========================================================================
      * ANIMATIONS
      * ========================================================================= */
-    
+
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-human: cubic-bezier(0.4, 0, 0.2, 1);
     --duration-normal: 0.3s;
+    --duration-human: 0.5s;
+
+    /* Animation Delays (Stagger) */
+    --stagger-1: 100ms;
+    --stagger-2: 200ms;
+    --stagger-3: 300ms;
+    --stagger-4: 400ms;
 }
 
 /* =============================================================================
  * UTILITY CLASSES - SPACING (Tailwind-like)
  * ============================================================================= */
 
-.m-0 { margin: 0; }
-.m-1 { margin: var(--space-1); }
-.m-2 { margin: var(--space-2); }
-.m-4 { margin: var(--space-4); }
+.m-0 {
+    margin: 0;
+}
 
-.mt-0 { margin-top: 0; }
-.mt-1 { margin-top: var(--space-1); }
-.mt-2 { margin-top: var(--space-2); }
-.mt-4 { margin-top: var(--space-4); }
-.mt-6 { margin-top: var(--space-6); }
-.mt-8 { margin-top: var(--space-8); }
-.mt-12 { margin-top: var(--space-12); }
-.mt-auto { margin-top: auto; }
+.m-1 {
+    margin: var(--space-1);
+}
 
-.mb-0 { margin-bottom: 0; }
-.mb-1 { margin-bottom: var(--space-1); }
-.mb-2 { margin-bottom: var(--space-2); }
-.mb-4 { margin-bottom: var(--space-4); }
-.mb-6 { margin-bottom: var(--space-6); }
-.mb-8 { margin-bottom: var(--space-8); }
+.m-2 {
+    margin: var(--space-2);
+}
 
-.p-0 { padding: 0; }
-.p-2 { padding: var(--space-2); }
-.p-4 { padding: var(--space-4); }
-.p-6 { padding: var(--space-6); }
-.p-8 { padding: var(--space-8); }
+.m-4 {
+    margin: var(--space-4);
+}
 
-.pt-0 { padding-top: 0; }
-.pt-4 { padding-top: var(--space-4); }
+.mt-0 {
+    margin-top: 0;
+}
 
-.py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); }
-.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
-.py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
-.py-12 { padding-top: var(--space-12); padding-bottom: var(--space-12); }
-.py-20 { padding-top: var(--space-20); padding-bottom: var(--space-20); }
+.mt-1 {
+    margin-top: var(--space-1);
+}
 
-.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.mt-2 {
+    margin-top: var(--space-2);
+}
 
-.gap-2 { gap: var(--space-2); }
-.gap-3 { gap: var(--space-3); }
-.gap-4 { gap: var(--space-4); }
-.gap-6 { gap: var(--space-6); }
+.mt-4 {
+    margin-top: var(--space-4);
+}
+
+.mt-6 {
+    margin-top: var(--space-6);
+}
+
+.mt-8 {
+    margin-top: var(--space-8);
+}
+
+.mt-12 {
+    margin-top: var(--space-12);
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-1 {
+    margin-bottom: var(--space-1);
+}
+
+.mb-2 {
+    margin-bottom: var(--space-2);
+}
+
+.mb-4 {
+    margin-bottom: var(--space-4);
+}
+
+.mb-6 {
+    margin-bottom: var(--space-6);
+}
+
+.mb-8 {
+    margin-bottom: var(--space-8);
+}
+
+.p-0 {
+    padding: 0;
+}
+
+.p-2 {
+    padding: var(--space-2);
+}
+
+.p-4 {
+    padding: var(--space-4);
+}
+
+.p-6 {
+    padding: var(--space-6);
+}
+
+.p-8 {
+    padding: var(--space-8);
+}
+
+.pt-0 {
+    padding-top: 0;
+}
+
+.pt-4 {
+    padding-top: var(--space-4);
+}
+
+.py-2 {
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+}
+
+.py-4 {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+}
+
+.py-8 {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+}
+
+.py-12 {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+}
+
+.py-20 {
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-20);
+}
+
+.px-4 {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+}
+
+.gap-2 {
+    gap: var(--space-2);
+}
+
+.gap-3 {
+    gap: var(--space-3);
+}
+
+.gap-4 {
+    gap: var(--space-4);
+}
+
+.gap-6 {
+    gap: var(--space-6);
+}
 
 /* =============================================================================
  * UTILITY CLASSES - LAYOUT
  * ============================================================================= */
 
-.d-none { display: none !important; }
-.d-flex { display: flex; }
-.d-grid { display: grid; }
-.d-block { display: block; }
-.d-inline-flex { display: inline-flex; }
+.d-none {
+    display: none !important;
+}
 
-.flex-col { flex-direction: column; }
-.flex-row { flex-direction: row; }
-.flex-wrap { flex-wrap: wrap; }
-.items-center { align-items: center; }
-.items-start { align-items: flex-start; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.justify-start { justify-content: flex-start; }
-.justify-end { justify-content: flex-end; }
-.flex-grow { flex-grow: 1; }
-.w-full { width: 100%; }
-.ml-4 { margin-left: var(--space-4); }
+.d-flex {
+    display: flex;
+}
+
+.d-grid {
+    display: grid;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-inline-flex {
+    display: inline-flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.ml-4 {
+    margin-left: var(--space-4);
+}
 
 /* Responsive Utilities (Bootstrap-like Logic: d-md-none hides on MD and UP) */
 @media (min-width: 768px) {
-    .d-md-none { display: none !important; } /* Hide on Desktop */
-    .d-md-block { display: block !important; }
-    .d-md-flex { display: flex !important; }
-    .d-md-inline-flex { display: inline-flex !important; }
+    .d-md-none {
+        display: none !important;
+    }
 
-    .md\:flex-row { flex-direction: row; }
-    .md\:w-auto { width: auto; }
+    /* Hide on Desktop */
+    .d-md-block {
+        display: block !important;
+    }
+
+    .d-md-flex {
+        display: flex !important;
+    }
+
+    .d-md-inline-flex {
+        display: inline-flex !important;
+    }
+
+    .md\:flex-row {
+        flex-direction: row;
+    }
+
+    .md\:w-auto {
+        width: auto;
+    }
 }
 
 @media (min-width: 1024px) {
-    .d-lg-none { display: none !important; }
-    .d-flex-lg { display: flex !important; }
+    .d-lg-none {
+        display: none !important;
+    }
 
-    .lg\:d-block { display: block !important; }
-    .lg\:d-flex { display: flex !important; }
-    .lg\:text-left { text-align: left !important; }
-    .lg\:justify-start { justify-content: flex-start !important; }
+    .d-flex-lg {
+        display: flex !important;
+    }
+
+    .lg\:d-block {
+        display: block !important;
+    }
+
+    .lg\:d-flex {
+        display: flex !important;
+    }
+
+    .lg\:text-left {
+        text-align: left !important;
+    }
+
+    .lg\:justify-start {
+        justify-content: flex-start !important;
+    }
 }
 
 /* =============================================================================
  * UTILITY CLASSES - TYPOGRAPHY
  * ============================================================================= */
 
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-center {
+    text-align: center;
+}
 
-.font-bold { font-weight: var(--font-bold); }
-.font-medium { font-weight: var(--font-medium); }
+.text-left {
+    text-align: left;
+}
 
-.text-xs { font-size: var(--text-xs); }
-.text-sm { font-size: var(--text-sm); }
-.text-lg { font-size: var(--text-lg); }
-.text-xl { font-size: var(--text-xl); }
+.text-right {
+    text-align: right;
+}
 
-.text-muted { color: hsl(var(--muted-foreground)); }
-.text-primary { color: hsl(var(--primary)); }
-.text-white { color: white; }
+.font-bold {
+    font-weight: var(--font-bold);
+}
+
+.font-medium {
+    font-weight: var(--font-medium);
+}
+
+.text-3xs {
+    font-size: var(--text-3xs);
+}
+
+.text-2xs {
+    font-size: var(--text-2xs);
+}
+
+.text-xs {
+    font-size: var(--text-xs);
+}
+
+.text-sm {
+    font-size: var(--text-sm);
+}
+
+.text-base {
+    font-size: var(--text-base);
+}
+
+.text-lg {
+    font-size: var(--text-lg);
+}
+
+.text-xl {
+    font-size: var(--text-xl);
+}
+
+.text-2xl {
+    font-size: var(--text-2xl);
+}
+
+.text-3xl {
+    font-size: var(--text-3xl);
+}
+
+.text-4xl {
+    font-size: var(--text-4xl);
+}
+
+.text-5xl {
+    font-size: var(--text-5xl);
+}
+
+.text-6xl {
+    font-size: var(--text-6xl);
+}
+
+.text-7xl {
+    font-size: var(--text-7xl);
+}
+
+.font-normal {
+    font-weight: var(--font-normal);
+}
+
+.font-medium {
+    font-weight: var(--font-medium);
+}
+
+.font-semibold {
+    font-weight: var(--font-semibold);
+}
+
+.font-bold {
+    font-weight: var(--font-bold);
+}
+
+.font-extrabold {
+    font-weight: var(--font-extrabold);
+}
+
+.leading-none {
+    line-height: var(--leading-none);
+}
+
+.leading-tight {
+    line-height: var(--leading-tight);
+}
+
+.leading-snug {
+    line-height: var(--leading-snug);
+}
+
+.leading-normal {
+    line-height: var(--leading-normal);
+}
+
+.leading-relaxed {
+    line-height: var(--leading-relaxed);
+}
+
+.tracking-tighter {
+    letter-spacing: var(--tracking-tighter);
+}
+
+.tracking-tight {
+    letter-spacing: var(--tracking-tight);
+}
+
+.tracking-normal {
+    letter-spacing: var(--tracking-normal);
+}
+
+.tracking-wide {
+    letter-spacing: var(--tracking-wide);
+}
+
+.text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+}
+
+.text-muted {
+    color: hsl(var(--muted-foreground));
+}
+
+.text-primary {
+    color: hsl(var(--primary));
+}
+
+.text-foreground {
+    color: hsl(var(--foreground));
+}
+
+.text-white {
+    color: white;
+}
