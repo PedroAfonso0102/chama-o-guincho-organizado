@@ -16,11 +16,22 @@ export class PricingService {
     static calculate(distanceInKm, vehicleType) {
         let distance = Math.max(0, distanceInKm);
 
-        // Get multiplier based on vehicle type, default to 1.0 if unknown
-        const multiplier = CONFIG.PRICING.TIPO_VEICULO[vehicleType] || 1.0;
+        // Suporte legado
+        const legados = { 'moto': 'motos', 'car': 'leves', 'suv': 'utilitario', 'van': 'vans' };
+        const mappedType = legados[vehicleType] || vehicleType;
 
-        // Base Formula: (Base Price * Vehicle Multiplier) + (Distance * Price Per Km)
-        let total = (CONFIG.PRICING.PRECO_BASE * multiplier) + (distance * CONFIG.PRICING.PRECO_POR_KM);
+        const category = CONFIG.PRICING.TABELA_VEICULOS[mappedType];
+
+        // Fail-safe
+        if (!category) return 0;
+
+        let total = category.saida;
+
+        // Se a distância cobrir mais que o limite da Saída
+        if (distance > CONFIG.PRICING.LIMITE_KM_BASE) {
+            let quilometragemExcedente = distance - CONFIG.PRICING.LIMITE_KM_BASE;
+            total += (quilometragemExcedente * category.km_adicional);
+        }
 
         // Weekend Logic: Apply surcharge on Sundays
         const day = new Date().getDay();

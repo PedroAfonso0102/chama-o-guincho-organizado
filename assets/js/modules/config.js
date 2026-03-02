@@ -12,16 +12,15 @@ export const CONFIG = {
 
     // Pricing Business Rules
     PRICING: {
-        PRECO_BASE: 100.00,      // Minimum fixed fee
-        PRECO_POR_KM: 4.50,      // Cost per kilometer
+        LIMITE_KM_BASE: 40,      // O preço de saída cobre até 40km (ida e volta somadas)
         ADICIONAL_FDS: 1.20,     // Weekend surcharge (+20%)
 
-        // Multipliers based on vehicle weight/complexity
-        TIPO_VEICULO: {
-            'moto': 1.0,
-            'car': 1.6,
-            'suv': 1.8,
-            'van': 2.0,
+        // Definindo a política oficial de Saída e Km Adicional por categoria
+        TABELA_VEICULOS: {
+            'leves': { saida: 160.00, km_adicional: 3.50 },
+            'utilitario': { saida: 240.00, km_adicional: 4.00 },
+            'motos': { saida: 160.00, km_adicional: 3.50 },
+            'vans': { saida: 350.00, km_adicional: 4.00 }
         }
     },
 

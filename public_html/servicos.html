@@ -64,8 +64,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-  <script type="module" crossorigin src="./assets/app-cSVjZHxw.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/app-DCvigv7o.css">
+  <script type="module" crossorigin src="./assets/app-Bk-ujwVy.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/app-B7WUVyiX.css">
 </head>
 
 <body class="bg-background text-foreground font-sans antialiased">
@@ -187,10 +187,11 @@
                             <label class="label label-text font-medium" for="price-vehicle">Categoria do Veículo</label>
                             <select name="Categoria do Veículo" class="select select-bordered w-full" id="price-vehicle"
                                 required>
-                                <option value="moto">Motocicletas</option>
-                                <option value="car" selected>Carro de Passeio</option>
-                                <option value="suv">SUV / Caminhonete / Blindado</option>
-                                <option value="van">Van / Utilitário / Máquina</option>
+                                <option value="" disabled selected>O que precisa transportar?</option>
+                                <option value="leves">Automóveis e Veículos Leves (Passeio e S.O.S)</option>
+                                <option value="utilitario">SUVs, Pick-ups e Utilitários (Médio Porte)</option>
+                                <option value="motos">Motocicletas (Todas as Categorias e CCs)</option>
+                                <option value="vans">Vans, VUCs e Utilitários de Carga (HR / Bongo)</option>
                             </select>
                         </div>
 
@@ -218,76 +219,113 @@
     <!-- Detailed Info Card/Process -->
     <section class="py-24 bg-muted/30" aria-label="Processo de Atendimento">
         <div class="container mx-auto px-4">
-            <div class="bg-card border border-border rounded-[3rem] overflow-hidden shadow-2xl animate-on-scroll">
+            <div
+                class="bg-card border border-border rounded-[3rem] overflow-hidden shadow-xl hover:shadow-primary-hover transition-shadow duration-human ease-spring animate-on-scroll group/main">
                 <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr]">
-                    <div class="p-8 lg:p-20">
-                        <span class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Processo de
-                            Atendimento</span>
-                        <h2 class="text-4xl font-extrabold mb-8 leading-tight">Logística Eficiente <br
-                                class="hidden md:block"> e Segura</h2>
-                        <p class="text-lg text-muted-foreground mb-12 leading-relaxed max-w-lg">
-                            Protocolo operacional otimizado para reduzir o tempo de espera e garantir a integridade do
-                            seu veículo em todas as etapas do transporte.
-                        </p>
-
-                        <div class="space-y-8 mb-12">
-                            <div class="flex gap-6 group">
-                                <div
-                                    class="flex-shrink-0 w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center font-bold shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
-                                    1</div>
-                                <div>
-                                    <h4 class="font-bold text-xl mb-1">Avaliação na Hora</h4>
-                                    <p class="text-muted-foreground">Envie sua localização e os detalhes do veículo pelo
-                                        WhatsApp para um suporte imediato.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-6 group">
-                                <div
-                                    class="flex-shrink-0 w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center font-bold shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
-                                    2</div>
-                                <div>
-                                    <h4 class="font-bold text-xl mb-1">Sem Surpresas no Valor</h4>
-                                    <p class="text-muted-foreground">Valor fechado antes do guincho sair. Preço justo,
-                                        transparente e sem taxas ocultas.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-6 group">
-                                <div
-                                    class="flex-shrink-0 w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center font-bold shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
-                                    3</div>
-                                <div>
-                                    <h4 class="font-bold text-xl mb-1">Acompanhamento Direto</h4>
-                                    <p class="text-muted-foreground">Mantemos você informado sobre a localização e a
-                                        previsão exata de chegada da nossa equipe.</p>
-                                </div>
-                            </div>
+                    <div class="p-8 lg:p-16 relative">
+                        <!-- BG Blurs for Vibecoding -->
+                        <div
+                            class="absolute -top-24 -left-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl opacity-50 pointer-events-none">
+                        </div>
+                        <div
+                            class="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-50 pointer-events-none">
                         </div>
 
-                        <a href="#price-estimator"
-                            class="btn btn-primary btn-lg px-12 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all">
-                            SIMULAR VALOR <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                    <div class="relative min-h-[400px] bg-slate-900 group overflow-hidden">
-                        <img src="./assets/hero-01-FhPoufgn.jpg" alt="Equipamento de Resgate Profissional"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-black via-black/40 to-primary/30"></div>
-                        <div
-                            class="absolute inset-0 flex flex-col items-center justify-center p-12 text-center text-white">
-                            <div
-                                class="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center mb-8">
-                                <i class="fa-solid fa-shield-halved text-white text-3xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-black uppercase tracking-tighter mb-4 !text-white">Cuidado em cada
-                                detalhe</h3>
-                            <p class="text-white/80 font-medium leading-relaxed max-w-sm mx-auto !text-white">Contamos
-                                com especialistas e equipamentos adequados para cada tipo de veículo, garantindo um
-                                transporte seguro do início ao fim.</p>
+                        <div class="relative z-10">
+                            <span
+                                class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block flex items-center gap-2">
+                                <i class="fa-solid fa-route text-primary/70"></i> Processo de Atendimento
+                            </span>
+                            <h2 class="text-4xl lg:text-5xl font-extrabold mb-8 leading-tight tracking-tight">Logística
+                                Eficiente <br class="hidden md:block"> <span class="text-gradient">e Segura</span></h2>
+                            <p class="text-lg text-muted-foreground mb-12 leading-relaxed max-w-lg">
+                                Protocolo operacional otimizado para reduzir o tempo de espera e garantir a integridade
+                                do seu veículo em todas as etapas do transporte.
+                            </p>
 
-                            <div class="mt-12 flex flex-col items-center gap-2">
+                            <div
+                                class="space-y-6 mb-12 relative before:absolute before:inset-y-0 before:left-6 before:w-[2px] before:bg-gradient-to-b before:from-primary/50 before:via-primary/20 before:to-transparent">
+                                <!-- Step 1 -->
+                                <div class="flex gap-6 group relative">
+                                    <div
+                                        class="relative flex-shrink-0 w-12 h-12 rounded-2xl bg-card border-2 border-primary/30 flex items-center justify-center font-bold text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary shadow-lg shadow-primary/10 group-hover:shadow-primary/30 group-hover:scale-110 transition-all duration-human ease-spring z-10">
+                                        1
+                                    </div>
+                                    <div
+                                        class="glass-panel p-5 rounded-2xl flex-grow group-hover:border-primary/30 group-hover:-translate-y-1 transition-all duration-human ease-spring">
+                                        <h4
+                                            class="font-bold text-xl mb-1 group-hover:text-primary transition-colors duration-human">
+                                            Avaliação na Hora</h4>
+                                        <p class="text-muted-foreground text-sm">Envie sua localização e os detalhes do
+                                            veículo pelo WhatsApp para um suporte imediato.</p>
+                                    </div>
+                                </div>
+                                <!-- Step 2 -->
+                                <div class="flex gap-6 group relative">
+                                    <div
+                                        class="relative flex-shrink-0 w-12 h-12 rounded-2xl bg-card border-2 border-primary/30 flex items-center justify-center font-bold text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary shadow-lg shadow-primary/10 group-hover:shadow-primary/30 group-hover:scale-110 transition-all duration-human ease-spring z-10">
+                                        2
+                                    </div>
+                                    <div
+                                        class="glass-panel p-5 rounded-2xl flex-grow group-hover:border-primary/30 group-hover:-translate-y-1 transition-all duration-human ease-spring">
+                                        <h4
+                                            class="font-bold text-xl mb-1 group-hover:text-primary transition-colors duration-human">
+                                            Sem Surpresas no Valor</h4>
+                                        <p class="text-muted-foreground text-sm">Valor fechado antes do guincho sair.
+                                            Preço justo, transparente e sem taxas ocultas.</p>
+                                    </div>
+                                </div>
+                                <!-- Step 3 -->
+                                <div class="flex gap-6 group relative">
+                                    <div
+                                        class="relative flex-shrink-0 w-12 h-12 rounded-2xl bg-card border-2 border-primary/30 flex items-center justify-center font-bold text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary shadow-lg shadow-primary/10 group-hover:shadow-primary/30 group-hover:scale-110 transition-all duration-human ease-spring z-10">
+                                        3
+                                    </div>
+                                    <div
+                                        class="glass-panel p-5 rounded-2xl flex-grow group-hover:border-primary/30 group-hover:-translate-y-1 transition-all duration-human ease-spring">
+                                        <h4
+                                            class="font-bold text-xl mb-1 group-hover:text-primary transition-colors duration-human">
+                                            Acompanhamento Direto</h4>
+                                        <p class="text-muted-foreground text-sm">Mantemos você informado sobre a
+                                            localização e a previsão exata de chegada da equipe.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="#price-estimator"
+                                class="btn btn-primary btn-lg px-8 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary-hover hover:-translate-y-1 transition-all duration-human ease-spring group/btn">
+                                SIMULAR VALOR <i
+                                    class="fa-solid fa-chevron-right ml-2 text-xs group-hover/btn:translate-x-1 transition-transform duration-human ease-spring"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Right side Image Panel -->
+                    <div class="relative min-h-[400px] lg:min-h-full bg-slate-900 overflow-hidden">
+                        <img src="./assets/hero-01-FhPoufgn.jpg" alt="Equipamento de Resgate Profissional"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-slow ease-spring group-hover/main:scale-105 opacity-70">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-black via-black/50 to-primary/20 mix-blend-multiply">
+                        </div>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center p-10 text-center text-white z-10">
+                            <div
+                                class="w-24 h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(255,122,26,0.3)] hover:scale-110 hover:bg-primary/20 transition-all duration-human ease-spring cursor-pointer group/icon">
+                                <i
+                                    class="fa-solid fa-shield-halved text-white text-4xl group-hover/icon:rotate-12 transition-transform duration-human ease-spring"></i>
+                            </div>
+                            <h3 class="text-3xl font-black uppercase tracking-tighter mb-4 !text-white drop-shadow-lg">
+                                Cuidado em cada detalhe</h3>
+                            <p
+                                class="text-white/90 font-medium leading-relaxed max-w-sm mx-auto !text-white drop-shadow-md">
+                                Especialistas e equipamentos adequados para cada veículo, garantindo transporte seguro
+                                do início ao fim.
+                            </p>
+
+                            <div class="mt-auto pt-12 flex flex-col items-center gap-3 w-full">
+                                <span class="w-12 h-1 bg-primary rounded-full mb-2"></span>
                                 <span class="text-primary font-bold uppercase tracking-[0.2em] text-[10px]">Atendimento
                                     Regional</span>
-                                <span class="text-white/60 text-xs font-bold uppercase !text-white/60">Campinas e Região
+                                <span class="text-white font-bold uppercase tracking-wider">Campinas e Região
                                     Metropolitana</span>
                             </div>
                         </div>
