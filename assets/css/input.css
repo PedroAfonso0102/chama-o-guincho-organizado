@@ -13,7 +13,8 @@
 /* Global Html Settings */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--header-height); /* Offset for sticky header */
+    scroll-padding-top: var(--header-height);
+    /* Offset for sticky header */
 }
 
 
@@ -83,6 +84,14 @@ p {
     line-height: var(--leading-normal);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
+}
+
+.leading-relaxed {
+    line-height: var(--leading-relaxed);
+}
+
+.tracking-tighter {
+    letter-spacing: var(--tracking-tighter);
 }
 
 .text-gradient {
@@ -431,6 +440,46 @@ p {
 .nav__link:hover {
     color: hsl(var(--foreground));
     background-color: hsl(var(--accent));
+}
+
+.nav__link.text-primary {
+    color: hsl(var(--primary));
+}
+
+.text-foreground {
+    color: hsl(var(--foreground));
+}
+
+.text-white {
+    color: white;
+}
+
+/* =============================================================================
+ * UTILITY CLASSES - VIBECODING / BIOLOGICAL MOTION
+ * ============================================================================= */
+
+.duration-fast {
+    transition-duration: var(--duration-fast);
+}
+
+.duration-human {
+    transition-duration: var(--duration-human);
+}
+
+.duration-slow {
+    transition-duration: var(--duration-slow);
+}
+
+.ease-spring {
+    transition-timing-function: var(--ease-spring);
+}
+
+.ease-human {
+    transition-timing-function: var(--ease-human);
+}
+
+.hover\:shadow-primary-hover:hover {
+    box-shadow: var(--shadow-primary-hover);
 }
 
 .nav__link.active {
@@ -1563,9 +1612,6 @@ p {
 }
 
 
-/* =========== TAILWIND LAYERS =========== */
-@tailwind components;
-@tailwind utilities;
 
 /* Fix for Location Detect "Falling" Issue */
 /* Ensure vertical centering is preserved in all states */
@@ -1596,4 +1642,58 @@ p {
 
 .location-detect.animating {
     animation: organic-click 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+}
+
+/* =========== SCROLL PROGRESS INDICATOR =========== */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(25 95% 63%));
+    z-index: 9999;
+    transition: width 0.1s linear;
+    pointer-events: none;
+}
+
+/* =========== SKELETON LOADING =========== */
+.skeleton-loader {
+    background: linear-gradient(90deg,
+            hsl(var(--muted)) 25%,
+            hsl(var(--accent)) 50%,
+            hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+    border-radius: var(--radius-lg);
+    min-height: 200px;
+}
+
+@keyframes skeleton-pulse {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* =========== SOCIAL PROOF BADGE =========== */
+.social-proof-badge {
+    transition: transform var(--duration-normal) var(--ease-out),
+        box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.social-proof-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* =========== MOBILE NAV ACTIVE STATE =========== */
+.nav-mobile-link--active {
+    color: hsl(var(--primary)) !important;
+    border-left: 3px solid hsl(var(--primary));
+    padding-left: 1rem;
+    background: hsl(var(--primary) / 0.05);
 }

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labareda Code | Estúdio Criativo</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:title" content="Labareda Code | Estúdio Criativo">
+    <meta property="og:description" content="Design estratégico e desenvolvimento premium.">
+    <meta property="og:image" content="assets/images/hero-01.jpg">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#ff8800">
+
+    <!-- Tailwind & DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        '3xl': '1.5rem',
+                        '4xl': '2rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 240 10% 3.9%;
+            --primary: 25 100% 55%;
+            --primary-light: 25 100% 65%;
+            --primary-foreground: 0 0% 98%;
+            --secondary: 240 5.9% 10%;
+            --secondary-foreground: 0 0% 98%;
+            --muted: 240 4.8% 95.9%;
+            --muted-foreground: 240 3.8% 46.1%;
+            --border: 240 5.9% 90%;
+            --radius: 1rem;
+
+            /* Premium Tokens */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-fast: 200ms var(--ease-out-expo);
+            --transition-smooth: 400ms var(--ease-out-expo);
+            --transition-premium: 600ms var(--ease-out-expo);
+            --glow-primary: 0 0 40px hsl(var(--primary) / 0.4);
+            --glow-primary-intense: 0 0 60px hsl(var(--primary) / 0.6);
+            --blur-ambient: 80px;
+
+            /* Grid Tokens (8px base) */
+            --space-xs: 0.5rem;
+            /* 8px */
+            --space-sm: 1rem;
+            /* 16px */
+            --space-md: 1.5rem;
+            /* 24px */
+            --space-lg: 2rem;
+            /* 32px */
+            --space-xl: 3rem;
+            /* 48px */
+            --space-2xl: 4rem;
+            /* 64px */
+            --space-3xl: 6rem;
+            /* 96px */
+            --space-4xl: 8rem;
+            /* 128px */
+        }
+
+        /* Global Selection & Scrollbar (Visual Polish) */
+        ::selection {
+            background: hsl(var(--primary) / 0.3);
+            color: hsl(var(--foreground));
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: hsl(var(--muted));
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: hsl(var(--primary) / 0.3);
+            border-radius: 5px;
+            transition: background var(--transition-fast);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: hsl(var(--primary) / 0.6);
+        }
+
+        .dark {
+            --background: 240 10% 3.9%;
+            --foreground: 0 0% 98%;
+            --border: 240 3.7% 15.9%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+        }
+
+        /* Premium Nav Links (Visual Polish) */
+        .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: hsl(var(--primary));
+            transition: all var(--transition-smooth);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Glassmorphism Cards (Art Direction) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .glass-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Specialized Portfolio Styles (Art Direction) */
+        .text-gradient {
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-pattern {
+            background-image: radial-gradient(circle at 2px 2px, hsl(var(--primary) / 0.05) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+
+        /* Enhanced Ember Particles (Art Direction) */
+        .float-ember {
+            position: absolute;
+            background: hsl(var(--primary));
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: rise 12s infinite ease-in;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .float-ember:nth-child(1) {
+            width: 6px;
+            height: 6px;
+        }
+
+        .float-ember:nth-child(2) {
+            width: 8px;
+            height: 8px;
+            filter: blur(3px);
+        }
+
+        .float-ember:nth-child(3) {
+            width: 5px;
+            height: 5px;
+        }
+
+        .float-ember:nth-child(4) {
+            width: 10px;
+            height: 10px;
+            filter: blur(4px);
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.8;
+                transform: translateY(-150px) rotate(45deg) scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            85% {
+                opacity: 0.15;
+            }
+
+            100% {
+                transform: translateY(-800px) rotate(360deg) scale(0.4);
+                opacity: 0;
+            }
+        }
+
+        /* Flame Flicker for Logo (Art Direction) */
+        @keyframes flame-flicker {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.6));
+                transform: scale(1);
+            }
+
+            25% {
+                filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.8));
+                transform: scale(1.02);
+            }
+
+            50% {
+                filter: drop-shadow(0 0 6px hsl(var(--primary) / 0.5));
+                transform: scale(0.98);
+            }
+
+            75% {
+                filter: drop-shadow(0 0 14px hsl(var(--primary) / 0.9));
+                transform: scale(1.01);
+            }
+        }
+
+        .flame-icon {
+            animation: flame-flicker 3s ease-in-out infinite;
+        }
+
+        /* Pulse Glow Animation (Visual Polish) */
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+            }
+        }
+
+        /* Enhanced Reveal Animation (Art Direction) */
+        .animate-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s var(--ease-out-expo),
+                transform 1s var(--ease-out-back);
+        }
+
+        .animate-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-blur {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            transition: background var(--transition-smooth);
+        }
+
+        .nav-blur:hover {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Custom Section Spacing (Layout & Grid) */
+        section {
+            padding: var(--space-4xl) 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        /* Project Card Premium Hover (Visual Polish) */
+        .project-card {
+            transition: transform var(--transition-premium),
+                box-shadow var(--transition-smooth);
+            will-change: transform;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                var(--glow-primary);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            background: linear-gradient(135deg,
+                    hsl(var(--primary) / 0.1) 0%,
+                    transparent 50%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Service Card Hover Enhancement (Visual Polish) */
+        .service-card {
+            transition: all var(--transition-smooth);
+            position: relative;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.15) rotate(-5deg);
+            filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.3));
+        }
+
+        .service-icon {
+            transition: all var(--transition-smooth);
+        }
+
+        /* Button Active States (Visual Polish) */
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary:focus-visible {
+            outline: 2px solid hsl(var(--primary));
+            outline-offset: 3px;
+        }
+
+        /* Input Focus Enhancement (Visual Polish) */
+        input:focus-visible {
+            outline: none;
+            border-color: hsl(var(--primary)) !important;
+            box-shadow: 0 4px 12px hsl(var(--primary) / 0.15);
+        }
+
+        /* Carousel Dot States (Visual Polish) */
+        .carousel-dot {
+            transition: all var(--transition-fast);
+        }
+
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        /* Layout & Grid: Consistent Section Spacing */
+        .section-header {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-title {
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        /* Mobile Menu Stagger (Art Direction) */
+        .mobile-link {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-smooth);
+        }
+    </style>
+
+    <!-- Import Map for bare specifiers -->
+    <script type="importmap">
+    {
+        "imports": {
+            "toastify-js": "https://cdn.jsdelivr.net/npm/toastify-js/+esm",
+            "@formkit/auto-animate": "https://cdn.jsdelivr.net/npm/@formkit/auto-animate/+esm",
+            "toastify-js/src/toastify.css": "data:text/javascript,export default {}"
+        }
+    }
+    </script>
+</head>
+
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-[100] nav-blur border-b border-border/40">
+        <!-- Scroll Progress Bar (Visual Polish) -->
+        <div id="scroll-progress" class="absolute bottom-0 left-0 h-[2px] bg-primary w-0 transition-all duration-150">
+        </div>
+
+        <div class="container h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group relative z-[101]">
+                <div
+                    class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30 group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-fire-flame-curved flame-icon"></i>
+                </div>
+                <span class="font-bold text-xl tracking-tighter">LABAREDA<span class="text-primary">CODE</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#trabalhos"
+                    class="nav-link text-sm font-bold hover:text-primary transition-colors">Portfólio</a>
+                <a href="#servicos" class="nav-link text-sm font-bold hover:text-primary transition-colors">Serviços</a>
+                <a href="#contato" class="btn btn-primary btn-sm rounded-full px-6">Projeto?</a>
+            </nav>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-trigger"
+                class="md:hidden relative z-[101] w-10 h-10 flex items-center justify-center text-2xl"
+                aria-label="Abrir Menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-background/98 backdrop-blur-xl z-[100] translate-x-full transition-all duration-500 var(--ease-out-expo) flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none data-[open=true]:translate-x-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto">
+            <a href="#trabalhos"
+                class="text-5xl font-black tracking-tighter hover:text-primary transition-colors mobile-link">Portfólio</a>
+            <a href="#servicos"
+                class="text-5xl font-black tracking-tighter hover:text-primary transition-colors mobile-link">Serviços</a>
+            <a href="#contato"
+                class="btn btn-primary btn-lg rounded-full px-12 text-xl mobile-link shadow-2xl shadow-primary/30">Começar
+                Projeto</a>
+
+            <div class="absolute bottom-12 flex gap-8">
+                <a href="#" class="text-2xl opacity-50 hover:opacity-100" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                <a href="#" class="text-2xl opacity-50 hover:opacity-100" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center relative overflow-hidden hero-pattern">
+            <div class="container relative z-10">
+                <div class="max-w-3xl">
+                    <span
+                        class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6 animate-reveal">Creative
+                        Studio</span>
+                    <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 animate-reveal"
+                        style="transition-delay: 100ms">
+                        Design que <span class="text-gradient">aquece</span> seu negócio.
+                    </h1>
+                    <p class="text-xl text-muted-foreground leading-relaxed mb-12 animate-reveal"
+                        style="transition-delay: 200ms">
+                        Transformamos o "comum" em experiências digitais memoráveis.
+                        Design estratégico e desenvolvimento premium para quem busca autoridade visual.
+                    </p>
+                    <div class="flex flex-wrap gap-4 animate-reveal" style="transition-delay: 300ms">
+                        <a href="#trabalhos" class="btn btn-primary btn-lg px-12 group shadow-xl shadow-primary/20">
+                            Ver Portfólio <i
+                                class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#contato" class="btn btn-ghost btn-lg px-8">Nosso Processo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Absolute Decorative Embers (Art Direction: varied sizes via nth-child) -->
+            <div class="float-ember" style="left: 10%; bottom: 10%; animation-delay: 0s"></div>
+            <div class="float-ember" style="left: 60%; bottom: 5%; animation-delay: 2s"></div>
+            <div class="float-ember" style="left: 40%; bottom: 15%; animation-delay: 5s"></div>
+            <div class="float-ember" style="left: 80%; bottom: 8%; animation-delay: 3s"></div>
+            <div class="float-ember" style="left: 25%; bottom: 12%; animation-delay: 7s"></div>
+            <div class="float-ember" style="left: 90%; bottom: 3%; animation-delay: 4s"></div>
+        </section>
+
+        <!-- Stats/Featured (Visual Polish: Animated Counters) -->
+        <section class="py-16 bg-secondary text-white">
+            <div class="container">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="stat-item relative">
+                        <p class="text-4xl md:text-5xl font-black text-primary stat-number" data-target="5"
+                            data-suffix="+">0</p>
+                        <p class="text-xs uppercase tracking-widest opacity-60 mt-2">Anos de Fogo</p>
+                    </div>
+                    <div
+                        class="stat-item relative before:hidden md:before:block before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-px before:h-12 before:bg-white/10">
+                        <p class="text-4xl md:text-5xl font-black text-primary stat-number" data-target="100"
+                            data-suffix="%">0</p>
+                        <p class="text-xs uppercase tracking-widest opacity-60 mt-2">Hand-coded</p>
+                    </div>
+                    <div
+                        class="stat-item relative before:hidden md:before:block before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-px before:h-12 before:bg-white/10">
+                        <p class="text-4xl md:text-5xl font-black text-primary stat-number" data-target="50"
+                            data-suffix="+">0</p>
+                        <p class="text-xs uppercase tracking-widest opacity-60 mt-2">Projetos Ativos</p>
+                    </div>
+                    <div
+                        class="stat-item relative before:hidden md:before:block before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-px before:h-12 before:bg-white/10">
+                        <p class="text-4xl md:text-5xl font-black text-primary stat-number" data-target="4"
+                            data-suffix="">0</p>
+                        <p class="text-xs uppercase tracking-widest opacity-60 mt-2">Prêmios Design</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Works Section (Cards Workflow) -->
+        <section id="trabalhos" class="bg-muted/10">
+            <div class="container text-center mb-20">
+                <span class="text-primary font-bold text-sm uppercase tracking-widest">Featured Work</span>
+                <h2 class="text-5xl font-black tracking-tighter mt-4">Nossa Seleção</h2>
+            </div>
+
+            <div class="container grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Project 1: Chama o Guincho -->
+                <div
+                    class="project-card group relative aspect-video rounded-4xl overflow-hidden bg-secondary animate-reveal">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-105 transition-transform duration-700"
+                        style="background-image: url('assets/images/hero-01.jpg')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute inset-0 p-12 flex flex-col justify-end text-white">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2">Web
+                            Application</span>
+                        <h3 class="text-3xl font-bold mb-4">Chama o Guincho</h3>
+                        <p class="text-white/60 text-sm max-w-sm mb-8">Plataforma SaaS para logística de reboque em
+                            tempo real, com cálculo inteligente de tarifas e painel administrativo.</p>
+                        <button
+                            class="btn btn-outline border-white/20 text-white hover:bg-white hover:text-black w-fit px-8 rounded-full">Case
+                            Study</button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Placeholder -->
+                <div class="project-card group relative aspect-video rounded-4xl overflow-hidden bg-secondary animate-reveal"
+                    style="transition-delay: 200ms">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-105 transition-transform duration-700"
+                        style="background-image: url('assets/images/hero-02.jpg')">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute inset-0 p-12 flex flex-col justify-end text-white">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2">Brand
+                            Identity</span>
+                        <h3 class="text-3xl font-bold mb-4">Lume Decor</h3>
+                        <p class="text-white/60 text-sm max-w-sm mb-8">Redesign completo de marca e e-commerce para
+                            boutique de iluminação premium automatizada.</p>
+                        <!-- Project 3: Nexus Tech -->
+                        <div class="project-card group relative aspect-video rounded-4xl overflow-hidden bg-secondary animate-reveal md:col-span-2"
+                            style="transition-delay: 300ms">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-105 transition-transform duration-700"
+                                style="background-image: url('assets/images/case-03.jpg')">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent">
+                            </div>
+                            <div class="absolute inset-0 p-12 flex flex-col justify-end text-white">
+                                <div class="max-w-xl">
+                                    <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2">Fintech
+                                        Solution</span>
+                                    <h3 class="text-4xl font-bold mb-4">Nexus Tech</h3>
+                                    <p class="text-white/60 text-base mb-8">Ecossistema de pagamentos cripto com
+                                        interface ultra-minimalista e foco em segurança de dados.</p>
+                                    <button class="btn btn-primary px-12 rounded-full border-none">Explorar
+                                        Case</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+
+        <!-- Creative Process Section (Divergent Feature Explorer) -->
+        <section class="bg-secondary text-white relative overflow-hidden">
+            <!-- Decorative Glow -->
+            <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
+
+            <div class="container">
+                <div class="section-header text-center mb-20 animate-reveal">
+                    <span class="text-primary font-bold text-sm uppercase tracking-widest">Metodologia Labareda</span>
+                    <h2 class="text-5xl font-black section-title mt-4">Como o Fogo se Espalha</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="group animate-reveal" style="transition-delay: 100ms">
+                        <div class="flex items-center gap-6 mb-6">
+                            <span
+                                class="text-6xl font-black text-white/5 group-hover:text-primary/20 transition-colors">01</span>
+                            <div class="h-px flex-1 bg-white/10 group-hover:bg-primary/30 transition-colors"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Discovery & Strategy</h3>
+                        <p class="text-white/40 text-sm leading-relaxed">Mergulhamos na essência do seu negócio para
+                            encontrar o combustível certo. Definimos o tom, o público e os objetivos claros.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="group animate-reveal" style="transition-delay: 200ms">
+                        <div class="flex items-center gap-6 mb-6">
+                            <span
+                                class="text-6xl font-black text-white/5 group-hover:text-primary/20 transition-colors">02</span>
+                            <div class="h-px flex-1 bg-white/10 group-hover:bg-primary/30 transition-colors"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Creative Fuel</h3>
+                        <p class="text-white/40 text-sm leading-relaxed">Designers e devs trabalham em sinergia para
+                            criar uma interface que não apenas brilha, mas converte. Prototipagem premium e refinamento
+                            iterativo.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="group animate-reveal" style="transition-delay: 300ms">
+                        <div class="flex items-center gap-6 mb-6">
+                            <span
+                                class="text-6xl font-black text-white/5 group-hover:text-primary/20 transition-colors">03</span>
+                            <div class="h-px flex-1 bg-white/10 group-hover:bg-primary/30 transition-colors"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">The Ignition</h3>
+                        <p class="text-white/40 text-sm leading-relaxed">Código limpo, performance adrenalina e SEO
+                            estrutural. Lançamento acompanhado de monitoramento para garantir que seu site aqueça o
+                            mercado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section (Grid & Typography Workflow) -->
+        <section id="servicos">
+            <div class="container">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
+                    <div class="lg:col-span-1">
+                        <h2 class="text-5xl font-black tracking-tighter leading-none mb-8">O que<br>Nós Criamos.</h2>
+                        <p class="text-muted-foreground leading-relaxed mb-8">Nossa expertise une código sólido com
+                            estética de vanguarda.</p>
+                        <div class="flex items-center gap-4">
+                            <i class="fa-solid fa-square-check text-primary"></i>
+                            <span class="text-sm font-bold">SEO Adrenaline™ Included</span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- S1 -->
+                        <div
+                            class="service-card glass-card p-8 rounded-4xl hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+                            <i class="fa-solid fa-code text-4xl text-primary mb-6 service-icon block"></i>
+                            <h3 class="text-xl font-bold mb-3">Web Development</h3>
+                            <p class="text-sm text-muted-foreground leading-relaxed">Sites ultra-rápidos utilizando as
+                                tecnologias mais modernas do mercado (Vite, Tailwind, ESM).</p>
+                        </div>
+                        <!-- S2 -->
+                        <div
+                            class="service-card glass-card p-8 rounded-4xl hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+                            <i class="fa-solid fa-palette text-4xl text-primary mb-6 service-icon block"></i>
+                            <h3 class="text-xl font-bold mb-3">UI/UX Design</h3>
+                            <p class="text-sm text-muted-foreground leading-relaxed">Interfaces que não apenas parecem
+                                boas, mas guiam o usuário intuitivamente através da sua jornada.</p>
+                        </div>
+                        <!-- S3 -->
+                        <div
+                            class="service-card glass-card p-8 rounded-4xl hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+                            <i class="fa-solid fa-chart-line text-4xl text-primary mb-6 service-icon block"></i>
+                            <h3 class="text-xl font-bold mb-3">Growth Strategy</h3>
+                            <p class="text-sm text-muted-foreground leading-relaxed">Análise de dados e otimização de
+                                conversão para transformar visitantes em clientes reais.</p>
+                        </div>
+                        <!-- S4 -->
+                        <div
+                            class="service-card glass-card p-8 rounded-4xl hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+                            <i class="fa-solid fa-mobile-screen text-4xl text-primary mb-6 service-icon block"></i>
+                            <h3 class="text-xl font-bold mb-3">App Development</h3>
+                            <p class="text-sm text-muted-foreground leading-relaxed">PWA e aplicações mobile focadas em
+                                performance nativa e acessibilidade total.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial (Art Direction: Coreographed Reveals) -->
+        <section class="bg-secondary text-white overflow-hidden">
+            <div class="container">
+                <div class="flex flex-col md:flex-row gap-16 items-center">
+                    <div class="w-full md:w-1/2">
+                        <div class="slideshow slideshow--generic min-h-64">
+                            <div class="slideshow__track h-full">
+                                <div class="slideshow__slide h-full flex flex-col justify-center">
+                                    <div class="flex gap-1 text-primary mb-6">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="text-xl md:text-2xl font-light italic leading-relaxed mb-8 text-white/90">
+                                        "A Labareda
+                                        Code não apenas entregou um site, eles construíram uma ferramenta de vendas
+                                        potente para a Chama o Guincho."</p>
+                                    <h4 class="font-bold text-lg">Ricardo Afonso</h4>
+                                    <p class="text-xs uppercase opacity-50 tracking-wider">Fundador, Chama o Guincho</p>
+                                </div>
+                                <div class="slideshow__slide h-full flex flex-col justify-center">
+                                    <div class="flex gap-1 text-primary mb-6">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="text-xl md:text-2xl font-light italic leading-relaxed mb-8 text-white/90">
+                                        "Design
+                                        impecável. Foi o projeto de marca mais tranquilo e impactante que já executamos
+                                        em 10 anos."</p>
+                                    <h4 class="font-bold text-lg">Mariana Luz</h4>
+                                    <p class="text-xs uppercase opacity-50 tracking-wider">Marketing, Lume Decor</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dots -->
+                        <div class="flex gap-3 mt-8">
+                            <button class="carousel-dot w-3 h-3 rounded-full bg-white/20" aria-label="Slide 1"></button>
+                            <button class="carousel-dot w-3 h-3 rounded-full bg-white/20" aria-label="Slide 2"></button>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 relative">
+                        <!-- Ambient Glow (CSS Standardized: using clamp for responsive sizing) -->
+                        <div class="w-[min(100%,400px)] aspect-square bg-primary/20 rounded-full absolute -top-20 -right-10 md:-top-32 md:-right-32"
+                            style="filter: blur(var(--blur-ambient));">
+                        </div>
+                        <h3
+                            class="text-5xl md:text-6xl font-black leading-[0.95] tracking-tighter relative z-10 animate-reveal max-w-md">
+                            O fogo que Valida o Negócio.
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Form Workflow) -->
+        <section id="contato">
+            <div class="container">
+                <div
+                    class="max-w-4xl mx-auto rounded-4xl border border-border bg-white shadow-3xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-12 bg-secondary text-white">
+                        <h2 class="text-4xl font-black tracking-tight mb-8 text-primary">Pronto para<br>Incendiar
+                            seu<br>Mercado?</h2>
+                        <ul class="space-y-6">
+                            <li class="flex gap-4 items-center">
+                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center"><i
+                                        class="fa-solid fa-envelope"></i></div>
+                                <span>contato@labaredacode.com</span>
+                            </li>
+                            <li class="flex gap-4 items-center">
+                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center"><i
+                                        class="fa-brands fa-whatsapp"></i></div>
+                                <span>(19) 99350-2969</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <form class="p-12 space-y-6">
+                        <div class="animate-reveal">
+                            <label
+                                class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-2">Seu
+                                Nome / Empresa</label>
+                            <input type="text" placeholder="Como devemos te chamar?"
+                                class="w-full pb-4 border-b border-border focus:border-primary outline-none transition-colors text-lg font-medium bg-transparent">
+                        </div>
+                        <div class="animate-reveal" style="transition-delay: 100ms">
+                            <label
+                                class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-2">Seu
+                                Email</label>
+                            <input type="email" placeholder="email@exemplo.com"
+                                class="w-full pb-4 border-b border-border focus:border-primary outline-none transition-colors text-lg font-medium bg-transparent">
+                        </div>
+                        <div class="animate-reveal" style="transition-delay: 200ms">
+                            <label
+                                class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-2">Mensagem
+                                / Desafio</label>
+                            <textarea placeholder="Conte-nos sobre seu projeto..." rows="1"
+                                class="w-full pb-4 border-b border-border focus:border-primary outline-none transition-colors text-lg font-medium bg-transparent resize-none"></textarea>
+                        </div>
+                        <button type="button"
+                            class="btn btn-primary btn-block py-8 h-auto text-xl font-black uppercase tracking-widest shadow-xl shadow-primary/30 animate-reveal"
+                            style="transition-delay: 300ms"
+                            onclick="LogicUI.showNotification('Em breve entraremos em contato!', 'success')">
+                            Aqueça meu Negócio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-16 border-t border-border/40 bg-muted/30">
+        <div class="container flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-sm flame-icon">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                </div>
+                <p class="text-sm text-muted-foreground">© 2025 <span class="font-bold text-foreground">Labareda
+                        Code</span>. Made with Fire & Code.</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="#"
+                    class="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-white transition-all hover:scale-110"
+                    aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#"
+                    class="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-white transition-all hover:scale-110"
+                    aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="#"
+                    class="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-white transition-all hover:scale-110"
+                    aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { UI as LogicUI, Carousel } from './assets/js/modules/ui.js';
+        window.LogicUI = LogicUI;
+
+        // Reveal Observer (Art Direction: Staggered reveals)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-reveal').forEach(el => revealObserver.observe(el));
+
+        // Initialize Carousel
+        document.querySelectorAll('.slideshow--generic').forEach(slider => {
+            new Carousel(slider);
+        });
+
+        // Animated Counter (Divergent Feature: Premium stats animation)
+        const animateCounter = (el, target, suffix, duration = 2000) => {
+            const start = 0;
+            const startTime = performance.now();
+
+            // Ease-out-expo for smooth deceleration
+            const easeOutExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+
+            const updateCounter = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = easeOutExpo(progress);
+                const currentValue = Math.floor(start + (target - start) * easedProgress);
+
+                el.textContent = currentValue + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    // Final pulse animation
+                    el.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        el.style.transform = 'scale(1)';
+                    }, 150);
+                }
+            };
+
+            requestAnimationFrame(updateCounter);
+        };
+
+        // Stats Counter Observer
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    const target = parseInt(entry.target.dataset.target);
+                    const suffix = entry.target.dataset.suffix || '';
+                    animateCounter(entry.target, target, suffix);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(el => {
+            el.style.transition = 'transform 0.2s var(--ease-out-expo)';
+            statsObserver.observe(el);
+        });
+
+        // Mobile Menu Logic (Layout & Grid / Usability)
+        const mobileTrigger = document.getElementById('mobile-menu-trigger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const icon = mobileTrigger.querySelector('i');
+
+        const toggleMenu = () => {
+            const isOpen = mobileMenu.dataset.open === 'true';
+            mobileMenu.dataset.open = !isOpen;
+            mobileTrigger.setAttribute('aria-expanded', !isOpen);
+
+            // Stagger Link Entrance (Art Direction)
+            if (!isOpen) {
+                mobileLinks.forEach((link, idx) => {
+                    link.style.transitionDelay = `${idx * 100 + 200}ms`;
+                    link.style.transform = 'translateY(0)';
+                    link.style.opacity = '1';
+                });
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                mobileLinks.forEach((link) => {
+                    link.style.transitionDelay = '0ms';
+                    link.style.transform = 'translateY(20px)';
+                    link.style.opacity = '0';
+                });
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        };
+        mobileTrigger.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Scroll Progress & Header Effect (Visual Polish)
+        const progressBar = document.getElementById('scroll-progress');
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+
+            if (progressBar) progressBar.style.width = scrolled + "%";
+
+            // Header Depth Effect
+            if (winScroll > 50) {
+                header.classList.add('shadow-xl', 'shadow-black/5', 'bg-background/80');
+                header.style.borderBottomColor = 'rgba(255,136,0, 0.1)';
+            } else {
+                header.classList.remove('shadow-xl', 'shadow-black/5', 'bg-background/80');
+                header.style.borderBottomColor = 'transparent';
+            }
+        });
+    </script>
+</body>
+
+</html>
