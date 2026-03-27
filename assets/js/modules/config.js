@@ -1,22 +1,31 @@
 /**
  * Global configuration constants for the application.
- * Contains WhatsApp number, base address, pricing rules, and city coordinates.
+ * Acts as a centralized source of truth for business logic and external integrations.
  */
 export const CONFIG = {
+    // Contact Information
     WHATSAPP_NUMBER: '5519993502969',
     BASE_ADDRESS: 'Rua Coronel Job de Figueiredo, 847, Campinas, SP',
+
+    // Base of Operations Coordinates (Used for return trip calculations)
     BASE_COORDS: { lat: -22.9261, lon: -47.0452 },
+
+    // Pricing Business Rules
     PRICING: {
-        PRECO_BASE: 100.00,
-        PRECO_POR_KM: 4.50,
-        ADICIONAL_FDS: 1.20,     // +20%
-        TIPO_VEICULO: {
-            'moto': 1.0,
-            'car': 1.6,
-            'suv': 1.8,
-            'van': 2.0,
+        LIMITE_KM_BASE: 40,      // O preço de saída cobre até 40km (ida e volta somadas)
+        ADICIONAL_FDS: 1.20,     // Weekend surcharge (+20%)
+
+        // Definindo a política oficial de Saída e Km Adicional por categoria
+        TABELA_VEICULOS: {
+            'leves': { saida: 160.00, km_adicional: 3.50 },
+            'utilitario': { saida: 240.00, km_adicional: 4.00 },
+            'motos': { saida: 160.00, km_adicional: 3.50 },
+            'vans': { saida: 350.00, km_adicional: 4.00 }
         }
     },
+
+    // Pre-defined City Coordinates (Cache for GeoService)
+    // Helps avoid API calls for common service areas
     CITY_COORDS: {
         'campinas': { lat: -22.9099, lon: -47.0626 },
         'valinhos': { lat: -22.9697, lon: -46.9958 },

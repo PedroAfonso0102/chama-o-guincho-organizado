@@ -3,11 +3,13 @@
  * DESIGN TOKENS — Chama o Guincho (Premium SaaS Theme)
  * ============================================================================
  * 
- * Este arquivo centraliza todos os tokens de design do projeto.
- * Estilo: Shadcn UI / Magic UI
- * Paleta: Laranja/Amarelo (Action) + Preto/Cinza (Sophistication)
+ * This file centralizes all design tokens (CSS Variables) for the project.
+ * It serves as the single source of truth for colors, spacing, typography, and effects.
  * 
- * USO: hsl(var(--nome-do-token))
+ * Style Guide: Shadcn UI / Magic UI inspired.
+ * Palette: Intense Orange (Action) + Black/Zinc (Sophistication).
+ *
+ * USAGE: color: hsl(var(--token-name));
  * ============================================================================
  */
 
@@ -125,10 +127,11 @@
     /* Brand Shadows */
     --shadow-primary: 0 10px 30px -5px rgba(255, 122, 26, 0.25);
     /* Mais suave e difuso */
+    --shadow-primary-hover: 0 20px 40px -10px rgba(255, 122, 26, 0.4);
 
     /* Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.8);
-    --glass-blur: blur(12px);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-blur: blur(16px);
 
     /* =========================================================================
      * ESPAÇAMENTOS (Base 4px Scale)
@@ -239,13 +242,16 @@
     --breakpoint-xl: 1280px;
 
     /* =========================================================================
-     * ANIMATIONS
+     * ANIMATIONS (Vibecoding / Biological Motion)
      * ========================================================================= */
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-human: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --duration-fast: 0.2s;
     --duration-normal: 0.3s;
-    --duration-human: 0.5s;
+    --duration-human: 0.4s;
+    --duration-slow: 0.6s;
 
     /* Animation Delays (Stagger) */
     --stagger-1: 100ms;
