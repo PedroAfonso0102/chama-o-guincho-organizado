@@ -254,7 +254,7 @@ function renderFooter() {
                 
                 <div class="pt-6 pb-2 border-t border-white/5 flex justify-center text-center">
                     <p class="text-white/20 hover:text-white/40 transition-colors text-[10px] sm:text-xs uppercase tracking-[0.15em] font-medium">
-                        Fotografia, Edição Gráfica &copy; Programação Estrutural por <span class="text-primary/70 hover:text-primary transition-colors font-bold cursor-pointer">Pedro Afonso Pinheiro de Paula</span>
+                        Desenvolvido por <span class="text-primary/70 hover:text-primary transition-colors font-bold cursor-pointer">Chama o Guincho</span>
                     </p>
                 </div>
             </div>
